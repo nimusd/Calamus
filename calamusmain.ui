@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>877</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,18 +16,297 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTabWidget" name="tabWidget">
+     <widget class="QTabWidget" name="MainTab">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="SoundEngineTab">
+      <widget class="QWidget" name="soundEngineTab">
        <attribute name="title">
         <string>Sound Engine</string>
        </attribute>
+       <widget class="QGroupBox" name="groupSounitInfo">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>401</width>
+          <height>97</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Sounit Info</string>
+        </property>
+        <layout class="QFormLayout" name="formLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="editSounitName"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Used by:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="editSounitUsedBy">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Comment</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="editSounitComment"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupConnectionInspector">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>370</y>
+          <width>421</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Connection Inspector</string>
+        </property>
+        <layout class="QFormLayout" name="formLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>From:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="labelConnectionFrom">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>To:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="labelConnectionTo">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Function:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="comboConnectionFunction">
+           <item>
+            <property name="text">
+             <string>passthrough</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>add</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>multiply</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>substract</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>replace</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>modulate</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Weight:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QDoubleSpinBox" name="spinConnectionWeight"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QPushButton" name="buttonDisconnect">
+           <property name="text">
+            <string>Disconnect</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupContainerInspector">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>119</y>
+          <width>411</width>
+          <height>241</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Container inspector</string>
+        </property>
+        <widget class="QFrame" name="frame_2">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>20</y>
+           <width>176</width>
+           <height>54</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Type: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="labelContainerType">
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Instance: </string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="editInstanceName"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QGroupBox" name="groupInputs">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>80</y>
+           <width>212</width>
+           <height>48</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Inputs</string>
+         </property>
+         <widget class="QListWidget" name="listWidget">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>20</y>
+            <width>51</width>
+            <height>21</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupOutputs">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>130</y>
+           <width>212</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Outputs</string>
+         </property>
+         <widget class="QListWidget" name="listWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>20</y>
+            <width>61</width>
+            <height>21</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupConfig">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>180</y>
+           <width>212</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="title">
+          <string>Config</string>
+         </property>
+         <widget class="QListWidget" name="listWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>10</y>
+            <width>61</width>
+            <height>21</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+       </widget>
       </widget>
-      <widget class="QWidget" name="CompositionTab">
+      <widget class="QWidget" name="compositionTab">
        <attribute name="title">
         <string>Composition</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="preferencesTab">
+       <attribute name="title">
+        <string>Preferences</string>
        </attribute>
       </widget>
      </widget>
@@ -39,7 +318,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>877</width>
      <height>18</height>
     </rect>
    </property>
@@ -287,7 +566,7 @@
   </action>
   <action name="actionBreth_Turbulance">
    <property name="text">
-    <string>Breth Turbulance</string>
+    <string>Breath Turbulence</string>
    </property>
   </action>
   <action name="actionNoise_Color_Filter">
@@ -412,7 +691,7 @@
   </action>
   <action name="actionCompisition_Tab_Ctrl_2">
    <property name="text">
-    <string>Compisition Tab (Ctrl + 2)</string>
+    <string>Composition Tab (Ctrl + 2)</string>
    </property>
   </action>
   <action name="actionPreferences_Tab_Ctrl_3">

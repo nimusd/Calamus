@@ -1,33 +1,15 @@
 # ninja log v6
-7	699	7876300229372468	Calamus_autogen/timestamp	bd537b5dc908a690
-7	699	7876300229372468	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-7	699	7876300229372468	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-7	699	7876300229372468	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+217	3013	7876443053499281	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
 2952	5199	7876300252763611	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
+31	217	7876443051630979	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+31	217	7876443051630979	Calamus_autogen/timestamp	bd537b5dc908a690
+3013	3228	7876443081446593	Calamus.exe	7e58bec7b5b59f44
+31	217	7876443051630979	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+31	217	7876443051630979	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
 2956	5217	7876300252763611	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-2959	5298	7876300252763611	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-5298	5615	7876300276257426	Calamus.exe	7e58bec7b5b59f44
-43	241	7876306912979325	Calamus_autogen/timestamp	bd537b5dc908a690
-43	241	7876306912979325	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-43	241	7876306912979325	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-43	241	7876306912979325	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-241	2399	7876306914964034	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-2399	2602	7876306936536552	Calamus.exe	7e58bec7b5b59f44
-31	214	7876310522301813	Calamus_autogen/timestamp	bd537b5dc908a690
-31	214	7876310522301813	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-31	214	7876310522301813	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-31	214	7876310522301813	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-215	2381	7876310524142301	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-2381	2582	7876310545796411	Calamus.exe	7e58bec7b5b59f44
-33	216	7876315020872835	Calamus_autogen/timestamp	bd537b5dc908a690
-33	216	7876315020872835	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-33	216	7876315020872835	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-33	216	7876315020872835	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-217	2395	7876315022710826	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-2395	2602	7876315044387740	Calamus.exe	7e58bec7b5b59f44
-37	224	7876329067952663	Calamus_autogen/timestamp	bd537b5dc908a690
-37	224	7876329067952663	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-37	224	7876329067952663	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-37	224	7876329067952663	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-225	2502	7876329069821520	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-2502	2711	7876329092543656	Calamus.exe	7e58bec7b5b59f44
+41	233	7876444024393583	Calamus_autogen/timestamp	bd537b5dc908a690
+41	233	7876444024393583	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+41	233	7876444024393583	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+41	233	7876444024393583	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+233	3057	7876444026369584	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
+3058	3274	7876444054513370	Calamus.exe	7e58bec7b5b59f44
