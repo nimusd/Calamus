@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SounitBuilderCanvas</class>
+ <widget class="QMainWindow" name="SounitBuilderCanvas">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1215</width>
+    <height>679</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Sounit Builser</string>
+  </property>
+  <widget class="QWidget" name="centralsounitbuildercanvaswidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: white;</string>
+   </property>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>619</y>
+      <width>145</width>
+      <height>37</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="buttonPlay">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>▶</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonStop">
+       <property name="text">
+        <string>■</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="labelPosition">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>630</y>
+      <width>41</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0:00:00</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelTempo">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>630</y>
+      <width>41</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>120 bpm</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelTimeSignature">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>630</y>
+      <width>41</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>5/4</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionHarmonicGenerator"/>
+   <addaction name="actionSpectrum_to_Signal"/>
+   <addaction name="separator"/>
+   <addaction name="actionRollofff_processor"/>
+   <addaction name="actionFormant_body"/>
+   <addaction name="actionBreath_Turbulence"/>
+   <addaction name="actionNoise_Color_Filter"/>
+   <addaction name="separator"/>
+   <addaction name="actionPhysics_System"/>
+   <addaction name="actionEasing_Applicator"/>
+   <addaction name="actionEnvelope_Engine"/>
+   <addaction name="actionDrift_Engine"/>
+   <addaction name="actionGate_Processor"/>
+   <addaction name="separator"/>
+   <addaction name="actionMarquee_Select"/>
+  </widget>
+  <action name="actionHarmonicGenerator">
+   <property name="text">
+    <string>Harmonic Generator</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionSpectrum_to_Signal">
+   <property name="text">
+    <string>Spectrum to Signal</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionRollofff_processor">
+   <property name="text">
+    <string>Rollofff processor</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionFormant_body">
+   <property name="text">
+    <string>Formant body</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionBreath_Turbulence">
+   <property name="text">
+    <string>Breath Turbulence</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionNoise_Color_Filter">
+   <property name="text">
+    <string>Noise Color Filter</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionPhysics_System">
+   <property name="text">
+    <string>Physics System</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionEasing_Applicator">
+   <property name="text">
+    <string>Easing Applicator</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionEnvelope_Engine">
+   <property name="text">
+    <string>Envelope Engine</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionDrift_Engine">
+   <property name="text">
+    <string>Drift Engine</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionGate_Processor">
+   <property name="text">
+    <string>Gate Processor</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionMarquee_Select">
+   <property name="text">
+    <string>Marquee Select</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

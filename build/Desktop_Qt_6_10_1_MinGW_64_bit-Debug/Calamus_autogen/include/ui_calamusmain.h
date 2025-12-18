@@ -102,7 +102,6 @@ public:
     QGroupBox *groupConnectionInspector;
     QFormLayout *formLayout_3;
     QLabel *label_6;
-    QLabel *labelConnectionFrom;
     QLabel *label_7;
     QLabel *labelConnectionTo;
     QLabel *label_8;
@@ -110,19 +109,19 @@ public:
     QLabel *label_9;
     QDoubleSpinBox *spinConnectionWeight;
     QPushButton *buttonDisconnect;
+    QLabel *labelConnectionFrom;
     QGroupBox *groupContainerInspector;
     QFrame *frame_2;
-    QFormLayout *formLayout;
     QLabel *label_4;
     QLabel *labelContainerType;
     QLabel *label_5;
     QLineEdit *editInstanceName;
+    QGroupBox *groupConfig;
+    QListWidget *listWidget_3;
     QGroupBox *groupInputs;
     QListWidget *listWidget;
     QGroupBox *groupOutputs;
     QListWidget *listWidget_2;
-    QGroupBox *groupConfig;
-    QListWidget *listWidget_3;
     QWidget *compositionTab;
     QWidget *preferencesTab;
     QMenuBar *menubar;
@@ -142,7 +141,7 @@ public:
     {
         if (CalamusMain->objectName().isEmpty())
             CalamusMain->setObjectName("CalamusMain");
-        CalamusMain->resize(877, 674);
+        CalamusMain->resize(1089, 760);
         actionNew_project_Ctrl_N = new QAction(CalamusMain);
         actionNew_project_Ctrl_N->setObjectName("actionNew_project_Ctrl_N");
         actionOpen_ctrl_o = new QAction(CalamusMain);
@@ -259,7 +258,7 @@ public:
         soundEngineTab->setObjectName("soundEngineTab");
         groupSounitInfo = new QGroupBox(soundEngineTab);
         groupSounitInfo->setObjectName("groupSounitInfo");
-        groupSounitInfo->setGeometry(QRect(10, 0, 401, 97));
+        groupSounitInfo->setGeometry(QRect(10, 0, 341, 111));
         formLayout_2 = new QFormLayout(groupSounitInfo);
         formLayout_2->setObjectName("formLayout_2");
         label = new QLabel(groupSounitInfo);
@@ -295,18 +294,13 @@ public:
 
         groupConnectionInspector = new QGroupBox(soundEngineTab);
         groupConnectionInspector->setObjectName("groupConnectionInspector");
-        groupConnectionInspector->setGeometry(QRect(10, 370, 421, 171));
+        groupConnectionInspector->setGeometry(QRect(10, 510, 351, 151));
         formLayout_3 = new QFormLayout(groupConnectionInspector);
         formLayout_3->setObjectName("formLayout_3");
         label_6 = new QLabel(groupConnectionInspector);
         label_6->setObjectName("label_6");
 
         formLayout_3->setWidget(0, QFormLayout::ItemRole::LabelRole, label_6);
-
-        labelConnectionFrom = new QLabel(groupConnectionInspector);
-        labelConnectionFrom->setObjectName("labelConnectionFrom");
-
-        formLayout_3->setWidget(0, QFormLayout::ItemRole::FieldRole, labelConnectionFrom);
 
         label_7 = new QLabel(groupConnectionInspector);
         label_7->setObjectName("label_7");
@@ -349,54 +343,52 @@ public:
 
         formLayout_3->setWidget(4, QFormLayout::ItemRole::LabelRole, buttonDisconnect);
 
+        labelConnectionFrom = new QLabel(groupConnectionInspector);
+        labelConnectionFrom->setObjectName("labelConnectionFrom");
+
+        formLayout_3->setWidget(0, QFormLayout::ItemRole::FieldRole, labelConnectionFrom);
+
         groupContainerInspector = new QGroupBox(soundEngineTab);
         groupContainerInspector->setObjectName("groupContainerInspector");
-        groupContainerInspector->setGeometry(QRect(10, 119, 411, 241));
+        groupContainerInspector->setGeometry(QRect(10, 119, 1021, 381));
         frame_2 = new QFrame(groupContainerInspector);
         frame_2->setObjectName("frame_2");
-        frame_2->setGeometry(QRect(30, 20, 176, 54));
+        frame_2->setGeometry(QRect(0, 20, 1011, 335));
         frame_2->setFrameShape(QFrame::Shape::StyledPanel);
         frame_2->setFrameShadow(QFrame::Shadow::Raised);
-        formLayout = new QFormLayout(frame_2);
-        formLayout->setObjectName("formLayout");
         label_4 = new QLabel(frame_2);
         label_4->setObjectName("label_4");
-
-        formLayout->setWidget(0, QFormLayout::ItemRole::LabelRole, label_4);
-
+        label_4->setGeometry(QRect(8, 8, 26, 16));
         labelContainerType = new QLabel(frame_2);
         labelContainerType->setObjectName("labelContainerType");
-
-        formLayout->setWidget(0, QFormLayout::ItemRole::FieldRole, labelContainerType);
-
+        labelContainerType->setGeometry(QRect(55, 8, 41, 16));
         label_5 = new QLabel(frame_2);
         label_5->setObjectName("label_5");
-
-        formLayout->setWidget(1, QFormLayout::ItemRole::LabelRole, label_5);
-
+        label_5->setGeometry(QRect(8, 27, 42, 16));
         editInstanceName = new QLineEdit(frame_2);
         editInstanceName->setObjectName("editInstanceName");
-
-        formLayout->setWidget(1, QFormLayout::ItemRole::FieldRole, editInstanceName);
-
-        groupInputs = new QGroupBox(groupContainerInspector);
-        groupInputs->setObjectName("groupInputs");
-        groupInputs->setGeometry(QRect(20, 80, 212, 48));
-        listWidget = new QListWidget(groupInputs);
-        listWidget->setObjectName("listWidget");
-        listWidget->setGeometry(QRect(30, 20, 51, 21));
-        groupOutputs = new QGroupBox(groupContainerInspector);
-        groupOutputs->setObjectName("groupOutputs");
-        groupOutputs->setGeometry(QRect(20, 130, 212, 51));
-        listWidget_2 = new QListWidget(groupOutputs);
-        listWidget_2->setObjectName("listWidget_2");
-        listWidget_2->setGeometry(QRect(30, 20, 61, 21));
-        groupConfig = new QGroupBox(groupContainerInspector);
+        editInstanceName->setGeometry(QRect(55, 27, 113, 19));
+        groupConfig = new QGroupBox(frame_2);
         groupConfig->setObjectName("groupConfig");
-        groupConfig->setGeometry(QRect(20, 180, 212, 51));
+        groupConfig->setGeometry(QRect(500, 200, 315, 111));
         listWidget_3 = new QListWidget(groupConfig);
         listWidget_3->setObjectName("listWidget_3");
-        listWidget_3->setGeometry(QRect(40, 10, 61, 21));
+        listWidget_3->setGeometry(QRect(30, 20, 241, 91));
+        listWidget_3->setMinimumSize(QSize(0, 0));
+        groupInputs = new QGroupBox(frame_2);
+        groupInputs->setObjectName("groupInputs");
+        groupInputs->setGeometry(QRect(0, 70, 481, 251));
+        listWidget = new QListWidget(groupInputs);
+        listWidget->setObjectName("listWidget");
+        listWidget->setGeometry(QRect(30, 20, 261, 211));
+        listWidget->setMinimumSize(QSize(0, 0));
+        groupOutputs = new QGroupBox(frame_2);
+        groupOutputs->setObjectName("groupOutputs");
+        groupOutputs->setGeometry(QRect(500, 70, 381, 109));
+        listWidget_2 = new QListWidget(groupOutputs);
+        listWidget_2->setObjectName("listWidget_2");
+        listWidget_2->setGeometry(QRect(30, 20, 241, 81));
+        listWidget_2->setMinimumSize(QSize(0, 0));
         MainTab->addTab(soundEngineTab, QString());
         compositionTab = new QWidget();
         compositionTab->setObjectName("compositionTab");
@@ -410,7 +402,7 @@ public:
         CalamusMain->setCentralWidget(centralwidget);
         menubar = new QMenuBar(CalamusMain);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 877, 18));
+        menubar->setGeometry(QRect(0, 0, 1089, 18));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName("menuFile");
         menuEdit = new QMenu(menubar);
@@ -582,7 +574,6 @@ public:
         label_3->setText(QCoreApplication::translate("CalamusMain", "Comment", nullptr));
         groupConnectionInspector->setTitle(QCoreApplication::translate("CalamusMain", "Connection Inspector", nullptr));
         label_6->setText(QCoreApplication::translate("CalamusMain", "From:", nullptr));
-        labelConnectionFrom->setText(QCoreApplication::translate("CalamusMain", "TextLabel", nullptr));
         label_7->setText(QCoreApplication::translate("CalamusMain", "To:", nullptr));
         labelConnectionTo->setText(QCoreApplication::translate("CalamusMain", "TextLabel", nullptr));
         label_8->setText(QCoreApplication::translate("CalamusMain", "Function:", nullptr));
@@ -595,13 +586,14 @@ public:
 
         label_9->setText(QCoreApplication::translate("CalamusMain", "Weight:", nullptr));
         buttonDisconnect->setText(QCoreApplication::translate("CalamusMain", "Disconnect", nullptr));
+        labelConnectionFrom->setText(QCoreApplication::translate("CalamusMain", "TextLabel", nullptr));
         groupContainerInspector->setTitle(QCoreApplication::translate("CalamusMain", "Container inspector", nullptr));
         label_4->setText(QCoreApplication::translate("CalamusMain", "Type: ", nullptr));
         labelContainerType->setText(QCoreApplication::translate("CalamusMain", "TextLabel", nullptr));
         label_5->setText(QCoreApplication::translate("CalamusMain", "Instance: ", nullptr));
+        groupConfig->setTitle(QCoreApplication::translate("CalamusMain", "Config", nullptr));
         groupInputs->setTitle(QCoreApplication::translate("CalamusMain", "Inputs", nullptr));
         groupOutputs->setTitle(QCoreApplication::translate("CalamusMain", "Outputs", nullptr));
-        groupConfig->setTitle(QCoreApplication::translate("CalamusMain", "Config", nullptr));
         MainTab->setTabText(MainTab->indexOf(soundEngineTab), QCoreApplication::translate("CalamusMain", "Sound Engine", nullptr));
         MainTab->setTabText(MainTab->indexOf(compositionTab), QCoreApplication::translate("CalamusMain", "Composition", nullptr));
         MainTab->setTabText(MainTab->indexOf(preferencesTab), QCoreApplication::translate("CalamusMain", "Preferences", nullptr));

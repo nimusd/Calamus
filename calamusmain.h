@@ -2,6 +2,7 @@
 #define CALAMUSMAIN_H
 
 #include <QMainWindow>
+#include "sounitbuilder.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,5 +20,9 @@ public:
 
 private:
     Ui::CalamusMain *ui;
+
+private:
+    SounitBuilder *sounitBuilder;
 };
+
 #endif // CALAMUSMAIN_H
