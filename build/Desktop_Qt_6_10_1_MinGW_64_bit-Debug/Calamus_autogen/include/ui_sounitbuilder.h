@@ -12,11 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -37,21 +33,18 @@ public:
     QAction *actionDrift_Engine;
     QAction *actionGate_Processor;
     QAction *actionMarquee_Select;
+    QAction *actionplay;
+    QAction *actionstop;
     QWidget *centralsounitbuildercanvaswidget;
-    QFrame *frame;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *buttonPlay;
-    QPushButton *buttonStop;
-    QLabel *labelPosition;
-    QLabel *labelTempo;
-    QLabel *labelTimeSignature;
     QToolBar *toolBar;
+    QToolBar *toolBar_2;
 
     void setupUi(QMainWindow *SounitBuilderCanvas)
     {
         if (SounitBuilderCanvas->objectName().isEmpty())
             SounitBuilderCanvas->setObjectName("SounitBuilderCanvas");
-        SounitBuilderCanvas->resize(1215, 679);
+        SounitBuilderCanvas->resize(1215, 713);
+        SounitBuilderCanvas->setMinimumSize(QSize(0, 0));
         actionHarmonicGenerator = new QAction(SounitBuilderCanvas);
         actionHarmonicGenerator->setObjectName("actionHarmonicGenerator");
         actionHarmonicGenerator->setMenuRole(QAction::MenuRole::NoRole);
@@ -88,42 +81,24 @@ public:
         actionMarquee_Select = new QAction(SounitBuilderCanvas);
         actionMarquee_Select->setObjectName("actionMarquee_Select");
         actionMarquee_Select->setMenuRole(QAction::MenuRole::NoRole);
+        actionplay = new QAction(SounitBuilderCanvas);
+        actionplay->setObjectName("actionplay");
+        actionplay->setMenuRole(QAction::MenuRole::NoRole);
+        actionstop = new QAction(SounitBuilderCanvas);
+        actionstop->setObjectName("actionstop");
+        actionstop->setMenuRole(QAction::MenuRole::NoRole);
         centralsounitbuildercanvaswidget = new QWidget(SounitBuilderCanvas);
         centralsounitbuildercanvaswidget->setObjectName("centralsounitbuildercanvaswidget");
         centralsounitbuildercanvaswidget->setStyleSheet(QString::fromUtf8("background-color: white;"));
-        frame = new QFrame(centralsounitbuildercanvaswidget);
-        frame->setObjectName("frame");
-        frame->setGeometry(QRect(0, 619, 145, 37));
-        frame->setFrameShape(QFrame::Shape::StyledPanel);
-        frame->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout = new QHBoxLayout(frame);
-        horizontalLayout->setObjectName("horizontalLayout");
-        buttonPlay = new QPushButton(frame);
-        buttonPlay->setObjectName("buttonPlay");
-        QFont font;
-        font.setPointSize(18);
-        buttonPlay->setFont(font);
-
-        horizontalLayout->addWidget(buttonPlay);
-
-        buttonStop = new QPushButton(frame);
-        buttonStop->setObjectName("buttonStop");
-
-        horizontalLayout->addWidget(buttonStop);
-
-        labelPosition = new QLabel(centralsounitbuildercanvaswidget);
-        labelPosition->setObjectName("labelPosition");
-        labelPosition->setGeometry(QRect(160, 630, 41, 14));
-        labelTempo = new QLabel(centralsounitbuildercanvaswidget);
-        labelTempo->setObjectName("labelTempo");
-        labelTempo->setGeometry(QRect(250, 630, 41, 14));
-        labelTimeSignature = new QLabel(centralsounitbuildercanvaswidget);
-        labelTimeSignature->setObjectName("labelTimeSignature");
-        labelTimeSignature->setGeometry(QRect(330, 630, 41, 14));
         SounitBuilderCanvas->setCentralWidget(centralsounitbuildercanvaswidget);
         toolBar = new QToolBar(SounitBuilderCanvas);
         toolBar->setObjectName("toolBar");
         SounitBuilderCanvas->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
+        toolBar_2 = new QToolBar(SounitBuilderCanvas);
+        toolBar_2->setObjectName("toolBar_2");
+        toolBar_2->setMinimumSize(QSize(0, 30));
+        toolBar_2->setMaximumSize(QSize(16777215, 30));
+        SounitBuilderCanvas->addToolBar(Qt::ToolBarArea::BottomToolBarArea, toolBar_2);
 
         toolBar->addAction(actionHarmonicGenerator);
         toolBar->addAction(actionSpectrum_to_Signal);
@@ -140,6 +115,10 @@ public:
         toolBar->addAction(actionGate_Processor);
         toolBar->addSeparator();
         toolBar->addAction(actionMarquee_Select);
+        toolBar_2->addAction(actionplay);
+        toolBar_2->addSeparator();
+        toolBar_2->addAction(actionstop);
+        toolBar_2->addSeparator();
 
         retranslateUi(SounitBuilderCanvas);
 
@@ -161,12 +140,10 @@ public:
         actionDrift_Engine->setText(QCoreApplication::translate("SounitBuilderCanvas", "Drift Engine", nullptr));
         actionGate_Processor->setText(QCoreApplication::translate("SounitBuilderCanvas", "Gate Processor", nullptr));
         actionMarquee_Select->setText(QCoreApplication::translate("SounitBuilderCanvas", "Marquee Select", nullptr));
-        buttonPlay->setText(QCoreApplication::translate("SounitBuilderCanvas", "\342\226\266", nullptr));
-        buttonStop->setText(QCoreApplication::translate("SounitBuilderCanvas", "\342\226\240", nullptr));
-        labelPosition->setText(QCoreApplication::translate("SounitBuilderCanvas", "0:00:00", nullptr));
-        labelTempo->setText(QCoreApplication::translate("SounitBuilderCanvas", "120 bpm", nullptr));
-        labelTimeSignature->setText(QCoreApplication::translate("SounitBuilderCanvas", "5/4", nullptr));
+        actionplay->setText(QCoreApplication::translate("SounitBuilderCanvas", "\342\226\266", nullptr));
+        actionstop->setText(QCoreApplication::translate("SounitBuilderCanvas", "\342\226\240", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("SounitBuilderCanvas", "toolBar", nullptr));
+        toolBar_2->setWindowTitle(QCoreApplication::translate("SounitBuilderCanvas", "toolBar_2", nullptr));
     } // retranslateUi
 
 };

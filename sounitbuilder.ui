@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>1215</width>
-    <height>679</height>
+    <height>713</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Sounit Builser</string>
@@ -17,82 +23,6 @@
    <property name="styleSheet">
     <string notr="true">background-color: white;</string>
    </property>
-   <widget class="QFrame" name="frame">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>619</y>
-      <width>145</width>
-      <height>37</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="buttonPlay">
-       <property name="font">
-        <font>
-         <pointsize>18</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>▶</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="buttonStop">
-       <property name="text">
-        <string>■</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QLabel" name="labelPosition">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>630</y>
-      <width>41</width>
-      <height>14</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>0:00:00</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelTempo">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>630</y>
-      <width>41</width>
-      <height>14</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>120 bpm</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelTimeSignature">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>630</y>
-      <width>41</width>
-      <height>14</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>5/4</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -119,6 +49,33 @@
    <addaction name="actionGate_Processor"/>
    <addaction name="separator"/>
    <addaction name="actionMarquee_Select"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionplay"/>
+   <addaction name="separator"/>
+   <addaction name="actionstop"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionHarmonicGenerator">
    <property name="text">
@@ -211,6 +168,22 @@
   <action name="actionMarquee_Select">
    <property name="text">
     <string>Marquee Select</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionplay">
+   <property name="text">
+    <string>▶</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionstop">
+   <property name="text">
+    <string>■</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
