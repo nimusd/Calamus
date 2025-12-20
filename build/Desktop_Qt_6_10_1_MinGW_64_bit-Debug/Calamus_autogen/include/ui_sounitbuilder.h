@@ -37,7 +37,7 @@ public:
     QAction *actionstop;
     QWidget *centralsounitbuildercanvaswidget;
     QToolBar *toolBar;
-    QToolBar *toolBar_2;
+    QToolBar *sounitBuilderBottomToolbar;
 
     void setupUi(QMainWindow *SounitBuilderCanvas)
     {
@@ -94,11 +94,11 @@ public:
         toolBar = new QToolBar(SounitBuilderCanvas);
         toolBar->setObjectName("toolBar");
         SounitBuilderCanvas->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
-        toolBar_2 = new QToolBar(SounitBuilderCanvas);
-        toolBar_2->setObjectName("toolBar_2");
-        toolBar_2->setMinimumSize(QSize(0, 30));
-        toolBar_2->setMaximumSize(QSize(16777215, 30));
-        SounitBuilderCanvas->addToolBar(Qt::ToolBarArea::BottomToolBarArea, toolBar_2);
+        sounitBuilderBottomToolbar = new QToolBar(SounitBuilderCanvas);
+        sounitBuilderBottomToolbar->setObjectName("sounitBuilderBottomToolbar");
+        sounitBuilderBottomToolbar->setMinimumSize(QSize(0, 30));
+        sounitBuilderBottomToolbar->setMaximumSize(QSize(16777215, 30));
+        SounitBuilderCanvas->addToolBar(Qt::ToolBarArea::BottomToolBarArea, sounitBuilderBottomToolbar);
 
         toolBar->addAction(actionHarmonicGenerator);
         toolBar->addAction(actionSpectrum_to_Signal);
@@ -115,10 +115,10 @@ public:
         toolBar->addAction(actionGate_Processor);
         toolBar->addSeparator();
         toolBar->addAction(actionMarquee_Select);
-        toolBar_2->addAction(actionplay);
-        toolBar_2->addSeparator();
-        toolBar_2->addAction(actionstop);
-        toolBar_2->addSeparator();
+        sounitBuilderBottomToolbar->addAction(actionplay);
+        sounitBuilderBottomToolbar->addSeparator();
+        sounitBuilderBottomToolbar->addAction(actionstop);
+        sounitBuilderBottomToolbar->addSeparator();
 
         retranslateUi(SounitBuilderCanvas);
 
@@ -143,7 +143,7 @@ public:
         actionplay->setText(QCoreApplication::translate("SounitBuilderCanvas", "\342\226\266", nullptr));
         actionstop->setText(QCoreApplication::translate("SounitBuilderCanvas", "\342\226\240", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("SounitBuilderCanvas", "toolBar", nullptr));
-        toolBar_2->setWindowTitle(QCoreApplication::translate("SounitBuilderCanvas", "toolBar_2", nullptr));
+        sounitBuilderBottomToolbar->setWindowTitle(QCoreApplication::translate("SounitBuilderCanvas", "toolBar_2", nullptr));
     } // retranslateUi
 
 };

@@ -50,7 +50,7 @@
    <addaction name="separator"/>
    <addaction name="actionMarquee_Select"/>
   </widget>
-  <widget class="QToolBar" name="toolBar_2">
+  <widget class="QToolBar" name="sounitBuilderBottomToolbar">
    <property name="minimumSize">
     <size>
      <width>0</width>

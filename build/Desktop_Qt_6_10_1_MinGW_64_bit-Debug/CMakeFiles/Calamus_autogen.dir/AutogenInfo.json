@@ -493,6 +493,12 @@
 			null
 		],
 		[
+			"D:/C++ code/Calamus/canvas.h",
+			"MU",
+			"EWIEGA46WW/moc_canvas.cpp",
+			null
+		],
+		[
 			"D:/C++ code/Calamus/container.h",
 			"MU",
 			"EWIEGA46WW/moc_container.cpp",
@@ -576,6 +582,7 @@
 	"SOURCES" : 
 	[
 		[ "D:/C++ code/Calamus/calamusmain.cpp", "MU", null ],
+		[ "D:/C++ code/Calamus/canvas.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/container.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/main.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/sounitbuilder.cpp", "MU", null ]

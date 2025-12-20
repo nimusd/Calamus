@@ -17,6 +17,7 @@ qt_add_executable(Calamus
     container.ui
     sounitbuilder.h sounitbuilder.cpp
     container.h container.cpp
+    canvas.h canvas.cpp
 )
 
 target_link_libraries(Calamus

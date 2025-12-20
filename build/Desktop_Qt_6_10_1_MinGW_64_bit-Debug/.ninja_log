@@ -1,91 +1,28 @@
 # ninja log v6
-898	5392	7877307328885816	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-888	4583	7877307328786181	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-55	887	7877307327660045	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-55	887	7877307327660045	Calamus_autogen/timestamp	bd537b5dc908a690
-5392	5929	7877307373823847	Calamus.exe	def7a4c64fd7193a
-55	887	7877307327660045	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-55	887	7877307327660045	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-893	4643	7877307328806260	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-907	4772	7877307328965022	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-37	1154	7877313064167177	Calamus_autogen/timestamp	bd537b5dc908a690
-37	1154	7877313064167177	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-37	1154	7877313064167177	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-37	1154	7877313064167177	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-1155	5877	7877313065557469	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-1173	6116	7877313065744336	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-1167	6163	7877313065682214	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-1161	6863	7877313065617579	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-6863	7161	7877313122634725	Calamus.exe	7d53200f2f85eb17
-46	254	7877314973701701	Calamus_autogen/timestamp	bd537b5dc908a690
-46	254	7877314973701701	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-46	254	7877314973701701	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-46	254	7877314973701701	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-262	3215	7877314975862829	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-258	3325	7877314975822862	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-255	3968	7877314975792825	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-3968	4268	7877315012920451	Calamus.exe	7d53200f2f85eb17
-29	233	7877315598060929	Calamus_autogen/timestamp	bd537b5dc908a690
-29	233	7877315598060929	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-29	233	7877315598060929	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-29	233	7877315598060929	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-241	2631	7877315600191147	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-238	2674	7877315600151089	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-234	3267	7877315600115964	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-3267	3540	7877315630314727	Calamus.exe	7d53200f2f85eb17
-31	205	7877321883135835	Calamus_autogen/timestamp	bd537b5dc908a690
-31	205	7877321883135835	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-31	205	7877321883135835	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-31	205	7877321883135835	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-212	3308	7877321884940492	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-209	3373	7877321884910523	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-206	4110	7877321884880469	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-4110	4423	7877321923923567	Calamus.exe	7d53200f2f85eb17
-46	1165	7877324244260914	Calamus_autogen/timestamp	bd537b5dc908a690
-46	1165	7877324244260914	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-46	1165	7877324244260914	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-46	1165	7877324244260914	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-1167	5642	7877324245524559	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-1179	5845	7877324245620683	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-1185	5899	7877324245688222	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-1173	6334	7877324245584606	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-33	221	7877325293153513	Calamus_autogen/timestamp	bd537b5dc908a690
-33	221	7877325293153513	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-33	221	7877325293153513	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-33	221	7877325293153513	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-229	3404	7877325295113887	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-225	3448	7877325295083894	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-222	4113	7877325295043881	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-4113	4516	7877325333942517	Calamus.exe	7d53200f2f85eb17
-12	226	7877334456827314	Calamus_autogen/timestamp	bd537b5dc908a690
-12	226	7877334456827314	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-12	226	7877334456827314	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-12	226	7877334456827314	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-233	2812	7877334459027334	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-229	2912	7877334458997332	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-226	3418	7877334458967348	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-3418	3765	7877334490826597	Calamus.exe	7d53200f2f85eb17
-31	235	7877338900840772	Calamus_autogen/timestamp	bd537b5dc908a690
-31	235	7877338900840772	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-31	235	7877338900840772	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-31	235	7877338900840772	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-239	2882	7877338902930435	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-243	2979	7877338902970416	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-236	3524	7877338902894168	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-3524	3953	7877338935674776	Calamus.exe	7d53200f2f85eb17
-31	237	7877346105129596	Calamus_autogen/timestamp	bd537b5dc908a690
-31	237	7877346105129596	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-31	237	7877346105129596	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-31	237	7877346105129596	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-244	2864	7877346107253918	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-241	2893	7877346107223907	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-237	3412	7877346107188772	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-3412	3703	7877346138934087	Calamus.exe	7d53200f2f85eb17
-29	228	7877352330298589	Calamus_autogen/timestamp	bd537b5dc908a690
-29	228	7877352330298589	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-29	228	7877352330298589	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-29	228	7877352330298589	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-232	2796	7877352332325727	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-235	2837	7877352332355435	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-229	3364	7877352332293579	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-3364	3697	7877352363642467	Calamus.exe	7d53200f2f85eb17
+289	3887	7879040798550289	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
+1424	7822	7878738432256632	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
+295	3214	7879040798609927	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
+47	288	7879040796127509	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+47	288	7879040796127509	Calamus_autogen/timestamp	bd537b5dc908a690
+3887	4847	7879040834528749	Calamus.exe	a54132f501d9dc7c
+47	288	7879040796127509	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+47	288	7879040796127509	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+1428	7007	7878738432296648	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
+292	3645	7879040798580268	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
+266	4199	7878742246091305	CMakeFiles/Calamus.dir/canvas.cpp.obj	aa1709abf492b0af
+32	246	7879041872228013	Calamus_autogen/timestamp	bd537b5dc908a690
+32	246	7879041872228013	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+32	246	7879041872228013	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+32	246	7879041872228013	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+252	2963	7879041874433746	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
+249	3431	7879041874403738	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
+246	3723	7879041874374097	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
+3724	4478	7879041909051524	Calamus.exe	a54132f501d9dc7c
+31	253	7879042215847504	Calamus_autogen/timestamp	bd537b5dc908a690
+31	253	7879042215847504	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+31	253	7879042215847504	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+31	253	7879042215847504	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+260	2954	7879042218137045	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
+257	3355	7879042218107417	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
+254	3674	7879042218077062	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
+3674	4454	7879042252263866	Calamus.exe	a54132f501d9dc7c

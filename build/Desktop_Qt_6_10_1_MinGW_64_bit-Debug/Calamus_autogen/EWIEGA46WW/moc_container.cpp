@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../../container.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -38,10 +39,30 @@ template <> constexpr inline auto Container::qt_create_metaobjectdata<qt_meta_ta
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "Container"
+        "Container",
+        "portClicked",
+        "",
+        "Container*",
+        "container",
+        "portName",
+        "isOutput",
+        "QPoint",
+        "globalPos",
+        "moved",
+        "clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'portClicked'
+        QtMocHelpers::SignalData<void(Container *, const QString &, bool, QPoint)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 3, 4 }, { QMetaType::QString, 5 }, { QMetaType::Bool, 6 }, { 0x80000000 | 7, 8 },
+        }}),
+        // Signal 'moved'
+        QtMocHelpers::SignalData<void()>(9, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'clicked'
+        QtMocHelpers::SignalData<void(Container *)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 3, 4 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -63,10 +84,41 @@ Q_CONSTINIT const QMetaObject Container::staticMetaObject = { {
 void Container::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<Container *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->portClicked((*reinterpret_cast<std::add_pointer_t<Container*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QPoint>>(_a[4]))); break;
+        case 1: _t->moved(); break;
+        case 2: _t->clicked((*reinterpret_cast<std::add_pointer_t<Container*>>(_a[1]))); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 0:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< Container* >(); break;
+            }
+            break;
+        case 2:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< Container* >(); break;
+            }
+            break;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (Container::*)(Container * , const QString & , bool , QPoint )>(_a, &Container::portClicked, 0))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (Container::*)()>(_a, &Container::moved, 1))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (Container::*)(Container * )>(_a, &Container::clicked, 2))
+            return;
+    }
 }
 
 const QMetaObject *Container::metaObject() const
@@ -85,6 +137,36 @@ void *Container::qt_metacast(const char *_clname)
 int Container::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void Container::portClicked(Container * _t1, const QString & _t2, bool _t3, QPoint _t4)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2, _t3, _t4);
+}
+
+// SIGNAL 1
+void Container::moved()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+}
+
+// SIGNAL 2
+void Container::clicked(Container * _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
 }
 QT_WARNING_POP

@@ -21,7 +21,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QFrame" name="frameHeader">
+    <widget class="QFrame" name="containerFrameHeader">
      <property name="minimumSize">
       <size>
        <width>0</width>

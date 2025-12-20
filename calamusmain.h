@@ -23,6 +23,9 @@ private:
 
 private:
     SounitBuilder *sounitBuilder;
+
+private slots:
+    void onTabChanged(int index);
 };
 
 #endif // CALAMUSMAIN_H

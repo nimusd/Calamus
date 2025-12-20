@@ -23,7 +23,7 @@ class Ui_Container
 {
 public:
     QVBoxLayout *verticalLayout;
-    QFrame *frameHeader;
+    QFrame *containerFrameHeader;
     QHBoxLayout *horizontalLayout;
     QLabel *labelInstanceName;
     QFrame *frameBody;
@@ -47,25 +47,25 @@ public:
 "}"));
         verticalLayout = new QVBoxLayout(Container);
         verticalLayout->setObjectName("verticalLayout");
-        frameHeader = new QFrame(Container);
-        frameHeader->setObjectName("frameHeader");
-        frameHeader->setMinimumSize(QSize(0, 30));
-        frameHeader->setMaximumSize(QSize(16777215, 30));
-        frameHeader->setStyleSheet(QString::fromUtf8("background-color: #3498db; \n"
+        containerFrameHeader = new QFrame(Container);
+        containerFrameHeader->setObjectName("containerFrameHeader");
+        containerFrameHeader->setMinimumSize(QSize(0, 30));
+        containerFrameHeader->setMaximumSize(QSize(16777215, 30));
+        containerFrameHeader->setStyleSheet(QString::fromUtf8("background-color: #3498db; \n"
 "color: white; \n"
 "border-top-left-radius: 8px; \n"
 "border-top-right-radius: 8px;"));
-        frameHeader->setFrameShape(QFrame::Shape::StyledPanel);
-        frameHeader->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout = new QHBoxLayout(frameHeader);
+        containerFrameHeader->setFrameShape(QFrame::Shape::StyledPanel);
+        containerFrameHeader->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout = new QHBoxLayout(containerFrameHeader);
         horizontalLayout->setObjectName("horizontalLayout");
-        labelInstanceName = new QLabel(frameHeader);
+        labelInstanceName = new QLabel(containerFrameHeader);
         labelInstanceName->setObjectName("labelInstanceName");
 
         horizontalLayout->addWidget(labelInstanceName);
 
 
-        verticalLayout->addWidget(frameHeader);
+        verticalLayout->addWidget(containerFrameHeader);
 
         frameBody = new QFrame(Container);
         frameBody->setObjectName("frameBody");

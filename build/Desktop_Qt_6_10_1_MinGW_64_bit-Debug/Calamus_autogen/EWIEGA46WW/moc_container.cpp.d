@@ -6,6 +6,8 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtCore/QRect \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QSize \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QSizeF \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QStringList \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QVector \
   C:/Qt/6.10.1/mingw_64/include/QtCore/q17memory.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/q20iterator.h \
@@ -141,10 +143,13 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qutf8stringview.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qvarlengtharray.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qvector.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qyieldcpu.h \
+  C:/Qt/6.10.1/mingw_64/include/QtGui/QColor \
   C:/Qt/6.10.1/mingw_64/include/QtGui/QMouseEvent \
+  C:/Qt/6.10.1/mingw_64/include/QtGui/QMoveEvent \
   C:/Qt/6.10.1/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qaction.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qbitmap.h \
@@ -166,6 +171,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qpaintdevice.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qpalette.h \
+  C:/Qt/6.10.1/mingw_64/include/QtGui/qpicture.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qpixelformat.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qpixmap.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qpointingdevice.h \
@@ -175,6 +181,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtGui/qrgba64.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qscreen.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qscreen_platform.h \
+  C:/Qt/6.10.1/mingw_64/include/QtGui/qtextdocument.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qtgui-config.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qtguiexports.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qtguiglobal.h \
@@ -183,7 +190,10 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QLabel \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QWidget \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/qframe.h \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/qlabel.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qtwidgets-config.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qtwidgetsexports.h \
