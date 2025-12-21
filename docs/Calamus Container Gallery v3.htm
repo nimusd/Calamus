@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calamus Container Gallery v2 — All 11 Sound Engine Components</title>
+  <script src="Calamus%20Container%20Gallery%20v3_files/react.production.min.js"></script>
+  <script src="Calamus%20Container%20Gallery%20v3_files/react-dom.production.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { 
+      margin: 0; 
+      padding: 20px; 
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+    h1 {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    .subtitle {
+      color: #8892b0;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+    .gallery {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      margin-bottom: 30px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .card-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #eee;
+    }
+    .card-header h2 {
+      margin: 0 0 8px 0;
+      font-size: 20px;
+      color: #333;
+    }
+    .card-header p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .card-body {
+      padding: 20px;
+      background: #fafafa;
+      overflow-x: auto;
+    }
+    .category-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .essential { background: #e8f4fc; color: #2563eb; }
+    .shaping { background: #e8fcf0; color: #059669; }
+    .modifier { background: #fcf4e8; color: #d97706; }
+    .nav {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      max-height: 90vh;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    .nav h3 {
+      margin: 0 0 10px 0;
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+    }
+    .nav a {
+      display: block;
+      padding: 6px 10px;
+      color: #333;
+      text-decoration: none;
+      font-size: 12px;
+      border-radius: 6px;
+      margin-bottom: 2px;
+    }
+    .nav a:hover {
+      background: #f0f0f0;
+    }
+    .nav-section {
+      margin-bottom: 12px;
+    }
+    .nav-section-title {
+      font-size: 10px;
+      color: #999;
+      margin-bottom: 4px;
+      padding-left: 10px;
+    }
+    @media (max-width: 900px) {
+      .nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎵 Calamus Container Gallery v3</h1>
+  <p class="subtitle">All 11 Sound Engine Components — With Connection Functions</p>
+  
+  <nav class="nav">
+    <h3>Containers</h3>
+    <div class="nav-section">
+      <div class="nav-section-title">Essential</div>
+      <a href="#harmonic-generator">1. HarmonicGenerator</a>
+      <a href="#spectrum-to-signal">2. SpectrumToSignal</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-title">Shaping</div>
+      <a href="#rolloff-processor">3. RolloffProcessor</a>
+      <a href="#formant-body">4. FormantBody</a>
+      <a href="#breath-turbulence">5. BreathTurbulence</a>
+      <a href="#noise-color-filter">6. NoiseColorFilter</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-title">Modifiers</div>
+      <a href="#physics-system">7. PhysicsSystem</a>
+      <a href="#easing-applicator">8. EasingApplicator</a>
+      <a href="#envelope-engine">9. EnvelopeEngine</a>
+      <a href="#drift-engine">10. DriftEngine</a>
+      <a href="#gate-processor">11. GateProcessor</a>
+    </div>
+  </nav>
+  
+  <div id="root"><div class="gallery"><div class="card"><div class="card-header"><h2>Connection Functions</h2><p>When connecting container outputs to inputs, a function determines how values combine. Click the node on a wire to change.</p></div><div class="card-body"><svg width="700" height="140"><g transform="translate(30, 30)"><g><path d="M 0 20 C 40 20, 60 20, 100 20" fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(50, 20)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#666" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#666" font-weight="bold">pass</text></g></g><text x="50" y="55" text-anchor="middle" font-size="9" fill="#666">passthrough</text><text x="50" y="68" text-anchor="middle" font-size="8" fill="#999">source replaces</text></g><g transform="translate(150, 30)"><g><path d="M 0 20 C 40 20, 60 20, 100 20" fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(50, 20)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#666" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#666" font-weight="bold">add</text></g></g><text x="50" y="55" text-anchor="middle" font-size="9" fill="#666">add</text><text x="50" y="68" text-anchor="middle" font-size="8" fill="#999">input + source×w</text></g><g transform="translate(270, 30)"><g><path d="M 0 20 C 40 20, 60 20, 100 20" fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(50, 20)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#666" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#666" font-weight="bold">mult</text></g></g><text x="50" y="55" text-anchor="middle" font-size="9" fill="#666">multiply</text><text x="50" y="68" text-anchor="middle" font-size="8" fill="#999">input × source×w</text></g><g transform="translate(390, 30)"><g><path d="M 0 20 C 40 20, 60 20, 100 20" fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(50, 20)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#666" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#666" font-weight="bold">repl</text></g></g><text x="50" y="55" text-anchor="middle" font-size="9" fill="#666">replace</text><text x="50" y="68" text-anchor="middle" font-size="8" fill="#999">weighted blend</text></g><g transform="translate(510, 30)"><g><path d="M 0 20 C 40 20, 60 20, 100 20" fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(50, 20)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#666" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#666" font-weight="bold">mod</text></g></g><text x="50" y="55" text-anchor="middle" font-size="9" fill="#666">modulate</text><text x="50" y="68" text-anchor="middle" font-size="8" fill="#999">bipolar around input</text></g><g transform="translate(30, 95)"><g><path d="M 0 20 C 40 20, 60 20, 100 20" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(50, 20)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#d97a7a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#d97a7a" font-weight="bold">trig</text></g></g><text x="50" y="55" text-anchor="middle" font-size="9" fill="#d97a7a">trigger</text><text x="50" y="68" text-anchor="middle" font-size="8" fill="#999">discrete event</text></g></svg></div></div><div class="card" id="harmonic-generator"><div class="card-header"><h2>1. HarmonicGenerator<span class="category-badge essential">Essential</span></h2><p>Generates
+ the fundamental harmonic spectrum — the "bones" of the sound. DNA 
+sequences (All, Odd, Even, etc.) determine the instrument's genetic 
+identity.</p></div><div class="card-body"><svg width="720" height="240"><g transform="translate(80, 75)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Pitch (Hz)</text></g><g><path d="M 80 75 C 112 75, 128 80, 160 80" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(120, 77.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#999" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#999" font-weight="bold">pass</text></g></g><g transform="translate(20, 175)"><rect width="70" height="26" rx="4" fill="#f3e8fc" stroke="#9b59b6"></rect><text x="35" y="17" text-anchor="middle" font-size="9" fill="#9b59b6">DriftEngine</text></g><g><path d="M 90 188 C 118 188, 132 152, 160 152" fill="none" stroke="#9b59b6" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6,4" opacity="0.6"></path><g transform="translate(125, 170)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#9b59b6" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#9b59b6" font-weight="bold">add</text></g></g><g transform="translate(160, 40)"><rect x="3" y="3" width="210" height="170" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="210" height="170" rx="8" fill="#e8f4fc" stroke="#4a90d9" stroke-width="2"></rect><rect width="210" height="30" rx="8" fill="#4a90d9"></rect><rect y="22" width="210" height="8" fill="#4a90d9"></rect><text x="105" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">HARMONIC GENERATOR</text><g transform="translate(0, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">pitch</text></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">numHarmonics</text></g><g transform="translate(0, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">dnaSelect</text></g><g transform="translate(0, 94)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">purity</text></g><g transform="translate(0, 112)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">drift</text></g><g transform="translate(210, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">spectrum</text></g><text x="200" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">maxHarm: 64</text><text x="200" y="87" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">phase: random</text><g transform="translate(115, 75)"><rect width="80" height="45" fill="#fff" stroke="#ccc" rx="3"></rect><rect x="2" y="13.870340305124348" width="5.333333333333333" height="29.129659694875652" fill="#4a90d9" opacity="0.8"></rect><rect x="8.333333333333332" y="9.23584615978497" width="5.333333333333333" height="33.76415384021503" fill="#4a90d9" opacity="0.8"></rect><rect x="14.666666666666666" y="8.590581217014318" width="5.333333333333333" height="34.40941878298568" fill="#4a90d9" opacity="0.8"></rect><rect x="21" y="11.96274936956707" width="5.333333333333333" height="31.03725063043293" fill="#4a90d9" opacity="0.8"></rect><rect x="27.333333333333332" y="18.382001124903024" width="5.333333333333333" height="24.617998875096976" fill="#4a90d9" opacity="0.8"></rect><rect x="33.66666666666667" y="26.219879891191788" width="5.333333333333333" height="16.780120108808212" fill="#4a90d9" opacity="0.8"></rect><rect x="40" y="33.66986866888921" width="5.333333333333333" height="9.330131331110788" fill="#4a90d9" opacity="0.8"></rect><rect x="46.333333333333336" y="39.22958919510276" width="5.333333333333333" height="3.770410804897238" fill="#4a90d9" opacity="0.8"></rect><rect x="52.666666666666664" y="42.057325270783046" width="5.333333333333333" height="0.9426747292169515" fill="#4a90d9" opacity="0.8"></rect><rect x="59" y="42.118350319165074" width="5.333333333333333" height="0.8816496808349288" fill="#4a90d9" opacity="0.8"></rect><rect x="65.33333333333334" y="40.099862930133526" width="5.333333333333333" height="2.9001370698664726" fill="#4a90d9" opacity="0.8"></rect><rect x="71.66666666666667" y="37.1382655354113" width="5.333333333333333" height="5.8617344645887" fill="#4a90d9" opacity="0.8"></rect></g><text x="155" y="140" text-anchor="middle" font-size="9" fill="#4a90d9">DNA: All</text></g><g><path d="M 370 80 C 406 80, 424 80, 460 80" fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(415, 80)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#4a90d9" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#4a90d9" font-weight="bold">pass</text></g></g><g transform="translate(460, 58)"><rect width="100" height="44" rx="6" fill="#e8f4fc" stroke="#4a90d9" stroke-dasharray="4,2"></rect><text x="50" y="18" text-anchor="middle" font-size="9" fill="#4a90d9">RolloffProcessor</text><text x="50" y="32" text-anchor="middle" font-size="8" fill="#888">(next in chain)</text></g><text x="460" y="125" font-size="9" fill="#4a90d9" font-family="system-ui" font-style="italic">Spectrum → brightness control</text></svg></div></div><div class="card" id="spectrum-to-signal"><div class="card-header"><h2>2. SpectrumToSignal<span class="category-badge essential">Essential</span></h2><p>Converts
+ spectrum data to audio signal by summing oscillators. Essential — every
+ sounit must have one. Anti-aliasing skips harmonics above Nyquist.</p></div><div class="card-body"><svg width="700" height="200"><g transform="translate(30, 55)"><rect width="95" height="40" rx="6" fill="#e8f4fc" stroke="#4a90d9" stroke-dasharray="4,2"></rect><text x="48" y="25" text-anchor="middle" font-size="9" fill="#4a90d9">RolloffProcessor</text></g><g><path d="M 125 75 C 155 75, 170 80, 200 80" fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(162.5, 77.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#4a90d9" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#4a90d9" font-weight="bold">pass</text></g></g><g transform="translate(145, 115)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Pitch</text></g><g><path d="M 145 115 C 167 115, 178 98, 200 98" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(200, 40)"><rect x="3" y="3" width="180" height="120" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="180" height="120" rx="8" fill="#e8f4fc" stroke="#4a90d9" stroke-width="2"></rect><rect width="180" height="30" rx="8" fill="#4a90d9"></rect><rect y="22" width="180" height="8" fill="#4a90d9"></rect><text x="90" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">SPECTRUM TO SIGNAL</text><g transform="translate(0, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">spectrumIn</text></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">pitch</text></g><g transform="translate(0, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">normalize</text></g><g transform="translate(180, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">signalOut</text></g><text x="170" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">☑ antiAlias</text><text x="170" y="87" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">normalize: 1.0</text></g><g><path d="M 380 80 C 416 80, 434 60, 470 60" fill="none" stroke="#5ab88a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(425, 70)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#5ab88a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#5ab88a" font-weight="bold">pass</text></g></g><g><path d="M 380 80 C 416 80, 434 110, 470 110" fill="none" stroke="#5ab88a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(425, 95)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#5ab88a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#5ab88a" font-weight="bold">pass</text></g></g><g transform="translate(470, 42)"><rect width="85" height="36" rx="6" fill="#e8fcf0" stroke="#5ab88a" stroke-dasharray="4,2"></rect><text x="43" y="23" text-anchor="middle" font-size="9" fill="#5ab88a">FormantBody</text></g><g transform="translate(470, 92)"><rect width="85" height="36" rx="6" fill="#e8fcf0" stroke="#5ab88a" stroke-dasharray="4,2"></rect><text x="43" y="23" text-anchor="middle" font-size="9" fill="#5ab88a">BreathTurb</text></g><text x="470" y="150" font-size="9" fill="#5ab88a" font-family="system-ui" font-style="italic">Signal splits to formants + breath</text></svg></div></div><div class="card" id="rolloff-processor"><div class="card-header"><h2>3. RolloffProcessor<span class="category-badge shaping">Shaping</span></h2><p>The "magic ingredient" — applies brightness curve to spectrum. Higher rolloff = darker. This prevents static "lawn mower" sound.</p></div><div class="card-body"><svg width="700" height="210"><g transform="translate(25, 50)"><rect width="95" height="40" rx="6" fill="#e8f4fc" stroke="#4a90d9" stroke-dasharray="4,2"></rect><text x="48" y="17" text-anchor="middle" font-size="8" fill="#4a90d9">Harmonic</text><text x="48" y="30" text-anchor="middle" font-size="8" fill="#4a90d9">Generator</text></g><g><path d="M 120 70 C 152 70, 168 80, 200 80" fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(160, 75)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#4a90d9" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#4a90d9" font-weight="bold">pass</text></g></g><g transform="translate(40, 125)"><rect width="75" height="26" rx="4" fill="#fcf4e8" stroke="#c9a86c"></rect><text x="38" y="17" text-anchor="middle" font-size="9" fill="#c9a86c">Physics</text></g><g><path d="M 115 138 C 149 138, 166 98, 200 98" fill="none" stroke="#c9a86c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6,4" opacity="0.6"></path><g transform="translate(157.5, 118)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#c9a86c" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#c9a86c" font-weight="bold">mod</text></g></g><text x="40" y="170" font-size="9" fill="#c9a86c" font-family="system-ui" font-style="italic">Brightness bloom on attack</text><g transform="translate(200, 40)"><rect x="3" y="3" width="180" height="110" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="180" height="110" rx="8" fill="#e8f4fc" stroke="#4a90d9" stroke-width="2"></rect><rect width="180" height="30" rx="8" fill="#4a90d9"></rect><rect y="22" width="180" height="8" fill="#4a90d9"></rect><text x="90" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">ROLLOFF PROCESSOR</text><g transform="translate(0, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">spectrumIn</text></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">rolloff</text></g><g transform="translate(180, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#4a90d9" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">spectrumOut</text></g><text x="170" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">min: 0.1</text><text x="170" y="87" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">max: 3.0</text><text x="170" y="101" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">curve: power</text><g transform="translate(100, 45)"><rect width="65" height="40" fill="#fff" stroke="#ccc" rx="3"></rect><path d="M 3 37 Q 19.5 32 32.5 20 T 62 5" fill="none" stroke="#4a90d9" stroke-width="2"></path><text x="32.5" y="52" text-anchor="middle" font-size="7" fill="#666">1/h^rolloff</text></g></g><g><path d="M 380 80 C 416 80, 434 80, 470 80" fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(425, 80)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#4a90d9" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#4a90d9" font-weight="bold">pass</text></g></g><g transform="translate(470, 58)"><rect width="100" height="44" rx="6" fill="#e8f4fc" stroke="#4a90d9" stroke-dasharray="4,2"></rect><text x="50" y="18" text-anchor="middle" font-size="8" fill="#4a90d9">SpectrumTo</text><text x="50" y="32" text-anchor="middle" font-size="8" fill="#4a90d9">Signal</text></g></svg></div></div><div class="card" id="formant-body"><div class="card-header"><h2>4. FormantBody<span class="category-badge shaping">Shaping</span></h2><p>The "throat" — resonant bandpass filters for vowels. F1 (200-1000Hz) = jaw, F2 (500-3000Hz) = tongue. Add instances for F3, F4.</p></div><div class="card-body"><svg width="750" height="280"><g transform="translate(25, 50)"><rect width="85" height="32" rx="6" fill="#e8f4fc" stroke="#4a90d9" stroke-dasharray="4,2"></rect><text x="43" y="21" text-anchor="middle" font-size="9" fill="#4a90d9">Signal In</text></g><g><path d="M 110 66 C 138 66, 152 80, 180 80" fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(145, 73)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#4a90d9" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#4a90d9" font-weight="bold">pass</text></g></g><g transform="translate(25, 105)"><rect width="85" height="32" rx="4" fill="#fcf4e8" stroke="#c9a86c"></rect><text x="43" y="14" text-anchor="middle" font-size="8" fill="#c9a86c">Physics F1</text><text x="43" y="26" text-anchor="middle" font-size="7" fill="#999">consonant kick</text></g><g><path d="M 110 121 C 138 121, 152 98, 180 98" fill="none" stroke="#c9a86c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(145, 109.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#c9a86c" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#c9a86c" font-weight="bold">repl</text></g></g><g transform="translate(25, 155)"><rect width="85" height="32" rx="4" fill="#fcf4e8" stroke="#c9a86c"></rect><text x="43" y="14" text-anchor="middle" font-size="8" fill="#c9a86c">Physics F2</text><text x="43" y="26" text-anchor="middle" font-size="7" fill="#999">"Ba Ba" trajectory</text></g><g><path d="M 110 171 C 138 171, 152 116, 180 116" fill="none" stroke="#c9a86c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(145, 143.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#c9a86c" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#c9a86c" font-weight="bold">repl</text></g></g><g transform="translate(180, 40)"><rect x="3" y="3" width="195" height="200" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="195" height="200" rx="8" fill="#e8fcf0" stroke="#5ab88a" stroke-width="2"></rect><rect width="195" height="30" rx="8" fill="#5ab88a"></rect><rect y="22" width="195" height="8" fill="#5ab88a"></rect><text x="97.5" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">FORMANT BODY</text><g transform="translate(0, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">signalIn</text></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">f1Freq</text></g><g transform="translate(0, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">f2Freq</text></g><g transform="translate(0, 94)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">f1Q</text></g><g transform="translate(0, 112)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">f2Q</text></g><g transform="translate(0, 130)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">directMix</text></g><g transform="translate(0, 148)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">f1f2Balance</text></g><g transform="translate(195, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">signalOut</text></g><text x="185" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">F1: 200-1000 Hz</text><text x="185" y="87" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">F2: 500-3000 Hz</text><text x="185" y="101" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">Q: 1.0-20.0</text></g><g transform="translate(470, 50)"><rect width="130" height="100" fill="#f8f8f8" stroke="#ddd" rx="6"></rect><text x="65" y="18" text-anchor="middle" font-size="10" fill="#666" font-weight="bold">Vowel Space</text><text x="30" y="45" font-size="14" fill="#5ab88a">EE</text><text x="100" y="45" font-size="14" fill="#5ab88a">OO</text><text x="65" y="65" font-size="14" fill="#5ab88a">AH</text><text x="30" y="88" font-size="14" fill="#5ab88a">EH</text><text x="100" y="88" font-size="14" fill="#5ab88a">OH</text></g><g><path d="M 375 80 C 405 80, 420 80, 450 80" fill="none" stroke="#5ab88a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(450, 80)"><polygon points="0,-8 15,0 0,8" fill="#e67e22"></polygon><text x="20" y="4" font-size="10" fill="#e67e22" font-weight="bold">OUTPUT</text></g><text x="470" y="175" font-size="9" fill="#c9a86c" font-family="system-ui" font-style="italic">Physics kicks = "Ba Ba" consonants</text></svg></div></div><div class="card" id="breath-turbulence"><div class="card-header"><h2>5. BreathTurbulence<span class="category-badge shaping">Shaping</span></h2><p>The "lungs" — blends harmonics with noise. Just 5-15% transforms electronic into something with breath and body.</p></div><div class="card-body"><svg width="700" height="200"><g transform="translate(30, 45)"><rect width="80" height="32" rx="6" fill="#e8f4fc" stroke="#4a90d9" stroke-dasharray="4,2"></rect><text x="40" y="21" text-anchor="middle" font-size="9" fill="#4a90d9">Voice Signal</text></g><g><path d="M 110 61 C 142 61, 158 80, 190 80" fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(150, 70.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#4a90d9" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#4a90d9" font-weight="bold">pass</text></g></g><g transform="translate(30, 95)"><rect width="80" height="32" rx="6" fill="#e8fcfc" stroke="#1abc9c" stroke-dasharray="4,2"></rect><text x="40" y="14" text-anchor="middle" font-size="8" fill="#1abc9c">NoiseColor</text><text x="40" y="26" text-anchor="middle" font-size="8" fill="#1abc9c">Filter</text></g><g><path d="M 110 111 C 142 111, 158 98, 190 98" fill="none" stroke="#1abc9c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(150, 104.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#1abc9c" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#1abc9c" font-weight="bold">pass</text></g></g><g transform="translate(30, 145)"><rect width="80" height="26" rx="4" fill="#fce8e8" stroke="#d97a7a"></rect><text x="40" y="17" text-anchor="middle" font-size="9" fill="#d97a7a">Envelope</text></g><g><path d="M 110 158 C 142 158, 158 116, 190 116" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6,4" opacity="0.6"></path><g transform="translate(150, 137)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#d97a7a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#d97a7a" font-weight="bold">mod</text></g></g><g transform="translate(190, 40)"><rect x="3" y="3" width="180" height="120" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="180" height="120" rx="8" fill="#e8fcf0" stroke="#5ab88a" stroke-width="2"></rect><rect width="180" height="30" rx="8" fill="#5ab88a"></rect><rect y="22" width="180" height="8" fill="#5ab88a"></rect><text x="90" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">BREATH TURBULENCE</text><g transform="translate(0, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">voiceIn</text></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">noiseIn</text></g><g transform="translate(0, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">blend</text></g><g transform="translate(180, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#5ab88a" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">signalOut</text></g><text x="170" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">blendCurve: sqrt</text><g transform="translate(95, 45)"><rect width="75" height="50" fill="#fff" stroke="#ccc" rx="3"></rect><text x="37.5" y="14" text-anchor="middle" font-size="8" fill="#666">10% noise</text><rect x="5" y="22" width="65" height="10" fill="#eee" rx="2"></rect><rect x="5" y="22" width="6.5" height="10" fill="#5ab88a" rx="2"></rect><text x="8" y="44" font-size="6" fill="#999">voice</text><text x="57" y="44" font-size="6" fill="#999">noise</text></g></g><g><path d="M 370 80 C 402 80, 418 80, 450 80" fill="none" stroke="#5ab88a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(410, 80)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#5ab88a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#5ab88a" font-weight="bold">pass</text></g></g><g transform="translate(450, 58)"><rect width="85" height="44" rx="6" fill="#e8fcf0" stroke="#5ab88a" stroke-dasharray="4,2"></rect><text x="43" y="28" text-anchor="middle" font-size="9" fill="#5ab88a">FormantBody</text></g><text x="450" y="125" font-size="9" fill="#5ab88a" font-family="system-ui" font-style="italic">"Breath is what makes us human"</text></svg></div></div><div class="card" id="noise-color-filter"><div class="card-header"><h2>6. NoiseColorFilter<span class="category-badge shaping">Shaping</span></h2><p>Shapes noise from dark breath to bright fricatives. 100Hz = rumble, 2kHz = "SH", 8kHz = "S".</p></div><div class="card-body"><svg width="700" height="190"><g transform="translate(45, 60)"><rect width="75" height="30" rx="4" fill="#f0f0f0" stroke="#999" stroke-dasharray="3,2"></rect><text x="38" y="13" text-anchor="middle" font-size="8" fill="#666">Internal</text><text x="38" y="24" text-anchor="middle" font-size="8" fill="#666">White Noise</text></g><g><path d="M 120 75 C 148 75, 162 80, 190 80" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6,4" opacity="0.6"></path></g><g transform="translate(135, 120)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Color Hz</text></g><g><path d="M 135 120 C 157 120, 168 98, 190 98" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(190, 40)"><rect x="3" y="3" width="175" height="115" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="175" height="115" rx="8" fill="#e8fcfc" stroke="#1abc9c" stroke-width="2"></rect><rect width="175" height="30" rx="8" fill="#1abc9c"></rect><rect y="22" width="175" height="8" fill="#1abc9c"></rect><text x="87.5" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">NOISE COLOR FILTER</text><g transform="translate(0, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#1abc9c" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">noiseIn</text></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#1abc9c" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">color</text></g><g transform="translate(0, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#1abc9c" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">filterQ</text></g><g transform="translate(175, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#1abc9c" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">noiseOut</text></g><text x="165" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">type: highpass</text><text x="165" y="87" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">range: 100-12k</text><g transform="translate(95, 42)"><rect width="70" height="32" fill="#fff" stroke="#ccc" rx="3"></rect><polyline points="0,16 3,22.944591662098645 6,15.64089707193576 9,25.89808677047315 12,18.806363836237757 15,13.78546370433282 18,18.92956906622478 21,6.148800286427486 24,12.344041791910708 27,13.807521622954146 30,9.364034382848923 33,23.08862816483402 36,17.634519951840055 39,20.392028508440816 42,25.365244910642453 45,12.753901938072389 48,18.63519172964256 51,12.30858399063539 54,6.559257542107845 57,16.44560076444994 60,8.69296555578503 63,16.939317539254056 66,22.51023043072975 69,15.822283696875768" fill="none" stroke="#1abc9c" stroke-width="1.5"></polyline></g></g><g><path d="M 365 80 C 397 80, 413 80, 445 80" fill="none" stroke="#1abc9c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(405, 80)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#1abc9c" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#1abc9c" font-weight="bold">pass</text></g></g><g transform="translate(445, 58)"><rect width="85" height="44" rx="6" fill="#e8fcf0" stroke="#5ab88a" stroke-dasharray="4,2"></rect><text x="43" y="18" text-anchor="middle" font-size="8" fill="#5ab88a">Breath</text><text x="43" y="32" text-anchor="middle" font-size="8" fill="#5ab88a">Turbulence</text></g><g transform="translate(545, 55)"><text font-size="9" fill="#666">Fricatives:</text><text y="16" font-size="9" fill="#1abc9c">100Hz → breath</text><text y="30" font-size="9" fill="#1abc9c">2kHz → "SH"</text><text y="44" font-size="9" fill="#1abc9c">8kHz → "S"</text></g></svg></div></div><div class="card" id="physics-system"><div class="card-header"><h2>7. PhysicsSystem<span class="category-badge modifier">Modifier</span></h2><p>The "organic without random" core — mass/spring/damping for organic movement AND stability (prevents clicks).</p></div><div class="card-body"><svg width="750" height="280"><g transform="translate(110, 80)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Target</text></g><g><path d="M 110 80 C 142 80, 158 80, 190 80" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(25, 160)"><rect width="85" height="32" rx="4" fill="#fce8e8" stroke="#d97a7a"></rect><text x="43" y="14" text-anchor="middle" font-size="8" fill="#d97a7a">GateProcessor</text><text x="43" y="26" text-anchor="middle" font-size="7" fill="#999">attack trigger</text></g><g><path d="M 110 176 C 142 176, 158 152, 190 152" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(150, 164)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#d97a7a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#d97a7a" font-weight="bold">trig</text></g></g><g transform="translate(190, 40)"><rect x="3" y="3" width="200" height="195" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="200" height="195" rx="8" fill="#fcf4e8" stroke="#c9a86c" stroke-width="2"></rect><rect width="200" height="30" rx="8" fill="#c9a86c"></rect><rect y="22" width="200" height="8" fill="#c9a86c"></rect><text x="100" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">PHYSICS SYSTEM</text><g transform="translate(0, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#c9a86c" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">targetValue</text></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#c9a86c" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">mass</text></g><g transform="translate(0, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#c9a86c" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">springK</text></g><g transform="translate(0, 94)"><circle cx="0" cy="0" r="6" fill="white" stroke="#c9a86c" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">damping</text></g><g transform="translate(0, 112)"><circle cx="0" cy="0" r="6" fill="white" stroke="#c9a86c" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">impulse</text></g><g transform="translate(0, 130)"><circle cx="0" cy="0" r="6" fill="white" stroke="#c9a86c" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">impulseAmount</text></g><g transform="translate(200, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#c9a86c" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">currentValue</text></g><text x="190" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">maxMass: 1.0</text><text x="190" y="87" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">velLimit: 1000</text><g transform="translate(110, 50)"><rect width="80" height="40" fill="#fff" stroke="#ccc" rx="3"></rect><path d="M 5 20 
+              L 10 20 
+              L 13 8 
+              L 19 32 
+              L 25 8 
+              L 31 32 
+              L 37 8 
+              L 43 32
+              L 46 20
+              L 75 20" fill="none" stroke="#c9a86c" stroke-width="2"></path><circle cx="72" cy="20" r="5" fill="#c9a86c"></circle></g></g><g><path d="M 390 80 C 426 80, 444 55, 480 55" fill="none" stroke="#c9a86c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(435, 67.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#c9a86c" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#c9a86c" font-weight="bold">repl</text></g></g><g><path d="M 390 80 C 426 80, 444 95, 480 95" fill="none" stroke="#c9a86c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(435, 87.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#c9a86c" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#c9a86c" font-weight="bold">repl</text></g></g><g><path d="M 390 80 C 426 80, 444 135, 480 135" fill="none" stroke="#c9a86c" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(435, 107.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#c9a86c" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#c9a86c" font-weight="bold">mod</text></g></g><g transform="translate(480, 40)"><rect width="80" height="28" rx="4" fill="#e8fcf0" stroke="#5ab88a"></rect><text x="40" y="18" text-anchor="middle" font-size="9" fill="#5ab88a">F1 Freq</text></g><g transform="translate(480, 80)"><rect width="80" height="28" rx="4" fill="#e8fcf0" stroke="#5ab88a"></rect><text x="40" y="18" text-anchor="middle" font-size="9" fill="#5ab88a">F2 Freq</text></g><g transform="translate(480, 120)"><rect width="80" height="28" rx="4" fill="#e8f4fc" stroke="#4a90d9"></rect><text x="40" y="18" text-anchor="middle" font-size="9" fill="#4a90d9">Rolloff</text></g><g transform="translate(480, 165)"><text font-size="9" fill="#666" font-weight="bold">Per sample:</text><text y="14" font-size="8" fill="#c9a86c" font-family="monospace">force = (tgt-cur) × spring</text><text y="26" font-size="8" fill="#c9a86c" font-family="monospace">vel += force</text><text y="38" font-size="8" fill="#c9a86c" font-family="monospace">vel *= damping</text><text y="50" font-size="8" fill="#c9a86c" font-family="monospace">cur += vel</text></g></svg></div></div><div class="card" id="easing-applicator"><div class="card-header"><h2>8. EasingApplicator<span class="category-badge modifier">Modifier</span></h2><p>Shapes transitions with easing functions — prescribed movement. Defines HOW transitions happen (elastic, bounce, cubic).</p></div><div class="card-body"><svg width="700" height="210"><g transform="translate(110, 80)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Start</text></g><g><path d="M 110 80 C 142 80, 158 80, 190 80" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(110, 115)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">End</text></g><g><path d="M 110 115 C 142 115, 158 98, 190 98" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(110, 150)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Progress</text></g><g><path d="M 110 150 C 142 150, 158 116, 190 116" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(190, 40)"><rect x="3" y="3" width="185" height="145" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="185" height="145" rx="8" fill="#f3e8fc" stroke="#9b59b6" stroke-width="2"></rect><rect width="185" height="30" rx="8" fill="#9b59b6"></rect><rect y="22" width="185" height="8" fill="#9b59b6"></rect><text x="92.5" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">EASING APPLICATOR</text><g transform="translate(0, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#9b59b6" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">startValue</text></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#9b59b6" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">endValue</text></g><g transform="translate(0, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#9b59b6" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">progress</text></g><g transform="translate(0, 94)"><circle cx="0" cy="0" r="6" fill="white" stroke="#9b59b6" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">easingSelect</text></g><g transform="translate(185, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#9b59b6" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">easedValue</text></g><text x="175" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">default: linear</text><text x="175" y="87" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">mode: inOut</text><g transform="translate(100, 45)"><rect width="75" height="40" fill="#fff" stroke="#ccc" rx="3"></rect><path d="M 3 37 Q 15 37 22.5 28 T 37.5 16 T 52.5 8 T 72 3" fill="none" stroke="#9b59b6" stroke-width="2"></path></g></g><g><path d="M 375 80 C 405 80, 420 80, 450 80" fill="none" stroke="#9b59b6" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(450, 50)"><text font-size="9" fill="#666" font-weight="bold">Use cases:</text><text y="16" font-size="9" fill="#9b59b6">• Pitch glide between notes</text><text y="30" font-size="9" fill="#9b59b6">• Formant sweeps</text><text y="44" font-size="9" fill="#9b59b6">• Brightness bloom</text><text y="58" font-size="9" fill="#9b59b6">• Dynamics curves</text></g><g transform="translate(450, 125)"><text font-size="8" fill="#666">Types: linear, quad, cubic,</text><text y="12" font-size="8" fill="#666">sine, elastic, bounce, back</text></g></svg></div></div><div class="card" id="envelope-engine"><div class="card-header"><h2>9. EnvelopeEngine<span class="category-badge modifier">Modifier</span></h2><p>Arbitrary envelope shapes over note lifetime. Defines WHAT happens over time. Multiple instances for different params.</p></div><div class="card-body"><svg width="700" height="220"><g transform="translate(25, 55)"></g><g><g transform="translate(150, 75)"></g></g><g transform="translate(135, 115)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Progress</text></g><g><path d="M 135 115 C 157 115, 168 98, 190 98" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(190, 40)"><rect x="3" y="3" width="185" height="155" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="185" height="155" rx="8" fill="#fce8e8" stroke="#d97a7a" stroke-width="2"></rect><rect width="185" height="30" rx="8" fill="#d97a7a"></rect><rect y="22" width="185" height="8" fill="#d97a7a"></rect><text x="92.5" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">ENVELOPE ENGINE</text><g transform="translate(0, 40)"></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">noteProgress</text></g><g transform="translate(0, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">envelopeSelect</text></g><g transform="translate(0, 94)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">timeScale</text></g><g transform="translate(0, 112)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">valueScale</text></g><g transform="translate(185, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">envelopeValue</text></g><text x="175" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">loopMode: none</text><g transform="translate(100, 45)"><rect width="75" height="40" fill="#fff" stroke="#ccc" rx="3"></rect><path d="M 3 37 L 11.25 12 L 30 20 L 52.5 20 L 72 37" fill="none" stroke="#d97a7a" stroke-width="2"></path></g></g><g><path d="M 375 80 C 407 80, 423 55, 455 55" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(415, 67.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#d97a7a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#d97a7a" font-weight="bold">mod</text></g></g><g><path d="M 375 80 C 407 80, 423 95, 455 95" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(415, 87.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#d97a7a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#d97a7a" font-weight="bold">mod</text></g></g><g><path d="M 375 80 C 407 80, 423 135, 455 135" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(415, 107.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#d97a7a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#d97a7a" font-weight="bold">mod</text></g></g><g transform="translate(455, 40)"><rect width="100" height="28" rx="4" fill="#e8fcf0" stroke="#5ab88a"></rect><text x="50" y="18" text-anchor="middle" font-size="8" fill="#5ab88a">BreathTurbulence</text></g><g transform="translate(455, 80)"><rect width="100" height="28" rx="4" fill="#e8f4fc" stroke="#4a90d9"></rect><text x="50" y="18" text-anchor="middle" font-size="8" fill="#4a90d9">Brightness</text></g><g transform="translate(455, 120)"><rect width="100" height="28" rx="4" fill="#fcf4e8" stroke="#c9a86c"></rect><text x="50" y="18" text-anchor="middle" font-size="8" fill="#c9a86c">Physics target</text></g><text x="455" y="170" font-size="9" fill="#d97a7a" font-family="system-ui" font-style="italic">Ben Webster: breath ↑ on release</text></svg></div></div><div class="card" id="drift-engine"><div class="card-header"><h2>10. DriftEngine<span class="category-badge modifier">Modifier</span></h2><p>Micro-detuning for organic beating. Sound "breathes" on sustained notes. Each harmonic drifts independently.</p></div><div class="card-body"><svg width="700" height="180"><g transform="translate(115, 80)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Amount</text></g><g><path d="M 115 80 C 147 80, 163 80, 195 80" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(115, 115)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Rate Hz</text></g><g><path d="M 115 115 C 147 115, 163 98, 195 98" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(195, 40)"><rect x="3" y="3" width="175" height="105" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="175" height="105" rx="8" fill="#f3e8fc" stroke="#9b59b6" stroke-width="2"></rect><rect width="175" height="30" rx="8" fill="#9b59b6"></rect><rect y="22" width="175" height="8" fill="#9b59b6"></rect><text x="87.5" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">DRIFT ENGINE</text><g transform="translate(0, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#9b59b6" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">amount</text></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#9b59b6" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">rate</text></g><g transform="translate(175, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#9b59b6" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">driftOut</text></g><text x="165" y="73" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">max: 10%</text><text x="165" y="87" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">rateMax: 10Hz</text><text x="165" y="101" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">pattern: perlin</text><g transform="translate(95, 40)"><rect width="70" height="32" fill="#fff" stroke="#ccc" rx="3"></rect><path d="M 3 16 Q 17.5 6.4 35 16 T 67 16" fill="none" stroke="#9b59b6" stroke-width="2" opacity="0.7"></path><path d="M 3 16 Q 17.5 22.4 35 16 T 67 16" fill="none" stroke="#9b59b6" stroke-width="2" opacity="0.4"></path></g></g><g><path d="M 370 80 C 404 80, 421 80, 455 80" fill="none" stroke="#9b59b6" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(412.5, 80)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#9b59b6" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#9b59b6" font-weight="bold">add</text></g></g><g transform="translate(455, 58)"><rect width="100" height="44" rx="6" fill="#e8f4fc" stroke="#4a90d9" stroke-dasharray="4,2"></rect><text x="50" y="18" text-anchor="middle" font-size="8" fill="#4a90d9">Harmonic</text><text x="50" y="32" text-anchor="middle" font-size="8" fill="#4a90d9">Generator</text></g><g transform="translate(455, 120)"><text font-size="9" fill="#666">Output: multipliers ≈1.0</text><text y="14" font-size="9" fill="#9b59b6">(±0.5% typical)</text></g></svg></div></div><div class="card" id="gate-processor"><div class="card-header"><h2>11. GateProcessor<span class="category-badge modifier">Modifier</span></h2><p>Note on/off lifecycle — birth and death. Outputs envelope AND triggers for physics kicks (consonant articulation).</p></div><div class="card-body"><svg width="750" height="280"><g transform="translate(25, 60)"></g><g></g><g transform="translate(135, 115)"><rect x="-55" y="-12" width="55" height="24" rx="4" fill="#f5f5f5" stroke="#ccc"></rect><text x="-28" y="5" text-anchor="middle" font-size="9" fill="#666">Velocity</text></g><g><path d="M 135 115 C 157 115, 168 98, 190 98" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g transform="translate(190, 40)"><rect x="3" y="3" width="210" height="210" rx="8" fill="rgba(0,0,0,0.1)"></rect><rect width="210" height="210" rx="8" fill="#fce8e8" stroke="#d97a7a" stroke-width="2"></rect><rect width="210" height="30" rx="8" fill="#d97a7a"></rect><rect y="22" width="210" height="8" fill="#d97a7a"></rect><text x="105" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="system-ui">GATE PROCESSOR</text><g transform="translate(0, 40)"></g><g transform="translate(0, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">velocity</text></g><g transform="translate(0, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">attackTime</text></g><g transform="translate(0, 94)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">releaseTime</text></g><g transform="translate(0, 112)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">attackCurve</text></g><g transform="translate(0, 130)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="12" y="4" font-size="10" fill="#333" font-family="system-ui">releaseCurve</text></g><g transform="translate(210, 40)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">envelopeOut</text></g><g transform="translate(210, 58)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">stateOut</text></g><g transform="translate(210, 76)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">attackTrigger</text></g><g transform="translate(210, 94)"><circle cx="0" cy="0" r="6" fill="white" stroke="#d97a7a" stroke-width="2"></circle><text x="-12" y="4" font-size="10" fill="#333" text-anchor="end" font-family="system-ui">releaseTrigger</text></g><text x="200" y="127" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">atk: 0.001-5.0s</text><text x="200" y="141" font-size="9" fill="#666" font-family="system-ui" text-anchor="end">rel: 0.01-10.0s</text></g><g transform="translate(290, 55)"><rect width="100" height="50" fill="#fff" stroke="#ccc" rx="4"></rect><text x="50" y="14" text-anchor="middle" font-size="8" fill="#666">State Machine:</text><text x="50" y="30" text-anchor="middle" font-size="9" fill="#d97a7a">OFF→ATK→SUS</text><text x="50" y="44" text-anchor="middle" font-size="9" fill="#d97a7a">→REL→OFF</text></g><g><path d="M 400 80 C 436 80, 454 55, 490 55" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(445, 67.5)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#d97a7a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#d97a7a" font-weight="bold">pass</text></g></g><g><path d="M 400 98 C 436 98, 454 95, 490 95" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path></g><g><path d="M 400 116 C 436 116, 454 140, 490 140" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(445, 128)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#d97a7a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#d97a7a" font-weight="bold">trig</text></g></g><g><path d="M 400 134 C 436 134, 454 180, 490 180" fill="none" stroke="#d97a7a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="none" opacity="1"></path><g transform="translate(445, 157)"><ellipse cx="0" cy="0" rx="22" ry="10" fill="#fff" stroke="#d97a7a" stroke-width="1.5"></ellipse><text x="0" y="4" text-anchor="middle" font-size="8" fill="#d97a7a" font-weight="bold">trig</text></g></g><g transform="translate(490, 40)"><rect width="90" height="28" rx="4" fill="#f5f5f5" stroke="#888"></rect><text x="45" y="18" text-anchor="middle" font-size="9" fill="#666">Amplitude</text></g><g transform="translate(490, 80)"><rect width="90" height="28" rx="4" fill="#fce8e8" stroke="#d97a7a"></rect><text x="45" y="18" text-anchor="middle" font-size="9" fill="#d97a7a">EnvelopeEngine</text></g><g transform="translate(490, 125)"><rect width="90" height="28" rx="4" fill="#fcf4e8" stroke="#c9a86c"></rect><text x="45" y="12" text-anchor="middle" font-size="8" fill="#c9a86c">Physics impulse</text><text x="45" y="24" text-anchor="middle" font-size="7" fill="#999">(consonant kick)</text></g><g transform="translate(490, 165)"><rect width="90" height="28" rx="4" fill="#fcf4e8" stroke="#c9a86c"></rect><text x="45" y="18" text-anchor="middle" font-size="8" fill="#c9a86c">Release effects</text></g><text x="490" y="215" font-size="9" fill="#c9a86c" font-family="system-ui" font-style="italic">attackTrigger→Physics = "Ba Ba"</text></svg></div></div><div style="text-align: center; padding: 40px 20px; color: rgb(136, 146, 176);"><p>Calamus Sound Engine — 11 Containers</p><p style="font-size: 12px;">Based on Container Port Specification v1.2</p><p style="font-size: 12px;">Version 2 — Fixed spacing, added connection functions</p><p style="font-size: 12px;">December 2025</p></div></div></div>
+  
+  <script>
+    const { createElement: h } = React;
+
+    // Color schemes for container types
+    const colors = {
+      blue: { bg: '#e8f4fc', border: '#4a90d9', header: '#4a90d9' },
+      salmon: { bg: '#fce8e8', border: '#d97a7a', header: '#d97a7a' },
+      green: { bg: '#e8fcf0', border: '#5ab88a', header: '#5ab88a' },
+      tan: { bg: '#fcf4e8', border: '#c9a86c', header: '#c9a86c' },
+      purple: { bg: '#f3e8fc', border: '#9b59b6', header: '#9b59b6' },
+      teal: { bg: '#e8fcfc', border: '#1abc9c', header: '#1abc9c' }
+    };
+
+    // Reusable Container component - FIXED SPACING
+    const Container = ({ x, y, width, height, title, color, inputs, outputs, configRight, children, fontSize = 10 }) => {
+      const c = colors[color] || colors.blue;
+      const inputSpacing = 18;
+      const outputSpacing = 18;
+      
+      const inputPorts = (inputs || []).map((input, i) => 
+        h('g', { key: `in-${i}`, transform: `translate(0, ${40 + i * inputSpacing})` },
+          h('circle', { cx: 0, cy: 0, r: 6, fill: 'white', stroke: c.border, strokeWidth: 2 }),
+          h('text', { x: 12, y: 4, fontSize: 10, fill: '#333', fontFamily: 'system-ui' }, input)
+        )
+      );
+      
+      const outputPorts = (outputs || []).map((output, i) => 
+        h('g', { key: `out-${i}`, transform: `translate(${width}, ${40 + i * outputSpacing})` },
+          h('circle', { cx: 0, cy: 0, r: 6, fill: 'white', stroke: c.border, strokeWidth: 2 }),
+          h('text', { x: -12, y: 4, fontSize: 10, fill: '#333', textAnchor: 'end', fontFamily: 'system-ui' }, output)
+        )
+      );
+      
+      // Config on right side, below outputs
+      const configItems = (configRight || []).map((item, i) =>
+        h('text', { 
+          key: i, 
+          x: width - 10, 
+          y: 40 + (outputs?.length || 0) * outputSpacing + 15 + i * 14, 
+          fontSize: 9, 
+          fill: '#666', 
+          fontFamily: 'system-ui',
+          textAnchor: 'end'
+        }, item)
+      );
+      
+      return h('g', { transform: `translate(${x}, ${y})` },
+        // Shadow
+        h('rect', { x: 3, y: 3, width, height, rx: 8, fill: 'rgba(0,0,0,0.1)' }),
+        // Body
+        h('rect', { width, height, rx: 8, fill: c.bg, stroke: c.border, strokeWidth: 2 }),
+        // Header
+        h('rect', { width, height: 30, rx: 8, fill: c.header }),
+        h('rect', { y: 22, width, height: 8, fill: c.header }),
+        // Title
+        h('text', { x: width/2, y: 20, textAnchor: 'middle', fill: 'white', fontSize, fontWeight: 'bold', fontFamily: 'system-ui' }, title),
+        ...inputPorts,
+        ...outputPorts,
+        ...configItems,
+        children
+      );
+    };
+
+    // Connection line with function node
+    const Connection = ({ x1, y1, x2, y2, color = "#5ab88a", func = null, dashed = false }) => {
+      const midX = (x1 + x2) / 2;
+      const midY = (y1 + y2) / 2;
+      const cpOffset = Math.min(60, Math.abs(x2 - x1) / 2.5);
+      
+      // Calculate point on bezier at t=0.5
+      const t = 0.5;
+      const bezMidX = Math.pow(1-t,3)*x1 + 3*Math.pow(1-t,2)*t*(x1+cpOffset) + 3*(1-t)*t*t*(x2-cpOffset) + Math.pow(t,3)*x2;
+      const bezMidY = Math.pow(1-t,3)*y1 + 3*Math.pow(1-t,2)*t*y1 + 3*(1-t)*t*t*y2 + Math.pow(t,3)*y2;
+      
+      return h('g', null,
+        h('path', {
+          d: `M ${x1} ${y1} C ${x1 + cpOffset} ${y1}, ${x2 - cpOffset} ${y2}, ${x2} ${y2}`,
+          fill: 'none',
+          stroke: color,
+          strokeWidth: 2.5,
+          strokeLinecap: 'round',
+          strokeDasharray: dashed ? '6,4' : 'none',
+          opacity: dashed ? 0.6 : 1
+        }),
+        // Function node on wire
+        func ? h('g', { transform: `translate(${bezMidX}, ${bezMidY})` },
+          h('ellipse', { cx: 0, cy: 0, rx: 22, ry: 10, fill: '#fff', stroke: color, strokeWidth: 1.5 }),
+          h('text', { x: 0, y: 4, textAnchor: 'middle', fontSize: 8, fill: color, fontWeight: 'bold' }, func)
+        ) : null
+      );
+    };
+
+    // Small label for context
+    const Label = ({ x, y, text, color = '#666' }) => 
+      h('text', { x, y, fontSize: 9, fill: color, fontFamily: 'system-ui', fontStyle: 'italic' }, text);
+
+    // Mini input indicator
+    const InputIndicator = ({ x, y, label }) =>
+      h('g', { transform: `translate(${x}, ${y})` },
+        h('rect', { x: -55, y: -12, width: 55, height: 24, rx: 4, fill: '#f5f5f5', stroke: '#ccc' }),
+        h('text', { x: -28, y: 5, textAnchor: 'middle', fontSize: 9, fill: '#666' }, label)
+      );
+
+    // Mini output indicator  
+    const OutputIndicator = ({ x, y, label }) =>
+      h('g', { transform: `translate(${x}, ${y})` },
+        h('polygon', { points: '0,-8 15,0 0,8', fill: '#e67e22' }),
+        h('text', { x: 20, y: 4, fontSize: 10, fill: '#e67e22', fontWeight: 'bold' }, label)
+      );
+
+    // Spectrum visualization
+    const SpectrumViz = ({ x, y, width, height }) => {
+      const bars = [];
+      for (let i = 0; i < 12; i++) {
+        const barH = (Math.sin(i * 0.5 + 0.5) * 0.4 + 0.5) * height * (1 - i * 0.05);
+        bars.push(h('rect', {
+          key: i,
+          x: 2 + i * (width-4)/12,
+          y: height - barH,
+          width: (width-4)/12 - 1,
+          height: barH - 2,
+          fill: '#4a90d9',
+          opacity: 0.8
+        }));
+      }
+      return h('g', { transform: `translate(${x}, ${y})` },
+        h('rect', { width, height, fill: '#fff', stroke: '#ccc', rx: 3 }),
+        ...bars
+      );
+    };
+
+    // Envelope visualization
+    const EnvelopeViz = ({ x, y, width, height }) =>
+      h('g', { transform: `translate(${x}, ${y})` },
+        h('rect', { width, height, fill: '#fff', stroke: '#ccc', rx: 3 }),
+        h('path', {
+          d: `M 3 ${height-3} L ${width*0.15} ${height*0.3} L ${width*0.4} ${height*0.5} L ${width*0.7} ${height*0.5} L ${width-3} ${height-3}`,
+          fill: 'none',
+          stroke: '#d97a7a',
+          strokeWidth: 2
+        })
+      );
+
+    // Easing curve visualization
+    const EasingViz = ({ x, y, width, height }) =>
+      h('g', { transform: `translate(${x}, ${y})` },
+        h('rect', { width, height, fill: '#fff', stroke: '#ccc', rx: 3 }),
+        h('path', {
+          d: `M 3 ${height-3} Q ${width*0.2} ${height-3} ${width*0.3} ${height*0.7} T ${width*0.5} ${height*0.4} T ${width*0.7} ${height*0.2} T ${width-3} 3`,
+          fill: 'none',
+          stroke: '#9b59b6',
+          strokeWidth: 2
+        })
+      );
+
+    // Physics spring visualization
+    const SpringViz = ({ x, y, width, height }) =>
+      h('g', { transform: `translate(${x}, ${y})` },
+        h('rect', { width, height, fill: '#fff', stroke: '#ccc', rx: 3 }),
+        h('path', {
+          d: `M 5 ${height/2} 
+              L 10 ${height/2} 
+              L 13 ${height*0.2} 
+              L 19 ${height*0.8} 
+              L 25 ${height*0.2} 
+              L 31 ${height*0.8} 
+              L 37 ${height*0.2} 
+              L 43 ${height*0.8}
+              L 46 ${height/2}
+              L ${width-5} ${height/2}`,
+          fill: 'none',
+          stroke: '#c9a86c',
+          strokeWidth: 2
+        }),
+        h('circle', { cx: width - 8, cy: height/2, r: 5, fill: '#c9a86c' })
+      );
+
+    // Noise visualization
+    const NoiseViz = ({ x, y, width, height }) => {
+      const points = [];
+      for (let i = 0; i < width; i += 3) {
+        const noiseY = height/2 + (Math.sin(i*0.5) * Math.cos(i*0.3)) * height * 0.35;
+        points.push(`${i},${noiseY}`);
+      }
+      return h('g', { transform: `translate(${x}, ${y})` },
+        h('rect', { width, height, fill: '#fff', stroke: '#ccc', rx: 3 }),
+        h('polyline', {
+          points: points.join(' '),
+          fill: 'none',
+          stroke: '#1abc9c',
+          strokeWidth: 1.5
+        })
+      );
+    };
+
+    // Drift visualization (slow wave)
+    const DriftViz = ({ x, y, width, height }) =>
+      h('g', { transform: `translate(${x}, ${y})` },
+        h('rect', { width, height, fill: '#fff', stroke: '#ccc', rx: 3 }),
+        h('path', {
+          d: `M 3 ${height/2} Q ${width*0.25} ${height*0.2} ${width*0.5} ${height/2} T ${width-3} ${height/2}`,
+          fill: 'none',
+          stroke: '#9b59b6',
+          strokeWidth: 2,
+          opacity: 0.7
+        }),
+        h('path', {
+          d: `M 3 ${height/2} Q ${width*0.25} ${height*0.7} ${width*0.5} ${height/2} T ${width-3} ${height/2}`,
+          fill: 'none',
+          stroke: '#9b59b6',
+          strokeWidth: 2,
+          opacity: 0.4
+        })
+      );
+
+    // Rolloff curve visualization
+    const RolloffViz = ({ x, y, width, height }) =>
+      h('g', { transform: `translate(${x}, ${y})` },
+        h('rect', { width, height, fill: '#fff', stroke: '#ccc', rx: 3 }),
+        h('path', {
+          d: `M 3 ${height-3} Q ${width*0.3} ${height-8} ${width*0.5} ${height*0.5} T ${width-3} 5`,
+          fill: 'none',
+          stroke: '#4a90d9',
+          strokeWidth: 2
+        }),
+        h('text', { x: width/2, y: height + 12, textAnchor: 'middle', fontSize: 7, fill: '#666' }, '1/h^rolloff')
+      );
+
+    // Blend slider visualization
+    const BlendViz = ({ x, y, width, height, percent = 10 }) =>
+      h('g', { transform: `translate(${x}, ${y})` },
+        h('rect', { width, height, fill: '#fff', stroke: '#ccc', rx: 3 }),
+        h('text', { x: width/2, y: 14, textAnchor: 'middle', fontSize: 8, fill: '#666' }, `${percent}% noise`),
+        h('rect', { x: 5, y: 22, width: width-10, height: 10, fill: '#eee', rx: 2 }),
+        h('rect', { x: 5, y: 22, width: (width-10) * percent / 100, height: 10, fill: '#5ab88a', rx: 2 }),
+        h('text', { x: 8, y: 44, fontSize: 6, fill: '#999' }, 'voice'),
+        h('text', { x: width - 18, y: 44, fontSize: 6, fill: '#999' }, 'noise')
+      );
+
+    // ==================== CONTAINER CARDS ====================
+
+    // 1. Harmonic Generator
+    const HarmonicGeneratorCard = () =>
+      h('div', { className: 'card', id: 'harmonic-generator' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '1. HarmonicGenerator', h('span', { className: 'category-badge essential' }, 'Essential')),
+          h('p', null, 'Generates the fundamental harmonic spectrum — the "bones" of the sound. DNA sequences (All, Odd, Even, etc.) determine the instrument\'s genetic identity.')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 720, height: 240 },
+            // Context: Pitch input
+            h(InputIndicator, { x: 80, y: 75, label: 'Pitch (Hz)' }),
+            h(Connection, { x1: 80, y1: 75, x2: 160, y2: 80, color: '#999', func: 'pass' }),
+            
+            // Context: Drift from DriftEngine
+            h('g', { transform: 'translate(20, 175)' },
+              h('rect', { width: 70, height: 26, rx: 4, fill: '#f3e8fc', stroke: '#9b59b6' }),
+              h('text', { x: 35, y: 17, textAnchor: 'middle', fontSize: 9, fill: '#9b59b6' }, 'DriftEngine')
+            ),
+            h(Connection, { x1: 90, y1: 188, x2: 160, y2: 152, color: '#9b59b6', func: 'add', dashed: true }),
+            
+            // Main container
+            h(Container, {
+              x: 160, y: 40, width: 210, height: 170,
+              title: 'HARMONIC GENERATOR',
+              color: 'blue',
+              inputs: ['pitch', 'numHarmonics', 'dnaSelect', 'purity', 'drift'],
+              outputs: ['spectrum'],
+              configRight: ['maxHarm: 64', 'phase: random']
+            },
+              h(SpectrumViz, { x: 115, y: 75, width: 80, height: 45 }),
+              h('text', { x: 155, y: 140, textAnchor: 'middle', fontSize: 9, fill: '#4a90d9' }, 'DNA: All')
+            ),
+            
+            // Output to Rolloff
+            h(Connection, { x1: 370, y1: 80, x2: 460, y2: 80, color: '#4a90d9', func: 'pass' }),
+            h('g', { transform: 'translate(460, 58)' },
+              h('rect', { width: 100, height: 44, rx: 6, fill: '#e8f4fc', stroke: '#4a90d9', strokeDasharray: '4,2' }),
+              h('text', { x: 50, y: 18, textAnchor: 'middle', fontSize: 9, fill: '#4a90d9' }, 'RolloffProcessor'),
+              h('text', { x: 50, y: 32, textAnchor: 'middle', fontSize: 8, fill: '#888' }, '(next in chain)')
+            ),
+            
+            h(Label, { x: 460, y: 125, text: 'Spectrum → brightness control', color: '#4a90d9' })
+          )
+        )
+      );
+
+    // 2. SpectrumToSignal
+    const SpectrumToSignalCard = () =>
+      h('div', { className: 'card', id: 'spectrum-to-signal' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '2. SpectrumToSignal', h('span', { className: 'category-badge essential' }, 'Essential')),
+          h('p', null, 'Converts spectrum data to audio signal by summing oscillators. Essential — every sounit must have one. Anti-aliasing skips harmonics above Nyquist.')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 700, height: 200 },
+            // Context: From RolloffProcessor
+            h('g', { transform: 'translate(30, 55)' },
+              h('rect', { width: 95, height: 40, rx: 6, fill: '#e8f4fc', stroke: '#4a90d9', strokeDasharray: '4,2' }),
+              h('text', { x: 48, y: 25, textAnchor: 'middle', fontSize: 9, fill: '#4a90d9' }, 'RolloffProcessor')
+            ),
+            h(Connection, { x1: 125, y1: 75, x2: 200, y2: 80, color: '#4a90d9', func: 'pass' }),
+            
+            // Pitch input
+            h(InputIndicator, { x: 145, y: 115, label: 'Pitch' }),
+            h(Connection, { x1: 145, y1: 115, x2: 200, y2: 98, color: '#999' }),
+            
+            // Main container
+            h(Container, {
+              x: 200, y: 40, width: 180, height: 120,
+              title: 'SPECTRUM TO SIGNAL',
+              color: 'blue',
+              inputs: ['spectrumIn', 'pitch', 'normalize'],
+              outputs: ['signalOut'],
+              configRight: ['☑ antiAlias', 'normalize: 1.0']
+            }),
+            
+            // Output paths
+            h(Connection, { x1: 380, y1: 80, x2: 470, y2: 60, color: '#5ab88a', func: 'pass' }),
+            h(Connection, { x1: 380, y1: 80, x2: 470, y2: 110, color: '#5ab88a', func: 'pass' }),
+            
+            // To FormantBody
+            h('g', { transform: 'translate(470, 42)' },
+              h('rect', { width: 85, height: 36, rx: 6, fill: '#e8fcf0', stroke: '#5ab88a', strokeDasharray: '4,2' }),
+              h('text', { x: 43, y: 23, textAnchor: 'middle', fontSize: 9, fill: '#5ab88a' }, 'FormantBody')
+            ),
+            
+            // To BreathTurbulence
+            h('g', { transform: 'translate(470, 92)' },
+              h('rect', { width: 85, height: 36, rx: 6, fill: '#e8fcf0', stroke: '#5ab88a', strokeDasharray: '4,2' }),
+              h('text', { x: 43, y: 23, textAnchor: 'middle', fontSize: 9, fill: '#5ab88a' }, 'BreathTurb')
+            ),
+            
+            h(Label, { x: 470, y: 150, text: 'Signal splits to formants + breath', color: '#5ab88a' })
+          )
+        )
+      );
+
+    // 3. RolloffProcessor
+    const RolloffProcessorCard = () =>
+      h('div', { className: 'card', id: 'rolloff-processor' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '3. RolloffProcessor', h('span', { className: 'category-badge shaping' }, 'Shaping')),
+          h('p', null, 'The "magic ingredient" — applies brightness curve to spectrum. Higher rolloff = darker. This prevents static "lawn mower" sound.')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 700, height: 210 },
+            // From HarmonicGenerator
+            h('g', { transform: 'translate(25, 50)' },
+              h('rect', { width: 95, height: 40, rx: 6, fill: '#e8f4fc', stroke: '#4a90d9', strokeDasharray: '4,2' }),
+              h('text', { x: 48, y: 17, textAnchor: 'middle', fontSize: 8, fill: '#4a90d9' }, 'Harmonic'),
+              h('text', { x: 48, y: 30, textAnchor: 'middle', fontSize: 8, fill: '#4a90d9' }, 'Generator')
+            ),
+            h(Connection, { x1: 120, y1: 70, x2: 200, y2: 80, color: '#4a90d9', func: 'pass' }),
+            
+            // Rolloff modulation from Physics
+            h('g', { transform: 'translate(40, 125)' },
+              h('rect', { width: 75, height: 26, rx: 4, fill: '#fcf4e8', stroke: '#c9a86c' }),
+              h('text', { x: 38, y: 17, textAnchor: 'middle', fontSize: 9, fill: '#c9a86c' }, 'Physics')
+            ),
+            h(Connection, { x1: 115, y1: 138, x2: 200, y2: 98, color: '#c9a86c', func: 'mod', dashed: true }),
+            h(Label, { x: 40, y: 170, text: 'Brightness bloom on attack', color: '#c9a86c' }),
+            
+            // Main container
+            h(Container, {
+              x: 200, y: 40, width: 180, height: 110,
+              title: 'ROLLOFF PROCESSOR',
+              color: 'blue',
+              inputs: ['spectrumIn', 'rolloff'],
+              outputs: ['spectrumOut'],
+              configRight: ['min: 0.1', 'max: 3.0', 'curve: power']
+            },
+              h(RolloffViz, { x: 100, y: 45, width: 65, height: 40 })
+            ),
+            
+            // To SpectrumToSignal
+            h(Connection, { x1: 380, y1: 80, x2: 470, y2: 80, color: '#4a90d9', func: 'pass' }),
+            h('g', { transform: 'translate(470, 58)' },
+              h('rect', { width: 100, height: 44, rx: 6, fill: '#e8f4fc', stroke: '#4a90d9', strokeDasharray: '4,2' }),
+              h('text', { x: 50, y: 18, textAnchor: 'middle', fontSize: 8, fill: '#4a90d9' }, 'SpectrumTo'),
+              h('text', { x: 50, y: 32, textAnchor: 'middle', fontSize: 8, fill: '#4a90d9' }, 'Signal')
+            )
+          )
+        )
+      );
+
+    // 4. FormantBody
+    const FormantBodyCard = () =>
+      h('div', { className: 'card', id: 'formant-body' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '4. FormantBody', h('span', { className: 'category-badge shaping' }, 'Shaping')),
+          h('p', null, 'The "throat" — resonant bandpass filters for vowels. F1 (200-1000Hz) = jaw, F2 (500-3000Hz) = tongue. Add instances for F3, F4.')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 750, height: 280 },
+            // Signal input from SpectrumToSignal
+            h('g', { transform: 'translate(25, 50)' },
+              h('rect', { width: 85, height: 32, rx: 6, fill: '#e8f4fc', stroke: '#4a90d9', strokeDasharray: '4,2' }),
+              h('text', { x: 43, y: 21, textAnchor: 'middle', fontSize: 9, fill: '#4a90d9' }, 'Signal In')
+            ),
+            h(Connection, { x1: 110, y1: 66, x2: 180, y2: 80, color: '#4a90d9', func: 'pass' }),
+            
+            // Physics controlling F1
+            h('g', { transform: 'translate(25, 105)' },
+              h('rect', { width: 85, height: 32, rx: 4, fill: '#fcf4e8', stroke: '#c9a86c' }),
+              h('text', { x: 43, y: 14, textAnchor: 'middle', fontSize: 8, fill: '#c9a86c' }, 'Physics F1'),
+              h('text', { x: 43, y: 26, textAnchor: 'middle', fontSize: 7, fill: '#999' }, 'consonant kick')
+            ),
+            h(Connection, { x1: 110, y1: 121, x2: 180, y2: 98, color: '#c9a86c', func: 'repl' }),
+            
+            // Physics controlling F2
+            h('g', { transform: 'translate(25, 155)' },
+              h('rect', { width: 85, height: 32, rx: 4, fill: '#fcf4e8', stroke: '#c9a86c' }),
+              h('text', { x: 43, y: 14, textAnchor: 'middle', fontSize: 8, fill: '#c9a86c' }, 'Physics F2'),
+              h('text', { x: 43, y: 26, textAnchor: 'middle', fontSize: 7, fill: '#999' }, '"Ba Ba" trajectory')
+            ),
+            h(Connection, { x1: 110, y1: 171, x2: 180, y2: 116, color: '#c9a86c', func: 'repl' }),
+            
+            // Main container - TALLER to fit all ports
+            h(Container, {
+              x: 180, y: 40, width: 195, height: 200,
+              title: 'FORMANT BODY',
+              color: 'green',
+              inputs: ['signalIn', 'f1Freq', 'f2Freq', 'f1Q', 'f2Q', 'directMix', 'f1f2Balance'],
+              outputs: ['signalOut'],
+              configRight: ['F1: 200-1000 Hz', 'F2: 500-3000 Hz', 'Q: 1.0-20.0']
+            }),
+            
+            // Vowel diagram
+            h('g', { transform: 'translate(470, 50)' },
+              h('rect', { width: 130, height: 100, fill: '#f8f8f8', stroke: '#ddd', rx: 6 }),
+              h('text', { x: 65, y: 18, textAnchor: 'middle', fontSize: 10, fill: '#666', fontWeight: 'bold' }, 'Vowel Space'),
+              h('text', { x: 30, y: 45, fontSize: 14, fill: '#5ab88a' }, 'EE'),
+              h('text', { x: 100, y: 45, fontSize: 14, fill: '#5ab88a' }, 'OO'),
+              h('text', { x: 65, y: 65, fontSize: 14, fill: '#5ab88a' }, 'AH'),
+              h('text', { x: 30, y: 88, fontSize: 14, fill: '#5ab88a' }, 'EH'),
+              h('text', { x: 100, y: 88, fontSize: 14, fill: '#5ab88a' }, 'OH')
+            ),
+            
+            // Output
+            h(Connection, { x1: 375, y1: 80, x2: 450, y2: 80, color: '#5ab88a' }),
+            h(OutputIndicator, { x: 450, y: 80, label: 'OUTPUT' }),
+            
+            h(Label, { x: 470, y: 175, text: 'Physics kicks = "Ba Ba" consonants', color: '#c9a86c' })
+          )
+        )
+      );
+
+    // 5. BreathTurbulence
+    const BreathTurbulenceCard = () =>
+      h('div', { className: 'card', id: 'breath-turbulence' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '5. BreathTurbulence', h('span', { className: 'category-badge shaping' }, 'Shaping')),
+          h('p', null, 'The "lungs" — blends harmonics with noise. Just 5-15% transforms electronic into something with breath and body.')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 700, height: 200 },
+            // Voice input
+            h('g', { transform: 'translate(30, 45)' },
+              h('rect', { width: 80, height: 32, rx: 6, fill: '#e8f4fc', stroke: '#4a90d9', strokeDasharray: '4,2' }),
+              h('text', { x: 40, y: 21, textAnchor: 'middle', fontSize: 9, fill: '#4a90d9' }, 'Voice Signal')
+            ),
+            h(Connection, { x1: 110, y1: 61, x2: 190, y2: 80, color: '#4a90d9', func: 'pass' }),
+            
+            // Noise input from NoiseColorFilter
+            h('g', { transform: 'translate(30, 95)' },
+              h('rect', { width: 80, height: 32, rx: 6, fill: '#e8fcfc', stroke: '#1abc9c', strokeDasharray: '4,2' }),
+              h('text', { x: 40, y: 14, textAnchor: 'middle', fontSize: 8, fill: '#1abc9c' }, 'NoiseColor'),
+              h('text', { x: 40, y: 26, textAnchor: 'middle', fontSize: 8, fill: '#1abc9c' }, 'Filter')
+            ),
+            h(Connection, { x1: 110, y1: 111, x2: 190, y2: 98, color: '#1abc9c', func: 'pass' }),
+            
+            // Blend modulation from Envelope
+            h('g', { transform: 'translate(30, 145)' },
+              h('rect', { width: 80, height: 26, rx: 4, fill: '#fce8e8', stroke: '#d97a7a' }),
+              h('text', { x: 40, y: 17, textAnchor: 'middle', fontSize: 9, fill: '#d97a7a' }, 'Envelope')
+            ),
+            h(Connection, { x1: 110, y1: 158, x2: 190, y2: 116, color: '#d97a7a', func: 'mod', dashed: true }),
+            
+            // Main container
+            h(Container, {
+              x: 190, y: 40, width: 180, height: 120,
+              title: 'BREATH TURBULENCE',
+              color: 'green',
+              inputs: ['voiceIn', 'noiseIn', 'blend'],
+              outputs: ['signalOut'],
+              configRight: ['blendCurve: sqrt']
+            },
+              h(BlendViz, { x: 95, y: 45, width: 75, height: 50, percent: 10 })
+            ),
+            
+            // Output
+            h(Connection, { x1: 370, y1: 80, x2: 450, y2: 80, color: '#5ab88a', func: 'pass' }),
+            h('g', { transform: 'translate(450, 58)' },
+              h('rect', { width: 85, height: 44, rx: 6, fill: '#e8fcf0', stroke: '#5ab88a', strokeDasharray: '4,2' }),
+              h('text', { x: 43, y: 28, textAnchor: 'middle', fontSize: 9, fill: '#5ab88a' }, 'FormantBody')
+            ),
+            
+            h(Label, { x: 450, y: 125, text: '"Breath is what makes us human"', color: '#5ab88a' })
+          )
+        )
+      );
+
+    // 6. NoiseColorFilter
+    const NoiseColorFilterCard = () =>
+      h('div', { className: 'card', id: 'noise-color-filter' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '6. NoiseColorFilter', h('span', { className: 'category-badge shaping' }, 'Shaping')),
+          h('p', null, 'Shapes noise from dark breath to bright fricatives. 100Hz = rumble, 2kHz = "SH", 8kHz = "S".')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 700, height: 190 },
+            // Internal noise generator indicator
+            h('g', { transform: 'translate(45, 60)' },
+              h('rect', { width: 75, height: 30, rx: 4, fill: '#f0f0f0', stroke: '#999', strokeDasharray: '3,2' }),
+              h('text', { x: 38, y: 13, textAnchor: 'middle', fontSize: 8, fill: '#666' }, 'Internal'),
+              h('text', { x: 38, y: 24, textAnchor: 'middle', fontSize: 8, fill: '#666' }, 'White Noise')
+            ),
+            h(Connection, { x1: 120, y1: 75, x2: 190, y2: 80, color: '#999', dashed: true }),
+            
+            // Color modulation
+            h(InputIndicator, { x: 135, y: 120, label: 'Color Hz' }),
+            h(Connection, { x1: 135, y1: 120, x2: 190, y2: 98, color: '#999' }),
+            
+            // Main container
+            h(Container, {
+              x: 190, y: 40, width: 175, height: 115,
+              title: 'NOISE COLOR FILTER',
+              color: 'teal',
+              inputs: ['noiseIn', 'color', 'filterQ'],
+              outputs: ['noiseOut'],
+              configRight: ['type: highpass', 'range: 100-12k']
+            },
+              h(NoiseViz, { x: 95, y: 42, width: 70, height: 32 })
+            ),
+            
+            // Output to BreathTurbulence
+            h(Connection, { x1: 365, y1: 80, x2: 445, y2: 80, color: '#1abc9c', func: 'pass' }),
+            h('g', { transform: 'translate(445, 58)' },
+              h('rect', { width: 85, height: 44, rx: 6, fill: '#e8fcf0', stroke: '#5ab88a', strokeDasharray: '4,2' }),
+              h('text', { x: 43, y: 18, textAnchor: 'middle', fontSize: 8, fill: '#5ab88a' }, 'Breath'),
+              h('text', { x: 43, y: 32, textAnchor: 'middle', fontSize: 8, fill: '#5ab88a' }, 'Turbulence')
+            ),
+            
+            // Fricative spectrum
+            h('g', { transform: 'translate(545, 55)' },
+              h('text', { fontSize: 9, fill: '#666' }, 'Fricatives:'),
+              h('text', { y: 16, fontSize: 9, fill: '#1abc9c' }, '100Hz → breath'),
+              h('text', { y: 30, fontSize: 9, fill: '#1abc9c' }, '2kHz → "SH"'),
+              h('text', { y: 44, fontSize: 9, fill: '#1abc9c' }, '8kHz → "S"')
+            )
+          )
+        )
+      );
+
+    // 7. PhysicsSystem
+    const PhysicsSystemCard = () =>
+      h('div', { className: 'card', id: 'physics-system' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '7. PhysicsSystem', h('span', { className: 'category-badge modifier' }, 'Modifier')),
+          h('p', null, 'The "organic without random" core — mass/spring/damping for organic movement AND stability (prevents clicks).')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 750, height: 280 },
+            // Target value input
+            h(InputIndicator, { x: 110, y: 80, label: 'Target' }),
+            h(Connection, { x1: 110, y1: 80, x2: 190, y2: 80, color: '#999' }),
+            
+            // Impulse from GateProcessor
+            h('g', { transform: 'translate(25, 160)' },
+              h('rect', { width: 85, height: 32, rx: 4, fill: '#fce8e8', stroke: '#d97a7a' }),
+              h('text', { x: 43, y: 14, textAnchor: 'middle', fontSize: 8, fill: '#d97a7a' }, 'GateProcessor'),
+              h('text', { x: 43, y: 26, textAnchor: 'middle', fontSize: 7, fill: '#999' }, 'attack trigger')
+            ),
+            h(Connection, { x1: 110, y1: 176, x2: 190, y2: 152, color: '#d97a7a', func: 'trig' }),
+            
+            // Main container - TALLER
+            h(Container, {
+              x: 190, y: 40, width: 200, height: 195,
+              title: 'PHYSICS SYSTEM',
+              color: 'tan',
+              inputs: ['targetValue', 'mass', 'springK', 'damping', 'impulse', 'impulseAmount'],
+              outputs: ['currentValue'],
+              configRight: ['maxMass: 1.0', 'velLimit: 1000']
+            },
+              h(SpringViz, { x: 110, y: 50, width: 80, height: 40 })
+            ),
+            
+            // Output paths
+            h(Connection, { x1: 390, y1: 80, x2: 480, y2: 55, color: '#c9a86c', func: 'repl' }),
+            h(Connection, { x1: 390, y1: 80, x2: 480, y2: 95, color: '#c9a86c', func: 'repl' }),
+            h(Connection, { x1: 390, y1: 80, x2: 480, y2: 135, color: '#c9a86c', func: 'mod' }),
+            
+            // Destinations
+            h('g', { transform: 'translate(480, 40)' },
+              h('rect', { width: 80, height: 28, rx: 4, fill: '#e8fcf0', stroke: '#5ab88a' }),
+              h('text', { x: 40, y: 18, textAnchor: 'middle', fontSize: 9, fill: '#5ab88a' }, 'F1 Freq')
+            ),
+            h('g', { transform: 'translate(480, 80)' },
+              h('rect', { width: 80, height: 28, rx: 4, fill: '#e8fcf0', stroke: '#5ab88a' }),
+              h('text', { x: 40, y: 18, textAnchor: 'middle', fontSize: 9, fill: '#5ab88a' }, 'F2 Freq')
+            ),
+            h('g', { transform: 'translate(480, 120)' },
+              h('rect', { width: 80, height: 28, rx: 4, fill: '#e8f4fc', stroke: '#4a90d9' }),
+              h('text', { x: 40, y: 18, textAnchor: 'middle', fontSize: 9, fill: '#4a90d9' }, 'Rolloff')
+            ),
+            
+            // Physics equation
+            h('g', { transform: 'translate(480, 165)' },
+              h('text', { fontSize: 9, fill: '#666', fontWeight: 'bold' }, 'Per sample:'),
+              h('text', { y: 14, fontSize: 8, fill: '#c9a86c', fontFamily: 'monospace' }, 'force = (tgt-cur) × spring'),
+              h('text', { y: 26, fontSize: 8, fill: '#c9a86c', fontFamily: 'monospace' }, 'vel += force'),
+              h('text', { y: 38, fontSize: 8, fill: '#c9a86c', fontFamily: 'monospace' }, 'vel *= damping'),
+              h('text', { y: 50, fontSize: 8, fill: '#c9a86c', fontFamily: 'monospace' }, 'cur += vel')
+            )
+          )
+        )
+      );
+
+    // 8. EasingApplicator
+    const EasingApplicatorCard = () =>
+      h('div', { className: 'card', id: 'easing-applicator' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '8. EasingApplicator', h('span', { className: 'category-badge modifier' }, 'Modifier')),
+          h('p', null, 'Shapes transitions with easing functions — prescribed movement. Defines HOW transitions happen (elastic, bounce, cubic).')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 700, height: 210 },
+            // Start/End inputs
+            h(InputIndicator, { x: 110, y: 80, label: 'Start' }),
+            h(Connection, { x1: 110, y1: 80, x2: 190, y2: 80, color: '#999' }),
+            
+            h(InputIndicator, { x: 110, y: 115, label: 'End' }),
+            h(Connection, { x1: 110, y1: 115, x2: 190, y2: 98, color: '#999' }),
+            
+            h(InputIndicator, { x: 110, y: 150, label: 'Progress' }),
+            h(Connection, { x1: 110, y1: 150, x2: 190, y2: 116, color: '#999' }),
+            
+            // Main container
+            h(Container, {
+              x: 190, y: 40, width: 185, height: 145,
+              title: 'EASING APPLICATOR',
+              color: 'purple',
+              inputs: ['startValue', 'endValue', 'progress', 'easingSelect'],
+              outputs: ['easedValue'],
+              configRight: ['default: linear', 'mode: inOut']
+            },
+              h(EasingViz, { x: 100, y: 45, width: 75, height: 40 })
+            ),
+            
+            // Output
+            h(Connection, { x1: 375, y1: 80, x2: 450, y2: 80, color: '#9b59b6' }),
+            
+            // Use cases
+            h('g', { transform: 'translate(450, 50)' },
+              h('text', { fontSize: 9, fill: '#666', fontWeight: 'bold' }, 'Use cases:'),
+              h('text', { y: 16, fontSize: 9, fill: '#9b59b6' }, '• Pitch glide between notes'),
+              h('text', { y: 30, fontSize: 9, fill: '#9b59b6' }, '• Formant sweeps'),
+              h('text', { y: 44, fontSize: 9, fill: '#9b59b6' }, '• Brightness bloom'),
+              h('text', { y: 58, fontSize: 9, fill: '#9b59b6' }, '• Dynamics curves')
+            ),
+            
+            // Easing types
+            h('g', { transform: 'translate(450, 125)' },
+              h('text', { fontSize: 8, fill: '#666' }, 'Types: linear, quad, cubic,'),
+              h('text', { y: 12, fontSize: 8, fill: '#666' }, 'sine, elastic, bounce, back')
+            )
+          )
+        )
+      );
+
+    // 9. EnvelopeEngine
+    const EnvelopeEngineCard = () =>
+      h('div', { className: 'card', id: 'envelope-engine' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '9. EnvelopeEngine', h('span', { className: 'category-badge modifier' }, 'Modifier')),
+          h('p', null, 'Arbitrary envelope shapes over note lifetime. Defines WHAT happens over time. Multiple instances for different params.')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 700, height: 220 },
+            // Trigger from GateProcessor
+            h('g', { transform: 'translate(25, 55)' },
+              h('rect', { width: 85, height: 30, rx: 4, fill: '#fce8e8', stroke: '#d97a7a' }),
+              h('text', { x: 43, y: 12, textAnchor: 'middle', fontSize: 8, fill: '#d97a7a' }, 'GateProcessor'),
+              h('text', { x: 43, y: 24, textAnchor: 'middle', fontSize: 7, fill: '#999' }, 'trigger')
+            ),
+            h(Connection, { x1: 110, y1: 70, x2: 190, y2: 80, color: '#d97a7a', func: 'trig' }),
+            
+            // Note progress
+            h(InputIndicator, { x: 135, y: 115, label: 'Progress' }),
+            h(Connection, { x1: 135, y1: 115, x2: 190, y2: 98, color: '#999' }),
+            
+            // Main container - TALLER
+            h(Container, {
+              x: 190, y: 40, width: 185, height: 155,
+              title: 'ENVELOPE ENGINE',
+              color: 'salmon',
+              inputs: ['trigger', 'noteProgress', 'envelopeSelect', 'timeScale', 'valueScale'],
+              outputs: ['envelopeValue'],
+              configRight: ['loopMode: none']
+            },
+              h(EnvelopeViz, { x: 100, y: 45, width: 75, height: 40 })
+            ),
+            
+            // Output destinations
+            h(Connection, { x1: 375, y1: 80, x2: 455, y2: 55, color: '#d97a7a', func: 'mod' }),
+            h(Connection, { x1: 375, y1: 80, x2: 455, y2: 95, color: '#d97a7a', func: 'mod' }),
+            h(Connection, { x1: 375, y1: 80, x2: 455, y2: 135, color: '#d97a7a', func: 'mod' }),
+            
+            h('g', { transform: 'translate(455, 40)' },
+              h('rect', { width: 100, height: 28, rx: 4, fill: '#e8fcf0', stroke: '#5ab88a' }),
+              h('text', { x: 50, y: 18, textAnchor: 'middle', fontSize: 8, fill: '#5ab88a' }, 'BreathTurbulence')
+            ),
+            h('g', { transform: 'translate(455, 80)' },
+              h('rect', { width: 100, height: 28, rx: 4, fill: '#e8f4fc', stroke: '#4a90d9' }),
+              h('text', { x: 50, y: 18, textAnchor: 'middle', fontSize: 8, fill: '#4a90d9' }, 'Brightness')
+            ),
+            h('g', { transform: 'translate(455, 120)' },
+              h('rect', { width: 100, height: 28, rx: 4, fill: '#fcf4e8', stroke: '#c9a86c' }),
+              h('text', { x: 50, y: 18, textAnchor: 'middle', fontSize: 8, fill: '#c9a86c' }, 'Physics target')
+            ),
+            
+            h(Label, { x: 455, y: 170, text: 'Ben Webster: breath ↑ on release', color: '#d97a7a' })
+          )
+        )
+      );
+
+    // 10. DriftEngine
+    const DriftEngineCard = () =>
+      h('div', { className: 'card', id: 'drift-engine' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '10. DriftEngine', h('span', { className: 'category-badge modifier' }, 'Modifier')),
+          h('p', null, 'Micro-detuning for organic beating. Sound "breathes" on sustained notes. Each harmonic drifts independently.')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 700, height: 180 },
+            // Amount input
+            h(InputIndicator, { x: 115, y: 80, label: 'Amount' }),
+            h(Connection, { x1: 115, y1: 80, x2: 195, y2: 80, color: '#999' }),
+            
+            // Rate input
+            h(InputIndicator, { x: 115, y: 115, label: 'Rate Hz' }),
+            h(Connection, { x1: 115, y1: 115, x2: 195, y2: 98, color: '#999' }),
+            
+            // Main container
+            h(Container, {
+              x: 195, y: 40, width: 175, height: 105,
+              title: 'DRIFT ENGINE',
+              color: 'purple',
+              inputs: ['amount', 'rate'],
+              outputs: ['driftOut'],
+              configRight: ['max: 10%', 'rateMax: 10Hz', 'pattern: perlin']
+            },
+              h(DriftViz, { x: 95, y: 40, width: 70, height: 32 })
+            ),
+            
+            // Output to HarmonicGenerator
+            h(Connection, { x1: 370, y1: 80, x2: 455, y2: 80, color: '#9b59b6', func: 'add' }),
+            h('g', { transform: 'translate(455, 58)' },
+              h('rect', { width: 100, height: 44, rx: 6, fill: '#e8f4fc', stroke: '#4a90d9', strokeDasharray: '4,2' }),
+              h('text', { x: 50, y: 18, textAnchor: 'middle', fontSize: 8, fill: '#4a90d9' }, 'Harmonic'),
+              h('text', { x: 50, y: 32, textAnchor: 'middle', fontSize: 8, fill: '#4a90d9' }, 'Generator')
+            ),
+            
+            // Explanation
+            h('g', { transform: 'translate(455, 120)' },
+              h('text', { fontSize: 9, fill: '#666' }, 'Output: multipliers ≈1.0'),
+              h('text', { y: 14, fontSize: 9, fill: '#9b59b6' }, '(±0.5% typical)')
+            )
+          )
+        )
+      );
+
+    // 11. GateProcessor
+    const GateProcessorCard = () =>
+      h('div', { className: 'card', id: 'gate-processor' },
+        h('div', { className: 'card-header' },
+          h('h2', null, '11. GateProcessor', h('span', { className: 'category-badge modifier' }, 'Modifier')),
+          h('p', null, 'Note on/off lifecycle — birth and death. Outputs envelope AND triggers for physics kicks (consonant articulation).')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 750, height: 280 },
+            // Gate input
+            h('g', { transform: 'translate(25, 60)' },
+              h('rect', { width: 75, height: 30, rx: 4, fill: '#f5f5f5', stroke: '#888' }),
+              h('text', { x: 38, y: 13, textAnchor: 'middle', fontSize: 8, fill: '#666' }, 'Note On/Off'),
+              h('text', { x: 38, y: 24, textAnchor: 'middle', fontSize: 7, fill: '#999' }, '(gate signal)')
+            ),
+            h(Connection, { x1: 100, y1: 75, x2: 190, y2: 80, color: '#888' }),
+            
+            // Velocity
+            h(InputIndicator, { x: 135, y: 115, label: 'Velocity' }),
+            h(Connection, { x1: 135, y1: 115, x2: 190, y2: 98, color: '#999' }),
+            
+            // Main container - TALLER
+            h(Container, {
+              x: 190, y: 40, width: 210, height: 210,
+              title: 'GATE PROCESSOR',
+              color: 'salmon',
+              inputs: ['gateIn', 'velocity', 'attackTime', 'releaseTime', 'attackCurve', 'releaseCurve'],
+              outputs: ['envelopeOut', 'stateOut', 'attackTrigger', 'releaseTrigger'],
+              configRight: ['atk: 0.001-5.0s', 'rel: 0.01-10.0s']
+            }),
+            
+            // State machine diagram inside
+            h('g', { transform: 'translate(290, 55)' },
+              h('rect', { width: 100, height: 50, fill: '#fff', stroke: '#ccc', rx: 4 }),
+              h('text', { x: 50, y: 14, textAnchor: 'middle', fontSize: 8, fill: '#666' }, 'State Machine:'),
+              h('text', { x: 50, y: 30, textAnchor: 'middle', fontSize: 9, fill: '#d97a7a' }, 'OFF→ATK→SUS'),
+              h('text', { x: 50, y: 44, textAnchor: 'middle', fontSize: 9, fill: '#d97a7a' }, '→REL→OFF')
+            ),
+            
+            // Output paths
+            h(Connection, { x1: 400, y1: 80, x2: 490, y2: 55, color: '#d97a7a', func: 'pass' }),
+            h(Connection, { x1: 400, y1: 98, x2: 490, y2: 95, color: '#d97a7a' }),
+            h(Connection, { x1: 400, y1: 116, x2: 490, y2: 140, color: '#d97a7a', func: 'trig' }),
+            h(Connection, { x1: 400, y1: 134, x2: 490, y2: 180, color: '#d97a7a', func: 'trig' }),
+            
+            // Destinations
+            h('g', { transform: 'translate(490, 40)' },
+              h('rect', { width: 90, height: 28, rx: 4, fill: '#f5f5f5', stroke: '#888' }),
+              h('text', { x: 45, y: 18, textAnchor: 'middle', fontSize: 9, fill: '#666' }, 'Amplitude')
+            ),
+            h('g', { transform: 'translate(490, 80)' },
+              h('rect', { width: 90, height: 28, rx: 4, fill: '#fce8e8', stroke: '#d97a7a' }),
+              h('text', { x: 45, y: 18, textAnchor: 'middle', fontSize: 9, fill: '#d97a7a' }, 'EnvelopeEngine')
+            ),
+            h('g', { transform: 'translate(490, 125)' },
+              h('rect', { width: 90, height: 28, rx: 4, fill: '#fcf4e8', stroke: '#c9a86c' }),
+              h('text', { x: 45, y: 12, textAnchor: 'middle', fontSize: 8, fill: '#c9a86c' }, 'Physics impulse'),
+              h('text', { x: 45, y: 24, textAnchor: 'middle', fontSize: 7, fill: '#999' }, '(consonant kick)')
+            ),
+            h('g', { transform: 'translate(490, 165)' },
+              h('rect', { width: 90, height: 28, rx: 4, fill: '#fcf4e8', stroke: '#c9a86c' }),
+              h('text', { x: 45, y: 18, textAnchor: 'middle', fontSize: 8, fill: '#c9a86c' }, 'Release effects')
+            ),
+            
+            h(Label, { x: 490, y: 215, text: 'attackTrigger→Physics = "Ba Ba"', color: '#c9a86c' })
+          )
+        )
+      );
+
+    // Connection function legend
+    const ConnectionLegend = () =>
+      h('div', { className: 'card' },
+        h('div', { className: 'card-header' },
+          h('h2', null, 'Connection Functions'),
+          h('p', null, 'When connecting container outputs to inputs, a function determines how values combine. Click the node on a wire to change.')
+        ),
+        h('div', { className: 'card-body' },
+          h('svg', { width: 700, height: 140 },
+            // Function examples
+            h('g', { transform: 'translate(30, 30)' },
+              h(Connection, { x1: 0, y1: 20, x2: 100, y2: 20, color: '#666', func: 'pass' }),
+              h('text', { x: 50, y: 55, textAnchor: 'middle', fontSize: 9, fill: '#666' }, 'passthrough'),
+              h('text', { x: 50, y: 68, textAnchor: 'middle', fontSize: 8, fill: '#999' }, 'source replaces')
+            ),
+            h('g', { transform: 'translate(150, 30)' },
+              h(Connection, { x1: 0, y1: 20, x2: 100, y2: 20, color: '#666', func: 'add' }),
+              h('text', { x: 50, y: 55, textAnchor: 'middle', fontSize: 9, fill: '#666' }, 'add'),
+              h('text', { x: 50, y: 68, textAnchor: 'middle', fontSize: 8, fill: '#999' }, 'input + source×w')
+            ),
+            h('g', { transform: 'translate(270, 30)' },
+              h(Connection, { x1: 0, y1: 20, x2: 100, y2: 20, color: '#666', func: 'mult' }),
+              h('text', { x: 50, y: 55, textAnchor: 'middle', fontSize: 9, fill: '#666' }, 'multiply'),
+              h('text', { x: 50, y: 68, textAnchor: 'middle', fontSize: 8, fill: '#999' }, 'input × source×w')
+            ),
+            h('g', { transform: 'translate(390, 30)' },
+              h(Connection, { x1: 0, y1: 20, x2: 100, y2: 20, color: '#666', func: 'repl' }),
+              h('text', { x: 50, y: 55, textAnchor: 'middle', fontSize: 9, fill: '#666' }, 'replace'),
+              h('text', { x: 50, y: 68, textAnchor: 'middle', fontSize: 8, fill: '#999' }, 'weighted blend')
+            ),
+            h('g', { transform: 'translate(510, 30)' },
+              h(Connection, { x1: 0, y1: 20, x2: 100, y2: 20, color: '#666', func: 'mod' }),
+              h('text', { x: 50, y: 55, textAnchor: 'middle', fontSize: 9, fill: '#666' }, 'modulate'),
+              h('text', { x: 50, y: 68, textAnchor: 'middle', fontSize: 8, fill: '#999' }, 'bipolar around input')
+            ),
+            
+            // Trigger type
+            h('g', { transform: 'translate(30, 95)' },
+              h(Connection, { x1: 0, y1: 20, x2: 100, y2: 20, color: '#d97a7a', func: 'trig' }),
+              h('text', { x: 50, y: 55, textAnchor: 'middle', fontSize: 9, fill: '#d97a7a' }, 'trigger'),
+              h('text', { x: 50, y: 68, textAnchor: 'middle', fontSize: 8, fill: '#999' }, 'discrete event')
+            )
+          )
+        )
+      );
+
+    // Main Gallery component
+    const Gallery = () =>
+      h('div', { className: 'gallery' },
+        h(ConnectionLegend),
+        h(HarmonicGeneratorCard),
+        h(SpectrumToSignalCard),
+        h(RolloffProcessorCard),
+        h(FormantBodyCard),
+        h(BreathTurbulenceCard),
+        h(NoiseColorFilterCard),
+        h(PhysicsSystemCard),
+        h(EasingApplicatorCard),
+        h(EnvelopeEngineCard),
+        h(DriftEngineCard),
+        h(GateProcessorCard),
+        
+        // Footer
+        h('div', { style: { textAlign: 'center', padding: '40px 20px', color: '#8892b0' } },
+          h('p', null, 'Calamus Sound Engine — 11 Containers'),
+          h('p', { style: { fontSize: '12px' } }, 'Based on Container Port Specification v1.1'),
+          h('p', { style: { fontSize: '12px' } }, 'Version 2 — Fixed spacing, added connection functions'),
+          h('p', { style: { fontSize: '12px' } }, 'December 2025')
+        )
+      );
+
+    ReactDOM.render(h(Gallery), document.getElementById('root'));
+  </script>
+
+
+</body></html>
