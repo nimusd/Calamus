@@ -2,4 +2,5 @@
 #include "EWIEGA46WW/moc_calamusmain.cpp"
 #include "EWIEGA46WW/moc_canvas.cpp"
 #include "EWIEGA46WW/moc_container.cpp"
+#include "EWIEGA46WW/moc_scorecanvaswindow.cpp"
 #include "EWIEGA46WW/moc_sounitbuilder.cpp"

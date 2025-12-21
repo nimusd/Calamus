@@ -39,7 +39,7 @@ private slots:
     void onAddContainer(const QString &name, const QColor &color,
                         const QStringList &inputs, const QStringList &outputs);
 
-void onPortClicked(Container *container, const QString &portName, bool isOutput, QPoint globalPos);
+    void onPortClicked(Container *container, const QString &portName, bool isOutput, QPoint globalPos);
 
 
 

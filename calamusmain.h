@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "sounitbuilder.h"
+#include "scorecanvaswindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,6 +24,7 @@ private:
 
 private:
     SounitBuilder *sounitBuilder;
+    ScoreCanvasWindow *scoreCanvasWindow;
 
 private slots:
     void onTabChanged(int index);

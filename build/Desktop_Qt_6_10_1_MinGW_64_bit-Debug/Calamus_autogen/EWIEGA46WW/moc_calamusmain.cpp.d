@@ -424,4 +424,5 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   D:/C++\ code/Calamus/canvas.h \
   D:/C++\ code/Calamus/container.h \
+  D:/C++\ code/Calamus/scorecanvaswindow.h \
   D:/C++\ code/Calamus/sounitbuilder.h

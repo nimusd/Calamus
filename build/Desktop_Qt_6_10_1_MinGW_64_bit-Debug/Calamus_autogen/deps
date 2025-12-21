@@ -613,9 +613,12 @@ Calamus_autogen/timestamp: \
 	D:/C++\ code/Calamus/container.cpp \
 	D:/C++\ code/Calamus/container.h \
 	D:/C++\ code/Calamus/main.cpp \
+	D:/C++\ code/Calamus/scorecanvaswindow.cpp \
+	D:/C++\ code/Calamus/scorecanvaswindow.h \
 	D:/C++\ code/Calamus/sounitbuilder.cpp \
 	D:/C++\ code/Calamus/sounitbuilder.h \
 	D:/C++\ code/Calamus/calamusmain.ui \
 	D:/C++\ code/Calamus/container.ui \
+	D:/C++\ code/Calamus/scorecanvas.ui \
 	D:/C++\ code/Calamus/sounitbuilder.ui \
 	C:/Qt/Tools/CMake_64/bin/cmake.exe

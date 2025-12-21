@@ -106,25 +106,26 @@ public:
     QLabel *label_3;
     QLineEdit *editSounitComment;
     QGroupBox *groupContainerInspector;
-    QVBoxLayout *verticalLayout_7;
-    QFrame *frame_2;
-    QVBoxLayout *verticalLayout_8;
-    QLabel *labelContainerType;
-    QLabel *label_4;
-    QLineEdit *editInstanceName;
+    QHBoxLayout *horizontalLayout_16;
+    QFrame *frame;
+    QVBoxLayout *verticalLayout_2;
     QLabel *label_5;
-    QGroupBox *groupOutputs;
-    QVBoxLayout *verticalLayout_11;
-    QListWidget *listWidget_2;
+    QLineEdit *editInstanceName;
+    QLabel *label_4;
+    QLabel *labelContainerType;
+    QFrame *frame_2;
+    QHBoxLayout *horizontalLayout_13;
     QGroupBox *groupInputs;
     QVBoxLayout *verticalLayout_10;
-    QListWidget *listWidget;
+    QListWidget *listWidgetInputs;
+    QGroupBox *groupOutputs;
+    QVBoxLayout *verticalLayout_11;
+    QListWidget *listWidgetOutputs;
     QGroupBox *groupConfig;
     QVBoxLayout *verticalLayout_9;
-    QListWidget *listWidget_3;
+    QListWidget *listWidgetConfig;
     QGroupBox *groupConnectionInspector;
     QFormLayout *formLayout_3;
-    QLabel *label_6;
     QLabel *label_7;
     QLabel *labelConnectionTo;
     QLabel *label_8;
@@ -133,6 +134,7 @@ public:
     QDoubleSpinBox *spinConnectionWeight;
     QPushButton *buttonDisconnect;
     QLabel *labelConnectionFrom;
+    QLabel *label_6;
     QWidget *compositionTab;
     QVBoxLayout *verticalLayout_14;
     QGroupBox *groupPhraseSelector;
@@ -421,75 +423,87 @@ public:
 
         groupContainerInspector = new QGroupBox(soundEngineTab);
         groupContainerInspector->setObjectName("groupContainerInspector");
-        verticalLayout_7 = new QVBoxLayout(groupContainerInspector);
-        verticalLayout_7->setObjectName("verticalLayout_7");
+        horizontalLayout_16 = new QHBoxLayout(groupContainerInspector);
+        horizontalLayout_16->setObjectName("horizontalLayout_16");
+        frame = new QFrame(groupContainerInspector);
+        frame->setObjectName("frame");
+        frame->setFrameShape(QFrame::Shape::StyledPanel);
+        frame->setFrameShadow(QFrame::Shadow::Raised);
+        verticalLayout_2 = new QVBoxLayout(frame);
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        label_5 = new QLabel(frame);
+        label_5->setObjectName("label_5");
+        label_5->setAlignment(Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft);
+
+        verticalLayout_2->addWidget(label_5);
+
+        editInstanceName = new QLineEdit(frame);
+        editInstanceName->setObjectName("editInstanceName");
+
+        verticalLayout_2->addWidget(editInstanceName);
+
+        label_4 = new QLabel(frame);
+        label_4->setObjectName("label_4");
+        label_4->setAlignment(Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft);
+
+        verticalLayout_2->addWidget(label_4);
+
+        labelContainerType = new QLabel(frame);
+        labelContainerType->setObjectName("labelContainerType");
+        labelContainerType->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop);
+
+        verticalLayout_2->addWidget(labelContainerType);
+
+
+        horizontalLayout_16->addWidget(frame);
+
         frame_2 = new QFrame(groupContainerInspector);
         frame_2->setObjectName("frame_2");
         frame_2->setFrameShape(QFrame::Shape::StyledPanel);
         frame_2->setFrameShadow(QFrame::Shadow::Raised);
-        verticalLayout_8 = new QVBoxLayout(frame_2);
-        verticalLayout_8->setObjectName("verticalLayout_8");
-        labelContainerType = new QLabel(frame_2);
-        labelContainerType->setObjectName("labelContainerType");
+        horizontalLayout_13 = new QHBoxLayout(frame_2);
+        horizontalLayout_13->setObjectName("horizontalLayout_13");
+        groupInputs = new QGroupBox(frame_2);
+        groupInputs->setObjectName("groupInputs");
+        verticalLayout_10 = new QVBoxLayout(groupInputs);
+        verticalLayout_10->setObjectName("verticalLayout_10");
+        listWidgetInputs = new QListWidget(groupInputs);
+        listWidgetInputs->setObjectName("listWidgetInputs");
+        listWidgetInputs->setMinimumSize(QSize(0, 0));
 
-        verticalLayout_8->addWidget(labelContainerType);
+        verticalLayout_10->addWidget(listWidgetInputs);
 
-        label_4 = new QLabel(frame_2);
-        label_4->setObjectName("label_4");
 
-        verticalLayout_8->addWidget(label_4);
-
-        editInstanceName = new QLineEdit(frame_2);
-        editInstanceName->setObjectName("editInstanceName");
-
-        verticalLayout_8->addWidget(editInstanceName);
-
-        label_5 = new QLabel(frame_2);
-        label_5->setObjectName("label_5");
-
-        verticalLayout_8->addWidget(label_5);
+        horizontalLayout_13->addWidget(groupInputs);
 
         groupOutputs = new QGroupBox(frame_2);
         groupOutputs->setObjectName("groupOutputs");
         verticalLayout_11 = new QVBoxLayout(groupOutputs);
         verticalLayout_11->setObjectName("verticalLayout_11");
-        listWidget_2 = new QListWidget(groupOutputs);
-        listWidget_2->setObjectName("listWidget_2");
-        listWidget_2->setMinimumSize(QSize(0, 0));
+        listWidgetOutputs = new QListWidget(groupOutputs);
+        listWidgetOutputs->setObjectName("listWidgetOutputs");
+        listWidgetOutputs->setMinimumSize(QSize(0, 0));
 
-        verticalLayout_11->addWidget(listWidget_2);
-
-
-        verticalLayout_8->addWidget(groupOutputs);
-
-        groupInputs = new QGroupBox(frame_2);
-        groupInputs->setObjectName("groupInputs");
-        verticalLayout_10 = new QVBoxLayout(groupInputs);
-        verticalLayout_10->setObjectName("verticalLayout_10");
-        listWidget = new QListWidget(groupInputs);
-        listWidget->setObjectName("listWidget");
-        listWidget->setMinimumSize(QSize(0, 0));
-
-        verticalLayout_10->addWidget(listWidget);
+        verticalLayout_11->addWidget(listWidgetOutputs);
 
 
-        verticalLayout_8->addWidget(groupInputs);
+        horizontalLayout_13->addWidget(groupOutputs);
 
-        groupConfig = new QGroupBox(frame_2);
+
+        horizontalLayout_16->addWidget(frame_2);
+
+        groupConfig = new QGroupBox(groupContainerInspector);
         groupConfig->setObjectName("groupConfig");
         verticalLayout_9 = new QVBoxLayout(groupConfig);
         verticalLayout_9->setObjectName("verticalLayout_9");
-        listWidget_3 = new QListWidget(groupConfig);
-        listWidget_3->setObjectName("listWidget_3");
-        listWidget_3->setMinimumSize(QSize(0, 0));
+        listWidgetConfig = new QListWidget(groupConfig);
+        listWidgetConfig->setObjectName("listWidgetConfig");
+        listWidgetConfig->setMinimumSize(QSize(0, 0));
 
-        verticalLayout_9->addWidget(listWidget_3);
-
-
-        verticalLayout_8->addWidget(groupConfig);
+        verticalLayout_9->addWidget(listWidgetConfig);
 
 
-        verticalLayout_7->addWidget(frame_2);
+        horizontalLayout_16->addWidget(groupConfig);
 
 
         verticalLayout_5->addWidget(groupContainerInspector);
@@ -498,11 +512,6 @@ public:
         groupConnectionInspector->setObjectName("groupConnectionInspector");
         formLayout_3 = new QFormLayout(groupConnectionInspector);
         formLayout_3->setObjectName("formLayout_3");
-        label_6 = new QLabel(groupConnectionInspector);
-        label_6->setObjectName("label_6");
-
-        formLayout_3->setWidget(0, QFormLayout::ItemRole::LabelRole, label_6);
-
         label_7 = new QLabel(groupConnectionInspector);
         label_7->setObjectName("label_7");
 
@@ -548,6 +557,11 @@ public:
         labelConnectionFrom->setObjectName("labelConnectionFrom");
 
         formLayout_3->setWidget(1, QFormLayout::ItemRole::FieldRole, labelConnectionFrom);
+
+        label_6 = new QLabel(groupConnectionInspector);
+        label_6->setObjectName("label_6");
+
+        formLayout_3->setWidget(1, QFormLayout::ItemRole::LabelRole, label_6);
 
 
         verticalLayout_5->addWidget(groupConnectionInspector);
@@ -960,6 +974,7 @@ public:
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         labelMode = new QLabel(frameModeLine);
         labelMode->setObjectName("labelMode");
+        labelMode->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         horizontalLayout_3->addWidget(labelMode);
 
@@ -981,6 +996,7 @@ public:
 
         labelDrawType = new QLabel(frameModeLine);
         labelDrawType->setObjectName("labelDrawType");
+        labelDrawType->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         horizontalLayout_3->addWidget(labelDrawType);
 
@@ -1006,6 +1022,8 @@ public:
         horizontalLayout_4->setObjectName("horizontalLayout_4");
         label_10 = new QLabel(frameMappingLine);
         label_10->setObjectName("label_10");
+        label_10->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
+        label_10->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         horizontalLayout_4->addWidget(label_10);
 
@@ -1016,6 +1034,8 @@ public:
 
         label_17 = new QLabel(frameMappingLine);
         label_17->setObjectName("label_17");
+        label_17->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
+        label_17->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         horizontalLayout_4->addWidget(label_17);
 
@@ -1026,6 +1046,7 @@ public:
 
         label_18 = new QLabel(frameMappingLine);
         label_18->setObjectName("label_18");
+        label_18->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         horizontalLayout_4->addWidget(label_18);
 
@@ -1036,6 +1057,7 @@ public:
 
         label_19 = new QLabel(frameMappingLine);
         label_19->setObjectName("label_19");
+        label_19->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         horizontalLayout_4->addWidget(label_19);
 
@@ -1263,14 +1285,13 @@ public:
         label_2->setText(QCoreApplication::translate("CalamusMain", "Used by:", nullptr));
         label_3->setText(QCoreApplication::translate("CalamusMain", "Comment", nullptr));
         groupContainerInspector->setTitle(QCoreApplication::translate("CalamusMain", "Container inspector", nullptr));
-        labelContainerType->setText(QCoreApplication::translate("CalamusMain", "TextLabel", nullptr));
-        label_4->setText(QCoreApplication::translate("CalamusMain", "Type: ", nullptr));
         label_5->setText(QCoreApplication::translate("CalamusMain", "Instance: ", nullptr));
-        groupOutputs->setTitle(QCoreApplication::translate("CalamusMain", "Outputs", nullptr));
+        label_4->setText(QCoreApplication::translate("CalamusMain", "Type: ", nullptr));
+        labelContainerType->setText(QCoreApplication::translate("CalamusMain", "TextLabel", nullptr));
         groupInputs->setTitle(QCoreApplication::translate("CalamusMain", "Inputs", nullptr));
+        groupOutputs->setTitle(QCoreApplication::translate("CalamusMain", "Outputs", nullptr));
         groupConfig->setTitle(QCoreApplication::translate("CalamusMain", "Config", nullptr));
         groupConnectionInspector->setTitle(QCoreApplication::translate("CalamusMain", "Connection Inspector", nullptr));
-        label_6->setText(QCoreApplication::translate("CalamusMain", "From:", nullptr));
         label_7->setText(QCoreApplication::translate("CalamusMain", "To:", nullptr));
         labelConnectionTo->setText(QCoreApplication::translate("CalamusMain", "TextLabel", nullptr));
         label_8->setText(QCoreApplication::translate("CalamusMain", "Function:", nullptr));
@@ -1284,6 +1305,7 @@ public:
         label_9->setText(QCoreApplication::translate("CalamusMain", "Weight:", nullptr));
         buttonDisconnect->setText(QCoreApplication::translate("CalamusMain", "Disconnect", nullptr));
         labelConnectionFrom->setText(QCoreApplication::translate("CalamusMain", "TextLabel", nullptr));
+        label_6->setText(QCoreApplication::translate("CalamusMain", "From:", nullptr));
         MainTab->setTabText(MainTab->indexOf(soundEngineTab), QCoreApplication::translate("CalamusMain", "Sound Engine", nullptr));
         groupPhraseSelector->setTitle(QCoreApplication::translate("CalamusMain", "Phrase", nullptr));
         btnPhraseLoad->setText(QCoreApplication::translate("CalamusMain", "Load", nullptr));

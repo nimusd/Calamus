@@ -97,6 +97,14 @@ build CMakeFiles/Calamus.dir/canvas.cpp.obj: CXX_COMPILER__Calamus_unscanned_Deb
   OBJECT_DIR = CMakeFiles\Calamus.dir
   OBJECT_FILE_DIR = CMakeFiles\Calamus.dir
 
+build CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj: CXX_COMPILER__Calamus_unscanned_Debug D$:/C++$ code/Calamus/scorecanvaswindow.cpp || cmake_object_order_depends_target_Calamus
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Calamus.dir\scorecanvaswindow.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -fdiagnostics-color=always
+  INCLUDES = -I"D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/include" -isystem C:/Qt/6.10.1/mingw_64/include/QtCore -isystem C:/Qt/6.10.1/mingw_64/include -isystem C:/Qt/6.10.1/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.10.1/mingw_64/include/QtWidgets -isystem C:/Qt/6.10.1/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\Calamus.dir
+  OBJECT_FILE_DIR = CMakeFiles\Calamus.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Calamus
@@ -105,7 +113,7 @@ build CMakeFiles/Calamus.dir/canvas.cpp.obj: CXX_COMPILER__Calamus_unscanned_Deb
 #############################################
 # Link the executable Calamus.exe
 
-build Calamus.exe: CXX_EXECUTABLE_LINKER__Calamus_Debug CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj CMakeFiles/Calamus.dir/main.cpp.obj CMakeFiles/Calamus.dir/calamusmain.cpp.obj CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj CMakeFiles/Calamus.dir/container.cpp.obj CMakeFiles/Calamus.dir/canvas.cpp.obj | C$:/Qt/6.10.1/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Gui.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Core.a C$:/Qt/6.10.1/mingw_64/lib/libQt6EntryPoint.a || Calamus_autogen Calamus_autogen_timestamp_deps
+build Calamus.exe: CXX_EXECUTABLE_LINKER__Calamus_Debug CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj CMakeFiles/Calamus.dir/main.cpp.obj CMakeFiles/Calamus.dir/calamusmain.cpp.obj CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj CMakeFiles/Calamus.dir/container.cpp.obj CMakeFiles/Calamus.dir/canvas.cpp.obj CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj | C$:/Qt/6.10.1/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Gui.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Core.a C$:/Qt/6.10.1/mingw_64/lib/libQt6EntryPoint.a || Calamus_autogen Calamus_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.10.1/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.10.1/mingw_64/lib/libQt6Gui.a  C:/Qt/6.10.1/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.10.1/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -192,7 +200,7 @@ build Calamus_autogen_timestamp_deps: phony
 #############################################
 # Utility command for Calamus_autogen
 
-build Calamus_autogen: phony CMakeFiles/Calamus_autogen Calamus_autogen/include/ui_calamusmain.h Calamus_autogen/include/ui_sounitbuilder.h Calamus_autogen/include/ui_container.h Calamus_autogen/timestamp Calamus_autogen/mocs_compilation.cpp Calamus_autogen_timestamp_deps
+build Calamus_autogen: phony CMakeFiles/Calamus_autogen Calamus_autogen/include/ui_calamusmain.h Calamus_autogen/include/ui_sounitbuilder.h Calamus_autogen/include/ui_container.h Calamus_autogen/include/ui_scorecanvas.h Calamus_autogen/timestamp Calamus_autogen/mocs_compilation.cpp Calamus_autogen_timestamp_deps
 
 
 #############################################
@@ -209,7 +217,7 @@ build Calamus_autogen/timestamp Calamus_autogen/mocs_compilation.cpp | ${cmake_n
 #############################################
 # Phony custom command for CMakeFiles\Calamus_autogen
 
-build CMakeFiles/Calamus_autogen Calamus_autogen/include/ui_calamusmain.h Calamus_autogen/include/ui_sounitbuilder.h Calamus_autogen/include/ui_container.h | ${cmake_ninja_workdir}CMakeFiles/Calamus_autogen ${cmake_ninja_workdir}Calamus_autogen/include/ui_calamusmain.h ${cmake_ninja_workdir}Calamus_autogen/include/ui_sounitbuilder.h ${cmake_ninja_workdir}Calamus_autogen/include/ui_container.h: phony Calamus_autogen/timestamp || Calamus_autogen_timestamp_deps
+build CMakeFiles/Calamus_autogen Calamus_autogen/include/ui_calamusmain.h Calamus_autogen/include/ui_sounitbuilder.h Calamus_autogen/include/ui_container.h Calamus_autogen/include/ui_scorecanvas.h | ${cmake_ninja_workdir}CMakeFiles/Calamus_autogen ${cmake_ninja_workdir}Calamus_autogen/include/ui_calamusmain.h ${cmake_ninja_workdir}Calamus_autogen/include/ui_sounitbuilder.h ${cmake_ninja_workdir}Calamus_autogen/include/ui_container.h ${cmake_ninja_workdir}Calamus_autogen/include/ui_scorecanvas.h: phony Calamus_autogen/timestamp || Calamus_autogen_timestamp_deps
 
 # =============================================================================
 # Target aliases.
