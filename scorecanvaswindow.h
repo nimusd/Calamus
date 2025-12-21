@@ -17,6 +17,7 @@ public:
     ~ScoreCanvasWindow();
 private:
     Ui::scorecanvas *ui;
+    void setupToolbarColors();
 
 signals:
 };

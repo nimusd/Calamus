@@ -17,6 +17,40 @@
    <property name="styleSheet">
     <string notr="true">background-color: white;</string>
    </property>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>49</x>
+      <y>-1</y>
+      <width>751</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayoutTimeline"/>
+   </widget>
+   <widget class="QScrollArea" name="scrollAreatracks">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-1</y>
+      <width>51</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>49</width>
+       <height>549</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">

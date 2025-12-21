@@ -1218,7 +1218,7 @@ public:
         retranslateUi(CalamusMain);
 
         MainTab->setCurrentIndex(1);
-        tabInspector->setCurrentIndex(2);
+        tabInspector->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(CalamusMain);
