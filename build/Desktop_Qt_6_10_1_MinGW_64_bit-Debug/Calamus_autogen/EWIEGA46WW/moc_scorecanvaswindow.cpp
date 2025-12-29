@@ -39,10 +39,48 @@ template <> constexpr inline auto ScoreCanvasWindow::qt_create_metaobjectdata<qt
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "ScoreCanvasWindow"
+        "ScoreCanvasWindow",
+        "playbackStarted",
+        "",
+        "onZoomToggled",
+        "checked",
+        "onZoomIn",
+        "onZoomOut",
+        "onPressureChanged",
+        "pressure",
+        "active",
+        "onCursorPositionChanged",
+        "timeMs",
+        "pitchHz",
+        "stopPlayback",
+        "stopAudioEngine"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'playbackStarted'
+        QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'onZoomToggled'
+        QtMocHelpers::SlotData<void(bool)>(3, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 4 },
+        }}),
+        // Slot 'onZoomIn'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onZoomOut'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onPressureChanged'
+        QtMocHelpers::SlotData<void(double, bool)>(7, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Double, 8 }, { QMetaType::Bool, 9 },
+        }}),
+        // Slot 'onCursorPositionChanged'
+        QtMocHelpers::SlotData<void(double, double)>(10, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Double, 11 }, { QMetaType::Double, 12 },
+        }}),
+        // Slot 'stopPlayback'
+        QtMocHelpers::SlotData<void(bool)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Bool, 14 },
+        }}),
+        // Slot 'stopPlayback'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -64,10 +102,23 @@ Q_CONSTINIT const QMetaObject ScoreCanvasWindow::staticMetaObject = { {
 void ScoreCanvasWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<ScoreCanvasWindow *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->playbackStarted(); break;
+        case 1: _t->onZoomToggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 2: _t->onZoomIn(); break;
+        case 3: _t->onZoomOut(); break;
+        case 4: _t->onPressureChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[2]))); break;
+        case 5: _t->onCursorPositionChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[2]))); break;
+        case 6: _t->stopPlayback((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 7: _t->stopPlayback(); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (ScoreCanvasWindow::*)()>(_a, &ScoreCanvasWindow::playbackStarted, 0))
+            return;
+    }
 }
 
 const QMetaObject *ScoreCanvasWindow::metaObject() const
@@ -86,6 +137,24 @@ void *ScoreCanvasWindow::qt_metacast(const char *_clname)
 int ScoreCanvasWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QMainWindow::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 8)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 8;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 8)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 8;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void ScoreCanvasWindow::playbackStarted()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP

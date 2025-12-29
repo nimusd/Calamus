@@ -1,0 +1,37 @@
+# ninja log v6
+262	320	7886518793941105	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-configure	ae2cbb7fe599c8f0
+2	64	7881524230063654	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-mkdir	eb03c1345136c90e
+262	320	7886518793941105	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-configure	ae2cbb7fe599c8f0
+2	64	7881524230063654	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-mkdir	eb03c1345136c90e
+65	2565	7881524255143468	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-download	dc7e10923423a55c
+438	497	7886518795686590	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-test	5aa068551fe69b08
+65	2565	7881524255143468	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-download	dc7e10923423a55c
+199	262	7886518793307157	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-patch	63aee3fc867f23e7
+11	198	7886518790770355	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-update	463903f1165af84c
+199	262	7886518793307157	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-patch	63aee3fc867f23e7
+11	198	7886518790770355	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-update	463903f1165af84c
+321	380	7886518794416476	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-build	2f68cd7e660df4ad
+321	380	7886518794416476	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-build	2f68cd7e660df4ad
+380	438	7886518795047881	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-install	58002e50588087f9
+380	438	7886518795047881	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-install	58002e50588087f9
+438	497	7886518795686590	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-test	5aa068551fe69b08
+497	579	7886518796486640	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-done	d5e29c06b781f6cd
+497	579	7886518796486640	CMakeFiles/rtaudio-populate-complete	d5e29c06b781f6cd
+497	579	7886518796486640	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/CMakeFiles/rtaudio-populate-complete	d5e29c06b781f6cd
+497	579	7886518796486640	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-done	d5e29c06b781f6cd
+12	283	7887317635806789	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-update	463903f1165af84c
+12	283	7887317635806789	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-update	463903f1165af84c
+283	360	7887317639193389	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-patch	63aee3fc867f23e7
+283	360	7887317639193389	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-patch	63aee3fc867f23e7
+361	448	7887317640019888	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-configure	ae2cbb7fe599c8f0
+361	448	7887317640019888	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-configure	ae2cbb7fe599c8f0
+448	525	7887317640865688	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-build	2f68cd7e660df4ad
+448	525	7887317640865688	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-build	2f68cd7e660df4ad
+525	608	7887317641546441	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-install	58002e50588087f9
+525	608	7887317641546441	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-install	58002e50588087f9
+608	691	7887317642491104	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-test	5aa068551fe69b08
+608	691	7887317642491104	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-test	5aa068551fe69b08
+691	802	7887317643603897	CMakeFiles/rtaudio-populate-complete	d5e29c06b781f6cd
+691	802	7887317643603897	rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-done	d5e29c06b781f6cd
+691	802	7887317643603897	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/CMakeFiles/rtaudio-populate-complete	d5e29c06b781f6cd
+691	802	7887317643603897	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-done	d5e29c06b781f6cd

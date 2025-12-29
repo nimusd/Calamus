@@ -1,0 +1,430 @@
+{
+    "connections": [
+        {
+            "fromContainer": "Harmonic Generator",
+            "fromPort": "spectrum",
+            "function": "passthrough",
+            "toContainer": "Rolloff Processor",
+            "toPort": "spectrumIn",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Rolloff Processor",
+            "fromPort": "spectrumOut",
+            "function": "passthrough",
+            "toContainer": "Spectrum to Signal",
+            "toPort": "spectrumIn",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Spectrum to Signal",
+            "fromPort": "signalOut",
+            "function": "passthrough",
+            "toContainer": "Formant Body",
+            "toPort": "signalIn",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Envelope Engine",
+            "fromPort": "envelopeValue",
+            "function": "multiply",
+            "toContainer": "Formant Body",
+            "toPort": "f1Freq",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Formant Body",
+            "fromPort": "signalOut",
+            "function": "passthrough",
+            "toContainer": "Breath Turbulence",
+            "toPort": "voiceIn",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Envelope Engine",
+            "fromPort": "envelopeValue",
+            "function": "passthrough",
+            "toContainer": "Noise Color Filter",
+            "toPort": "color",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Envelope Engine-1",
+            "fromPort": "envelopeValue",
+            "function": "passthrough",
+            "toContainer": "Formant Body",
+            "toPort": "f2Freq",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Gate Processor",
+            "fromPort": "envelopeOut",
+            "function": "passthrough",
+            "toContainer": "Formant Body",
+            "toPort": "directMix",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Envelope Engine",
+            "fromPort": "envelopeValue",
+            "function": "passthrough",
+            "toContainer": "Formant Body",
+            "toPort": "f1f2Balance",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Envelope Engine",
+            "fromPort": "envelopeValue",
+            "function": "passthrough",
+            "toContainer": "Envelope Engine-1",
+            "toPort": "timeScale",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Noise Color Filter",
+            "fromPort": "noiseOut",
+            "function": "passthrough",
+            "toContainer": "Gate Processor",
+            "toPort": "velocity",
+            "weight": 1
+        },
+        {
+            "fromContainer": "Gate Processor",
+            "fromPort": "envelopeOut",
+            "function": "passthrough",
+            "toContainer": "Breath Turbulence",
+            "toPort": "noiseIn",
+            "weight": 1
+        }
+    ],
+    "containers": [
+        {
+            "color": "#3498db",
+            "customDna": {
+                "amplitudes": [
+                    0,
+                    0.3818070505935021,
+                    0.22538515467439862,
+                    0,
+                    0.1160170805519516,
+                    0,
+                    0.07491270623532154,
+                    0,
+                    0,
+                    0,
+                    0.13074881468996916,
+                    0,
+                    0.033500908165067345,
+                    0,
+                    0,
+                    0,
+                    0.12187420753019883,
+                    0,
+                    0.020455177719351784,
+                    0,
+                    0,
+                    0,
+                    0.05849200097069447,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0.011804987758795873,
+                    0,
+                    0.18400500826366828,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0.008600440527978277,
+                    0,
+                    0,
+                    0,
+                    0.007525994985290257,
+                    0,
+                    0.00707414481605016,
+                    0,
+                    0,
+                    0,
+                    0.006301670962329645,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0.005390441135812179,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0.004688946992953669,
+                    0,
+                    0.004490080764103393,
+                    0,
+                    0,
+                    0
+                ],
+                "count": 64
+            },
+            "instanceName": "Harmonic Generator",
+            "parameters": {
+                "dnaSelect": -1,
+                "drift": 0,
+                "numHarmonics": 64,
+                "purity": 0
+            },
+            "position": {
+                "x": 152,
+                "y": 613
+            },
+            "type": "Harmonic Generator"
+        },
+        {
+            "color": "#3498db",
+            "instanceName": "Spectrum to Signal",
+            "parameters": {
+                "normalize": 1
+            },
+            "position": {
+                "x": 724,
+                "y": 541
+            },
+            "type": "Spectrum to Signal"
+        },
+        {
+            "color": "#e67e22",
+            "instanceName": "Rolloff Processor",
+            "parameters": {
+                "rolloff": 2.74
+            },
+            "position": {
+                "x": 443,
+                "y": 538
+            },
+            "type": "Rolloff Processor"
+        },
+        {
+            "color": "#e67e22",
+            "instanceName": "Formant Body",
+            "parameters": {
+                "directMix": 0.3,
+                "f1Freq": 500,
+                "f1Q": 8,
+                "f1f2Balance": 0.6,
+                "f2Freq": 1500,
+                "f2Q": 10
+            },
+            "position": {
+                "x": 1310,
+                "y": 680
+            },
+            "type": "Formant Body"
+        },
+        {
+            "color": "#27ae60",
+            "customEnvelope": {
+                "loopMode": 0,
+                "name": "Linear Rise",
+                "points": [
+                    {
+                        "curveType": 0,
+                        "time": 0,
+                        "value": 0.5904761904761905
+                    },
+                    {
+                        "curveType": 0,
+                        "time": 0.20454545454545456,
+                        "value": 0.21904761904761905
+                    },
+                    {
+                        "curveType": 0,
+                        "time": 0.30303030303030304,
+                        "value": 0.8428571428571429
+                    },
+                    {
+                        "curveType": 0,
+                        "time": 0.48484848484848486,
+                        "value": 0.519047619047619
+                    },
+                    {
+                        "curveType": 0,
+                        "time": 0.6388888888888888,
+                        "value": 0.6714285714285715
+                    },
+                    {
+                        "curveType": 0,
+                        "time": 0.8358585858585859,
+                        "value": 0.19047619047619047
+                    },
+                    {
+                        "curveType": 0,
+                        "time": 1,
+                        "value": 1
+                    }
+                ]
+            },
+            "instanceName": "Envelope Engine",
+            "parameters": {
+                "envelopeSelect": 5,
+                "timeScale": 1,
+                "valueOffset": 0,
+                "valueScale": 1
+            },
+            "position": {
+                "x": 704,
+                "y": 787
+            },
+            "type": "Envelope Engine"
+        },
+        {
+            "color": "#e67e22",
+            "instanceName": "Noise Color Filter",
+            "parameters": {
+                "color": 6890,
+                "filterQ": 1
+            },
+            "position": {
+                "x": 976,
+                "y": 337
+            },
+            "type": "Noise Color Filter"
+        },
+        {
+            "color": "#e67e22",
+            "instanceName": "Breath Turbulence",
+            "parameters": {
+                "blend": 0.05
+            },
+            "position": {
+                "x": 1742,
+                "y": 597
+            },
+            "type": "Breath Turbulence"
+        },
+        {
+            "color": "#27ae60",
+            "customEnvelope": {
+                "loopMode": 0,
+                "name": "Bell Curve",
+                "points": [
+                    {
+                        "curveType": 1,
+                        "time": 0,
+                        "value": 0
+                    },
+                    {
+                        "curveType": 1,
+                        "time": 0.25,
+                        "value": 0.5
+                    },
+                    {
+                        "curveType": 1,
+                        "time": 0.5,
+                        "value": 1
+                    },
+                    {
+                        "curveType": 1,
+                        "time": 0.75,
+                        "value": 0.5
+                    },
+                    {
+                        "curveType": 1,
+                        "time": 1,
+                        "value": 0
+                    }
+                ]
+            },
+            "instanceName": "Envelope Engine-1",
+            "parameters": {
+                "envelopeSelect": 5,
+                "timeScale": 1,
+                "valueOffset": 0,
+                "valueScale": 1
+            },
+            "position": {
+                "x": 632,
+                "y": 306
+            },
+            "type": "Envelope Engine"
+        },
+        {
+            "color": "#27ae60",
+            "instanceName": "Gate Processor",
+            "parameters": {
+                "attackCurve": 2,
+                "attackTime": 0.01,
+                "releaseCurve": 1,
+                "releaseTime": 0.1,
+                "velocity": 1,
+                "velocitySens": 0.5
+            },
+            "position": {
+                "x": 140,
+                "y": 193
+            },
+            "type": "Gate Processor"
+        },
+        {
+            "color": "#27ae60",
+            "customEnvelope": {
+                "loopMode": 0,
+                "name": "Swell",
+                "points": [
+                    {
+                        "curveType": 1,
+                        "time": 0,
+                        "value": 0
+                    },
+                    {
+                        "curveType": 1,
+                        "time": 0.5,
+                        "value": 1
+                    },
+                    {
+                        "curveType": 1,
+                        "time": 1,
+                        "value": 0
+                    }
+                ]
+            },
+            "instanceName": "Envelope Engine",
+            "parameters": {
+                "envelopeSelect": 5,
+                "timeScale": 1,
+                "valueOffset": 0,
+                "valueScale": 1
+            },
+            "position": {
+                "x": 419,
+                "y": 875
+            },
+            "type": "Envelope Engine"
+        },
+        {
+            "color": "#27ae60",
+            "instanceName": "Gate Processor",
+            "parameters": {
+                "attackCurve": 0,
+                "attackTime": 0.01,
+                "releaseCurve": 0,
+                "releaseTime": 0.1,
+                "velocity": 1,
+                "velocitySens": 0.5
+            },
+            "position": {
+                "x": 1400,
+                "y": 339
+            },
+            "type": "Gate Processor"
+        }
+    ],
+    "sounit": {
+        "comment": "sounit graph for testing",
+        "created": "2025-12-27T19:57:06",
+        "name": "testing 1 sounit",
+        "version": "1.0"
+    }
+}

@@ -9,6 +9,8 @@
 #include <QVector>
 #include <QLabel>
 #include <QMoveEvent>
+#include <QMap>
+#include "envelopelibraryDialog.h"
 
 namespace Ui {
 class Container;
@@ -32,8 +34,24 @@ public:
 
     QVector<PortInfo> getPorts() const { return ports; }
     QString getName() const { return containerName; }
+    QString getInstanceName() const { return instanceName; }
+    void setInstanceName(const QString &name) { instanceName = name; }
     QColor getColor() const { return containerColor; }
     void setSelected(bool selected);
+
+    // Get input and output port lists separately
+    QStringList getInputPorts() const;
+    QStringList getOutputPorts() const;
+
+    // Parameter management
+    void setParameter(const QString &name, double value);
+    double getParameter(const QString &name, double defaultValue = 0.0) const;
+    QMap<QString, double> getParameters() const { return parameters; }
+
+    // Custom envelope data storage
+    void setCustomEnvelopeData(const EnvelopeData &data);
+    EnvelopeData getCustomEnvelopeData() const { return customEnvelopeData; }
+    bool hasCustomEnvelopeData() const { return customEnvelopeData.points.size() > 0; }
 
 
 protected:
@@ -58,7 +76,10 @@ private:
     void positionPortCircles();
     QVector<PortInfo> ports;
     QString containerName;
+    QString instanceName;  // User-editable instance name
     bool isSelected = false;
+    QMap<QString, double> parameters;  // Internal parameters (config)
+    EnvelopeData customEnvelopeData;  // Custom envelope data (for Envelope Engine)
 
  ~Container();
 };

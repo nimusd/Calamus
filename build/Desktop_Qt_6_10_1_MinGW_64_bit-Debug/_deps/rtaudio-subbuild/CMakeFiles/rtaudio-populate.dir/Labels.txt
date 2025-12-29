@@ -1,0 +1,14 @@
+# Target labels
+ rtaudio-populate
+# Source files and their labels
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/CMakeFiles/rtaudio-populate
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/CMakeFiles/rtaudio-populate.rule
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/CMakeFiles/rtaudio-populate-complete.rule
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-build.rule
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-configure.rule
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-download.rule
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-install.rule
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-mkdir.rule
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-patch.rule
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-test.rule
+D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-update.rule

@@ -67,6 +67,7 @@ Container::Container(QWidget *parent, const QString &name, const QColor &color,
 
     // Store container name
     containerName = name;
+    instanceName = name;  // Default instance name is same as type name
 
     // Install event filter on all port circles
     for (const PortInfo &port : ports) {
@@ -179,4 +180,41 @@ void Container::setSelected(bool selected)
     } else {
         setStyleSheet("");  // Clear to original style
     }
+}
+
+QStringList Container::getInputPorts() const
+{
+    QStringList inputs;
+    for (const PortInfo &port : ports) {
+        if (!port.isOutput) {
+            inputs.append(port.name);
+        }
+    }
+    return inputs;
+}
+
+QStringList Container::getOutputPorts() const
+{
+    QStringList outputs;
+    for (const PortInfo &port : ports) {
+        if (port.isOutput) {
+            outputs.append(port.name);
+        }
+    }
+    return outputs;
+}
+
+void Container::setParameter(const QString &name, double value)
+{
+    parameters[name] = value;
+}
+
+double Container::getParameter(const QString &name, double defaultValue) const
+{
+    return parameters.value(name, defaultValue);
+}
+
+void Container::setCustomEnvelopeData(const EnvelopeData &data)
+{
+    customEnvelopeData = data;
 }

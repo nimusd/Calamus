@@ -1,103 +1,135 @@
 # ninja log v6
-271	3814	7879851783917151	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-30	256	7879851781500696	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-30	256	7879851781500696	Calamus_autogen/timestamp	bd537b5dc908a690
-257	4348	7879851783775536	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-263	4642	7879851783837132	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-30	256	7879851781500696	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+330	5630	7886922223011409	CMakeFiles/Calamus.dir/container.cpp.obj	43f98c7368f8b0f1
+36	313	7886922220089790	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+36	313	7886922220089790	Calamus_autogen/timestamp	bd537b5dc908a690
+314	6908	7886922222871302	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	531151962199aecf
+321	7373	7886922222937484	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	af7090d15e760cef
+36	313	7886922220089790	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+3901	10444	7885054955631481	CMakeFiles/Calamus.dir/envelopecurvecanvas.cpp.obj	232e09f2e4f69ee0
+7373	11782	7886922293395050	Calamus.exe	2a773f1176538e32
 55	68	7879800105875961	clean	577b940aee94fbd7
-4642	5504	7879851827608850	Calamus.exe	3ad5f50b7f194f15
-30	256	7879851781500696	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-260	3638	7879851783807179	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-267	4276	7879851783867139	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-983	5209	7879800116616067	CMakeFiles/Calamus.dir/canvas.cpp.obj	aa1709abf492b0af
+36	313	7886922220089790	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+338	5608	7886922223089546	CMakeFiles/Calamus.dir/timeline.cpp.obj	d426a31618176c64
+3896	11777	7885054955573822	CMakeFiles/Calamus.dir/envelopelibraryDialog.cpp.obj	8d47b5b6ecb34f72
+317	5578	7886922222891478	CMakeFiles/Calamus.dir/main.cpp.obj	1b991fd2003ffda0
+325	5794	7886922222937484	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	38ff2bd8181dd5e2
+324	6474	7885929233991632	CMakeFiles/Calamus.dir/canvas.cpp.obj	fc9e5fb2e1c5d07f
+313	5936	7885981749189202	CMakeFiles/Calamus.dir/sounitgraph.cpp.obj	ffc995d156269e5e
 25	55	7879800105570781	CMakeFiles/clean.additional	baedbe210acaa455
-276	3368	7879851783962312	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	6599febb5faa4bab
-33	256	7879860990162391	Calamus_autogen/timestamp	bd537b5dc908a690
-33	256	7879860990162391	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-33	256	7879860990162391	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-33	256	7879860990162391	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-275	3273	7879860992586772	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	6599febb5faa4bab
-260	3477	7879860992431613	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-270	3612	7879860992541590	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-266	4136	7879860992501594	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-257	4255	7879860992398842	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-263	4446	7879860992461589	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-4446	5297	7879861034294031	Calamus.exe	3ad5f50b7f194f15
-30	252	7879864420878643	Calamus_autogen/timestamp	bd537b5dc908a690
-30	252	7879864420878643	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-30	252	7879864420878643	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-30	252	7879864420878643	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-271	3367	7879864423294222	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	6599febb5faa4bab
-267	3698	7879864423254238	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-256	3701	7879864423144684	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-253	4158	7879864423114542	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-263	4245	7879864423214195	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-259	4491	7879864423174190	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-4491	5256	7879864465476972	Calamus.exe	3ad5f50b7f194f15
-31	252	7879866346530073	Calamus_autogen/timestamp	bd537b5dc908a690
-31	252	7879866346530073	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-31	252	7879866346530073	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-31	252	7879866346530073	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-270	3382	7879866348927088	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	6599febb5faa4bab
-256	3594	7879866348777060	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-267	3717	7879866348887078	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-263	4291	7879866348847058	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-253	4388	7879866348751211	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-259	4668	7879866348817061	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-4669	5438	7879866392908039	Calamus.exe	3ad5f50b7f194f15
-30	252	7879869538527383	Calamus_autogen/timestamp	bd537b5dc908a690
-30	252	7879869538527383	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-30	252	7879869538527383	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-30	252	7879869538527383	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-271	3189	7879869540932464	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	6599febb5faa4bab
-267	3466	7879869540892463	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-256	3500	7879869540782438	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-263	4129	7879869540852441	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-253	4161	7879869540752797	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-259	4393	7879869540812436	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-4393	5194	7879869582049987	Calamus.exe	3ad5f50b7f194f15
-41	278	7879872148499949	Calamus_autogen/timestamp	bd537b5dc908a690
-41	278	7879872148499949	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-41	278	7879872148499949	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-41	278	7879872148499949	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-295	3426	7879872151047123	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	6599febb5faa4bab
-282	3661	7879872150907566	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-291	3745	7879872151007133	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-288	4178	7879872150967121	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-279	4406	7879872150877473	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-285	4676	7879872150937129	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-4676	5470	7879872194852296	Calamus.exe	3ad5f50b7f194f15
-133	1771	7880528085690634	Calamus_autogen/timestamp	bd537b5dc908a690
-133	1771	7880528085690634	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-133	1771	7880528085690634	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-133	1771	7880528085690634	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-1800	7065	7880528087383155	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	6599febb5faa4bab
-1777	7274	7880528087173966	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-1794	7495	7880528087347958	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-1789	7783	7880528087287553	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-1772	8040	7880528087124014	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-1783	8746	7880528087217265	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-8746	9913	7880528156718894	Calamus.exe	3ad5f50b7f194f15
-47	321	7880530313635948	Calamus_autogen/timestamp	bd537b5dc908a690
-47	321	7880530313635948	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-47	321	7880530313635948	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-47	321	7880530313635948	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-343	4561	7880530316601486	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	6599febb5faa4bab
-338	4961	7880530316551548	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-325	4977	7880530316416074	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-322	5663	7880530316386084	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-333	5721	7880530316501484	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-329	6047	7880530316461465	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-6047	6852	7880530373504130	Calamus.exe	3ad5f50b7f194f15
-45	256	7880533517019557	Calamus_autogen/timestamp	bd537b5dc908a690
-45	256	7880533517019557	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-45	256	7880533517019557	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
-45	256	7880533517019557	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
-278	4458	7880533519347843	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	6599febb5faa4bab
-260	4842	7880533519167694	CMakeFiles/Calamus.dir/main.cpp.obj	54d4536a07d51084
-273	4876	7880533519297825	CMakeFiles/Calamus.dir/container.cpp.obj	9b6066215785c2e5
-268	5518	7880533519247726	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	506f3a34c728cd1e
-257	5660	7880533519137709	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	7cf1f9a7d1b761db
-263	6009	7880533519207723	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	6635fdf79a66088f
-6009	6822	7880533576583432	Calamus.exe	3ad5f50b7f194f15
+334	5696	7886922223032867	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	5151dd3e32d2576
+3938	7825	7881552462820254	CMakeFiles/Calamus.dir/trackselect.cpp.obj	ed3a105b1a3839e
+1057	4854	7886716564153464	CMakeFiles/Calamus.dir/note.cpp.obj	5c92a613100d44c3
+1259	2156	7882932177840121	CMakeFiles/Calamus.dir/formantbody.cpp.obj	6061d70f099f87fa
+361	7707	7886881280346741	CMakeFiles/Calamus.dir/scorecanvas.cpp.obj	bb6940e7446bdb87
+1524	2494	7883830528800796	CMakeFiles/Calamus.dir/gateprocessor.cpp.obj	d3f9463a6d1bbf1f
+41	715	7881533187290963	_deps/rtaudio-build/CMakeFiles/rtaudio.dir/rtaudio_c.cpp.obj	26040443e1a68d06
+37	3924	7881533187251315	_deps/rtaudio-build/CMakeFiles/rtaudio.dir/RtAudio.cpp.obj	d236e639cefa04ef
+3927	4619	7881533232853253	_deps/rtaudio-build/librtaudiod.dll	57132d90a15876a9
+3927	4619	7881533232853253	_deps/rtaudio-build/librtaudiod.dll.a	57132d90a15876a9
+341	763	7885894876977490	CMakeFiles/Calamus.dir/easingapplicator.cpp.obj	786f7b2b0d0d1149
+1100	4814	7884704123537045	CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj	b80c847429abd94e
+1201	5674	7886812562411197	CMakeFiles/Calamus.dir/phrase.cpp.obj	710ff092ab5fb5c5
+1067	7250	7886716564269775	CMakeFiles/Calamus.dir/audioengine.cpp.obj	1b0e14e686906984
+307	5861	7884885604109326	CMakeFiles/Calamus.dir/dnaeditordialog.cpp.obj	14170ddcd2f0f3c8
+7356	14126	7881533260440627	CMakeFiles/Calamus.dir/frequencylabels.cpp.obj	3b9bb28e21c4552c
+29	2190	7887317676396094	build.ninja	c67226a56cb6b81c
+1594	2488	7882422639285712	CMakeFiles/Calamus.dir/spectrum.cpp.obj	a24bcefe394cab2d
+1600	2772	7882422639345712	CMakeFiles/Calamus.dir/spectrumtosignal.cpp.obj	7e1975aaae869d9f
+1017	4054	7882434826031005	CMakeFiles/Calamus.dir/rolloffprocessor.cpp.obj	3d7828f1d841e500
+345	761	7885849234643673	CMakeFiles/Calamus.dir/physicssystem.cpp.obj	46a3becccc96efd
+5088	5755	7883026539129096	CMakeFiles/Calamus.dir/breathturbulence.cpp.obj	edfb0fd6da52b582
+1048	2405	7885818236240911	CMakeFiles/Calamus.dir/noisecolorfilter.cpp.obj	4b0b47c1dfc5fa93
+3883	10002	7885054955433114	CMakeFiles/Calamus.dir/envelopeengine.cpp.obj	df42c0f39f0d7adf
+1221	2141	7883077811865593	CMakeFiles/Calamus.dir/driftengine.cpp.obj	6034c943b087e369
+821	5548	7884277300997803	CMakeFiles/Calamus.dir/spectrumvisualizer.cpp.obj	44ddbb2be79a554d
+3892	10256	7885054955533663	CMakeFiles/Calamus.dir/envelopevisualizer.cpp.obj	1a2d8134785c2ac7
+1722	5501	7886518832944386	CMakeFiles/Calamus.dir/curve.cpp.obj	5b717427a0b01c8a
+60	6224	7887317676396094	build.ninja	c67226a56cb6b81c
+71	1849	7887317699247523	Calamus_autogen/timestamp	bd537b5dc908a690
+71	1849	7887317699247523	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+71	1849	7887317699247523	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+71	1849	7887317699247523	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+1880	8475	7887317700616862	CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj	7582cf7a402546a1
+1865	9765	7887317700472773	CMakeFiles/Calamus.dir/container.cpp.obj	43f98c7368f8b0f1
+1875	9918	7887317700566893	CMakeFiles/Calamus.dir/scorecanvas.cpp.obj	bb6940e7446bdb87
+1854	10261	7887317700362676	CMakeFiles/Calamus.dir/main.cpp.obj	1b991fd2003ffda0
+1870	11138	7887317700522767	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	5151dd3e32d2576
+1862	11359	7887317700432770	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	38ff2bd8181dd5e2
+1850	12902	7887317700322700	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	531151962199aecf
+1858	13653	7887317700402777	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	af7090d15e760cef
+13653	20539	7887317818341046	Calamus.exe	f69c838804ea13d7
+43	1181	7887326849912733	Calamus_autogen/timestamp	bd537b5dc908a690
+43	1181	7887326849912733	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+43	1181	7887326849912733	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+43	1181	7887326849912733	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+1222	9340	7887326851717843	CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj	7582cf7a402546a1
+1204	10649	7887326851534072	CMakeFiles/Calamus.dir/container.cpp.obj	43f98c7368f8b0f1
+1187	11382	7887326851369518	CMakeFiles/Calamus.dir/main.cpp.obj	1b991fd2003ffda0
+1216	11448	7887326851657523	CMakeFiles/Calamus.dir/scorecanvas.cpp.obj	bb6940e7446bdb87
+1210	12037	7887326851597211	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	5151dd3e32d2576
+1198	12211	7887326851483465	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	38ff2bd8181dd5e2
+1183	13303	7887326851329384	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	531151962199aecf
+1192	13868	7887326851419511	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	af7090d15e760cef
+13868	18803	7887326978183961	Calamus.exe	f69c838804ea13d7
+38	1022	7887341497369991	Calamus_autogen/timestamp	bd537b5dc908a690
+38	1022	7887341497369991	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+38	1022	7887341497369991	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+38	1022	7887341497369991	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+1059	7482	7887341499090550	CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj	7582cf7a402546a1
+1043	8001	7887341498925357	CMakeFiles/Calamus.dir/container.cpp.obj	43f98c7368f8b0f1
+1028	9173	7887341498775249	CMakeFiles/Calamus.dir/main.cpp.obj	1b991fd2003ffda0
+1048	9934	7887341498980573	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	5151dd3e32d2576
+1053	9965	7887341499030547	CMakeFiles/Calamus.dir/scorecanvas.cpp.obj	bb6940e7446bdb87
+1037	10198	7887341498865330	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	38ff2bd8181dd5e2
+1023	11750	7887341498735337	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	531151962199aecf
+1032	12274	7887341498815346	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	af7090d15e760cef
+12274	17561	7887341611244930	Calamus.exe	f69c838804ea13d7
+18	304	7887346862331681	Calamus_autogen/timestamp	bd537b5dc908a690
+18	304	7887346862331681	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+18	304	7887346862331681	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+18	304	7887346862331681	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+321	6238	7887346865361697	CMakeFiles/Calamus.dir/container.cpp.obj	43f98c7368f8b0f1
+308	6799	7887346865231590	CMakeFiles/Calamus.dir/main.cpp.obj	1b991fd2003ffda0
+326	7831	7887346865411585	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	5151dd3e32d2576
+331	7858	7887346865461593	CMakeFiles/Calamus.dir/scorecanvas.cpp.obj	bb6940e7446bdb87
+316	8278	7887346865311601	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	38ff2bd8181dd5e2
+305	9761	7887346865191521	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	531151962199aecf
+312	10249	7887346865271735	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	af7090d15e760cef
+10250	15773	7887346964650124	Calamus.exe	f69c838804ea13d7
+19	303	7887354351761724	Calamus_autogen/timestamp	bd537b5dc908a690
+19	303	7887354351761724	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+19	303	7887354351761724	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+19	303	7887354351761724	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+321	6476	7887354354779455	CMakeFiles/Calamus.dir/container.cpp.obj	43f98c7368f8b0f1
+308	7485	7887354354646424	CMakeFiles/Calamus.dir/main.cpp.obj	1b991fd2003ffda0
+326	8076	7887354354829452	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	5151dd3e32d2576
+331	8086	7887354354879449	CMakeFiles/Calamus.dir/scorecanvas.cpp.obj	bb6940e7446bdb87
+317	8278	7887354354739451	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	38ff2bd8181dd5e2
+312	10253	7887354354689440	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	af7090d15e760cef
+304	10894	7887354354606295	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	531151962199aecf
+10894	16131	7887354460509884	Calamus.exe	f69c838804ea13d7
+38	323	7887360147665256	Calamus_autogen/timestamp	bd537b5dc908a690
+38	323	7887360147665256	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+38	323	7887360147665256	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+38	323	7887360147665256	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+339	6294	7887360150636472	CMakeFiles/Calamus.dir/container.cpp.obj	43f98c7368f8b0f1
+327	7306	7887360150510741	CMakeFiles/Calamus.dir/main.cpp.obj	1b991fd2003ffda0
+343	7804	7887360150636472	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	5151dd3e32d2576
+347	7921	7887360150725299	CMakeFiles/Calamus.dir/scorecanvas.cpp.obj	bb6940e7446bdb87
+334	8211	7887360150601508	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	38ff2bd8181dd5e2
+324	9528	7887360150510741	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	531151962199aecf
+330	10058	7887360150510741	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	af7090d15e760cef
+10059	15487	7887360247879034	Calamus.exe	f69c838804ea13d7
+37	1060	7887375069313643	Calamus_autogen/timestamp	bd537b5dc908a690
+37	1060	7887375069313643	Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+37	1060	7887375069313643	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/timestamp	bd537b5dc908a690
+37	1060	7887375069313643	D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/mocs_compilation.cpp	bd537b5dc908a690
+1103	7346	7887375070878901	CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj	7582cf7a402546a1
+1086	8279	7887375070708773	CMakeFiles/Calamus.dir/container.cpp.obj	43f98c7368f8b0f1
+1070	9127	7887375070549185	CMakeFiles/Calamus.dir/main.cpp.obj	1b991fd2003ffda0
+1097	9917	7887375070818824	CMakeFiles/Calamus.dir/scorecanvas.cpp.obj	bb6940e7446bdb87
+1092	10000	7887375070768825	CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj	5151dd3e32d2576
+1081	10224	7887375070658796	CMakeFiles/Calamus.dir/sounitbuilder.cpp.obj	38ff2bd8181dd5e2
+1062	11751	7887375070468838	CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj	531151962199aecf
+1075	12197	7887375070598853	CMakeFiles/Calamus.dir/calamusmain.cpp.obj	af7090d15e760cef
+12198	17363	7887375181822732	Calamus.exe	f69c838804ea13d7

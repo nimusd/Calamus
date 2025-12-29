@@ -1,6 +1,7 @@
 D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/EWIEGA46WW/moc_container.cpp: D:/C++\ code/Calamus/container.h \
   D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/moc_predefs.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QList \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QMap \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QObject \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QPoint \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QRect \
@@ -190,8 +191,10 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QLabel \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QWidget \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qframe.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qlabel.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qsizepolicy.h \
@@ -411,4 +414,5 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/types.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
+  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
+  D:/C++\ code/Calamus/envelopelibraryDialog.h

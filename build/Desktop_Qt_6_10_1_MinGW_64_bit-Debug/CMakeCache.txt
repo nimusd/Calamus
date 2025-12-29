@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//Build as shared library
+BUILD_SHARED_LIBS:BOOL=ON
+
+//Build the testing tree.
+BUILD_TESTING:BOOL=ON
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=C:/Qt/Tools/mingw1310_64/bin/addr2line.exe
 
@@ -64,6 +70,9 @@ CMAKE_CXX_STANDARD_LIBRARIES:STRING=-lkernel32 -luser32 -lgdi32 -lwinspool -lshe
 CMAKE_C_COMPILER:FILEPATH=C:/Qt/Tools/mingw1310_64/bin/gcc.exe
 
 CMAKE_C_OUTPUT_EXTENSION:STRING=
+
+//Postfix for debug version of library
+CMAKE_DEBUG_POSTFIX:STRING=d
 
 //Path to a program.
 CMAKE_DLLTOOL:FILEPATH=C:/Qt/Tools/mingw1310_64/bin/dlltool.exe
@@ -279,6 +288,19 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Path to the coverage program that CTest uses for performing coverage
+// inspection
+COVERAGE_COMMAND:FILEPATH=C:/Qt/Tools/mingw1310_64/bin/gcov.exe
+
+//Extra command line flags to pass to the coverage tool
+COVERAGE_EXTRA_FLAGS:STRING=-l
+
+//How many times to retry timed-out CTest submissions.
+CTEST_SUBMIT_RETRY_COUNT:STRING=3
+
+//How long to wait between timed-out CTest submissions.
+CTEST_SUBMIT_RETRY_DELAY:STRING=5
+
 //Value Computed by CMake
 Calamus_BINARY_DIR:STATIC=D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug
 
@@ -287,6 +309,53 @@ Calamus_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 Calamus_SOURCE_DIR:STATIC=D:/C++ code/Calamus
+
+//Maximum time allowed before CTest will kill the test.
+DART_TESTING_TIMEOUT:STRING=1500
+
+//Directory under which to collect all populated content
+FETCHCONTENT_BASE_DIR:PATH=D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps
+
+//Disables all attempts to download or update content and assumes
+// source dirs already exist
+FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
+
+//Enables QUIET option for all content population
+FETCHCONTENT_QUIET:BOOL=ON
+
+//When not empty, overrides where to find pre-populated content
+// for rtaudio
+FETCHCONTENT_SOURCE_DIR_RTAUDIO:PATH=
+
+//Enables UPDATE_DISCONNECTED behavior for all content population
+FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of rtaudio
+FETCHCONTENT_UPDATES_DISCONNECTED_RTAUDIO:BOOL=OFF
+
+//Path to a program.
+GITCOMMAND:FILEPATH=C:/Program Files/Git/cmd/git.exe
+
+//Git command line client
+GIT_EXECUTABLE:FILEPATH=C:/Program Files/Git/cmd/git.exe
+
+//Path to a library.
+JACK_LIB:FILEPATH=JACK_LIB-NOTFOUND
+
+//Command to build the project
+MAKECOMMAND:STRING=C:\Qt\Tools\CMake_64\bin\cmake.exe --build . --config "${CTEST_CONFIGURATION_TYPE}"
+
+//Path to the memory checking command, used for memory error detection.
+MEMORYCHECK_COMMAND:FILEPATH=MEMORYCHECK_COMMAND-NOTFOUND
+
+//File that contains suppressions for the memory checker
+MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
+
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
 
 //Additional directories where find(Qt6 ...) host Qt components
 // are searched
@@ -337,6 +406,48 @@ Qt6Widgets_DIR:PATH=C:/Qt/6.10.1/mingw_64/lib/cmake/Qt6Widgets
 //The directory containing a CMake configuration file for Qt6.
 Qt6_DIR:PATH=C:/Qt/6.10.1/mingw_64/lib/cmake/Qt6
 
+//Build ALSA API
+RTAUDIO_API_ALSA:BOOL=OFF
+
+//Build ASIO API
+RTAUDIO_API_ASIO:BOOL=OFF
+
+//Build CoreAudio API
+RTAUDIO_API_CORE:BOOL=OFF
+
+//Build DirectSound API
+RTAUDIO_API_DS:BOOL=OFF
+
+//Build JACK audio server API
+RTAUDIO_API_JACK:BOOL=OFF
+
+//Build OSS4 API
+RTAUDIO_API_OSS:BOOL=OFF
+
+//Build PulseAudio API
+RTAUDIO_API_PULSE:BOOL=OFF
+
+//Build WASAPI API
+RTAUDIO_API_WASAPI:BOOL=ON
+
+//Build PyRtAudio python bindings
+RTAUDIO_BUILD_PYTHON:BOOL=OFF
+
+//Name of 'uninstall' build target
+RTAUDIO_TARGETNAME_UNINSTALL:STRING=uninstall
+
+//Value Computed by CMake
+RtAudio_BINARY_DIR:STATIC=D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-build
+
+//Value Computed by CMake
+RtAudio_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+RtAudio_SOURCE_DIR:STATIC=D:/C++ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-src
+
+//Name of the computer/site where compile is being run
+SITE:STRING=Hexacore
+
 //Path to a program.
 Vulkan_GLSLANG_VALIDATOR_EXECUTABLE:FILEPATH=Vulkan_GLSLANG_VALIDATOR_EXECUTABLE-NOTFOUND
 
@@ -351,6 +462,9 @@ Vulkan_LIBRARY:FILEPATH=Vulkan_LIBRARY-NOTFOUND
 
 //Path to a program.
 WINDEPLOYQT_EXECUTABLE:FILEPATH=C:/Qt/6.10.1/mingw_64/bin/windeployqt.exe
+
+//Dependencies for the target
+rtaudio_LIB_DEPENDS:STATIC=general;ksuser;general;mfplat;general;mfuuid;general;wmcodecdspuuid;general;winmm;general;ole32;
 
 
 ########################
@@ -373,6 +487,8 @@ CMAKE_CACHE_PATCH_VERSION:INTERNAL=5
 CMAKE_COMMAND:INTERNAL=C:/Qt/Tools/CMake_64/bin/cmake.exe
 //Path to cpack program executable.
 CMAKE_CPACK_COMMAND:INTERNAL=C:/Qt/Tools/CMake_64/bin/cpack.exe
+//ADVANCED property for variable: CMAKE_CTEST_COMMAND
+CMAKE_CTEST_COMMAND-ADVANCED:INTERNAL=1
 //Path to ctest program executable.
 CMAKE_CTEST_COMMAND:INTERNAL=C:/Qt/Tools/CMake_64/bin/ctest.exe
 //ADVANCED property for variable: CMAKE_CXX_COMPILER
@@ -471,7 +587,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -527,8 +643,34 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_TAPI-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: COVERAGE_COMMAND
+COVERAGE_COMMAND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: COVERAGE_EXTRA_FLAGS
+COVERAGE_EXTRA_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CTEST_SUBMIT_RETRY_COUNT
+CTEST_SUBMIT_RETRY_COUNT-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CTEST_SUBMIT_RETRY_DELAY
+CTEST_SUBMIT_RETRY_DELAY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: DART_TESTING_TIMEOUT
+DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: GITCOMMAND
+GITCOMMAND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: GIT_EXECUTABLE
+GIT_EXECUTABLE-ADVANCED:INTERNAL=1
+//Have function gettimeofday
+HAVE_GETTIMEOFDAY:INTERNAL=1
 //Test HAVE_STDATOMIC
 HAVE_STDATOMIC:INTERNAL=1
+//ADVANCED property for variable: MAKECOMMAND
+MAKECOMMAND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: MEMORYCHECK_COMMAND
+MEMORYCHECK_COMMAND-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: MEMORYCHECK_SUPPRESSIONS_FILE
+MEMORYCHECK_SUPPRESSIONS_FILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //Qt feature: abstractbutton (from target Qt6::Widgets)
 QT_FEATURE_abstractbutton:INTERNAL=ON
 //Qt feature: abstractslider (from target Qt6::Widgets)
@@ -1359,6 +1501,8 @@ QT_FEATURE_xmlstreamwriter:INTERNAL=ON
 QT_FEATURE_xrender:INTERNAL=OFF
 //Qt feature: zstd (from target Qt6::Core)
 QT_FEATURE_zstd:INTERNAL=OFF
+//ADVANCED property for variable: SITE
+SITE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Vulkan_GLSLANG_VALIDATOR_EXECUTABLE
 Vulkan_GLSLANG_VALIDATOR_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Vulkan_GLSLC_EXECUTABLE
@@ -1371,4 +1515,48 @@ Vulkan_LIBRARY-ADVANCED:INTERNAL=1
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/Calamus
+__pkg_config_checked_jack:INTERNAL=1
+__pkg_config_checked_pulse:INTERNAL=1
+jack_CFLAGS:INTERNAL=
+jack_CFLAGS_I:INTERNAL=
+jack_CFLAGS_OTHER:INTERNAL=
+jack_FOUND:INTERNAL=
+jack_INCLUDEDIR:INTERNAL=
+jack_LIBDIR:INTERNAL=
+jack_LIBS:INTERNAL=
+jack_LIBS_L:INTERNAL=
+jack_LIBS_OTHER:INTERNAL=
+jack_LIBS_PATHS:INTERNAL=
+jack_MODULE_NAME:INTERNAL=
+jack_PREFIX:INTERNAL=
+jack_STATIC_CFLAGS:INTERNAL=
+jack_STATIC_CFLAGS_I:INTERNAL=
+jack_STATIC_CFLAGS_OTHER:INTERNAL=
+jack_STATIC_LIBDIR:INTERNAL=
+jack_STATIC_LIBS:INTERNAL=
+jack_STATIC_LIBS_L:INTERNAL=
+jack_STATIC_LIBS_OTHER:INTERNAL=
+jack_STATIC_LIBS_PATHS:INTERNAL=
+jack_VERSION:INTERNAL=
+pulse_CFLAGS:INTERNAL=
+pulse_CFLAGS_I:INTERNAL=
+pulse_CFLAGS_OTHER:INTERNAL=
+pulse_FOUND:INTERNAL=
+pulse_INCLUDEDIR:INTERNAL=
+pulse_LIBDIR:INTERNAL=
+pulse_LIBS:INTERNAL=
+pulse_LIBS_L:INTERNAL=
+pulse_LIBS_OTHER:INTERNAL=
+pulse_LIBS_PATHS:INTERNAL=
+pulse_MODULE_NAME:INTERNAL=
+pulse_PREFIX:INTERNAL=
+pulse_STATIC_CFLAGS:INTERNAL=
+pulse_STATIC_CFLAGS_I:INTERNAL=
+pulse_STATIC_CFLAGS_OTHER:INTERNAL=
+pulse_STATIC_LIBDIR:INTERNAL=
+pulse_STATIC_LIBS:INTERNAL=
+pulse_STATIC_LIBS_L:INTERNAL=
+pulse_STATIC_LIBS_OTHER:INTERNAL=
+pulse_STATIC_LIBS_PATHS:INTERNAL=
+pulse_VERSION:INTERNAL=
 

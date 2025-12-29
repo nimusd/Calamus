@@ -1,0 +1,283 @@
+#include "trackselect.h"
+#include <QPainter>
+#include <QMouseEvent>
+#include <QPen>
+#include <QBrush>
+#include <cmath>
+
+TrackSelector::TrackSelector(QWidget *parent)
+    : QWidget(parent)
+    , activeTrackIndex(-1)
+    , hoveredTrackIndex(-1)
+    , visibleMinHz(20.0)
+    , visibleMaxHz(20000.0)
+    , pixelsPerHz(0.1)
+    , verticalScrollOffset(0)
+{
+    setMinimumWidth(TRACK_BAR_WIDTH);
+    setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+}
+
+void TrackSelector::addTrack(const QString &name, const QColor &color,
+                             double minHz, double maxHz)
+{
+    Track track;
+    track.name = name;
+    track.color = color;
+    track.minFreqHz = minHz;
+    track.maxFreqHz = maxHz;
+    track.isActive = false;
+    track.trackIndex = tracks.size();
+
+    tracks.append(track);
+
+    // If this is the first track, make it active
+    if (tracks.size() == 1) {
+        setActiveTrack(0);
+    }
+
+    updateGeometry();
+    update();
+}
+
+void TrackSelector::removeTrack(int index)
+{
+    if (index >= 0 && index < tracks.size()) {
+        tracks.remove(index);
+
+        // Update track indices
+        for (int i = 0; i < tracks.size(); ++i) {
+            tracks[i].trackIndex = i;
+        }
+
+        // Adjust active track if needed
+        if (activeTrackIndex == index) {
+            activeTrackIndex = -1;
+            if (!tracks.isEmpty()) {
+                setActiveTrack(0);
+            }
+        } else if (activeTrackIndex > index) {
+            activeTrackIndex--;
+        }
+
+        updateGeometry();
+        update();
+    }
+}
+
+void TrackSelector::setActiveTrack(int index)
+{
+    if (index >= 0 && index < tracks.size()) {
+        // Deactivate previous active track
+        if (activeTrackIndex >= 0 && activeTrackIndex < tracks.size()) {
+            tracks[activeTrackIndex].isActive = false;
+        }
+
+        // Activate new track
+        activeTrackIndex = index;
+        tracks[index].isActive = true;
+
+        update();
+        emit trackSelected(index);
+    }
+}
+
+int TrackSelector::getActiveTrack() const
+{
+    return activeTrackIndex;
+}
+
+void TrackSelector::clearTracks()
+{
+    tracks.clear();
+    activeTrackIndex = -1;
+    hoveredTrackIndex = -1;
+    updateGeometry();
+    update();
+}
+
+void TrackSelector::setFrequencyRange(double minHz, double maxHz)
+{
+    visibleMinHz = minHz;
+    visibleMaxHz = maxHz;
+    update();
+}
+
+void TrackSelector::setPixelsPerHz(double ratio)
+{
+    pixelsPerHz = ratio;
+    update();
+}
+
+void TrackSelector::setVerticalOffset(int offsetPixels)
+{
+    verticalScrollOffset = offsetPixels;
+    update();
+}
+
+QSize TrackSelector::sizeHint() const
+{
+    int width = tracks.size() * (TRACK_BAR_WIDTH + TRACK_SPACING);
+    if (width == 0) {
+        width = TRACK_BAR_WIDTH;  // Minimum width even with no tracks
+    }
+    return QSize(width, 600);
+}
+
+QSize TrackSelector::minimumSizeHint() const
+{
+    return QSize(TRACK_BAR_WIDTH, 400);
+}
+
+void TrackSelector::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
+
+    // Draw background - light golden color
+    painter.fillRect(rect(), QColor(255, 235, 205));  // Light golden (peach puff)
+
+    // Draw each track bar
+    for (int i = 0; i < tracks.size(); ++i) {
+        const Track &track = tracks[i];
+        QRect trackRect = getTrackRect(i);
+
+        // Skip if not visible
+        if (!trackRect.intersects(event->rect())) {
+            continue;
+        }
+
+        // Set opacity based on active state
+        QColor color = track.color;
+        color.setAlpha(track.isActive ? ACTIVE_OPACITY : DIMMED_OPACITY);
+
+        // Draw track bar
+        painter.fillRect(trackRect, color);
+
+        // Draw selection border for active track
+        if (track.isActive) {
+            painter.setPen(QPen(QColor("#0066CC"), 2));
+            painter.drawRect(trackRect.adjusted(1, 1, -1, -1));
+        } else {
+            // Draw subtle border for inactive tracks
+            painter.setPen(QPen(QColor(200, 200, 200), 1));
+            painter.drawRect(trackRect);
+        }
+
+        // Draw track name (rotated or abbreviated) if there's enough space
+        if (trackRect.height() > 30) {
+            painter.save();
+            painter.setPen(Qt::white);
+            QFont font = painter.font();
+            font.setPointSize(8);
+            font.setBold(true);
+            painter.setFont(font);
+
+            // Abbreviate to first 2 characters
+            QString abbrev = track.name.left(2).toUpper();
+            painter.drawText(trackRect, Qt::AlignCenter, abbrev);
+            painter.restore();
+        }
+    }
+}
+
+void TrackSelector::mousePressEvent(QMouseEvent *event)
+{
+    int index = trackIndexAtPosition(event->pos());
+    if (index >= 0) {
+        setActiveTrack(index);
+        emit trackClicked(index);
+    }
+    QWidget::mousePressEvent(event);
+}
+
+void TrackSelector::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+    update();
+}
+
+int TrackSelector::frequencyToPixel(double hz) const
+{
+    // Convert Hz to pixel position using logarithmic spacing
+    // Each octave = PIXELS_PER_OCTAVE (100 pixels)
+    // Higher frequencies = lower Y values (top of screen)
+    // MUST MATCH ScoreCanvas implementation
+
+    if (hz <= 0 || BASE_FREQUENCY <= 0) {
+        return 0;
+    }
+
+    // Calculate octave number from base frequency (logarithmic)
+    double octaveNumber = std::log2(hz / BASE_FREQUENCY);
+
+    // Calculate visible octave range
+    double minOctave = std::log2(visibleMinHz / BASE_FREQUENCY);
+    double maxOctave = std::log2(visibleMaxHz / BASE_FREQUENCY);
+    double visibleOctaveRange = maxOctave - minOctave;
+
+    // Normalize position within visible range
+    double normalizedPos = (octaveNumber - minOctave) / visibleOctaveRange;
+    // Don't clamp - allow frequencies outside visible range to be positioned off-screen
+    // MUST MATCH ScoreCanvas implementation
+
+    // Convert to pixel position (flip for top-down coordinate system)
+    int pixel = height() - static_cast<int>(normalizedPos * height());
+    return pixel - verticalScrollOffset;
+}
+
+double TrackSelector::pixelToFrequency(int pixel) const
+{
+    // Convert pixel position to Hz using logarithmic spacing
+    // MUST MATCH ScoreCanvas implementation
+    int adjustedPixel = pixel + verticalScrollOffset;
+    double normalizedPos = 1.0 - (static_cast<double>(adjustedPixel) / height());
+    normalizedPos = qBound(0.0, normalizedPos, 1.0);
+
+    // Calculate visible octave range
+    double minOctave = std::log2(visibleMinHz / BASE_FREQUENCY);
+    double maxOctave = std::log2(visibleMaxHz / BASE_FREQUENCY);
+    double visibleOctaveRange = maxOctave - minOctave;
+
+    // Calculate octave number at this position
+    double octaveNumber = minOctave + (normalizedPos * visibleOctaveRange);
+
+    // Convert back to Hz
+    return BASE_FREQUENCY * std::pow(2.0, octaveNumber);
+}
+
+int TrackSelector::trackIndexAtPosition(const QPoint &pos) const
+{
+    for (int i = 0; i < tracks.size(); ++i) {
+        if (getTrackRect(i).contains(pos)) {
+            return i;
+        }
+    }
+    return -1;  // No track at position
+}
+
+QRect TrackSelector::getTrackRect(int trackIndex) const
+{
+    if (trackIndex < 0 || trackIndex >= tracks.size()) {
+        return QRect();
+    }
+
+    const Track &track = tracks[trackIndex];
+
+    int x = trackIndex * (TRACK_BAR_WIDTH + TRACK_SPACING);
+    int yTop = frequencyToPixel(track.maxFreqHz);     // Top of bar (higher freq)
+    int yBottom = frequencyToPixel(track.minFreqHz);  // Bottom of bar (lower freq)
+    int height = yBottom - yTop;
+
+    // Ensure minimum height of 10 pixels for visibility
+    if (height < 10) {
+        height = 10;
+    }
+
+    return QRect(x, yTop, TRACK_BAR_WIDTH, height);
+}
+
+void TrackSelector::updateGeometry()
+{
+    QWidget::updateGeometry();
+}

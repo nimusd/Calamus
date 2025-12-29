@@ -1,12 +1,18 @@
 D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/EWIEGA46WW/moc_sounitbuilder.cpp: D:/C++\ code/Calamus/sounitbuilder.h \
   D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/moc_predefs.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QJsonObject \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QList \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QMap \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QObject \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QPair \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QPoint \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QRect \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QSize \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QSizeF \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QString \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QStringList \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QTimer \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QUuid \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QVector \
   C:/Qt/6.10.1/mingw_64/include/QtCore/q17memory.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/q20functional.h \
@@ -33,6 +39,9 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qbytearraylist.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qbytearrayview.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qcalendar.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qcborcommon.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qcborvalue.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qchar.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qcheckedint_impl.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qcompare.h \
@@ -50,6 +59,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qcoreevent.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qdatastream.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qdatetime.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qdeadlinetimer.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qdebug.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qendian.h \
@@ -69,6 +79,10 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qiodevicebase.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qiterable.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qiterator.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qjsondocument.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonobject.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonparseerror.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonvalue.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qlatin1stringview.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qline.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qlist.h \
@@ -94,6 +108,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qrefcount.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qregularexpression.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qset.h \
@@ -129,6 +144,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qtenvironmentvariables.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qtextstream.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qtformat_impl.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qtimer.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qtmetamacros.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qtnoop.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qtpreprocessorsupport.h \
@@ -141,6 +157,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qtypes.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qurl.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qutf8stringview.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/quuid.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qvarlengtharray.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qvector.h \
@@ -197,9 +214,11 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QLabel \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QWidget \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qframe.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qlabel.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -222,6 +241,8 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocator.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_base.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_lockfree_defines.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/char_traits.h \
@@ -243,9 +264,12 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/hashtable_policy.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/invoke.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ios_base.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/list.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_classes.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_classes.tcc \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/localefwd.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/memory_resource.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/memoryfwd.h \
@@ -253,11 +277,14 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/nested_exception.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/new_allocator.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/node_handle.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream_insert.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/parse_numbers.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/postypes.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/predefined_ops.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ptr_traits.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/range_access.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/refwrap.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
@@ -265,8 +292,10 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_atomic.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_base.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/specfun.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/sstream.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_abs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_function.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algobase.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
@@ -295,6 +324,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/string_view.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stringfwd.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_map.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_set.h \
@@ -317,6 +347,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstring \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ctime \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwchar \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/debug/assertions.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/debug/debug.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/exception \
@@ -329,22 +360,29 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/type_traits.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/functional \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/initializer_list \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ios \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iosfwd \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/limits \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/list \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/map \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/new \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/execution_defs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_algorithm_defs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_memory_defs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_numeric_defs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/pstl_config.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ratio \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/set \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/sstream \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdexcept \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdlib.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/streambuf \
@@ -377,16 +415,25 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/opt_random.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/emmintrin.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/limits.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mm_malloc.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mmintrin.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitintrin.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pmmintrin.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdarg.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdbool.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/syslimits.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xmmintrin.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_mingw.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_mingw_mac.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_mingw_off_t.h \
@@ -422,5 +469,25 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
+  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h \
+  D:/C++\ code/Calamus/audioengine.h \
+  D:/C++\ code/Calamus/breathturbulence.h \
+  D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-src/RtAudio.h \
   D:/C++\ code/Calamus/canvas.h \
-  D:/C++\ code/Calamus/container.h
+  D:/C++\ code/Calamus/container.h \
+  D:/C++\ code/Calamus/curve.h \
+  D:/C++\ code/Calamus/driftengine.h \
+  D:/C++\ code/Calamus/easingapplicator.h \
+  D:/C++\ code/Calamus/envelopeengine.h \
+  D:/C++\ code/Calamus/envelopelibraryDialog.h \
+  D:/C++\ code/Calamus/formantbody.h \
+  D:/C++\ code/Calamus/gateprocessor.h \
+  D:/C++\ code/Calamus/harmonicgenerator.h \
+  D:/C++\ code/Calamus/noisecolorfilter.h \
+  D:/C++\ code/Calamus/note.h \
+  D:/C++\ code/Calamus/phrase.h \
+  D:/C++\ code/Calamus/physicssystem.h \
+  D:/C++\ code/Calamus/rolloffprocessor.h \
+  D:/C++\ code/Calamus/sounitgraph.h \
+  D:/C++\ code/Calamus/spectrum.h \
+  D:/C++\ code/Calamus/spectrumtosignal.h

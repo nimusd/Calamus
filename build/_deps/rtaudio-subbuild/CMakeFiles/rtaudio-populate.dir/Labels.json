@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/CMakeFiles/rtaudio-populate"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/CMakeFiles/rtaudio-populate.rule"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/CMakeFiles/rtaudio-populate-complete.rule"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-build.rule"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-configure.rule"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-download.rule"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-install.rule"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-mkdir.rule"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-patch.rule"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-test.rule"
+		},
+		{
+			"file" : "D:/C++ code/Calamus/build/_deps/rtaudio-subbuild/rtaudio-populate-prefix/src/rtaudio-populate-stamp/rtaudio-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"rtaudio-populate"
+		],
+		"name" : "rtaudio-populate"
+	}
+}
