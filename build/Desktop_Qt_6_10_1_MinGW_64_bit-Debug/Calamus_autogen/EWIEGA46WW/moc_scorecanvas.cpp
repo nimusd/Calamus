@@ -50,7 +50,8 @@ template <> constexpr inline auto ScoreCanvas::qt_create_metaobjectdata<qt_meta_
         "active",
         "cursorPositionChanged",
         "timeMs",
-        "pitchHz"
+        "pitchHz",
+        "phraseSelectionChanged"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -70,6 +71,8 @@ template <> constexpr inline auto ScoreCanvas::qt_create_metaobjectdata<qt_meta_
         QtMocHelpers::SignalData<void(double, double)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Double, 11 }, { QMetaType::Double, 12 },
         }}),
+        // Signal 'phraseSelectionChanged'
+        QtMocHelpers::SignalData<void()>(13, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -97,6 +100,7 @@ void ScoreCanvas::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 1: _t->frequencyRangeChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[2]))); break;
         case 2: _t->pressureChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[2]))); break;
         case 3: _t->cursorPositionChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[2]))); break;
+        case 4: _t->phraseSelectionChanged(); break;
         default: ;
         }
     }
@@ -108,6 +112,8 @@ void ScoreCanvas::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         if (QtMocHelpers::indexOfMethod<void (ScoreCanvas::*)(double , bool )>(_a, &ScoreCanvas::pressureChanged, 2))
             return;
         if (QtMocHelpers::indexOfMethod<void (ScoreCanvas::*)(double , double )>(_a, &ScoreCanvas::cursorPositionChanged, 3))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (ScoreCanvas::*)()>(_a, &ScoreCanvas::phraseSelectionChanged, 4))
             return;
     }
 }
@@ -131,14 +137,14 @@ int ScoreCanvas::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }
@@ -165,5 +171,11 @@ void ScoreCanvas::pressureChanged(double _t1, bool _t2)
 void ScoreCanvas::cursorPositionChanged(double _t1, double _t2)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1, _t2);
+}
+
+// SIGNAL 4
+void ScoreCanvas::phraseSelectionChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 QT_WARNING_POP

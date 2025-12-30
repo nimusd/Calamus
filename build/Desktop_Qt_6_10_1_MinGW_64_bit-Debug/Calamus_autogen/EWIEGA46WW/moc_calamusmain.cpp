@@ -68,7 +68,15 @@ template <> constexpr inline auto CalamusMain::qt_create_metaobjectdata<qt_meta_
         "QListWidgetItem*",
         "item",
         "onDnaSelectChanged",
-        "onNumHarmonicsChanged"
+        "onNumHarmonicsChanged",
+        "onPhraseSelectionChanged",
+        "onPhraseNameChanged",
+        "onPhraseEasingChanged",
+        "onLoadPhraseTemplateClicked",
+        "onApplyPhraseTemplateClicked",
+        "onCreatePhraseClicked",
+        "onUngroupPhraseClicked",
+        "onSavePhraseTemplateClicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -130,6 +138,26 @@ template <> constexpr inline auto CalamusMain::qt_create_metaobjectdata<qt_meta_
         QtMocHelpers::SlotData<void(int)>(29, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 23 },
         }}),
+        // Slot 'onPhraseSelectionChanged'
+        QtMocHelpers::SlotData<void()>(30, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onPhraseNameChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(31, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 9 },
+        }}),
+        // Slot 'onPhraseEasingChanged'
+        QtMocHelpers::SlotData<void(int)>(32, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 4 },
+        }}),
+        // Slot 'onLoadPhraseTemplateClicked'
+        QtMocHelpers::SlotData<void()>(33, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onApplyPhraseTemplateClicked'
+        QtMocHelpers::SlotData<void()>(34, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onCreatePhraseClicked'
+        QtMocHelpers::SlotData<void()>(35, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onUngroupPhraseClicked'
+        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSavePhraseTemplateClicked'
+        QtMocHelpers::SlotData<void()>(37, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -172,6 +200,14 @@ void CalamusMain::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 16: _t->onConfigParameterChanged((*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
         case 17: _t->onDnaSelectChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 18: _t->onNumHarmonicsChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 19: _t->onPhraseSelectionChanged(); break;
+        case 20: _t->onPhraseNameChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 21: _t->onPhraseEasingChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 22: _t->onLoadPhraseTemplateClicked(); break;
+        case 23: _t->onApplyPhraseTemplateClicked(); break;
+        case 24: _t->onCreatePhraseClicked(); break;
+        case 25: _t->onUngroupPhraseClicked(); break;
+        case 26: _t->onSavePhraseTemplateClicked(); break;
         default: ;
         }
     }
@@ -208,14 +244,14 @@ int CalamusMain::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 27)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 27;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 27)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 27;
     }
     return _id;
 }

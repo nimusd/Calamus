@@ -1,8 +1,10 @@
 D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_sounitbuilder.cpp: D:/C++\ code/Calamus/sounitbuilder.h \
   D:/C++\ code/Calamus/build/Calamus_autogen/moc_predefs.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QJsonObject \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QList \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QMap \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QObject \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QPair \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QPoint \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QRect \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QSize \
@@ -37,6 +39,9 @@ D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_sounitbuilder.cpp: D:/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qbytearraylist.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qbytearrayview.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qcalendar.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qcborcommon.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qcborvalue.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qchar.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qcheckedint_impl.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qcompare.h \
@@ -54,6 +59,7 @@ D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_sounitbuilder.cpp: D:/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qcoreevent.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qdatastream.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qdatetime.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qdeadlinetimer.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qdebug.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qendian.h \
@@ -73,6 +79,10 @@ D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_sounitbuilder.cpp: D:/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qiodevicebase.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qiterable.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qiterator.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qjsondocument.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonobject.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonparseerror.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonvalue.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qlatin1stringview.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qline.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qlist.h \
@@ -98,6 +108,7 @@ D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_sounitbuilder.cpp: D:/
   C:/Qt/6.10.1/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qrefcount.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qregularexpression.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qset.h \
@@ -203,9 +214,11 @@ D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_sounitbuilder.cpp: D:/
   C:/Qt/6.10.1/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QLabel \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QWidget \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qframe.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qlabel.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -462,9 +475,11 @@ D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_sounitbuilder.cpp: D:/
   D:/C++\ code/Calamus/build/_deps/rtaudio-src/RtAudio.h \
   D:/C++\ code/Calamus/canvas.h \
   D:/C++\ code/Calamus/container.h \
+  D:/C++\ code/Calamus/curve.h \
   D:/C++\ code/Calamus/driftengine.h \
   D:/C++\ code/Calamus/easingapplicator.h \
   D:/C++\ code/Calamus/envelopeengine.h \
+  D:/C++\ code/Calamus/envelopelibraryDialog.h \
   D:/C++\ code/Calamus/formantbody.h \
   D:/C++\ code/Calamus/gateprocessor.h \
   D:/C++\ code/Calamus/harmonicgenerator.h \

@@ -837,6 +837,30 @@ container.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/container.cpp.s
 .PHONY : container.cpp.s
 
+curve.obj: curve.cpp.obj
+.PHONY : curve.obj
+
+# target to build an object file
+curve.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/curve.cpp.obj
+.PHONY : curve.cpp.obj
+
+curve.i: curve.cpp.i
+.PHONY : curve.i
+
+# target to preprocess a source file
+curve.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/curve.cpp.i
+.PHONY : curve.cpp.i
+
+curve.s: curve.cpp.s
+.PHONY : curve.s
+
+# target to generate assembly for a file
+curve.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/curve.cpp.s
+.PHONY : curve.cpp.s
+
 dnaeditordialog.obj: dnaeditordialog.cpp.obj
 .PHONY : dnaeditordialog.obj
 
@@ -1197,6 +1221,30 @@ phrase.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/phrase.cpp.s
 .PHONY : phrase.cpp.s
 
+phrasegroup.obj: phrasegroup.cpp.obj
+.PHONY : phrasegroup.obj
+
+# target to build an object file
+phrasegroup.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/phrasegroup.cpp.obj
+.PHONY : phrasegroup.cpp.obj
+
+phrasegroup.i: phrasegroup.cpp.i
+.PHONY : phrasegroup.i
+
+# target to preprocess a source file
+phrasegroup.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/phrasegroup.cpp.i
+.PHONY : phrasegroup.cpp.i
+
+phrasegroup.s: phrasegroup.cpp.s
+.PHONY : phrasegroup.s
+
+# target to generate assembly for a file
+phrasegroup.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/phrasegroup.cpp.s
+.PHONY : phrasegroup.cpp.s
+
 physicssystem.obj: physicssystem.cpp.obj
 .PHONY : physicssystem.obj
 
@@ -1268,6 +1316,30 @@ scorecanvas.s: scorecanvas.cpp.s
 scorecanvas.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/scorecanvas.cpp.s
 .PHONY : scorecanvas.cpp.s
+
+scorecanvascommands.obj: scorecanvascommands.cpp.obj
+.PHONY : scorecanvascommands.obj
+
+# target to build an object file
+scorecanvascommands.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj
+.PHONY : scorecanvascommands.cpp.obj
+
+scorecanvascommands.i: scorecanvascommands.cpp.i
+.PHONY : scorecanvascommands.i
+
+# target to preprocess a source file
+scorecanvascommands.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/scorecanvascommands.cpp.i
+.PHONY : scorecanvascommands.cpp.i
+
+scorecanvascommands.s: scorecanvascommands.cpp.s
+.PHONY : scorecanvascommands.s
+
+# target to generate assembly for a file
+scorecanvascommands.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Calamus.dir\build.make CMakeFiles/Calamus.dir/scorecanvascommands.cpp.s
+.PHONY : scorecanvascommands.cpp.s
 
 scorecanvaswindow.obj: scorecanvaswindow.cpp.obj
 .PHONY : scorecanvaswindow.obj
@@ -1532,6 +1604,9 @@ help:
 	@echo ... container.obj
 	@echo ... container.i
 	@echo ... container.s
+	@echo ... curve.obj
+	@echo ... curve.i
+	@echo ... curve.s
 	@echo ... dnaeditordialog.obj
 	@echo ... dnaeditordialog.i
 	@echo ... dnaeditordialog.s
@@ -1577,6 +1652,9 @@ help:
 	@echo ... phrase.obj
 	@echo ... phrase.i
 	@echo ... phrase.s
+	@echo ... phrasegroup.obj
+	@echo ... phrasegroup.i
+	@echo ... phrasegroup.s
 	@echo ... physicssystem.obj
 	@echo ... physicssystem.i
 	@echo ... physicssystem.s
@@ -1586,6 +1664,9 @@ help:
 	@echo ... scorecanvas.obj
 	@echo ... scorecanvas.i
 	@echo ... scorecanvas.s
+	@echo ... scorecanvascommands.obj
+	@echo ... scorecanvascommands.i
+	@echo ... scorecanvascommands.s
 	@echo ... scorecanvaswindow.obj
 	@echo ... scorecanvaswindow.i
 	@echo ... scorecanvaswindow.s

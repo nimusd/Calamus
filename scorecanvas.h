@@ -8,6 +8,7 @@
 #include <QUndoStack>
 #include "phrase.h"
 #include "note.h"
+#include "phrasegroup.h"
 
 class ScoreCanvas : public QWidget
 {
@@ -66,6 +67,22 @@ public:
     // Musical mode settings (for bar lines)
     void setMusicalMode(bool enabled, int tempo = 120, int timeSigTop = 4, int timeSigBottom = 4);
 
+    // Clipboard operations
+    void setPasteTargetTime(double timeMs);
+
+    // Phrase management
+    void createPhraseFromSelection(const QString &name = "New Phrase");
+    void ungroupPhrase(int phraseIndex);
+    int findPhraseAtPosition(const QPoint &pos) const;
+    void selectPhrase(int index);
+    void deselectPhrase();
+    int getSelectedPhraseIndex() const { return selectedPhraseIndex; }
+    PhraseGroup* getSelectedPhrase();
+    const PhraseGroup* getSelectedPhrase() const;
+    QVector<PhraseGroup>& getPhraseGroups() { return phraseGroups; }
+    const QVector<PhraseGroup>& getPhraseGroups() const { return phraseGroups; }
+    void applyPhraseTemplate(const PhraseGroup &templatePhrase);
+
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
 
@@ -74,6 +91,7 @@ signals:
     void frequencyRangeChanged(double minHz, double maxHz);
     void pressureChanged(double pressure, bool active);  // Emits pressure updates during drawing
     void cursorPositionChanged(double timeMs, double pitchHz);  // Emits cursor position for status bar
+    void phraseSelectionChanged();  // Emitted when phrase selection changes
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -88,6 +106,22 @@ private:
     QVector<ScaleLine> scaleLines;
     Phrase phrase;  // Notes storage
     QUndoStack *undoStack;  // Undo/Redo stack
+
+    // Phrase groups
+    QVector<PhraseGroup> phraseGroups;  // All phrase groups
+    int selectedPhraseIndex;            // -1 if no phrase selected
+
+    // Phrase curve editing state
+    bool isEditingPhraseCurve;
+    int editingPhraseDotIndex;
+    double editingPhraseDotTimePos;
+    Curve dragStartPhraseCurve;
+
+    // Phrase curve drawing state (gesture capture)
+    bool isDrawingPhraseCurve;
+    QVector<QPair<double, double>> phraseCurveGesturePoints;  // (time in ms, normalized value 0-1)
+    QVector<double> phraseCurveGesturePressures;  // Pressure for each point
+    int phraseCurveGestureMinY, phraseCurveGestureMaxY;  // Hull bounds for normalization
 
     // Input mode state
     InputMode currentInputMode;
@@ -123,6 +157,10 @@ private:
     // Selection state
     QVector<int> selectedNoteIndices;  // Empty if no selection
 
+    // Clipboard state
+    QVector<Note> clipboard;           // Copied notes
+    double pasteTargetTime;            // Where to paste (set from now marker)
+
     // Lasso selection state
     bool isDrawingLasso;
     QPoint lassoStartPos;
@@ -135,9 +173,12 @@ private:
         ResizingLeft,          // Dragging left resize handle
         ResizingRight,         // Dragging right resize handle
         EditingTopCurve,       // Dragging top edge dot to edit dynamics curve
-        EditingBottomCurve     // Dragging bottom edge dot to edit bottom curve
+        EditingBottomCurve,    // Dragging bottom edge dot to edit bottom curve
+        ResizingPhraseHullTop,    // Dragging phrase hull top edge
+        ResizingPhraseHullBottom  // Dragging phrase hull bottom edge
     };
     DragMode currentDragMode;
+    int dragStartPhraseVerticalPadding;  // For phrase hull resize
     QPoint dragStartPos;
     double dragStartTime;
     double dragStartPitch;
@@ -169,6 +210,14 @@ private:
     void drawSelectionRectangle(QPainter &painter, const Note &note);
     void drawLassoRectangle(QPainter &painter);
     void drawBarLines(QPainter &painter);
+
+    // Phrase rendering methods
+    void drawPhraseHull(QPainter &painter, const PhraseGroup &phrase, bool isSelected);
+    void drawPhraseCurve(QPainter &painter, const PhraseGroup &phrase, bool isSelected);
+    void drawPhraseCurveDots(QPainter &painter, const PhraseGroup &phrase, double phraseStart, double phraseDuration, int minY, int maxY);
+    double getAveragePitchAtTime(const PhraseGroup &phrase, double time) const;
+    int findPhraseCurveDotAtPosition(const QPoint &pos, const PhraseGroup &phrase) const;
+    DragMode detectPhraseHullResizeHandle(const QPoint &pos, const PhraseGroup &phrase) const;
 
     // Selection helpers
     int findNoteAtPosition(const QPoint &pos) const;

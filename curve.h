@@ -13,12 +13,14 @@
 class Curve
 {
 public:
-    // Point in the curve: (normalized time 0.0-1.0, value)
+    // Point in the curve: (normalized time 0.0-1.0, value, pressure)
     struct Point {
-        double time;   // Normalized time within note (0.0 = start, 1.0 = end)
-        double value;  // Parameter value
+        double time;      // Normalized time within note (0.0 = start, 1.0 = end)
+        double value;     // Parameter value
+        double pressure;  // Pen pressure (0.0-1.0), default 1.0 for mouse input
 
-        Point(double t = 0.0, double v = 0.0) : time(t), value(v) {}
+        Point(double t = 0.0, double v = 0.0, double p = 1.0)
+            : time(t), value(v), pressure(p) {}
     };
 
     Curve();
@@ -26,6 +28,7 @@ public:
 
     // Point management
     void addPoint(double time, double value);
+    void addPoint(double time, double value, double pressure);
     void addPoint(const Point &point);
     void clearPoints();
     int getPointCount() const { return points.size(); }
@@ -33,6 +36,7 @@ public:
 
     // Value query with interpolation
     double valueAt(double time) const;
+    double pressureAt(double time) const;
 
     // Utility
     bool isEmpty() const { return points.isEmpty(); }

@@ -383,6 +383,12 @@ CMakeFiles/Calamus.dir/envelopevisualizer.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtWidgets/qsizepolicy.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qcursor.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qbitmap.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QVector \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qvector.h \
+ D:\C++\ code\Calamus\envelopelibraryDialog.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qwidget.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QPainter \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpainter.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qtextoption.h \

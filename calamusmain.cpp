@@ -7,6 +7,7 @@
 #include "envelopevisualizer.h"
 #include "dnaeditordialog.h"
 #include "envelopelibraryDialog.h"
+#include "phrasegroup.h"
 #include <QCloseEvent>
 #include <QFormLayout>
 #include <QHBoxLayout>
@@ -20,6 +21,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 CalamusMain::CalamusMain(QWidget *parent)
     : QMainWindow(parent)
@@ -92,6 +96,20 @@ CalamusMain::CalamusMain(QWidget *parent)
     // Connect Sounit Info UI fields
     connect(ui->editSounitName, &QLineEdit::editingFinished, this, &CalamusMain::onSounitNameEdited);
     connect(ui->editSounitComment, &QLineEdit::editingFinished, this, &CalamusMain::onSounitCommentEdited);
+
+    // Connect phrase inspector widgets (Phase 4)
+    connect(ui->editPhraseName, &QLineEdit::textChanged, this, &CalamusMain::onPhraseNameChanged);
+    connect(ui->comboPhraseDynamicsEasing, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &CalamusMain::onPhraseEasingChanged);
+    connect(ui->btnLoadPhraseTemplate, &QPushButton::clicked, this, &CalamusMain::onLoadPhraseTemplateClicked);
+    connect(ui->btnApplyPhraseTemplate, &QPushButton::clicked, this, &CalamusMain::onApplyPhraseTemplateClicked);
+    connect(ui->btnCreatePhrase, &QPushButton::clicked, this, &CalamusMain::onCreatePhraseClicked);
+    connect(ui->btnUngroupPhrase, &QPushButton::clicked, this, &CalamusMain::onUngroupPhraseClicked);
+    connect(ui->btnSavePhraseTemplate, &QPushButton::clicked, this, &CalamusMain::onSavePhraseTemplateClicked);
+
+    // Connect ScoreCanvas phrase selection signal (Phase 4)
+    connect(scoreCanvasWindow->getScoreCanvas(), &ScoreCanvas::phraseSelectionChanged,
+            this, &CalamusMain::onPhraseSelectionChanged);
 
     // Show initial tab content
     if(ui->MainTab->currentIndex() == 0)  {
@@ -1366,4 +1384,223 @@ void CalamusMain::onSounitCommentEdited()
 {
     Canvas *canvas = sounitBuilder->getCanvas();
     canvas->setSounitComment(ui->editSounitComment->text());
+}
+
+// ============================================================================
+// Phrase Inspector Slots (Phase 4)
+// ============================================================================
+
+void CalamusMain::onPhraseSelectionChanged()
+{
+    ScoreCanvas *canvas = scoreCanvasWindow->getScoreCanvas();
+    if (!canvas) return;
+
+    const PhraseGroup *selectedPhrase = canvas->getSelectedPhrase();
+
+    if (selectedPhrase) {
+        // Populate inspector with phrase data
+        ui->editPhraseName->blockSignals(true);
+        ui->editPhraseName->setText(selectedPhrase->getName());
+        ui->editPhraseName->blockSignals(false);
+
+        // Set easing type
+        ui->comboPhraseDynamicsEasing->blockSignals(true);
+        if (selectedPhrase->hasEasing()) {
+            QString easingType = selectedPhrase->getEasingType();
+            int index = ui->comboPhraseDynamicsEasing->findText(easingType);
+            if (index >= 0) {
+                ui->comboPhraseDynamicsEasing->setCurrentIndex(index);
+            }
+        } else {
+            ui->comboPhraseDynamicsEasing->setCurrentIndex(0);  // "None"
+        }
+        ui->comboPhraseDynamicsEasing->blockSignals(false);
+
+        // Enable controls
+        ui->editPhraseName->setEnabled(true);
+        ui->comboPhraseDynamicsEasing->setEnabled(true);
+        ui->btnUngroupPhrase->setEnabled(true);
+        ui->btnSavePhraseTemplate->setEnabled(true);
+        ui->btnApplyPhraseTemplate->setEnabled(false);  // Disabled when phrase selected
+
+        // Switch to Phrase tab
+        ui->tabInspector->setCurrentWidget(ui->tabPhraseInspector);
+    } else {
+        // No phrase selected - clear inspector
+        ui->editPhraseName->clear();
+        ui->editPhraseName->setEnabled(false);
+        ui->comboPhraseDynamicsEasing->setCurrentIndex(0);
+        ui->comboPhraseDynamicsEasing->setEnabled(false);
+        ui->btnUngroupPhrase->setEnabled(false);
+        ui->btnSavePhraseTemplate->setEnabled(false);
+        ui->btnApplyPhraseTemplate->setEnabled(true);  // Enable if templates available
+    }
+}
+
+void CalamusMain::onPhraseNameChanged(const QString &name)
+{
+    ScoreCanvas *canvas = scoreCanvasWindow->getScoreCanvas();
+    if (!canvas) return;
+
+    PhraseGroup *selectedPhrase = canvas->getSelectedPhrase();
+    if (selectedPhrase) {
+        selectedPhrase->setName(name);
+        canvas->update();  // Redraw to show new name
+    }
+}
+
+void CalamusMain::onPhraseEasingChanged(int index)
+{
+    ScoreCanvas *canvas = scoreCanvasWindow->getScoreCanvas();
+    if (!canvas) return;
+
+    PhraseGroup *selectedPhrase = canvas->getSelectedPhrase();
+    if (!selectedPhrase) return;
+
+    if (index == 0) {
+        // "None" selected
+        selectedPhrase->setUseEasing(false);
+    } else {
+        // Easing type selected
+        QString easingType = ui->comboPhraseDynamicsEasing->currentText();
+        selectedPhrase->setUseEasing(true);
+        selectedPhrase->setEasingType(easingType);
+    }
+
+    canvas->update();  // Redraw
+}
+
+void CalamusMain::onLoadPhraseTemplateClicked()
+{
+    // Open file dialog to load .cphrase JSON file
+    QString filename = QFileDialog::getOpenFileName(
+        this,
+        "Load Phrase Template",
+        QString(),  // Default directory
+        "Calamus Phrase (*.cphrase);;All Files (*)"
+    );
+
+    if (filename.isEmpty()) return;
+
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::warning(this, "Error", "Could not open file for reading.");
+        return;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    if (!doc.isObject()) {
+        QMessageBox::warning(this, "Error", "Invalid phrase template file format.");
+        return;
+    }
+
+    PhraseGroup loadedPhrase = PhraseGroup::fromJson(doc.object());
+
+    // Add to saved templates
+    savedPhraseTemplates.append(loadedPhrase);
+
+    // Update combo box
+    ui->comboPhraseTemplates->blockSignals(true);
+    if (ui->comboPhraseTemplates->count() == 1 &&
+        ui->comboPhraseTemplates->itemText(0) == "(No templates)") {
+        ui->comboPhraseTemplates->clear();
+    }
+    ui->comboPhraseTemplates->addItem(loadedPhrase.getName());
+    ui->comboPhraseTemplates->setCurrentIndex(ui->comboPhraseTemplates->count() - 1);
+    ui->comboPhraseTemplates->blockSignals(false);
+
+    qDebug() << "Loaded phrase template:" << loadedPhrase.getName();
+}
+
+void CalamusMain::onApplyPhraseTemplateClicked()
+{
+    ScoreCanvas *canvas = scoreCanvasWindow->getScoreCanvas();
+    if (!canvas) return;
+
+    // Get selected template
+    int templateIndex = ui->comboPhraseTemplates->currentIndex();
+    if (templateIndex < 0 || templateIndex >= savedPhraseTemplates.size()) {
+        QMessageBox::warning(this, "Error", "No template selected.");
+        return;
+    }
+
+    const PhraseGroup &templatePhrase = savedPhraseTemplates[templateIndex];
+
+    // Apply template to current selection
+    canvas->applyPhraseTemplate(templatePhrase);
+
+    qDebug() << "Applied phrase template:" << templatePhrase.getName();
+}
+
+void CalamusMain::onCreatePhraseClicked()
+{
+    ScoreCanvas *canvas = scoreCanvasWindow->getScoreCanvas();
+    if (!canvas) return;
+
+    // Ask user for phrase name
+    bool ok;
+    QString name = QInputDialog::getText(
+        this,
+        "Create Phrase",
+        "Phrase name:",
+        QLineEdit::Normal,
+        "New Phrase",
+        &ok
+    );
+
+    if (ok && !name.isEmpty()) {
+        canvas->createPhraseFromSelection(name);
+        qDebug() << "Created phrase:" << name;
+    }
+}
+
+void CalamusMain::onUngroupPhraseClicked()
+{
+    ScoreCanvas *canvas = scoreCanvasWindow->getScoreCanvas();
+    if (!canvas) return;
+
+    int selectedIndex = canvas->getSelectedPhraseIndex();
+    if (selectedIndex >= 0) {
+        canvas->ungroupPhrase(selectedIndex);
+        qDebug() << "Ungrouped phrase at index" << selectedIndex;
+    }
+}
+
+void CalamusMain::onSavePhraseTemplateClicked()
+{
+    ScoreCanvas *canvas = scoreCanvasWindow->getScoreCanvas();
+    if (!canvas) return;
+
+    const PhraseGroup *selectedPhrase = canvas->getSelectedPhrase();
+    if (!selectedPhrase) {
+        QMessageBox::warning(this, "Error", "No phrase selected.");
+        return;
+    }
+
+    // Open file dialog to save .cphrase JSON file
+    QString filename = QFileDialog::getSaveFileName(
+        this,
+        "Save Phrase Template",
+        selectedPhrase->getName() + ".cphrase",
+        "Calamus Phrase (*.cphrase);;All Files (*)"
+    );
+
+    if (filename.isEmpty()) return;
+
+    QJsonObject json = selectedPhrase->toJson();
+    QJsonDocument doc(json);
+
+    QFile file(filename);
+    if (!file.open(QIODevice::WriteOnly)) {
+        QMessageBox::warning(this, "Error", "Could not open file for writing.");
+        return;
+    }
+
+    file.write(doc.toJson());
+    file.close();
+
+    qDebug() << "Saved phrase template:" << selectedPhrase->getName() << "to" << filename;
 }

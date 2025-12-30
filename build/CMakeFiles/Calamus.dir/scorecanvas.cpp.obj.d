@@ -388,13 +388,37 @@ CMakeFiles/Calamus.dir/scorecanvas.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qcolor.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QString \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qstring.h \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/QUndoStack \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/qundostack.h \
  D:\C++\ code\Calamus\phrase.h D:\C++\ code\Calamus\note.h \
+ D:\C++\ code\Calamus\curve.h C:/Qt/6.10.1/mingw_64/include/QtCore/QPair \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qpair.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QUuid \
  C:/Qt/6.10.1/mingw_64/include/QtCore/quuid.h \
+ D:\C++\ code\Calamus\phrasegroup.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QPointF \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qpoint.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonobject.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qdatetime.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcalendar.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qlocale.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qregularexpression.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qurl.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonparseerror.h \
+ D:\C++\ code\Calamus\scorecanvascommands.h \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/QUndoCommand \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QPainter \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpainter.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qtextoption.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpen.h \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/QPainterPath \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/qpainterpath.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QFont \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qfont.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QMouseEvent \
@@ -405,7 +429,6 @@ CMakeFiles/Calamus.dir/scorecanvas.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qeventloop.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qdeadlinetimer.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qiodevice.h \
- C:/Qt/6.10.1/mingw_64/include/QtCore/qurl.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qeventpoint.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qvector2d.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qvectornd.h \
@@ -429,5 +452,6 @@ CMakeFiles/Calamus.dir/scorecanvas.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qcoreapplication.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qinputmethod.h \
- C:/Qt/6.10.1/mingw_64/include/QtCore/qlocale.h \
- C:/Qt/6.10.1/mingw_64/include/QtGui/qguiapplication_platform.h
+ C:/Qt/6.10.1/mingw_64/include/QtGui/qguiapplication_platform.h \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/QTabletEvent \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/QKeyEvent

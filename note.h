@@ -22,6 +22,7 @@ public:
     double getDuration() const { return duration; }
     double getPitchHz() const { return pitchHz; }
     double getEndTime() const { return startTime + duration; }
+    int getTrackIndex() const { return trackIndex; }
 
     // Pitch - supports both simple value and curve (for glissando/portamento)
     double getPitchAt(double normalizedTime) const;  // Query pitch curve at specific time
@@ -48,12 +49,14 @@ public:
     void setDynamicsCurve(const Curve &curve) { dynamicsCurve = curve; }
     void setBottomCurve(const Curve &curve) { bottomCurve = curve; }
     void setPitchCurve(const Curve &curve) { pitchCurve = curve; }
+    void setTrackIndex(int index) { trackIndex = index; }
 
 private:
     QString id;           // Unique identifier
     double startTime;     // Start time in milliseconds
     double duration;      // Duration in milliseconds
     double pitchHz;       // Base pitch in Hz (used when no pitch curve)
+    int trackIndex;       // Which track/sounit this note uses (default 0)
     Curve pitchCurve;     // Pitch curve over time (Hz values for glissando/portamento)
     Curve dynamicsCurve;  // Dynamics curve over time (0.0-1.0)
     Curve bottomCurve;    // Bottom edge curve (spectrum/timbre placeholder, configurable later)

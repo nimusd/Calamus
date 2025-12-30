@@ -23,6 +23,11 @@ const QColor ScoreCanvas::SCALE_COLORS[7] = {
 
 ScoreCanvas::ScoreCanvas(QWidget *parent)
     : QWidget(parent)
+    , selectedPhraseIndex(-1)   // No phrase selected initially
+    , isEditingPhraseCurve(false)
+    , editingPhraseDotIndex(-1)
+    , editingPhraseDotTimePos(0.0)
+    , isDrawingPhraseCurve(false)
     , currentInputMode(DrawModeDiscrete)  // Default to discrete drawing mode
     , visibleMinHz(27.5)        // A0
     , visibleMaxHz(4186.0)      // C8
@@ -38,6 +43,7 @@ ScoreCanvas::ScoreCanvas(QWidget *parent)
     , pendingNote(nullptr)
     , usingTablet(false)
     , penPressure(0.0)
+    , pasteTargetTime(0.0)      // Initialize paste position to start
     , isDrawingLasso(false)
     , currentDragMode(NoDrag)
     , dragStartTime(0.0)
@@ -168,6 +174,11 @@ void ScoreCanvas::paintEvent(QPaintEvent *event)
     // Draw bar lines (if in musical mode)
     drawBarLines(painter);
 
+    // Draw phrase hulls (translucent boundaries)
+    for (int i = 0; i < phraseGroups.size(); ++i) {
+        drawPhraseHull(painter, phraseGroups[i], i == selectedPhraseIndex);
+    }
+
     // Draw all notes
     const QVector<Note> &notes = phrase.getNotes();
     for (int i = 0; i < notes.size(); ++i) {
@@ -175,8 +186,53 @@ void ScoreCanvas::paintEvent(QPaintEvent *event)
         drawNote(painter, notes[i], isSelected);
     }
 
+    // Draw phrase curves (overlay on notes)
+    for (int i = 0; i < phraseGroups.size(); ++i) {
+        drawPhraseCurve(painter, phraseGroups[i], i == selectedPhraseIndex);
+    }
+
     // Draw pending note being drawn
     drawPendingNote(painter);
+
+    // Draw phrase curve gesture preview
+    if (isDrawingPhraseCurve && !phraseCurveGesturePoints.isEmpty()) {
+        int hullHeight = phraseCurveGestureMaxY - phraseCurveGestureMinY;
+
+        // Draw variable-thickness stroke preview
+        QPainterPath gesturePath;
+        QVector<QPointF> topEdge, bottomEdge;
+
+        for (int i = 0; i < phraseCurveGesturePoints.size(); ++i) {
+            int x = timeToPixel(phraseCurveGesturePoints[i].first);
+            double value = phraseCurveGesturePoints[i].second;
+            double pressure = phraseCurveGesturePressures[i];
+
+            // Y position based on value
+            int centerY = phraseCurveGestureMinY + static_cast<int>((1.0 - value) * hullHeight);
+
+            // Thickness based on pressure
+            double thickness = 10.0 + pressure * 30.0;
+
+            topEdge << QPointF(x, centerY - thickness / 2.0);
+            bottomEdge << QPointF(x, centerY + thickness / 2.0);
+        }
+
+        // Create preview path
+        if (!topEdge.isEmpty()) {
+            gesturePath.moveTo(topEdge.first());
+            for (const QPointF &p : topEdge) gesturePath.lineTo(p);
+            for (int i = bottomEdge.size() - 1; i >= 0; --i) {
+                gesturePath.lineTo(bottomEdge[i]);
+            }
+            gesturePath.closeSubpath();
+        }
+
+        // Draw with semi-transparent orange
+        painter.setBrush(QColor(255, 100, 50, 150));
+        painter.setPen(Qt::NoPen);
+        painter.setRenderHint(QPainter::Antialiasing);
+        painter.drawPath(gesturePath);
+    }
 
     // Draw lasso rectangle
     drawLassoRectangle(painter);
@@ -352,6 +408,15 @@ void ScoreCanvas::setMusicalMode(bool enabled, int tempo, int timeSigTop, int ti
     musicalTimeSigTop = timeSigTop;
     musicalTimeSigBottom = timeSigBottom;
     update();  // Repaint to show/hide bar lines
+}
+
+// ============================================================================
+// Clipboard Operations
+// ============================================================================
+
+void ScoreCanvas::setPasteTargetTime(double timeMs)
+{
+    pasteTargetTime = timeMs;
 }
 
 void ScoreCanvas::drawBarLines(QPainter &painter)
@@ -552,7 +617,41 @@ void ScoreCanvas::drawLassoRectangle(QPainter &painter)
 void ScoreCanvas::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        // Only allow dragging/editing in Selection mode
+        // FIRST: Check if clicking on phrase (phrases have HIGHEST priority, work in ALL modes)
+        int phraseIdx = findPhraseAtPosition(event->pos());
+        if (phraseIdx >= 0) {
+            selectPhrase(phraseIdx);
+
+            PhraseGroup *phrasePtr = &phraseGroups[phraseIdx];
+
+            // Check if clicking on hull resize handles (highest priority)
+            DragMode hullResizeMode = detectPhraseHullResizeHandle(event->pos(), *phrasePtr);
+            if (hullResizeMode != NoDrag) {
+                currentDragMode = hullResizeMode;
+                dragStartPos = event->pos();
+                dragStartPhraseVerticalPadding = phrasePtr->getVerticalPadding();
+                update();
+                return;
+            }
+
+            // Check if clicking on phrase curve dot
+            int dotIdx = findPhraseCurveDotAtPosition(event->pos(), *phrasePtr);
+            if (dotIdx >= 0) {
+                isEditingPhraseCurve = true;
+                editingPhraseDotIndex = dotIdx;
+                dragStartPhraseCurve = phrasePtr->getDynamicsCurve();
+                dragStartPos = event->pos();
+                editingPhraseDotTimePos = phrasePtr->getDynamicsCurve().getPoints()[dotIdx].time;
+                update();
+                return;
+            }
+
+            // Just selected the phrase, don't continue to other actions
+            update();
+            return;
+        }
+
+        // SECOND: Mode-specific behavior (only if NOT clicking on a phrase)
         if (currentInputMode == SelectionMode) {
             const QVector<Note> &notes = phrase.getNotes();
 
@@ -659,6 +758,90 @@ void ScoreCanvas::mouseMoveEvent(QMouseEvent *event)
     double cursorTime = pixelToTime(event->pos().x());
     double cursorPitch = pixelToFrequency(event->pos().y());
     emit cursorPositionChanged(cursorTime, cursorPitch);
+
+    // Handle phrase hull resizing
+    if ((currentDragMode == ResizingPhraseHullTop || currentDragMode == ResizingPhraseHullBottom) && selectedPhraseIndex >= 0) {
+        PhraseGroup *phrasePtr = &phraseGroups[selectedPhraseIndex];
+        int deltaY = event->pos().y() - dragStartPos.y();
+
+        // Both handles adjust padding symmetrically
+        // Dragging either handle AWAY from center = increase padding (taller hull)
+        // Dragging either handle TOWARD center = decrease padding (shorter hull)
+        int newPadding;
+        if (currentDragMode == ResizingPhraseHullTop) {
+            // Dragging top edge DOWN (positive deltaY) = less padding (shorter)
+            // Dragging top edge UP (negative deltaY) = more padding (taller)
+            newPadding = dragStartPhraseVerticalPadding - deltaY;
+        } else {
+            // Dragging bottom edge DOWN (positive deltaY) = more padding (taller)
+            // Dragging bottom edge UP (negative deltaY) = less padding (shorter)
+            newPadding = dragStartPhraseVerticalPadding + deltaY;
+        }
+
+        newPadding = std::max(10, std::min(200, newPadding));  // Clamp 10-200 pixels
+        phrasePtr->setVerticalPadding(newPadding);
+
+        update();
+        return;
+    }
+
+    // Handle phrase curve dot editing
+    if (isEditingPhraseCurve && selectedPhraseIndex >= 0) {
+        PhraseGroup *phrasePtr = &phraseGroups[selectedPhraseIndex];
+        Curve &curve = phrasePtr->getDynamicsCurve();
+
+        const QVector<Curve::Point> &points = dragStartPhraseCurve.getPoints();
+
+        if (editingPhraseDotIndex >= 0 && editingPhraseDotIndex < points.size()) {
+            // Get phrase time bounds for horizontal movement
+            const QVector<Note> &notes = phrase.getNotes();
+            double phraseStart = 1e9, phraseEnd = 0;
+            for (int noteIdx : phrasePtr->getNoteIndices()) {
+                if (noteIdx >= 0 && noteIdx < notes.size()) {
+                    const Note &note = notes[noteIdx];
+                    phraseStart = std::min(phraseStart, note.getStartTime());
+                    phraseEnd = std::max(phraseEnd, note.getEndTime());
+                }
+            }
+            double phraseDuration = phraseEnd - phraseStart;
+
+            // Get phrase pitch bounds for vertical movement
+            double minPitch = 1e9, maxPitch = 0;
+            for (int noteIdx : phrasePtr->getNoteIndices()) {
+                if (noteIdx >= 0 && noteIdx < notes.size()) {
+                    const Note &note = notes[noteIdx];
+                    minPitch = std::min(minPitch, note.getPitchHz());
+                    maxPitch = std::max(maxPitch, note.getPitchHz());
+                }
+            }
+            int padding = phrasePtr->getVerticalPadding();
+            int minY = frequencyToPixel(maxPitch) - padding;
+            int maxY = frequencyToPixel(minPitch) + padding;
+            int hullHeight = maxY - minY;
+
+            // Calculate new time based on horizontal movement
+            double currentTime = pixelToTime(event->pos().x());
+            double newNormalizedTime = (currentTime - phraseStart) / phraseDuration;
+            newNormalizedTime = qBound(0.0, newNormalizedTime, 1.0);
+
+            // Calculate new value based on vertical position
+            double newValue = 1.0 - (static_cast<double>(event->pos().y() - minY) / hullHeight);
+            newValue = qBound(0.0, newValue, 1.0);
+
+            // Rebuild curve with updated control point
+            curve.clearPoints();
+            for (int i = 0; i < points.size(); ++i) {
+                if (i == editingPhraseDotIndex) {
+                    curve.addPoint(newNormalizedTime, newValue, points[i].pressure);
+                } else {
+                    curve.addPoint(points[i].time, points[i].value, points[i].pressure);
+                }
+            }
+
+            update();
+        }
+        return;
+    }
 
     // Handle dragging/resizing selected notes
     if (currentDragMode != NoDrag && !selectedNoteIndices.isEmpty()) {
@@ -926,6 +1109,32 @@ void ScoreCanvas::mouseMoveEvent(QMouseEvent *event)
 
 void ScoreCanvas::mouseReleaseEvent(QMouseEvent *event)
 {
+    // End phrase hull resizing
+    if (event->button() == Qt::LeftButton && (currentDragMode == ResizingPhraseHullTop || currentDragMode == ResizingPhraseHullBottom)) {
+        currentDragMode = NoDrag;
+        update();
+        qDebug() << "Phrase hull resize complete - new padding:" << phraseGroups[selectedPhraseIndex].getVerticalPadding();
+        return;
+    }
+
+    // End phrase curve editing
+    if (event->button() == Qt::LeftButton && isEditingPhraseCurve && selectedPhraseIndex >= 0) {
+        PhraseGroup *phrase = &phraseGroups[selectedPhraseIndex];
+        Curve newCurve = phrase->getDynamicsCurve();
+
+        // Create undo command
+        undoStack->push(new EditPhraseCurveCommand(
+            this, selectedPhraseIndex,
+            EditPhraseCurveCommand::DynamicsCurve,
+            dragStartPhraseCurve, newCurve
+        ));
+
+        isEditingPhraseCurve = false;
+        editingPhraseDotIndex = -1;
+        update();
+        return;
+    }
+
     // End drag/resize operation
     if (event->button() == Qt::LeftButton && currentDragMode != NoDrag) {
         if (selectedNoteIndices.size() == 1) {
@@ -1528,7 +1737,71 @@ void ScoreCanvas::tabletEvent(QTabletEvent *event)
 
     switch (event->type()) {
     case QEvent::TabletPress:
-        // Only allow dragging/editing in Selection mode
+        // FIRST: Check if pressing on ANY phrase (phrases have HIGHEST priority, work in ALL modes)
+        {
+            int phraseIdx = findPhraseAtPosition(pos.toPoint());
+            if (phraseIdx >= 0) {
+                selectPhrase(phraseIdx);
+                PhraseGroup *phrasePtr = &phraseGroups[phraseIdx];
+
+                // Check if clicking on hull resize handles (highest priority)
+                DragMode hullResizeMode = detectPhraseHullResizeHandle(pos.toPoint(), *phrasePtr);
+                if (hullResizeMode != NoDrag) {
+                    currentDragMode = hullResizeMode;
+                    dragStartPos = pos.toPoint();
+                    dragStartPhraseVerticalPadding = phrasePtr->getVerticalPadding();
+                    event->accept();
+                    return;
+                }
+
+                // Check if clicking on existing curve dot
+                int dotIdx = findPhraseCurveDotAtPosition(pos.toPoint(), *phrasePtr);
+                if (dotIdx >= 0) {
+                    isEditingPhraseCurve = true;
+                    editingPhraseDotIndex = dotIdx;
+                    dragStartPhraseCurve = phrasePtr->getDynamicsCurve();
+                    dragStartPos = pos.toPoint();
+                    editingPhraseDotTimePos = phrasePtr->getDynamicsCurve().getPoints()[dotIdx].time;
+                    event->accept();
+                    return;
+                }
+
+                // Not clicking on handle or dot - start drawing gesture curve!
+                isDrawingPhraseCurve = true;
+                    phraseCurveGesturePoints.clear();
+                    phraseCurveGesturePressures.clear();
+
+                    // Calculate phrase hull bounds for normalization
+                    const QVector<Note> &notes = phrase.getNotes();
+                    double minPitch = 1e9, maxPitch = 0;
+                    for (int noteIdx : phrasePtr->getNoteIndices()) {
+                        if (noteIdx >= 0 && noteIdx < notes.size()) {
+                            const Note &note = notes[noteIdx];
+                            minPitch = std::min(minPitch, note.getPitchHz());
+                            maxPitch = std::max(maxPitch, note.getPitchHz());
+                        }
+                    }
+                    int padding = phrasePtr->getVerticalPadding();
+                    phraseCurveGestureMinY = frequencyToPixel(maxPitch) - padding;
+                    phraseCurveGestureMaxY = frequencyToPixel(minPitch) + padding;
+                    int hullHeight = phraseCurveGestureMaxY - phraseCurveGestureMinY;
+
+                    // Capture first point
+                    double time = pixelToTime(pos.x());
+                    // Normalize Y position within hull bounds (value=1.0 at top, 0.0 at bottom)
+                    double normalizedValue = 1.0 - (static_cast<double>(pos.y() - phraseCurveGestureMinY) / hullHeight);
+                    normalizedValue = std::max(0.0, std::min(1.0, normalizedValue));
+
+                    phraseCurveGesturePoints.append(qMakePair(time, normalizedValue));
+                    phraseCurveGesturePressures.append(penPressure);
+
+                    emit pressureChanged(penPressure, true);
+                    event->accept();
+                    return;
+                }
+            }
+
+        // SECOND: Mode-specific behavior (only if NOT clicking on a phrase)
         if (currentInputMode == SelectionMode) {
             const QVector<Note> &notes = phrase.getNotes();
 
@@ -1638,6 +1911,100 @@ void ScoreCanvas::tabletEvent(QTabletEvent *event)
         break;
 
     case QEvent::TabletMove:
+        // Handle phrase hull resizing
+        if ((currentDragMode == ResizingPhraseHullTop || currentDragMode == ResizingPhraseHullBottom) && selectedPhraseIndex >= 0) {
+            PhraseGroup *phrasePtr = &phraseGroups[selectedPhraseIndex];
+            int deltaY = pos.y() - dragStartPos.y();
+
+            int newPadding;
+            if (currentDragMode == ResizingPhraseHullTop) {
+                newPadding = dragStartPhraseVerticalPadding - deltaY;
+            } else {
+                newPadding = dragStartPhraseVerticalPadding + deltaY;
+            }
+
+            newPadding = std::max(10, std::min(200, newPadding));
+            phrasePtr->setVerticalPadding(newPadding);
+
+            update();
+            event->accept();
+            break;
+        }
+
+        // Handle phrase curve dot editing
+        if (isEditingPhraseCurve && selectedPhraseIndex >= 0) {
+            PhraseGroup *phrasePtr = &phraseGroups[selectedPhraseIndex];
+            Curve &curve = phrasePtr->getDynamicsCurve();
+
+            const QVector<Curve::Point> &points = dragStartPhraseCurve.getPoints();
+
+            if (editingPhraseDotIndex >= 0 && editingPhraseDotIndex < points.size()) {
+                // Get phrase time bounds
+                const QVector<Note> &notes = phrase.getNotes();
+                double phraseStart = 1e9, phraseEnd = 0;
+                for (int noteIdx : phrasePtr->getNoteIndices()) {
+                    if (noteIdx >= 0 && noteIdx < notes.size()) {
+                        const Note &note = notes[noteIdx];
+                        phraseStart = std::min(phraseStart, note.getStartTime());
+                        phraseEnd = std::max(phraseEnd, note.getEndTime());
+                    }
+                }
+                double phraseDuration = phraseEnd - phraseStart;
+
+                // Get phrase pitch bounds
+                double minPitch = 1e9, maxPitch = 0;
+                for (int noteIdx : phrasePtr->getNoteIndices()) {
+                    if (noteIdx >= 0 && noteIdx < notes.size()) {
+                        const Note &note = notes[noteIdx];
+                        minPitch = std::min(minPitch, note.getPitchHz());
+                        maxPitch = std::max(maxPitch, note.getPitchHz());
+                    }
+                }
+                int padding = phrasePtr->getVerticalPadding();
+                int minY = frequencyToPixel(maxPitch) - padding;
+                int maxY = frequencyToPixel(minPitch) + padding;
+                int hullHeight = maxY - minY;
+
+                // Calculate new position
+                double currentTime = pixelToTime(pos.x());
+                double newNormalizedTime = (currentTime - phraseStart) / phraseDuration;
+                newNormalizedTime = qBound(0.0, newNormalizedTime, 1.0);
+
+                double newValue = 1.0 - (static_cast<double>(pos.y() - minY) / hullHeight);
+                newValue = qBound(0.0, newValue, 1.0);
+
+                // Rebuild curve
+                curve.clearPoints();
+                for (int i = 0; i < points.size(); ++i) {
+                    if (i == editingPhraseDotIndex) {
+                        curve.addPoint(newNormalizedTime, newValue, points[i].pressure);
+                    } else {
+                        curve.addPoint(points[i].time, points[i].value, points[i].pressure);
+                    }
+                }
+
+                update();
+            }
+            event->accept();
+            break;
+        }
+
+        // Handle phrase curve gesture drawing
+        if (isDrawingPhraseCurve) {
+            double time = pixelToTime(pos.x());
+            int hullHeight = phraseCurveGestureMaxY - phraseCurveGestureMinY;
+            double normalizedValue = 1.0 - (static_cast<double>(pos.y() - phraseCurveGestureMinY) / hullHeight);
+            normalizedValue = std::max(0.0, std::min(1.0, normalizedValue));
+
+            phraseCurveGesturePoints.append(qMakePair(time, normalizedValue));
+            phraseCurveGesturePressures.append(penPressure);
+
+            emit pressureChanged(penPressure, true);
+            update();
+            event->accept();
+            break;
+        }
+
         // Handle dragging/resizing selected notes
         if (currentDragMode != NoDrag && !selectedNoteIndices.isEmpty()) {
             QVector<Note> &notes = phrase.getNotes();
@@ -1875,6 +2242,98 @@ void ScoreCanvas::tabletEvent(QTabletEvent *event)
         break;
 
     case QEvent::TabletRelease:
+        // End phrase hull resizing
+        if (currentDragMode == ResizingPhraseHullTop || currentDragMode == ResizingPhraseHullBottom) {
+            currentDragMode = NoDrag;
+            update();
+            qDebug() << "Phrase hull resize complete (tablet) - new padding:" << phraseGroups[selectedPhraseIndex].getVerticalPadding();
+            event->accept();
+            break;
+        }
+
+        // End phrase curve dot editing
+        if (isEditingPhraseCurve && selectedPhraseIndex >= 0) {
+            PhraseGroup *phrasePtr = &phraseGroups[selectedPhraseIndex];
+            Curve newCurve = phrasePtr->getDynamicsCurve();
+
+            // Create undo command
+            undoStack->push(new EditPhraseCurveCommand(
+                this, selectedPhraseIndex,
+                EditPhraseCurveCommand::DynamicsCurve,
+                dragStartPhraseCurve, newCurve
+            ));
+
+            isEditingPhraseCurve = false;
+            editingPhraseDotIndex = -1;
+            update();
+            event->accept();
+            break;
+        }
+
+        // End phrase curve gesture drawing
+        if (isDrawingPhraseCurve) {
+            isDrawingPhraseCurve = false;
+
+            if (selectedPhraseIndex >= 0 && !phraseCurveGesturePoints.isEmpty()) {
+                PhraseGroup *phrasePtr = &phraseGroups[selectedPhraseIndex];
+
+                // Convert gesture points to curve points
+                // Calculate time range of the phrase
+                const QVector<int> &noteIndices = phrasePtr->getNoteIndices();
+                double minTime = 1e9, maxTime = 0.0;
+                for (int idx : noteIndices) {
+                    if (idx >= 0 && idx < phrase.getNotes().size()) {
+                        const Note &note = phrase.getNotes()[idx];
+                        double noteStart = note.getStartTime();
+                        double noteEnd = noteStart + note.getDuration();
+                        minTime = std::min(minTime, noteStart);
+                        maxTime = std::max(maxTime, noteEnd);
+                    }
+                }
+
+                // Downsample captured points to a reasonable number for editing
+                // Use simple uniform sampling to get ~8-12 control points
+                int numCapturedPoints = static_cast<int>(phraseCurveGesturePoints.size());
+                int targetPoints = std::min(12, std::max(5, numCapturedPoints / 20));
+                int sampleInterval = std::max(1, numCapturedPoints / targetPoints);
+
+                Curve newCurve;
+                for (int i = 0; i < numCapturedPoints; i += sampleInterval) {
+                    double time = phraseCurveGesturePoints[i].first;
+                    double value = phraseCurveGesturePoints[i].second;
+                    double pressure = phraseCurveGesturePressures[i];
+
+                    // Normalize time to 0-1 range relative to phrase duration
+                    double normalizedTime = (time - minTime) / (maxTime - minTime);
+                    normalizedTime = std::max(0.0, std::min(1.0, normalizedTime));
+
+                    newCurve.addPoint(normalizedTime, value, pressure);
+                }
+
+                // Always include the last point
+                if (numCapturedPoints > 1) {
+                    int lastIdx = numCapturedPoints - 1;
+                    double time = phraseCurveGesturePoints[lastIdx].first;
+                    double value = phraseCurveGesturePoints[lastIdx].second;
+                    double pressure = phraseCurveGesturePressures[lastIdx];
+                    double normalizedTime = (time - minTime) / (maxTime - minTime);
+                    normalizedTime = std::max(0.0, std::min(1.0, normalizedTime));
+                    newCurve.addPoint(normalizedTime, value, pressure);
+                }
+
+                // Set the curve on the phrase
+                phrasePtr->setDynamicsCurve(newCurve);
+
+                qDebug() << "Created phrase curve with" << newCurve.getPoints().size() << "points";
+
+                emit pressureChanged(0.0, false);
+                update();
+            }
+
+            event->accept();
+            break;
+        }
+
         // End drag/resize operation
         if (currentDragMode != NoDrag) {
             if (selectedNoteIndices.size() == 1) {
@@ -2168,6 +2627,514 @@ void ScoreCanvas::keyPressEvent(QKeyEvent *event)
         return;
     }
 
+    // Ctrl+C for copy
+    if (event->matches(QKeySequence::Copy)) {
+        if (!selectedNoteIndices.isEmpty()) {
+            // Copy selected notes to clipboard
+            clipboard.clear();
+            const QVector<Note> &notes = phrase.getNotes();
+            for (int index : selectedNoteIndices) {
+                if (index >= 0 && index < notes.size()) {
+                    clipboard.append(notes[index]);
+                }
+            }
+            qDebug() << "Copied" << clipboard.size() << "notes to clipboard";
+        }
+        event->accept();
+        return;
+    }
+
+    // Ctrl+X for cut
+    if (event->matches(QKeySequence::Cut)) {
+        if (!selectedNoteIndices.isEmpty()) {
+            // Copy selected notes to clipboard
+            clipboard.clear();
+            const QVector<Note> &notes = phrase.getNotes();
+            for (int index : selectedNoteIndices) {
+                if (index >= 0 && index < notes.size()) {
+                    clipboard.append(notes[index]);
+                }
+            }
+            qDebug() << "Cut" << clipboard.size() << "notes to clipboard";
+
+            // Delete selected notes (using existing delete command)
+            undoStack->push(new DeleteMultipleNotesCommand(&phrase, selectedNoteIndices, this));
+            deselectAll();
+            update();
+        }
+        event->accept();
+        return;
+    }
+
+    // Ctrl+V for paste
+    if (event->matches(QKeySequence::Paste)) {
+        if (!clipboard.isEmpty()) {
+            // Paste notes at pasteTargetTime
+            PasteNotesCommand *pasteCmd = new PasteNotesCommand(&phrase, clipboard, pasteTargetTime, this);
+            undoStack->push(pasteCmd);
+
+            // Select the pasted notes
+            selectNotes(pasteCmd->getPastedIndices());
+            update();
+            qDebug() << "Pasted" << clipboard.size() << "notes at time" << pasteTargetTime;
+        }
+        event->accept();
+        return;
+    }
+
     // Let parent window handle other keys (including shortcuts)
     event->ignore();
+}
+
+// ============================================================================
+// Phrase Rendering
+// ============================================================================
+
+void ScoreCanvas::drawPhraseHull(QPainter &painter, const PhraseGroup &phrase, bool isSelected)
+{
+    if (phrase.getNoteCount() == 0) return;
+
+    const QVector<Note> &notes = this->phrase.getNotes();
+
+    // Get phrase time and pitch bounds
+    double phraseStart = 1e9, phraseEnd = 0;
+    double minPitch = 1e9, maxPitch = 0;
+
+    for (int noteIdx : phrase.getNoteIndices()) {
+        if (noteIdx < 0 || noteIdx >= notes.size()) continue;
+        const Note &note = notes[noteIdx];
+        phraseStart = std::min(phraseStart, note.getStartTime());
+        phraseEnd = std::max(phraseEnd, note.getEndTime());
+        minPitch = std::min(minPitch, note.getPitchHz());
+        maxPitch = std::max(maxPitch, note.getPitchHz());
+    }
+
+    if (phraseStart >= phraseEnd) return;
+
+    // Calculate hull bounds using custom vertical padding
+    int padding = phrase.getVerticalPadding();
+    int minY = frequencyToPixel(maxPitch) - padding;  // Higher pitch = lower Y
+    int maxY = frequencyToPixel(minPitch) + padding;  // Lower pitch = higher Y
+    int minX = timeToPixel(phraseStart);
+    int maxX = timeToPixel(phraseEnd);
+
+    // Add horizontal padding
+    const double horizontalPadding = 10.0;
+    minX -= horizontalPadding;
+    maxX += horizontalPadding;
+
+    // Create hull polygon
+    QPolygonF hull;
+    hull << QPointF(minX, minY) << QPointF(maxX, minY)
+         << QPointF(maxX, maxY) << QPointF(minX, maxY);
+
+    // Draw translucent fill
+    QColor hullColor = phrase.getColor();
+    hullColor.setAlpha(isSelected ? 77 : 38);  // 0.3 : 0.15 opacity
+    painter.setBrush(hullColor);
+
+    // Draw border - MUCH thicker when selected for visibility
+    QPen borderPen;
+    if (isSelected) {
+        borderPen = QPen(hullColor.darker(120), 4, Qt::SolidLine);  // Thick solid line
+    } else {
+        borderPen = QPen(hullColor.darker(150), 2, Qt::DashLine);   // Thin dashed line
+    }
+    painter.setPen(borderPen);
+    painter.drawPolygon(hull);
+
+    // Draw phrase name label if selected
+    if (isSelected) {
+        QFont labelFont = painter.font();
+        labelFont.setPointSize(10);
+        labelFont.setBold(true);
+        painter.setFont(labelFont);
+
+        // Draw text with background
+        QString label = QString("📝 %1").arg(phrase.getName());
+        QRectF textRect = painter.boundingRect(QRectF(minX, minY - 25, 200, 20), Qt::AlignLeft, label);
+
+        // Draw semi-transparent background for text
+        painter.setBrush(QColor(255, 255, 255, 220));
+        painter.setPen(Qt::NoPen);
+        painter.drawRoundedRect(textRect.adjusted(-3, -2, 3, 2), 3, 3);
+
+        // Draw text
+        painter.setPen(QColor(50, 50, 50));
+        painter.drawText(textRect, Qt::AlignLeft, label);
+    }
+
+    // Draw resize handles on top and bottom edges if selected
+    if (isSelected) {
+        int centerX = (minX + maxX) / 2;
+        int handleWidth = 60;
+        int handleHeight = 8;
+
+        // Top edge handle
+        QRectF topHandle(centerX - handleWidth/2, minY - handleHeight/2, handleWidth, handleHeight);
+        painter.setBrush(QColor(255, 255, 255, 200));
+        painter.setPen(QPen(QColor(100, 100, 100), 2));
+        painter.drawRoundedRect(topHandle, 3, 3);
+
+        // Bottom edge handle
+        QRectF bottomHandle(centerX - handleWidth/2, maxY - handleHeight/2, handleWidth, handleHeight);
+        painter.setBrush(QColor(255, 255, 255, 200));
+        painter.setPen(QPen(QColor(100, 100, 100), 2));
+        painter.drawRoundedRect(bottomHandle, 3, 3);
+    }
+}
+
+void ScoreCanvas::drawPhraseCurve(QPainter &painter, const PhraseGroup &phrase, bool isSelected)
+{
+    if (phrase.getDynamicsCurve().isEmpty()) return;
+    if (phrase.getNoteCount() == 0) return;
+
+    const QVector<Note> &notes = this->phrase.getNotes();
+
+    // Get phrase time and pitch bounds
+    double phraseStart = 1e9, phraseEnd = 0;
+    double minPitch = 1e9, maxPitch = 0;
+
+    for (int noteIdx : phrase.getNoteIndices()) {
+        if (noteIdx < 0 || noteIdx >= notes.size()) continue;
+        const Note &note = notes[noteIdx];
+        phraseStart = std::min(phraseStart, note.getStartTime());
+        phraseEnd = std::max(phraseEnd, note.getEndTime());
+        minPitch = std::min(minPitch, note.getPitchHz());
+        maxPitch = std::max(maxPitch, note.getPitchHz());
+    }
+
+    double phraseDuration = phraseEnd - phraseStart;
+    if (phraseDuration < 0.001) return;
+
+    // Calculate vertical bounds of phrase hull (with custom padding)
+    int padding = phrase.getVerticalPadding();
+    int minY = frequencyToPixel(maxPitch) - padding;  // Higher pitch = lower Y
+    int maxY = frequencyToPixel(minPitch) + padding;  // Lower pitch = higher Y
+    int hullHeight = maxY - minY;
+
+    // Sample curve and create variable-width path
+    const Curve &dynamicsCurve = phrase.getDynamicsCurve();
+    int numSamples = std::max(50, static_cast<int>(phraseDuration / 5.0));
+
+    QVector<QPointF> topEdge, bottomEdge;
+
+    for (int i = 0; i <= numSamples; ++i) {
+        double t = i / static_cast<double>(numSamples);
+        double absoluteTime = phraseStart + t * phraseDuration;
+        int x = timeToPixel(absoluteTime);
+
+        // Get curve value and pressure at this point
+        double value = dynamicsCurve.valueAt(t);
+        double pressure = dynamicsCurve.pressureAt(t);
+
+        // Y position based on curve value (0-1) within phrase hull bounds
+        // value=1.0 → top of hull (minY), value=0.0 → bottom of hull (maxY)
+        int centerY = minY + static_cast<int>((1.0 - value) * hullHeight);
+
+        // Line thickness based on pressure (10-40 pixels for visibility)
+        double thickness = 10.0 + pressure * 30.0;
+
+        topEdge << QPointF(x, centerY - thickness / 2.0);
+        bottomEdge << QPointF(x, centerY + thickness / 2.0);
+    }
+
+    // Create closed path
+    QPainterPath curvePath;
+    if (!topEdge.isEmpty()) {
+        curvePath.moveTo(topEdge.first());
+        for (const QPointF &p : topEdge) curvePath.lineTo(p);
+        for (int i = bottomEdge.size() - 1; i >= 0; --i) {
+            curvePath.lineTo(bottomEdge[i]);
+        }
+        curvePath.closeSubpath();
+    }
+
+    // Draw curve with prominent orange/red color
+    QColor curveColor = QColor(255, 100, 50);  // Orange-red
+    curveColor.setAlpha(isSelected ? 220 : 180);
+    painter.setBrush(curveColor);
+    painter.setPen(Qt::NoPen);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.drawPath(curvePath);
+
+    // Draw editable dots if selected
+    if (isSelected) {
+        drawPhraseCurveDots(painter, phrase, phraseStart, phraseDuration, minY, maxY);
+    }
+}
+
+void ScoreCanvas::drawPhraseCurveDots(QPainter &painter, const PhraseGroup &phrase,
+                                      double phraseStart, double phraseDuration, int minY, int maxY)
+{
+    const Curve &curve = phrase.getDynamicsCurve();
+    const QVector<Curve::Point> &points = curve.getPoints();
+
+    int hullHeight = maxY - minY;
+
+    for (int i = 0; i < points.size(); ++i) {
+        const Curve::Point &pt = points[i];
+        double absoluteTime = phraseStart + pt.time * phraseDuration;
+        int x = timeToPixel(absoluteTime);
+
+        // Y position based on curve value (0-1) within phrase hull bounds
+        int y = minY + static_cast<int>((1.0 - pt.value) * hullHeight);
+
+        // Draw dot
+        QRectF dotRect(x - 5, y - 5, 10, 10);
+        painter.setBrush(Qt::white);
+        painter.setPen(QPen(Qt::black, 2));
+        painter.drawEllipse(dotRect);
+
+        // Highlight if being edited
+        if (isEditingPhraseCurve && editingPhraseDotIndex == i) {
+            painter.setBrush(QColor(255, 200, 0));
+            painter.drawEllipse(dotRect);
+        }
+    }
+}
+
+double ScoreCanvas::getAveragePitchAtTime(const PhraseGroup &phrase, double time) const
+{
+    const QVector<Note> &notes = this->phrase.getNotes();
+    double sumPitch = 0;
+    int count = 0;
+
+    for (int noteIdx : phrase.getNoteIndices()) {
+        if (noteIdx < 0 || noteIdx >= notes.size()) continue;
+        const Note &note = notes[noteIdx];
+
+        if (time >= note.getStartTime() && time <= note.getEndTime()) {
+            double t = (time - note.getStartTime()) / note.getDuration();
+            sumPitch += note.getPitchAt(t);
+            count++;
+        }
+    }
+
+    return count > 0 ? sumPitch / count : 440.0;  // Default to A4
+}
+
+ScoreCanvas::DragMode ScoreCanvas::detectPhraseHullResizeHandle(const QPoint &pos, const PhraseGroup &phrase) const
+{
+    const QVector<Note> &notes = this->phrase.getNotes();
+
+    // Get phrase bounds
+    double phraseStart = 1e9, phraseEnd = 0;
+    double minPitch = 1e9, maxPitch = 0;
+
+    for (int noteIdx : phrase.getNoteIndices()) {
+        if (noteIdx < 0 || noteIdx >= notes.size()) continue;
+        const Note &note = notes[noteIdx];
+        phraseStart = std::min(phraseStart, note.getStartTime());
+        phraseEnd = std::max(phraseEnd, note.getEndTime());
+        minPitch = std::min(minPitch, note.getPitchHz());
+        maxPitch = std::max(maxPitch, note.getPitchHz());
+    }
+
+    if (phraseStart >= phraseEnd) return NoDrag;
+
+    int padding = phrase.getVerticalPadding();
+    int minY = frequencyToPixel(maxPitch) - padding;
+    int maxY = frequencyToPixel(minPitch) + padding;
+    int minX = timeToPixel(phraseStart);
+    int maxX = timeToPixel(phraseEnd);
+
+    int centerX = (minX + maxX) / 2;
+    int handleWidth = 60;
+    int handleHeight = 8;
+
+    // Check top handle
+    QRectF topHandle(centerX - handleWidth/2, minY - handleHeight/2, handleWidth, handleHeight);
+    if (topHandle.contains(pos)) {
+        return ResizingPhraseHullTop;
+    }
+
+    // Check bottom handle
+    QRectF bottomHandle(centerX - handleWidth/2, maxY - handleHeight/2, handleWidth, handleHeight);
+    if (bottomHandle.contains(pos)) {
+        return ResizingPhraseHullBottom;
+    }
+
+    return NoDrag;
+}
+
+int ScoreCanvas::findPhraseCurveDotAtPosition(const QPoint &pos, const PhraseGroup &phrase) const
+{
+    const Curve &curve = phrase.getDynamicsCurve();
+    const QVector<Curve::Point> &points = curve.getPoints();
+    const QVector<Note> &notes = this->phrase.getNotes();
+
+    // Get phrase time and pitch bounds
+    double phraseStart = 1e9, phraseEnd = 0;
+    double minPitch = 1e9, maxPitch = 0;
+
+    for (int noteIdx : phrase.getNoteIndices()) {
+        if (noteIdx < 0 || noteIdx >= notes.size()) continue;
+        const Note &note = notes[noteIdx];
+        phraseStart = std::min(phraseStart, note.getStartTime());
+        phraseEnd = std::max(phraseEnd, note.getEndTime());
+        minPitch = std::min(minPitch, note.getPitchHz());
+        maxPitch = std::max(maxPitch, note.getPitchHz());
+    }
+
+    double phraseDuration = phraseEnd - phraseStart;
+    if (phraseDuration < 0.001) return -1;
+
+    // Calculate vertical bounds of phrase hull (same as drawPhraseCurve)
+    int padding = phrase.getVerticalPadding();
+    int minY = frequencyToPixel(maxPitch) - padding;
+    int maxY = frequencyToPixel(minPitch) + padding;
+    int hullHeight = maxY - minY;
+
+    const int tolerance = 12;  // Click tolerance in pixels
+
+    for (int i = 0; i < points.size(); ++i) {
+        const Curve::Point &pt = points[i];
+        double absoluteTime = phraseStart + pt.time * phraseDuration;
+        int x = timeToPixel(absoluteTime);
+
+        // Y position based on curve value (0-1) within phrase hull bounds
+        int y = minY + static_cast<int>((1.0 - pt.value) * hullHeight);
+
+        QRectF dotRect(x - tolerance, y - tolerance, tolerance * 2, tolerance * 2);
+        if (dotRect.contains(pos)) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+// ============================================================================
+// Phrase Management
+// ============================================================================
+
+void ScoreCanvas::selectPhrase(int index)
+{
+    if (index < 0 || index >= phraseGroups.size()) {
+        selectedPhraseIndex = -1;
+        emit phraseSelectionChanged();
+        update();
+        return;
+    }
+
+    // Deselect all notes when selecting a phrase
+    deselectAll();
+
+    selectedPhraseIndex = index;
+    emit phraseSelectionChanged();
+    update();
+}
+
+void ScoreCanvas::deselectPhrase()
+{
+    selectedPhraseIndex = -1;
+    emit phraseSelectionChanged();
+    update();
+}
+
+PhraseGroup* ScoreCanvas::getSelectedPhrase()
+{
+    if (selectedPhraseIndex >= 0 && selectedPhraseIndex < phraseGroups.size()) {
+        return &phraseGroups[selectedPhraseIndex];
+    }
+    return nullptr;
+}
+
+const PhraseGroup* ScoreCanvas::getSelectedPhrase() const
+{
+    if (selectedPhraseIndex >= 0 && selectedPhraseIndex < phraseGroups.size()) {
+        return &phraseGroups[selectedPhraseIndex];
+    }
+    return nullptr;
+}
+
+int ScoreCanvas::findPhraseAtPosition(const QPoint &pos) const
+{
+    const QVector<Note> &notes = phrase.getNotes();
+
+    // Check phrases in reverse order (top layer first)
+    for (int i = phraseGroups.size() - 1; i >= 0; --i) {
+        const PhraseGroup &pg = phraseGroups[i];
+
+        // Get phrase bounds
+        double minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+
+        for (int noteIdx : pg.getNoteIndices()) {
+            if (noteIdx < 0 || noteIdx >= notes.size()) continue;
+            const Note &note = notes[noteIdx];
+
+            int x = timeToPixel(note.getStartTime());
+            int width = timeToPixel(note.getEndTime()) - x;
+            double pitchHz = note.getPitchHz();
+            int y = frequencyToPixel(pitchHz);
+
+            minX = std::min(minX, static_cast<double>(x));
+            maxX = std::max(maxX, static_cast<double>(x + width));
+            minY = std::min(minY, static_cast<double>(y - 50));
+            maxY = std::max(maxY, static_cast<double>(y + 50));
+        }
+
+        // Check if click is within phrase bounds
+        if (pos.x() >= minX && pos.x() <= maxX &&
+            pos.y() >= minY && pos.y() <= maxY) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+void ScoreCanvas::createPhraseFromSelection(const QString &name)
+{
+    if (selectedNoteIndices.isEmpty()) {
+        qWarning() << "No notes selected for phrase grouping";
+        return;
+    }
+
+    // Create command
+    undoStack->push(new CreatePhraseGroupCommand(this, selectedNoteIndices, name));
+
+    // Select the newly created phrase
+    selectPhrase(phraseGroups.size() - 1);
+}
+
+void ScoreCanvas::ungroupPhrase(int phraseIndex)
+{
+    if (phraseIndex < 0 || phraseIndex >= phraseGroups.size()) return;
+
+    undoStack->push(new DeletePhraseGroupCommand(this, phraseIndex));
+}
+
+void ScoreCanvas::applyPhraseTemplate(const PhraseGroup &templatePhrase)
+{
+    if (selectedNoteIndices.isEmpty()) {
+        qWarning() << "No notes selected to apply phrase template";
+        return;
+    }
+
+    // Create new phrase with template curves
+    PhraseGroup newPhrase(templatePhrase.getName() + " (applied)");
+    newPhrase.setDynamicsCurve(templatePhrase.getDynamicsCurve());
+    newPhrase.setVibratoCurve(templatePhrase.getVibratoCurve());
+    newPhrase.setRhythmicCurve(templatePhrase.getRhythmicCurve());
+    newPhrase.setUseEasing(templatePhrase.hasEasing());
+    newPhrase.setEasingType(templatePhrase.getEasingType());
+    newPhrase.setColor(templatePhrase.getColor());
+
+    for (int idx : selectedNoteIndices) {
+        newPhrase.addNoteIndex(idx);
+    }
+
+    undoStack->push(new CreatePhraseGroupCommand(this, selectedNoteIndices, newPhrase.getName()));
+
+    // Override the created phrase's curves with template data
+    phraseGroups.last().setDynamicsCurve(newPhrase.getDynamicsCurve());
+    phraseGroups.last().setVibratoCurve(newPhrase.getVibratoCurve());
+    phraseGroups.last().setRhythmicCurve(newPhrase.getRhythmicCurve());
+    phraseGroups.last().setUseEasing(newPhrase.hasEasing());
+    phraseGroups.last().setEasingType(newPhrase.getEasingType());
+    phraseGroups.last().setColor(newPhrase.getColor());
+
+    update();
 }

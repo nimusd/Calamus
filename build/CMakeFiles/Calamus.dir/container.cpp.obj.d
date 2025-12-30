@@ -433,6 +433,9 @@ CMakeFiles/Calamus.dir/container.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QMoveEvent \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QMap \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qmap.h \
+ D:\C++\ code\Calamus\envelopelibraryDialog.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
  D:/C++\ code/Calamus/build/Calamus_autogen/include/ui_container.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QVariant \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qvariant.h \

@@ -434,6 +434,9 @@ CMakeFiles/Calamus.dir/sounitgraph.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QMoveEvent \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QMap \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qmap.h \
+ D:\C++\ code\Calamus\envelopelibraryDialog.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
  D:\C++\ code\Calamus\canvas.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QPainter \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpainter.h \
@@ -441,6 +444,17 @@ CMakeFiles/Calamus.dir/sounitgraph.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpen.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QPainterPath \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpainterpath.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonobject.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qdatetime.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcalendar.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qregularexpression.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonparseerror.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QKeyEvent \
  D:\C++\ code\Calamus\harmonicgenerator.h \
  D:\C++\ code\Calamus\spectrumtosignal.h D:\C++\ code\Calamus\spectrum.h \

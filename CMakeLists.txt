@@ -40,6 +40,7 @@ qt_add_executable(Calamus
     frequencylabels.h frequencylabels.cpp
     note.h note.cpp
     phrase.h phrase.cpp
+    phrasegroup.h phrasegroup.cpp
     curve.h curve.cpp
     harmonicgenerator.h harmonicgenerator.cpp
     audioengine.h audioengine.cpp

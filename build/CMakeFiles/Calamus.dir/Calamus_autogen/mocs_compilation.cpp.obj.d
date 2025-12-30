@@ -459,6 +459,9 @@ CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QMoveEvent \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QMap \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qmap.h \
+ D:/C++\ code/Calamus/envelopelibraryDialog.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
  D:/C++\ code/Calamus/canvas.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QPainter \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpainter.h \
@@ -466,6 +469,16 @@ CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpen.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QPainterPath \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpainterpath.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonobject.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qdatetime.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcalendar.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonparseerror.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QKeyEvent \
  D:/C++\ code/Calamus/audioengine.h \
  D:/C++\ code/Calamus/harmonicgenerator.h \
@@ -488,6 +501,8 @@ CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj: \
  D:/C++\ code/Calamus/envelopeengine.h D:/C++\ code/Calamus/driftengine.h \
  D:/C++\ code/Calamus/gateprocessor.h \
  D:/C++\ code/Calamus/easingapplicator.h D:/C++\ code/Calamus/note.h \
+ D:/C++\ code/Calamus/curve.h C:/Qt/6.10.1/mingw_64/include/QtCore/QPair \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qpair.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QString \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qstring.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QUuid \
@@ -533,7 +548,18 @@ CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtWidgets/qtoolbar.h \
  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QWidget \
  D:/C++\ code/Calamus/trackselect.h D:/C++\ code/Calamus/scorecanvas.h \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/QUndoStack \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/qundostack.h \
+ D:/C++\ code/Calamus/phrasegroup.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QPointF \
  D:/C++\ code/Calamus/timeline.h D:/C++\ code/Calamus/frequencylabels.h \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/QActionGroup \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/qactiongroup.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/QPushButton \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qpushbutton.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qabstractbutton.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/QSpinBox \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qspinbox.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qtextcursor.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qtextformat.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qtmochelpers.h \
@@ -545,11 +571,8 @@ CMakeFiles/Calamus.dir/Calamus_autogen/mocs_compilation.cpp.obj: \
  D:/C++\ code/Calamus/container.h \
  D:\C++\ code\Calamus\build\Calamus_autogen\EWIEGA46WW/moc_dnaeditordialog.cpp \
  D:/C++\ code/Calamus/dnaeditordialog.h \
- C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
- C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
  D:\C++\ code\Calamus\build\Calamus_autogen\EWIEGA46WW/moc_envelopecurvecanvas.cpp \
  D:/C++\ code/Calamus/envelopecurvecanvas.h \
- D:/C++\ code/Calamus/envelopelibraryDialog.h \
  D:\C++\ code\Calamus\build\Calamus_autogen\EWIEGA46WW/moc_envelopelibraryDialog.cpp \
  D:/C++\ code/Calamus/envelopelibraryDialog.h \
  D:\C++\ code\Calamus\build\Calamus_autogen\EWIEGA46WW/moc_envelopevisualizer.cpp \

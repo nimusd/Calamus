@@ -59,6 +59,7 @@ template <> constexpr inline auto SounitBuilder::qt_create_metaobjectdata<qt_met
         "onStop",
         "onPlaybackTick",
         "stopPlayback",
+        "stopAudioEngine",
         "rebuildGraph"
     };
 
@@ -80,9 +81,13 @@ template <> constexpr inline auto SounitBuilder::qt_create_metaobjectdata<qt_met
         // Slot 'onPlaybackTick'
         QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'stopPlayback'
-        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void(bool)>(19, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Bool, 20 },
+        }}),
+        // Slot 'stopPlayback'
+        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
         // Slot 'rebuildGraph'
-        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -112,8 +117,9 @@ void SounitBuilder::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 3: _t->onPlay(); break;
         case 4: _t->onStop(); break;
         case 5: _t->onPlaybackTick(); break;
-        case 6: _t->stopPlayback(); break;
-        case 7: _t->rebuildGraph(); break;
+        case 6: _t->stopPlayback((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 7: _t->stopPlayback(); break;
+        case 8: _t->rebuildGraph(); break;
         default: ;
         }
     }
@@ -154,14 +160,14 @@ int SounitBuilder::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

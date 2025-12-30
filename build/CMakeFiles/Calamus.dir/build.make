@@ -203,11 +203,26 @@ CMakeFiles/Calamus.dir/scorecanvas.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calamus.dir/scorecanvas.cpp.s"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\C++ code\Calamus\scorecanvas.cpp" -o CMakeFiles\Calamus.dir\scorecanvas.cpp.s
 
+CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj: CMakeFiles/Calamus.dir/flags.make
+CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
+CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj: D:/C++\ code/Calamus/scorecanvascommands.cpp
+CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj -MF CMakeFiles\Calamus.dir\scorecanvascommands.cpp.obj.d -o CMakeFiles\Calamus.dir\scorecanvascommands.cpp.obj -c "D:\C++ code\Calamus\scorecanvascommands.cpp"
+
+CMakeFiles/Calamus.dir/scorecanvascommands.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Calamus.dir/scorecanvascommands.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\C++ code\Calamus\scorecanvascommands.cpp" > CMakeFiles\Calamus.dir\scorecanvascommands.cpp.i
+
+CMakeFiles/Calamus.dir/scorecanvascommands.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calamus.dir/scorecanvascommands.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\C++ code\Calamus\scorecanvascommands.cpp" -o CMakeFiles\Calamus.dir\scorecanvascommands.cpp.s
+
 CMakeFiles/Calamus.dir/timeline.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/timeline.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/timeline.cpp.obj: D:/C++\ code/Calamus/timeline.cpp
 CMakeFiles/Calamus.dir/timeline.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Calamus.dir/timeline.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Calamus.dir/timeline.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/timeline.cpp.obj -MF CMakeFiles\Calamus.dir\timeline.cpp.obj.d -o CMakeFiles\Calamus.dir\timeline.cpp.obj -c "D:\C++ code\Calamus\timeline.cpp"
 
 CMakeFiles/Calamus.dir/timeline.cpp.i: cmake_force
@@ -222,7 +237,7 @@ CMakeFiles/Calamus.dir/frequencylabels.cpp.obj: CMakeFiles/Calamus.dir/flags.mak
 CMakeFiles/Calamus.dir/frequencylabels.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/frequencylabels.cpp.obj: D:/C++\ code/Calamus/frequencylabels.cpp
 CMakeFiles/Calamus.dir/frequencylabels.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Calamus.dir/frequencylabels.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Calamus.dir/frequencylabels.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/frequencylabels.cpp.obj -MF CMakeFiles\Calamus.dir\frequencylabels.cpp.obj.d -o CMakeFiles\Calamus.dir\frequencylabels.cpp.obj -c "D:\C++ code\Calamus\frequencylabels.cpp"
 
 CMakeFiles/Calamus.dir/frequencylabels.cpp.i: cmake_force
@@ -237,7 +252,7 @@ CMakeFiles/Calamus.dir/note.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/note.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/note.cpp.obj: D:/C++\ code/Calamus/note.cpp
 CMakeFiles/Calamus.dir/note.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Calamus.dir/note.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Calamus.dir/note.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/note.cpp.obj -MF CMakeFiles\Calamus.dir\note.cpp.obj.d -o CMakeFiles\Calamus.dir\note.cpp.obj -c "D:\C++ code\Calamus\note.cpp"
 
 CMakeFiles/Calamus.dir/note.cpp.i: cmake_force
@@ -252,7 +267,7 @@ CMakeFiles/Calamus.dir/phrase.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/phrase.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/phrase.cpp.obj: D:/C++\ code/Calamus/phrase.cpp
 CMakeFiles/Calamus.dir/phrase.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Calamus.dir/phrase.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Calamus.dir/phrase.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/phrase.cpp.obj -MF CMakeFiles\Calamus.dir\phrase.cpp.obj.d -o CMakeFiles\Calamus.dir\phrase.cpp.obj -c "D:\C++ code\Calamus\phrase.cpp"
 
 CMakeFiles/Calamus.dir/phrase.cpp.i: cmake_force
@@ -263,11 +278,41 @@ CMakeFiles/Calamus.dir/phrase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calamus.dir/phrase.cpp.s"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\C++ code\Calamus\phrase.cpp" -o CMakeFiles\Calamus.dir\phrase.cpp.s
 
+CMakeFiles/Calamus.dir/phrasegroup.cpp.obj: CMakeFiles/Calamus.dir/flags.make
+CMakeFiles/Calamus.dir/phrasegroup.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
+CMakeFiles/Calamus.dir/phrasegroup.cpp.obj: D:/C++\ code/Calamus/phrasegroup.cpp
+CMakeFiles/Calamus.dir/phrasegroup.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Calamus.dir/phrasegroup.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/phrasegroup.cpp.obj -MF CMakeFiles\Calamus.dir\phrasegroup.cpp.obj.d -o CMakeFiles\Calamus.dir\phrasegroup.cpp.obj -c "D:\C++ code\Calamus\phrasegroup.cpp"
+
+CMakeFiles/Calamus.dir/phrasegroup.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Calamus.dir/phrasegroup.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\C++ code\Calamus\phrasegroup.cpp" > CMakeFiles\Calamus.dir\phrasegroup.cpp.i
+
+CMakeFiles/Calamus.dir/phrasegroup.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calamus.dir/phrasegroup.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\C++ code\Calamus\phrasegroup.cpp" -o CMakeFiles\Calamus.dir\phrasegroup.cpp.s
+
+CMakeFiles/Calamus.dir/curve.cpp.obj: CMakeFiles/Calamus.dir/flags.make
+CMakeFiles/Calamus.dir/curve.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
+CMakeFiles/Calamus.dir/curve.cpp.obj: D:/C++\ code/Calamus/curve.cpp
+CMakeFiles/Calamus.dir/curve.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Calamus.dir/curve.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/curve.cpp.obj -MF CMakeFiles\Calamus.dir\curve.cpp.obj.d -o CMakeFiles\Calamus.dir\curve.cpp.obj -c "D:\C++ code\Calamus\curve.cpp"
+
+CMakeFiles/Calamus.dir/curve.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Calamus.dir/curve.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\C++ code\Calamus\curve.cpp" > CMakeFiles\Calamus.dir\curve.cpp.i
+
+CMakeFiles/Calamus.dir/curve.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calamus.dir/curve.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\C++ code\Calamus\curve.cpp" -o CMakeFiles\Calamus.dir\curve.cpp.s
+
 CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj: D:/C++\ code/Calamus/harmonicgenerator.cpp
 CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj -MF CMakeFiles\Calamus.dir\harmonicgenerator.cpp.obj.d -o CMakeFiles\Calamus.dir\harmonicgenerator.cpp.obj -c "D:\C++ code\Calamus\harmonicgenerator.cpp"
 
 CMakeFiles/Calamus.dir/harmonicgenerator.cpp.i: cmake_force
@@ -282,7 +327,7 @@ CMakeFiles/Calamus.dir/audioengine.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/audioengine.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/audioengine.cpp.obj: D:/C++\ code/Calamus/audioengine.cpp
 CMakeFiles/Calamus.dir/audioengine.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Calamus.dir/audioengine.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Calamus.dir/audioengine.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/audioengine.cpp.obj -MF CMakeFiles\Calamus.dir\audioengine.cpp.obj.d -o CMakeFiles\Calamus.dir\audioengine.cpp.obj -c "D:\C++ code\Calamus\audioengine.cpp"
 
 CMakeFiles/Calamus.dir/audioengine.cpp.i: cmake_force
@@ -297,7 +342,7 @@ CMakeFiles/Calamus.dir/spectrum.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/spectrum.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/spectrum.cpp.obj: D:/C++\ code/Calamus/spectrum.cpp
 CMakeFiles/Calamus.dir/spectrum.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Calamus.dir/spectrum.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Calamus.dir/spectrum.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/spectrum.cpp.obj -MF CMakeFiles\Calamus.dir\spectrum.cpp.obj.d -o CMakeFiles\Calamus.dir\spectrum.cpp.obj -c "D:\C++ code\Calamus\spectrum.cpp"
 
 CMakeFiles/Calamus.dir/spectrum.cpp.i: cmake_force
@@ -312,7 +357,7 @@ CMakeFiles/Calamus.dir/spectrumtosignal.cpp.obj: CMakeFiles/Calamus.dir/flags.ma
 CMakeFiles/Calamus.dir/spectrumtosignal.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/spectrumtosignal.cpp.obj: D:/C++\ code/Calamus/spectrumtosignal.cpp
 CMakeFiles/Calamus.dir/spectrumtosignal.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Calamus.dir/spectrumtosignal.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Calamus.dir/spectrumtosignal.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/spectrumtosignal.cpp.obj -MF CMakeFiles\Calamus.dir\spectrumtosignal.cpp.obj.d -o CMakeFiles\Calamus.dir\spectrumtosignal.cpp.obj -c "D:\C++ code\Calamus\spectrumtosignal.cpp"
 
 CMakeFiles/Calamus.dir/spectrumtosignal.cpp.i: cmake_force
@@ -327,7 +372,7 @@ CMakeFiles/Calamus.dir/rolloffprocessor.cpp.obj: CMakeFiles/Calamus.dir/flags.ma
 CMakeFiles/Calamus.dir/rolloffprocessor.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/rolloffprocessor.cpp.obj: D:/C++\ code/Calamus/rolloffprocessor.cpp
 CMakeFiles/Calamus.dir/rolloffprocessor.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Calamus.dir/rolloffprocessor.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Calamus.dir/rolloffprocessor.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/rolloffprocessor.cpp.obj -MF CMakeFiles\Calamus.dir\rolloffprocessor.cpp.obj.d -o CMakeFiles\Calamus.dir\rolloffprocessor.cpp.obj -c "D:\C++ code\Calamus\rolloffprocessor.cpp"
 
 CMakeFiles/Calamus.dir/rolloffprocessor.cpp.i: cmake_force
@@ -342,7 +387,7 @@ CMakeFiles/Calamus.dir/formantbody.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/formantbody.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/formantbody.cpp.obj: D:/C++\ code/Calamus/formantbody.cpp
 CMakeFiles/Calamus.dir/formantbody.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Calamus.dir/formantbody.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Calamus.dir/formantbody.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/formantbody.cpp.obj -MF CMakeFiles\Calamus.dir\formantbody.cpp.obj.d -o CMakeFiles\Calamus.dir\formantbody.cpp.obj -c "D:\C++ code\Calamus\formantbody.cpp"
 
 CMakeFiles/Calamus.dir/formantbody.cpp.i: cmake_force
@@ -357,7 +402,7 @@ CMakeFiles/Calamus.dir/breathturbulence.cpp.obj: CMakeFiles/Calamus.dir/flags.ma
 CMakeFiles/Calamus.dir/breathturbulence.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/breathturbulence.cpp.obj: D:/C++\ code/Calamus/breathturbulence.cpp
 CMakeFiles/Calamus.dir/breathturbulence.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Calamus.dir/breathturbulence.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Calamus.dir/breathturbulence.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/breathturbulence.cpp.obj -MF CMakeFiles\Calamus.dir\breathturbulence.cpp.obj.d -o CMakeFiles\Calamus.dir\breathturbulence.cpp.obj -c "D:\C++ code\Calamus\breathturbulence.cpp"
 
 CMakeFiles/Calamus.dir/breathturbulence.cpp.i: cmake_force
@@ -372,7 +417,7 @@ CMakeFiles/Calamus.dir/noisecolorfilter.cpp.obj: CMakeFiles/Calamus.dir/flags.ma
 CMakeFiles/Calamus.dir/noisecolorfilter.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/noisecolorfilter.cpp.obj: D:/C++\ code/Calamus/noisecolorfilter.cpp
 CMakeFiles/Calamus.dir/noisecolorfilter.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Calamus.dir/noisecolorfilter.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Calamus.dir/noisecolorfilter.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/noisecolorfilter.cpp.obj -MF CMakeFiles\Calamus.dir\noisecolorfilter.cpp.obj.d -o CMakeFiles\Calamus.dir\noisecolorfilter.cpp.obj -c "D:\C++ code\Calamus\noisecolorfilter.cpp"
 
 CMakeFiles/Calamus.dir/noisecolorfilter.cpp.i: cmake_force
@@ -387,7 +432,7 @@ CMakeFiles/Calamus.dir/physicssystem.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/physicssystem.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/physicssystem.cpp.obj: D:/C++\ code/Calamus/physicssystem.cpp
 CMakeFiles/Calamus.dir/physicssystem.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Calamus.dir/physicssystem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Calamus.dir/physicssystem.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/physicssystem.cpp.obj -MF CMakeFiles\Calamus.dir\physicssystem.cpp.obj.d -o CMakeFiles\Calamus.dir\physicssystem.cpp.obj -c "D:\C++ code\Calamus\physicssystem.cpp"
 
 CMakeFiles/Calamus.dir/physicssystem.cpp.i: cmake_force
@@ -402,7 +447,7 @@ CMakeFiles/Calamus.dir/envelopeengine.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/envelopeengine.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/envelopeengine.cpp.obj: D:/C++\ code/Calamus/envelopeengine.cpp
 CMakeFiles/Calamus.dir/envelopeengine.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Calamus.dir/envelopeengine.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Calamus.dir/envelopeengine.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/envelopeengine.cpp.obj -MF CMakeFiles\Calamus.dir\envelopeengine.cpp.obj.d -o CMakeFiles\Calamus.dir\envelopeengine.cpp.obj -c "D:\C++ code\Calamus\envelopeengine.cpp"
 
 CMakeFiles/Calamus.dir/envelopeengine.cpp.i: cmake_force
@@ -417,7 +462,7 @@ CMakeFiles/Calamus.dir/driftengine.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/driftengine.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/driftengine.cpp.obj: D:/C++\ code/Calamus/driftengine.cpp
 CMakeFiles/Calamus.dir/driftengine.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Calamus.dir/driftengine.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Calamus.dir/driftengine.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/driftengine.cpp.obj -MF CMakeFiles\Calamus.dir\driftengine.cpp.obj.d -o CMakeFiles\Calamus.dir\driftengine.cpp.obj -c "D:\C++ code\Calamus\driftengine.cpp"
 
 CMakeFiles/Calamus.dir/driftengine.cpp.i: cmake_force
@@ -432,7 +477,7 @@ CMakeFiles/Calamus.dir/gateprocessor.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/gateprocessor.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/gateprocessor.cpp.obj: D:/C++\ code/Calamus/gateprocessor.cpp
 CMakeFiles/Calamus.dir/gateprocessor.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Calamus.dir/gateprocessor.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Calamus.dir/gateprocessor.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/gateprocessor.cpp.obj -MF CMakeFiles\Calamus.dir\gateprocessor.cpp.obj.d -o CMakeFiles\Calamus.dir\gateprocessor.cpp.obj -c "D:\C++ code\Calamus\gateprocessor.cpp"
 
 CMakeFiles/Calamus.dir/gateprocessor.cpp.i: cmake_force
@@ -447,7 +492,7 @@ CMakeFiles/Calamus.dir/easingapplicator.cpp.obj: CMakeFiles/Calamus.dir/flags.ma
 CMakeFiles/Calamus.dir/easingapplicator.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/easingapplicator.cpp.obj: D:/C++\ code/Calamus/easingapplicator.cpp
 CMakeFiles/Calamus.dir/easingapplicator.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Calamus.dir/easingapplicator.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Calamus.dir/easingapplicator.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/easingapplicator.cpp.obj -MF CMakeFiles\Calamus.dir\easingapplicator.cpp.obj.d -o CMakeFiles\Calamus.dir\easingapplicator.cpp.obj -c "D:\C++ code\Calamus\easingapplicator.cpp"
 
 CMakeFiles/Calamus.dir/easingapplicator.cpp.i: cmake_force
@@ -462,7 +507,7 @@ CMakeFiles/Calamus.dir/sounitgraph.cpp.obj: CMakeFiles/Calamus.dir/flags.make
 CMakeFiles/Calamus.dir/sounitgraph.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/sounitgraph.cpp.obj: D:/C++\ code/Calamus/sounitgraph.cpp
 CMakeFiles/Calamus.dir/sounitgraph.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Calamus.dir/sounitgraph.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Calamus.dir/sounitgraph.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/sounitgraph.cpp.obj -MF CMakeFiles\Calamus.dir\sounitgraph.cpp.obj.d -o CMakeFiles\Calamus.dir\sounitgraph.cpp.obj -c "D:\C++ code\Calamus\sounitgraph.cpp"
 
 CMakeFiles/Calamus.dir/sounitgraph.cpp.i: cmake_force
@@ -477,7 +522,7 @@ CMakeFiles/Calamus.dir/spectrumvisualizer.cpp.obj: CMakeFiles/Calamus.dir/flags.
 CMakeFiles/Calamus.dir/spectrumvisualizer.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/spectrumvisualizer.cpp.obj: D:/C++\ code/Calamus/spectrumvisualizer.cpp
 CMakeFiles/Calamus.dir/spectrumvisualizer.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Calamus.dir/spectrumvisualizer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Calamus.dir/spectrumvisualizer.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/spectrumvisualizer.cpp.obj -MF CMakeFiles\Calamus.dir\spectrumvisualizer.cpp.obj.d -o CMakeFiles\Calamus.dir\spectrumvisualizer.cpp.obj -c "D:\C++ code\Calamus\spectrumvisualizer.cpp"
 
 CMakeFiles/Calamus.dir/spectrumvisualizer.cpp.i: cmake_force
@@ -492,7 +537,7 @@ CMakeFiles/Calamus.dir/envelopevisualizer.cpp.obj: CMakeFiles/Calamus.dir/flags.
 CMakeFiles/Calamus.dir/envelopevisualizer.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/envelopevisualizer.cpp.obj: D:/C++\ code/Calamus/envelopevisualizer.cpp
 CMakeFiles/Calamus.dir/envelopevisualizer.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Calamus.dir/envelopevisualizer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Calamus.dir/envelopevisualizer.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/envelopevisualizer.cpp.obj -MF CMakeFiles\Calamus.dir\envelopevisualizer.cpp.obj.d -o CMakeFiles\Calamus.dir\envelopevisualizer.cpp.obj -c "D:\C++ code\Calamus\envelopevisualizer.cpp"
 
 CMakeFiles/Calamus.dir/envelopevisualizer.cpp.i: cmake_force
@@ -507,7 +552,7 @@ CMakeFiles/Calamus.dir/dnaeditordialog.cpp.obj: CMakeFiles/Calamus.dir/flags.mak
 CMakeFiles/Calamus.dir/dnaeditordialog.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/dnaeditordialog.cpp.obj: D:/C++\ code/Calamus/dnaeditordialog.cpp
 CMakeFiles/Calamus.dir/dnaeditordialog.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Calamus.dir/dnaeditordialog.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/Calamus.dir/dnaeditordialog.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/dnaeditordialog.cpp.obj -MF CMakeFiles\Calamus.dir\dnaeditordialog.cpp.obj.d -o CMakeFiles\Calamus.dir\dnaeditordialog.cpp.obj -c "D:\C++ code\Calamus\dnaeditordialog.cpp"
 
 CMakeFiles/Calamus.dir/dnaeditordialog.cpp.i: cmake_force
@@ -522,7 +567,7 @@ CMakeFiles/Calamus.dir/envelopelibraryDialog.cpp.obj: CMakeFiles/Calamus.dir/fla
 CMakeFiles/Calamus.dir/envelopelibraryDialog.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/envelopelibraryDialog.cpp.obj: D:/C++\ code/Calamus/envelopelibraryDialog.cpp
 CMakeFiles/Calamus.dir/envelopelibraryDialog.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Calamus.dir/envelopelibraryDialog.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/Calamus.dir/envelopelibraryDialog.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/envelopelibraryDialog.cpp.obj -MF CMakeFiles\Calamus.dir\envelopelibraryDialog.cpp.obj.d -o CMakeFiles\Calamus.dir\envelopelibraryDialog.cpp.obj -c "D:\C++ code\Calamus\envelopelibraryDialog.cpp"
 
 CMakeFiles/Calamus.dir/envelopelibraryDialog.cpp.i: cmake_force
@@ -537,7 +582,7 @@ CMakeFiles/Calamus.dir/envelopecurvecanvas.cpp.obj: CMakeFiles/Calamus.dir/flags
 CMakeFiles/Calamus.dir/envelopecurvecanvas.cpp.obj: CMakeFiles/Calamus.dir/includes_CXX.rsp
 CMakeFiles/Calamus.dir/envelopecurvecanvas.cpp.obj: D:/C++\ code/Calamus/envelopecurvecanvas.cpp
 CMakeFiles/Calamus.dir/envelopecurvecanvas.cpp.obj: CMakeFiles/Calamus.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Calamus.dir/envelopecurvecanvas.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Calamus.dir/envelopecurvecanvas.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calamus.dir/envelopecurvecanvas.cpp.obj -MF CMakeFiles\Calamus.dir\envelopecurvecanvas.cpp.obj.d -o CMakeFiles\Calamus.dir\envelopecurvecanvas.cpp.obj -c "D:\C++ code\Calamus\envelopecurvecanvas.cpp"
 
 CMakeFiles/Calamus.dir/envelopecurvecanvas.cpp.i: cmake_force
@@ -559,10 +604,13 @@ Calamus_OBJECTS = \
 "CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj" \
 "CMakeFiles/Calamus.dir/trackselect.cpp.obj" \
 "CMakeFiles/Calamus.dir/scorecanvas.cpp.obj" \
+"CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj" \
 "CMakeFiles/Calamus.dir/timeline.cpp.obj" \
 "CMakeFiles/Calamus.dir/frequencylabels.cpp.obj" \
 "CMakeFiles/Calamus.dir/note.cpp.obj" \
 "CMakeFiles/Calamus.dir/phrase.cpp.obj" \
+"CMakeFiles/Calamus.dir/phrasegroup.cpp.obj" \
+"CMakeFiles/Calamus.dir/curve.cpp.obj" \
 "CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj" \
 "CMakeFiles/Calamus.dir/audioengine.cpp.obj" \
 "CMakeFiles/Calamus.dir/spectrum.cpp.obj" \
@@ -595,10 +643,13 @@ Calamus.exe: CMakeFiles/Calamus.dir/canvas.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/trackselect.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/scorecanvas.cpp.obj
+Calamus.exe: CMakeFiles/Calamus.dir/scorecanvascommands.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/timeline.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/frequencylabels.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/note.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/phrase.cpp.obj
+Calamus.exe: CMakeFiles/Calamus.dir/phrasegroup.cpp.obj
+Calamus.exe: CMakeFiles/Calamus.dir/curve.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/harmonicgenerator.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/audioengine.cpp.obj
 Calamus.exe: CMakeFiles/Calamus.dir/spectrum.cpp.obj
@@ -627,7 +678,7 @@ Calamus.exe: C:/Qt/6.10.1/mingw_64/lib/libQt6EntryPoint.a
 Calamus.exe: CMakeFiles/Calamus.dir/linkLibs.rsp
 Calamus.exe: CMakeFiles/Calamus.dir/objects1.rsp
 Calamus.exe: CMakeFiles/Calamus.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_33) "Linking CXX executable Calamus.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="D:\C++ code\Calamus\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_36) "Linking CXX executable Calamus.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Calamus.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

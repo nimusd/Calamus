@@ -44,7 +44,14 @@ template <> constexpr inline auto ScoreCanvas::qt_create_metaobjectdata<qt_meta_
         "pixelsPerHz",
         "frequencyRangeChanged",
         "minHz",
-        "maxHz"
+        "maxHz",
+        "pressureChanged",
+        "pressure",
+        "active",
+        "cursorPositionChanged",
+        "timeMs",
+        "pitchHz",
+        "phraseSelectionChanged"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -56,6 +63,16 @@ template <> constexpr inline auto ScoreCanvas::qt_create_metaobjectdata<qt_meta_
         QtMocHelpers::SignalData<void(double, double)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Double, 5 }, { QMetaType::Double, 6 },
         }}),
+        // Signal 'pressureChanged'
+        QtMocHelpers::SignalData<void(double, bool)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Double, 8 }, { QMetaType::Bool, 9 },
+        }}),
+        // Signal 'cursorPositionChanged'
+        QtMocHelpers::SignalData<void(double, double)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Double, 11 }, { QMetaType::Double, 12 },
+        }}),
+        // Signal 'phraseSelectionChanged'
+        QtMocHelpers::SignalData<void()>(13, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -81,6 +98,9 @@ void ScoreCanvas::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         switch (_id) {
         case 0: _t->zoomChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1]))); break;
         case 1: _t->frequencyRangeChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[2]))); break;
+        case 2: _t->pressureChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[2]))); break;
+        case 3: _t->cursorPositionChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[2]))); break;
+        case 4: _t->phraseSelectionChanged(); break;
         default: ;
         }
     }
@@ -88,6 +108,12 @@ void ScoreCanvas::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         if (QtMocHelpers::indexOfMethod<void (ScoreCanvas::*)(double )>(_a, &ScoreCanvas::zoomChanged, 0))
             return;
         if (QtMocHelpers::indexOfMethod<void (ScoreCanvas::*)(double , double )>(_a, &ScoreCanvas::frequencyRangeChanged, 1))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (ScoreCanvas::*)(double , bool )>(_a, &ScoreCanvas::pressureChanged, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (ScoreCanvas::*)(double , double )>(_a, &ScoreCanvas::cursorPositionChanged, 3))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (ScoreCanvas::*)()>(_a, &ScoreCanvas::phraseSelectionChanged, 4))
             return;
     }
 }
@@ -111,14 +137,14 @@ int ScoreCanvas::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 5;
     }
     return _id;
 }
@@ -133,5 +159,23 @@ void ScoreCanvas::zoomChanged(double _t1)
 void ScoreCanvas::frequencyRangeChanged(double _t1, double _t2)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2);
+}
+
+// SIGNAL 2
+void ScoreCanvas::pressureChanged(double _t1, bool _t2)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1, _t2);
+}
+
+// SIGNAL 3
+void ScoreCanvas::cursorPositionChanged(double _t1, double _t2)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1, _t2);
+}
+
+// SIGNAL 4
+void ScoreCanvas::phraseSelectionChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 QT_WARNING_POP

@@ -15,6 +15,7 @@ class QDoubleSpinBox;
 class QFormLayout;
 class SpectrumVisualizer;
 class EnvelopeVisualizer;
+class PhraseGroup;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -57,6 +58,19 @@ private:
     QComboBox *comboEnvelopeSelect = nullptr;
     QWidget *envelopeParamsWidget = nullptr;  // Container for contextual parameters
     EnvelopeVisualizer *envelopeViz = nullptr;
+
+    // Phrase inspector widgets (Phase 4)
+    QLineEdit *editPhraseName = nullptr;
+    QComboBox *comboPhraseDynamicsEasing = nullptr;
+    QComboBox *comboPhraseTemplates = nullptr;
+    QPushButton *btnLoadPhraseTemplate = nullptr;
+    QPushButton *btnApplyPhraseTemplate = nullptr;
+    QPushButton *btnCreatePhrase = nullptr;
+    QPushButton *btnUngroupPhrase = nullptr;
+    QPushButton *btnSavePhraseTemplate = nullptr;
+
+    // Phrase library
+    QVector<PhraseGroup> savedPhraseTemplates;
 
     // Helper methods
     void clearConfigInspector();
@@ -111,6 +125,16 @@ private slots:
     // Harmonic Generator inspector slots
     void onDnaSelectChanged(int index);
     void onNumHarmonicsChanged(int value);
+
+    // Phrase inspector slots (Phase 4)
+    void onPhraseSelectionChanged();
+    void onPhraseNameChanged(const QString &name);
+    void onPhraseEasingChanged(int index);
+    void onLoadPhraseTemplateClicked();
+    void onApplyPhraseTemplateClicked();
+    void onCreatePhraseClicked();
+    void onUngroupPhraseClicked();
+    void onSavePhraseTemplateClicked();
 };
 
 #endif // CALAMUSMAIN_H

@@ -773,6 +773,12 @@
 			null
 		],
 		[
+			"D:/C++ code/Calamus/phrasegroup.h",
+			"MU",
+			"EWIEGA46WW/moc_phrasegroup.cpp",
+			null
+		],
+		[
 			"D:/C++ code/Calamus/physicssystem.h",
 			"MU",
 			"EWIEGA46WW/moc_physicssystem.cpp",
@@ -937,6 +943,7 @@
 		[ "D:/C++ code/Calamus/noisecolorfilter.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/note.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/phrase.cpp", "MU", null ],
+		[ "D:/C++ code/Calamus/phrasegroup.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/physicssystem.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/rolloffprocessor.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/scorecanvas.cpp", "MU", null ],

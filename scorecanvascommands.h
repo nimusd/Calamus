@@ -5,6 +5,7 @@
 #include "note.h"
 #include "curve.h"
 #include "phrase.h"
+#include "phrasegroup.h"
 
 // Forward declaration
 class ScoreCanvas;
@@ -173,6 +174,103 @@ private:
     QVector<NoteState> m_oldStates;
     QVector<NoteState> m_newStates;
     ScoreCanvas *m_canvas;
+};
+
+// ============================================================================
+// Create Phrase Group Command
+// ============================================================================
+class CreatePhraseGroupCommand : public QUndoCommand
+{
+public:
+    CreatePhraseGroupCommand(ScoreCanvas *canvas,
+                            const QVector<int> &noteIndices,
+                            const QString &name,
+                            QUndoCommand *parent = nullptr);
+
+    void undo() override;
+    void redo() override;
+
+private:
+    ScoreCanvas *m_canvas;
+    QVector<int> m_noteIndices;
+    QString m_name;
+    PhraseGroup m_phraseGroup;
+    int m_phraseIndex;
+    bool m_firstTime;
+};
+
+// ============================================================================
+// Delete Phrase Group Command (Ungroup)
+// ============================================================================
+class DeletePhraseGroupCommand : public QUndoCommand
+{
+public:
+    DeletePhraseGroupCommand(ScoreCanvas *canvas, int phraseIndex,
+                            QUndoCommand *parent = nullptr);
+
+    void undo() override;
+    void redo() override;
+
+private:
+    ScoreCanvas *m_canvas;
+    PhraseGroup m_phraseGroup;
+    int m_phraseIndex;
+};
+
+// ============================================================================
+// Edit Phrase Curve Command
+// ============================================================================
+class EditPhraseCurveCommand : public QUndoCommand
+{
+public:
+    enum CurveType {
+        DynamicsCurve,
+        VibratoCurve,
+        RhythmicCurve
+    };
+
+    EditPhraseCurveCommand(ScoreCanvas *canvas, int phraseIndex,
+                          CurveType curveType,
+                          const Curve &oldCurve,
+                          const Curve &newCurve,
+                          QUndoCommand *parent = nullptr);
+
+    void undo() override;
+    void redo() override;
+    int id() const override { return 4; }  // For merging
+    bool mergeWith(const QUndoCommand *other) override;
+
+private:
+    ScoreCanvas *m_canvas;
+    int m_phraseIndex;
+    CurveType m_curveType;
+    Curve m_oldCurve;
+    Curve m_newCurve;
+};
+
+// ============================================================================
+// Paste Notes Command
+// ============================================================================
+class PasteNotesCommand : public QUndoCommand
+{
+public:
+    PasteNotesCommand(Phrase *phrase, const QVector<Note> &notes,
+                     double targetTime, ScoreCanvas *canvas,
+                     QUndoCommand *parent = nullptr);
+
+    void undo() override;
+    void redo() override;
+
+    // Returns indices of pasted notes (for selection)
+    const QVector<int>& getPastedIndices() const { return m_pastedIndices; }
+
+private:
+    Phrase *m_phrase;
+    QVector<Note> m_notes;          // Notes to paste
+    double m_targetTime;            // Time position to paste at
+    QVector<int> m_pastedIndices;   // Indices where notes were inserted
+    ScoreCanvas *m_canvas;
+    bool m_firstTime;
 };
 
 #endif // SCORECANVASCOMMANDS_H

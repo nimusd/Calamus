@@ -6,6 +6,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   C:/Qt/6.10.1/mingw_64/include/QtCore/QObject \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QPair \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QPoint \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QPointF \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QRect \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QSize \
   C:/Qt/6.10.1/mingw_64/include/QtCore/QSizeF \
@@ -496,6 +497,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   D:/C++\ code/Calamus/noisecolorfilter.h \
   D:/C++\ code/Calamus/note.h \
   D:/C++\ code/Calamus/phrase.h \
+  D:/C++\ code/Calamus/phrasegroup.h \
   D:/C++\ code/Calamus/physicssystem.h \
   D:/C++\ code/Calamus/rolloffprocessor.h \
   D:/C++\ code/Calamus/scorecanvas.h \

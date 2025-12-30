@@ -873,6 +873,7 @@ D:/C++ code/Calamus/calamusmain.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QObject
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QPair
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QPoint
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QPointF
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QSize
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QSizeF
@@ -1381,6 +1382,7 @@ D:/C++ code/Calamus/calamusmain.h
  mdp:D:/C++ code/Calamus/noisecolorfilter.h
  mdp:D:/C++ code/Calamus/note.h
  mdp:D:/C++ code/Calamus/phrase.h
+ mdp:D:/C++ code/Calamus/phrasegroup.h
  mdp:D:/C++ code/Calamus/physicssystem.h
  mdp:D:/C++ code/Calamus/rolloffprocessor.h
  mdp:D:/C++ code/Calamus/scorecanvas.h
@@ -1776,7 +1778,9 @@ D:/C++ code/Calamus/driftengine.h
 D:/C++ code/Calamus/trackselect.cpp
 D:/C++ code/Calamus/scorecanvas.h
  mmc:Q_OBJECT
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QJsonObject
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QPair
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QPointF
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QString
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QUuid
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QVector
@@ -1803,6 +1807,9 @@ D:/C++ code/Calamus/scorecanvas.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qbytearrayalgorithms.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qbytearraylist.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qbytearrayview.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qcalendar.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qcborcommon.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qcborvalue.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qchar.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qcheckedint_impl.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qcompare.h
@@ -1817,6 +1824,7 @@ D:/C++ code/Calamus/scorecanvas.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qcontiguouscache.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qdatastream.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qdatetime.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qdebug.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qendian.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qexceptionhandling.h
@@ -1833,9 +1841,14 @@ D:/C++ code/Calamus/scorecanvas.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qiodevicebase.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qiterable.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qiterator.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qjsondocument.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonobject.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonparseerror.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonvalue.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qlatin1stringview.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qline.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qlist.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qlocale.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qlogging.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qmalloc.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qmap.h
@@ -1856,6 +1869,7 @@ D:/C++ code/Calamus/scorecanvas.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qrect.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qrefcount.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qregularexpression.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qscopedpointer.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qscopeguard.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qset.h
@@ -1901,6 +1915,7 @@ D:/C++ code/Calamus/scorecanvas.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qtversionchecks.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qtypeinfo.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qtypes.h
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qurl.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qutf8stringview.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/quuid.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/qvariant.h
@@ -2161,6 +2176,7 @@ D:/C++ code/Calamus/scorecanvas.h
  mdp:D:/C++ code/Calamus/curve.h
  mdp:D:/C++ code/Calamus/note.h
  mdp:D:/C++ code/Calamus/phrase.h
+ mdp:D:/C++ code/Calamus/phrasegroup.h
  mdp:D:/C++ code/Calamus/scorecanvas.h
 D:/C++ code/Calamus/scorecanvaswindow.h
  mmc:Q_OBJECT
@@ -2170,6 +2186,7 @@ D:/C++ code/Calamus/scorecanvaswindow.h
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QObject
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QPair
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QPoint
+ mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QPointF
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QSize
  mdp:C:/Qt/6.10.1/mingw_64/include/QtCore/QSizeF
@@ -2661,6 +2678,7 @@ D:/C++ code/Calamus/scorecanvaswindow.h
  mdp:D:/C++ code/Calamus/noisecolorfilter.h
  mdp:D:/C++ code/Calamus/note.h
  mdp:D:/C++ code/Calamus/phrase.h
+ mdp:D:/C++ code/Calamus/phrasegroup.h
  mdp:D:/C++ code/Calamus/physicssystem.h
  mdp:D:/C++ code/Calamus/rolloffprocessor.h
  mdp:D:/C++ code/Calamus/scorecanvas.h
@@ -3959,7 +3977,9 @@ D:/C++ code/Calamus/noisecolorfilter.cpp
 D:/C++ code/Calamus/physicssystem.cpp
 D:/C++ code/Calamus/envelopeengine.h
 D:/C++ code/Calamus/envelopeengine.cpp
+D:/C++ code/Calamus/phrasegroup.h
 D:/C++ code/Calamus/easingapplicator.h
+D:/C++ code/Calamus/phrasegroup.cpp
 D:/C++ code/Calamus/easingapplicator.cpp
 D:/C++ code/Calamus/spectrumvisualizer.h
  mmc:Q_OBJECT

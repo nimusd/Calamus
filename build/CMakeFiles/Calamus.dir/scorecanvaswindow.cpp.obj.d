@@ -426,12 +426,31 @@ CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qcolor.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QString \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qstring.h \
- D:\C++\ code\Calamus\scorecanvas.h D:\C++\ code\Calamus\phrase.h \
- D:\C++\ code\Calamus\note.h C:/Qt/6.10.1/mingw_64/include/QtCore/QUuid \
+ D:\C++\ code\Calamus\scorecanvas.h \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/QUndoStack \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/qundostack.h \
+ D:\C++\ code\Calamus\phrase.h D:\C++\ code\Calamus\note.h \
+ D:\C++\ code\Calamus\curve.h C:/Qt/6.10.1/mingw_64/include/QtCore/QPair \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qpair.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QUuid \
  C:/Qt/6.10.1/mingw_64/include/QtCore/quuid.h \
+ D:\C++\ code\Calamus\phrasegroup.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QPointF \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qpoint.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonobject.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qdatetime.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qcalendar.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qregularexpression.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qurl.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qjsonparseerror.h \
  D:\C++\ code\Calamus\timeline.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QPoint \
- C:/Qt/6.10.1/mingw_64/include/QtCore/qpoint.h \
  D:\C++\ code\Calamus\frequencylabels.h \
  D:\C++\ code\Calamus\audioengine.h \
  D:\C++\ code\Calamus\harmonicgenerator.h \
@@ -439,7 +458,6 @@ CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QMouseEvent \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qevent.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qiodevice.h \
- C:/Qt/6.10.1/mingw_64/include/QtCore/qurl.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qeventpoint.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qvector2d.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qvectornd.h \
@@ -467,6 +485,9 @@ CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QMoveEvent \
  C:/Qt/6.10.1/mingw_64/include/QtCore/QMap \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qmap.h \
+ D:\C++\ code\Calamus\envelopelibraryDialog.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
  D:\C++\ code\Calamus\canvas.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/QPainter \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qpainter.h \
@@ -514,9 +535,17 @@ CMakeFiles/Calamus.dir/scorecanvaswindow.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QMainWindow \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/QActionGroup \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/qactiongroup.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/QPushButton \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qpushbutton.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qabstractbutton.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/QSpinBox \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qspinbox.h \
+ C:/Qt/6.10.1/mingw_64/include/QtWidgets/qabstractspinbox.h \
+ C:/Qt/6.10.1/mingw_64/include/QtGui/qvalidator.h \
  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QToolButton \
  C:/Qt/6.10.1/mingw_64/include/QtWidgets/qtoolbutton.h \
- C:/Qt/6.10.1/mingw_64/include/QtWidgets/qabstractbutton.h \
  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QVBoxLayout \
  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QHBoxLayout \
  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QScrollArea \

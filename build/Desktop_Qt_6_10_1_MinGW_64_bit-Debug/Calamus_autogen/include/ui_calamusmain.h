@@ -141,11 +141,6 @@ public:
     QLabel *label_6;
     QWidget *compositionTab;
     QVBoxLayout *verticalLayout_14;
-    QGroupBox *groupPhraseSelector;
-    QHBoxLayout *horizontalLayout_2;
-    QComboBox *comboPhraseSelector;
-    QPushButton *btnPhraseLoad;
-    QPushButton *btnPhraseSave;
     QGroupBox *groupInspector;
     QVBoxLayout *verticalLayout_6;
     QTabWidget *tabInspector;
@@ -172,23 +167,27 @@ public:
     QHBoxLayout *horizontalLayout_11;
     QLineEdit *editNoteComment;
     QWidget *tabPhraseInspector;
-    QHBoxLayout *horizontalLayout_10;
+    QVBoxLayout *verticalLayout_PhraseInspector;
+    QHBoxLayout *horizontalLayout_PhraseRow1;
     QGroupBox *groupPhraseIdentity;
-    QHBoxLayout *horizontalLayout_8;
+    QVBoxLayout *verticalLayout_PhraseName;
     QLineEdit *editPhraseName;
-    QGroupBox *groupPhraseTranspose;
-    QFormLayout *formLayout_4;
-    QLabel *label_12;
-    QComboBox *comboPhraseTransposeMode;
-    QLabel *label_21;
-    QSpinBox *spinPhraseTransposeValue;
-    QGroupBox *groupPhraseVibrato;
-    QFormLayout *formLayout_5;
-    QLabel *label_22;
-    QComboBox *comboPhraseVibratoPreset;
-    QGroupBox *groupPhraseComment;
-    QHBoxLayout *horizontalLayout_9;
-    QLineEdit *editPhraseComment;
+    QGroupBox *groupPhraseDynamics;
+    QFormLayout *formLayout_Dynamics;
+    QLabel *label_PhraseEasing;
+    QComboBox *comboPhraseDynamicsEasing;
+    QHBoxLayout *horizontalLayout_PhraseRow2;
+    QGroupBox *groupPhraseTemplates;
+    QVBoxLayout *verticalLayout_Templates;
+    QComboBox *comboPhraseTemplates;
+    QHBoxLayout *horizontalLayout_TemplateButtons;
+    QPushButton *btnLoadPhraseTemplate;
+    QPushButton *btnApplyPhraseTemplate;
+    QGroupBox *groupPhraseActions;
+    QVBoxLayout *verticalLayout_Actions;
+    QPushButton *btnCreatePhrase;
+    QPushButton *btnUngroupPhrase;
+    QPushButton *btnSavePhraseTemplate;
     QWidget *tabGestureInspector;
     QHBoxLayout *horizontalLayout_15;
     QGroupBox *groupGestureIdentity;
@@ -590,45 +589,13 @@ public:
         compositionTab->setObjectName("compositionTab");
         verticalLayout_14 = new QVBoxLayout(compositionTab);
         verticalLayout_14->setObjectName("verticalLayout_14");
-        groupPhraseSelector = new QGroupBox(compositionTab);
-        groupPhraseSelector->setObjectName("groupPhraseSelector");
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(groupPhraseSelector->sizePolicy().hasHeightForWidth());
-        groupPhraseSelector->setSizePolicy(sizePolicy);
-        horizontalLayout_2 = new QHBoxLayout(groupPhraseSelector);
-        horizontalLayout_2->setObjectName("horizontalLayout_2");
-        comboPhraseSelector = new QComboBox(groupPhraseSelector);
-        comboPhraseSelector->setObjectName("comboPhraseSelector");
-        QSizePolicy sizePolicy1(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(comboPhraseSelector->sizePolicy().hasHeightForWidth());
-        comboPhraseSelector->setSizePolicy(sizePolicy1);
-
-        horizontalLayout_2->addWidget(comboPhraseSelector);
-
-        btnPhraseLoad = new QPushButton(groupPhraseSelector);
-        btnPhraseLoad->setObjectName("btnPhraseLoad");
-
-        horizontalLayout_2->addWidget(btnPhraseLoad);
-
-        btnPhraseSave = new QPushButton(groupPhraseSelector);
-        btnPhraseSave->setObjectName("btnPhraseSave");
-
-        horizontalLayout_2->addWidget(btnPhraseSave);
-
-
-        verticalLayout_14->addWidget(groupPhraseSelector);
-
         groupInspector = new QGroupBox(compositionTab);
         groupInspector->setObjectName("groupInspector");
-        QSizePolicy sizePolicy2(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(groupInspector->sizePolicy().hasHeightForWidth());
-        groupInspector->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(groupInspector->sizePolicy().hasHeightForWidth());
+        groupInspector->setSizePolicy(sizePolicy);
         verticalLayout_6 = new QVBoxLayout(groupInspector);
         verticalLayout_6->setObjectName("verticalLayout_6");
         tabInspector = new QTabWidget(groupInspector);
@@ -728,75 +695,101 @@ public:
         tabInspector->addTab(tabNoteInspector, QString());
         tabPhraseInspector = new QWidget();
         tabPhraseInspector->setObjectName("tabPhraseInspector");
-        horizontalLayout_10 = new QHBoxLayout(tabPhraseInspector);
-        horizontalLayout_10->setObjectName("horizontalLayout_10");
+        verticalLayout_PhraseInspector = new QVBoxLayout(tabPhraseInspector);
+        verticalLayout_PhraseInspector->setObjectName("verticalLayout_PhraseInspector");
+        horizontalLayout_PhraseRow1 = new QHBoxLayout();
+        horizontalLayout_PhraseRow1->setObjectName("horizontalLayout_PhraseRow1");
         groupPhraseIdentity = new QGroupBox(tabPhraseInspector);
         groupPhraseIdentity->setObjectName("groupPhraseIdentity");
-        horizontalLayout_8 = new QHBoxLayout(groupPhraseIdentity);
-        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        verticalLayout_PhraseName = new QVBoxLayout(groupPhraseIdentity);
+        verticalLayout_PhraseName->setObjectName("verticalLayout_PhraseName");
         editPhraseName = new QLineEdit(groupPhraseIdentity);
         editPhraseName->setObjectName("editPhraseName");
 
-        horizontalLayout_8->addWidget(editPhraseName);
+        verticalLayout_PhraseName->addWidget(editPhraseName);
 
 
-        horizontalLayout_10->addWidget(groupPhraseIdentity);
+        horizontalLayout_PhraseRow1->addWidget(groupPhraseIdentity);
 
-        groupPhraseTranspose = new QGroupBox(tabPhraseInspector);
-        groupPhraseTranspose->setObjectName("groupPhraseTranspose");
-        formLayout_4 = new QFormLayout(groupPhraseTranspose);
-        formLayout_4->setObjectName("formLayout_4");
-        label_12 = new QLabel(groupPhraseTranspose);
-        label_12->setObjectName("label_12");
+        groupPhraseDynamics = new QGroupBox(tabPhraseInspector);
+        groupPhraseDynamics->setObjectName("groupPhraseDynamics");
+        formLayout_Dynamics = new QFormLayout(groupPhraseDynamics);
+        formLayout_Dynamics->setObjectName("formLayout_Dynamics");
+        label_PhraseEasing = new QLabel(groupPhraseDynamics);
+        label_PhraseEasing->setObjectName("label_PhraseEasing");
 
-        formLayout_4->setWidget(0, QFormLayout::ItemRole::LabelRole, label_12);
+        formLayout_Dynamics->setWidget(0, QFormLayout::ItemRole::LabelRole, label_PhraseEasing);
 
-        comboPhraseTransposeMode = new QComboBox(groupPhraseTranspose);
-        comboPhraseTransposeMode->setObjectName("comboPhraseTransposeMode");
+        comboPhraseDynamicsEasing = new QComboBox(groupPhraseDynamics);
+        comboPhraseDynamicsEasing->addItem(QString());
+        comboPhraseDynamicsEasing->addItem(QString());
+        comboPhraseDynamicsEasing->addItem(QString());
+        comboPhraseDynamicsEasing->addItem(QString());
+        comboPhraseDynamicsEasing->addItem(QString());
+        comboPhraseDynamicsEasing->setObjectName("comboPhraseDynamicsEasing");
 
-        formLayout_4->setWidget(0, QFormLayout::ItemRole::FieldRole, comboPhraseTransposeMode);
-
-        label_21 = new QLabel(groupPhraseTranspose);
-        label_21->setObjectName("label_21");
-
-        formLayout_4->setWidget(1, QFormLayout::ItemRole::LabelRole, label_21);
-
-        spinPhraseTransposeValue = new QSpinBox(groupPhraseTranspose);
-        spinPhraseTransposeValue->setObjectName("spinPhraseTransposeValue");
-
-        formLayout_4->setWidget(1, QFormLayout::ItemRole::FieldRole, spinPhraseTransposeValue);
+        formLayout_Dynamics->setWidget(0, QFormLayout::ItemRole::FieldRole, comboPhraseDynamicsEasing);
 
 
-        horizontalLayout_10->addWidget(groupPhraseTranspose);
-
-        groupPhraseVibrato = new QGroupBox(tabPhraseInspector);
-        groupPhraseVibrato->setObjectName("groupPhraseVibrato");
-        formLayout_5 = new QFormLayout(groupPhraseVibrato);
-        formLayout_5->setObjectName("formLayout_5");
-        label_22 = new QLabel(groupPhraseVibrato);
-        label_22->setObjectName("label_22");
-
-        formLayout_5->setWidget(0, QFormLayout::ItemRole::LabelRole, label_22);
-
-        comboPhraseVibratoPreset = new QComboBox(groupPhraseVibrato);
-        comboPhraseVibratoPreset->setObjectName("comboPhraseVibratoPreset");
-
-        formLayout_5->setWidget(0, QFormLayout::ItemRole::FieldRole, comboPhraseVibratoPreset);
+        horizontalLayout_PhraseRow1->addWidget(groupPhraseDynamics);
 
 
-        horizontalLayout_10->addWidget(groupPhraseVibrato);
+        verticalLayout_PhraseInspector->addLayout(horizontalLayout_PhraseRow1);
 
-        groupPhraseComment = new QGroupBox(tabPhraseInspector);
-        groupPhraseComment->setObjectName("groupPhraseComment");
-        horizontalLayout_9 = new QHBoxLayout(groupPhraseComment);
-        horizontalLayout_9->setObjectName("horizontalLayout_9");
-        editPhraseComment = new QLineEdit(groupPhraseComment);
-        editPhraseComment->setObjectName("editPhraseComment");
+        horizontalLayout_PhraseRow2 = new QHBoxLayout();
+        horizontalLayout_PhraseRow2->setObjectName("horizontalLayout_PhraseRow2");
+        groupPhraseTemplates = new QGroupBox(tabPhraseInspector);
+        groupPhraseTemplates->setObjectName("groupPhraseTemplates");
+        verticalLayout_Templates = new QVBoxLayout(groupPhraseTemplates);
+        verticalLayout_Templates->setObjectName("verticalLayout_Templates");
+        comboPhraseTemplates = new QComboBox(groupPhraseTemplates);
+        comboPhraseTemplates->addItem(QString());
+        comboPhraseTemplates->setObjectName("comboPhraseTemplates");
 
-        horizontalLayout_9->addWidget(editPhraseComment);
+        verticalLayout_Templates->addWidget(comboPhraseTemplates);
+
+        horizontalLayout_TemplateButtons = new QHBoxLayout();
+        horizontalLayout_TemplateButtons->setObjectName("horizontalLayout_TemplateButtons");
+        btnLoadPhraseTemplate = new QPushButton(groupPhraseTemplates);
+        btnLoadPhraseTemplate->setObjectName("btnLoadPhraseTemplate");
+
+        horizontalLayout_TemplateButtons->addWidget(btnLoadPhraseTemplate);
+
+        btnApplyPhraseTemplate = new QPushButton(groupPhraseTemplates);
+        btnApplyPhraseTemplate->setObjectName("btnApplyPhraseTemplate");
+
+        horizontalLayout_TemplateButtons->addWidget(btnApplyPhraseTemplate);
 
 
-        horizontalLayout_10->addWidget(groupPhraseComment);
+        verticalLayout_Templates->addLayout(horizontalLayout_TemplateButtons);
+
+
+        horizontalLayout_PhraseRow2->addWidget(groupPhraseTemplates);
+
+        groupPhraseActions = new QGroupBox(tabPhraseInspector);
+        groupPhraseActions->setObjectName("groupPhraseActions");
+        verticalLayout_Actions = new QVBoxLayout(groupPhraseActions);
+        verticalLayout_Actions->setObjectName("verticalLayout_Actions");
+        btnCreatePhrase = new QPushButton(groupPhraseActions);
+        btnCreatePhrase->setObjectName("btnCreatePhrase");
+
+        verticalLayout_Actions->addWidget(btnCreatePhrase);
+
+        btnUngroupPhrase = new QPushButton(groupPhraseActions);
+        btnUngroupPhrase->setObjectName("btnUngroupPhrase");
+
+        verticalLayout_Actions->addWidget(btnUngroupPhrase);
+
+        btnSavePhraseTemplate = new QPushButton(groupPhraseActions);
+        btnSavePhraseTemplate->setObjectName("btnSavePhraseTemplate");
+
+        verticalLayout_Actions->addWidget(btnSavePhraseTemplate);
+
+
+        horizontalLayout_PhraseRow2->addWidget(groupPhraseActions);
+
+
+        verticalLayout_PhraseInspector->addLayout(horizontalLayout_PhraseRow2);
 
         tabInspector->addTab(tabPhraseInspector, QString());
         tabGestureInspector = new QWidget();
@@ -815,11 +808,11 @@ public:
         horizontalLayout_7->setObjectName("horizontalLayout_7");
         btnGesturePrev = new QPushButton(groupGestureNav);
         btnGesturePrev->setObjectName("btnGesturePrev");
-        QSizePolicy sizePolicy3(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(btnGesturePrev->sizePolicy().hasHeightForWidth());
-        btnGesturePrev->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(btnGesturePrev->sizePolicy().hasHeightForWidth());
+        btnGesturePrev->setSizePolicy(sizePolicy1);
 
         horizontalLayout_7->addWidget(btnGesturePrev);
 
@@ -830,8 +823,8 @@ public:
 
         btnGestureNext = new QPushButton(groupGestureNav);
         btnGestureNext->setObjectName("btnGestureNext");
-        sizePolicy3.setHeightForWidth(btnGestureNext->sizePolicy().hasHeightForWidth());
-        btnGestureNext->setSizePolicy(sizePolicy3);
+        sizePolicy1.setHeightForWidth(btnGestureNext->sizePolicy().hasHeightForWidth());
+        btnGestureNext->setSizePolicy(sizePolicy1);
 
         horizontalLayout_7->addWidget(btnGestureNext);
 
@@ -962,14 +955,17 @@ public:
 
         groupTracks = new QGroupBox(compositionTab);
         groupTracks->setObjectName("groupTracks");
-        sizePolicy.setHeightForWidth(groupTracks->sizePolicy().hasHeightForWidth());
-        groupTracks->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(groupTracks->sizePolicy().hasHeightForWidth());
+        groupTracks->setSizePolicy(sizePolicy2);
         horizontalLayout_6 = new QHBoxLayout(groupTracks);
         horizontalLayout_6->setObjectName("horizontalLayout_6");
         frameTracks = new QFrame(groupTracks);
         frameTracks->setObjectName("frameTracks");
-        sizePolicy2.setHeightForWidth(frameTracks->sizePolicy().hasHeightForWidth());
-        frameTracks->setSizePolicy(sizePolicy2);
+        sizePolicy.setHeightForWidth(frameTracks->sizePolicy().hasHeightForWidth());
+        frameTracks->setSizePolicy(sizePolicy);
         frameTracks->setMinimumSize(QSize(0, 60));
         frameTracks->setFrameShape(QFrame::Shape::Box);
         frameTracks->setFrameShadow(QFrame::Shadow::Sunken);
@@ -1097,18 +1093,18 @@ public:
         horizontalLayout_5->setObjectName("horizontalLayout_5");
         labelScaleDisplay = new QLabel(groupScale);
         labelScaleDisplay->setObjectName("labelScaleDisplay");
-        QSizePolicy sizePolicy4(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(labelScaleDisplay->sizePolicy().hasHeightForWidth());
-        labelScaleDisplay->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy3(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(labelScaleDisplay->sizePolicy().hasHeightForWidth());
+        labelScaleDisplay->setSizePolicy(sizePolicy3);
 
         horizontalLayout_5->addWidget(labelScaleDisplay);
 
         btnScaleEdit = new QPushButton(groupScale);
         btnScaleEdit->setObjectName("btnScaleEdit");
-        sizePolicy3.setHeightForWidth(btnScaleEdit->sizePolicy().hasHeightForWidth());
-        btnScaleEdit->setSizePolicy(sizePolicy3);
+        sizePolicy1.setHeightForWidth(btnScaleEdit->sizePolicy().hasHeightForWidth());
+        btnScaleEdit->setSizePolicy(sizePolicy1);
 
         horizontalLayout_5->addWidget(btnScaleEdit);
 
@@ -1327,9 +1323,6 @@ public:
         labelConnectionFrom->setText(QCoreApplication::translate("CalamusMain", "TextLabel", nullptr));
         label_6->setText(QCoreApplication::translate("CalamusMain", "From:", nullptr));
         MainTab->setTabText(MainTab->indexOf(soundEngineTab), QCoreApplication::translate("CalamusMain", "Sound Engine", nullptr));
-        groupPhraseSelector->setTitle(QCoreApplication::translate("CalamusMain", "Phrase", nullptr));
-        btnPhraseLoad->setText(QCoreApplication::translate("CalamusMain", "Load", nullptr));
-        btnPhraseSave->setText(QCoreApplication::translate("CalamusMain", "Save", nullptr));
         groupInspector->setTitle(QCoreApplication::translate("CalamusMain", "Inspector", nullptr));
         positiongroupBox->setTitle(QCoreApplication::translate("CalamusMain", "Position", nullptr));
         label_11->setText(QCoreApplication::translate("CalamusMain", "Start:", nullptr));
@@ -1342,13 +1335,24 @@ public:
         label_20->setText(QCoreApplication::translate("CalamusMain", "Mass:", nullptr));
         commentGroupBox->setTitle(QCoreApplication::translate("CalamusMain", "Comment:", nullptr));
         tabInspector->setTabText(tabInspector->indexOf(tabNoteInspector), QCoreApplication::translate("CalamusMain", "Note", nullptr));
-        groupPhraseIdentity->setTitle(QCoreApplication::translate("CalamusMain", "Name:", nullptr));
-        groupPhraseTranspose->setTitle(QCoreApplication::translate("CalamusMain", "Transpose", nullptr));
-        label_12->setText(QCoreApplication::translate("CalamusMain", "Mode:", nullptr));
-        label_21->setText(QCoreApplication::translate("CalamusMain", "Value", nullptr));
-        groupPhraseVibrato->setTitle(QCoreApplication::translate("CalamusMain", "Vibrato", nullptr));
-        label_22->setText(QCoreApplication::translate("CalamusMain", "Preset:", nullptr));
-        groupPhraseComment->setTitle(QCoreApplication::translate("CalamusMain", "Comment:", nullptr));
+        groupPhraseIdentity->setTitle(QCoreApplication::translate("CalamusMain", "Name", nullptr));
+        groupPhraseDynamics->setTitle(QCoreApplication::translate("CalamusMain", "Dynamics", nullptr));
+        label_PhraseEasing->setText(QCoreApplication::translate("CalamusMain", "Easing:", nullptr));
+        comboPhraseDynamicsEasing->setItemText(0, QCoreApplication::translate("CalamusMain", "None", nullptr));
+        comboPhraseDynamicsEasing->setItemText(1, QCoreApplication::translate("CalamusMain", "QuadInOut", nullptr));
+        comboPhraseDynamicsEasing->setItemText(2, QCoreApplication::translate("CalamusMain", "CubicInOut", nullptr));
+        comboPhraseDynamicsEasing->setItemText(3, QCoreApplication::translate("CalamusMain", "Elastic", nullptr));
+        comboPhraseDynamicsEasing->setItemText(4, QCoreApplication::translate("CalamusMain", "Bounce", nullptr));
+
+        groupPhraseTemplates->setTitle(QCoreApplication::translate("CalamusMain", "Templates", nullptr));
+        comboPhraseTemplates->setItemText(0, QCoreApplication::translate("CalamusMain", "(No templates)", nullptr));
+
+        btnLoadPhraseTemplate->setText(QCoreApplication::translate("CalamusMain", "Load...", nullptr));
+        btnApplyPhraseTemplate->setText(QCoreApplication::translate("CalamusMain", "Apply", nullptr));
+        groupPhraseActions->setTitle(QCoreApplication::translate("CalamusMain", "Actions", nullptr));
+        btnCreatePhrase->setText(QCoreApplication::translate("CalamusMain", "Create from Selection", nullptr));
+        btnUngroupPhrase->setText(QCoreApplication::translate("CalamusMain", "Ungroup", nullptr));
+        btnSavePhraseTemplate->setText(QCoreApplication::translate("CalamusMain", "Save as Template...", nullptr));
         tabInspector->setTabText(tabInspector->indexOf(tabPhraseInspector), QCoreApplication::translate("CalamusMain", "Phrase", nullptr));
         groupGestureIdentity->setTitle(QCoreApplication::translate("CalamusMain", "name", nullptr));
         groupGestureNav->setTitle(QString());

@@ -467,6 +467,7 @@
 			"EWIEGA46WW/moc_container.cpp",
 			null
 		],
+		[ "D:/C++ code/Calamus/curve.h", "MU", "EWIEGA46WW/moc_curve.cpp", null ],
 		[
 			"D:/C++ code/Calamus/dnaeditordialog.h",
 			"MU",
@@ -547,6 +548,12 @@
 			null
 		],
 		[
+			"D:/C++ code/Calamus/phrasegroup.h",
+			"MU",
+			"EWIEGA46WW/moc_phrasegroup.cpp",
+			null
+		],
+		[
 			"D:/C++ code/Calamus/physicssystem.h",
 			"MU",
 			"EWIEGA46WW/moc_physicssystem.cpp",
@@ -562,6 +569,12 @@
 			"D:/C++ code/Calamus/scorecanvas.h",
 			"MU",
 			"EWIEGA46WW/moc_scorecanvas.cpp",
+			null
+		],
+		[
+			"D:/C++ code/Calamus/scorecanvascommands.h",
+			"MU",
+			"EWIEGA46WW/moc_scorecanvascommands.cpp",
 			null
 		],
 		[
@@ -690,6 +703,7 @@
 		[ "D:/C++ code/Calamus/calamusmain.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/canvas.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/container.cpp", "MU", null ],
+		[ "D:/C++ code/Calamus/curve.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/dnaeditordialog.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/driftengine.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/easingapplicator.cpp", "MU", null ],
@@ -705,9 +719,11 @@
 		[ "D:/C++ code/Calamus/noisecolorfilter.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/note.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/phrase.cpp", "MU", null ],
+		[ "D:/C++ code/Calamus/phrasegroup.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/physicssystem.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/rolloffprocessor.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/scorecanvas.cpp", "MU", null ],
+		[ "D:/C++ code/Calamus/scorecanvascommands.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/scorecanvaswindow.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/sounitbuilder.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/sounitgraph.cpp", "MU", null ],

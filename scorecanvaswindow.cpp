@@ -147,9 +147,7 @@ void ScoreCanvasWindow::setupToolbarColors()
             "QToolButton:checked { background-color: #E57373; }"  // Medium red when active
         );
     }
-    if (drawPhraseBtn) {
-        drawPhraseBtn->setStyleSheet("QToolButton { background-color: #90CAF9; }");
-    }
+    // drawPhraseBtn removed - phrases are always selectable, no special mode needed
 
     if (recordDiscreteBtn) {
         recordDiscreteBtn->setStyleSheet("QToolButton { background-color: #FFCC80; }");  // Light orange
@@ -202,6 +200,9 @@ void ScoreCanvasWindow::setupDrawingTools()
 
     ui->actionDrawContinuousNotes->setShortcut(QKeySequence(Qt::Key_C));
     ui->actionDrawContinuousNotes->setShortcutContext(Qt::ApplicationShortcut);
+
+    // Note: actionDrawPhrase removed - phrases are always selectable by clicking their hull
+    // No special mode needed
 
     qDebug() << "ScoreCanvasWindow: Drawing tool group configured with shortcuts";
 }
@@ -411,7 +412,12 @@ void ScoreCanvasWindow::setupScoreCanvas()
         qDebug() << "ScoreCanvasWindow: Playback start position set to" << timeMs << "ms";
         // Double-clicking timeline sets the START POSITION (where playback will always return to)
         playbackStartPosition = timeMs;
+        // Also update paste target time in ScoreCanvas
+        scoreCanvas->setPasteTargetTime(timeMs);
     });
+
+    // Initialize paste target time from timeline's current now marker
+    scoreCanvas->setPasteTargetTime(timeline->getNowMarker());
 
     // Create horizontal layout for timeline with left spacing
     QHBoxLayout *timelineLayout = new QHBoxLayout();

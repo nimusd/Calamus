@@ -1,5 +1,6 @@
 D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_envelopevisualizer.cpp: D:/C++\ code/Calamus/envelopevisualizer.h \
   D:/C++\ code/Calamus/build/Calamus_autogen/moc_predefs.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/QVector \
   C:/Qt/6.10.1/mingw_64/include/QtCore/q17memory.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/q20iterator.h \
@@ -124,6 +125,7 @@ D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_envelopevisualizer.cpp
   C:/Qt/6.10.1/mingw_64/include/QtCore/qutf8stringview.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qvarlengtharray.h \
+  C:/Qt/6.10.1/mingw_64/include/QtCore/qvector.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.10.1/mingw_64/include/QtCore/qyieldcpu.h \
@@ -153,7 +155,9 @@ D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_envelopevisualizer.cpp
   C:/Qt/6.10.1/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.10.1/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/QWidget \
+  C:/Qt/6.10.1/mingw_64/include/QtWidgets/qdialog.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qtwidgets-config.h \
   C:/Qt/6.10.1/mingw_64/include/QtWidgets/qtwidgetsexports.h \
@@ -371,4 +375,5 @@ D:/C++\ code/Calamus/build/Calamus_autogen/EWIEGA46WW/moc_envelopevisualizer.cpp
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/types.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
+  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
+  D:/C++\ code/Calamus/envelopelibraryDialog.h

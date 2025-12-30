@@ -421,4 +421,6 @@ CMakeFiles/Calamus.dir/timeline.cpp.obj: \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qcoreapplication_platform.h \
  C:/Qt/6.10.1/mingw_64/include/QtGui/qinputmethod.h \
  C:/Qt/6.10.1/mingw_64/include/QtCore/qlocale.h \
- C:/Qt/6.10.1/mingw_64/include/QtGui/qguiapplication_platform.h
+ C:/Qt/6.10.1/mingw_64/include/QtGui/qguiapplication_platform.h \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/QDebug \
+ C:/Qt/6.10.1/mingw_64/include/QtCore/qdebug.h

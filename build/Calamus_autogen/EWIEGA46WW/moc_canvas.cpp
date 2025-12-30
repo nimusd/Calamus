@@ -46,7 +46,12 @@ template <> constexpr inline auto Canvas::qt_create_metaobjectdata<qt_meta_tag_Z
         "container",
         "connectionSelected",
         "connectionIndex",
-        "selectionCleared"
+        "selectionCleared",
+        "graphChanged",
+        "sounitNameChanged",
+        "name",
+        "sounitCommentChanged",
+        "comment"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -60,6 +65,16 @@ template <> constexpr inline auto Canvas::qt_create_metaobjectdata<qt_meta_tag_Z
         }}),
         // Signal 'selectionCleared'
         QtMocHelpers::SignalData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'graphChanged'
+        QtMocHelpers::SignalData<void()>(8, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'sounitNameChanged'
+        QtMocHelpers::SignalData<void(const QString &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 10 },
+        }}),
+        // Signal 'sounitCommentChanged'
+        QtMocHelpers::SignalData<void(const QString &)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 12 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -86,6 +101,9 @@ void Canvas::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 0: _t->containerSelected((*reinterpret_cast<std::add_pointer_t<Container*>>(_a[1]))); break;
         case 1: _t->connectionSelected((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 2: _t->selectionCleared(); break;
+        case 3: _t->graphChanged(); break;
+        case 4: _t->sounitNameChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 5: _t->sounitCommentChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -107,6 +125,12 @@ void Canvas::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         if (QtMocHelpers::indexOfMethod<void (Canvas::*)(int )>(_a, &Canvas::connectionSelected, 1))
             return;
         if (QtMocHelpers::indexOfMethod<void (Canvas::*)()>(_a, &Canvas::selectionCleared, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (Canvas::*)()>(_a, &Canvas::graphChanged, 3))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (Canvas::*)(const QString & )>(_a, &Canvas::sounitNameChanged, 4))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (Canvas::*)(const QString & )>(_a, &Canvas::sounitCommentChanged, 5))
             return;
     }
 }
@@ -130,14 +154,14 @@ int Canvas::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 6;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 6;
     }
     return _id;
 }
@@ -158,5 +182,23 @@ void Canvas::connectionSelected(int _t1)
 void Canvas::selectionCleared()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+}
+
+// SIGNAL 3
+void Canvas::graphChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
+}
+
+// SIGNAL 4
+void Canvas::sounitNameChanged(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1);
+}
+
+// SIGNAL 5
+void Canvas::sounitCommentChanged(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 5, nullptr, _t1);
 }
 QT_WARNING_POP
