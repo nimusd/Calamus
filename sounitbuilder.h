@@ -75,7 +75,7 @@ private slots:
 
 public slots:
     void stopPlayback(bool stopAudioEngine = true);
-    void rebuildGraph();  // Rebuild audio graph from canvas
+    void rebuildGraph(int trackIndex = 0);  // Rebuild audio graph from canvas for specific track
 
 private:
     void startPlayback();

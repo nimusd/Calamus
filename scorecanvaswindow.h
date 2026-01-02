@@ -37,6 +37,8 @@ private slots:
     void onPressureChanged(double pressure, bool active);
     void onCursorPositionChanged(double timeMs, double pitchHz);
     void onCompositionSettingsTriggered();
+    void onAddTrackTriggered();
+    void onTrackSelected(int trackIndex);
 
 private:
     Ui::scorecanvas *ui;
@@ -109,6 +111,10 @@ private:
     int panStartHorizontalScroll;
     int panStartVerticalScroll;
 
+    // Track color management
+    QVector<QColor> trackColorPalette;
+    int nextColorIndex;
+
     void setupToolbarColors();
     void setupDrawingTools();
     void setupCompositionSettings();
@@ -131,13 +137,20 @@ private:
     void playFirstNote();
     void startPlayback();
     void onPlaybackTick();
+    void prerenderNotes();  // Pre-render notes for current state (called on track change)
 
 public:
     // Expose ScoreCanvas for sharing notes with SounitBuilder
     ScoreCanvas* getScoreCanvas() const { return scoreCanvas; }
 
-    // Update track 0 with loaded sounit info
-    void updateSounitTrack(const QString &sounitName, const QColor &sounitColor);
+    // Expose TrackSelector for track management
+    TrackSelector* getTrackSelector() const { return trackSelector; }
+
+    // Update specified track with loaded sounit info
+    void updateSounitTrack(int trackIndex, const QString &sounitName, const QColor &sounitColor);
+
+    // Get next available track color from palette
+    QColor getNextTrackColor();
 
 public slots:
     void stopPlayback(bool stopAudioEngine = true);

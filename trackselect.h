@@ -16,7 +16,8 @@ public:
         QColor color;
         double minFreqHz;      // Bottom of register range
         double maxFreqHz;      // Top of register range
-        bool isActive;
+        bool isActive;         // The track that receives new notes
+        bool isSelected;       // Track is visible (notes shown)
         int trackIndex;
     };
 
@@ -28,6 +29,8 @@ public:
     void removeTrack(int index);
     void setActiveTrack(int index);
     int getActiveTrack() const;
+    void toggleTrackSelection(int index);  // Toggle track visibility
+    bool isTrackSelected(int index) const;
     void clearTracks();
     void updateTrack(int index, const QString &name, const QColor &color);
     const QVector<Track>& getTracks() const { return tracks; }

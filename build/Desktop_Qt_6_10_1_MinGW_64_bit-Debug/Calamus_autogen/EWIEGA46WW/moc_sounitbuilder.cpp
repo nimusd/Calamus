@@ -60,7 +60,8 @@ template <> constexpr inline auto SounitBuilder::qt_create_metaobjectdata<qt_met
         "onPlaybackTick",
         "stopPlayback",
         "stopAudioEngine",
-        "rebuildGraph"
+        "rebuildGraph",
+        "trackIndex"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -87,7 +88,11 @@ template <> constexpr inline auto SounitBuilder::qt_create_metaobjectdata<qt_met
         // Slot 'stopPlayback'
         QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
         // Slot 'rebuildGraph'
-        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void(int)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 22 },
+        }}),
+        // Slot 'rebuildGraph'
+        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -119,7 +124,8 @@ void SounitBuilder::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 5: _t->onPlaybackTick(); break;
         case 6: _t->stopPlayback((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
         case 7: _t->stopPlayback(); break;
-        case 8: _t->rebuildGraph(); break;
+        case 8: _t->rebuildGraph((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 9: _t->rebuildGraph(); break;
         default: ;
         }
     }
@@ -160,14 +166,14 @@ int SounitBuilder::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     }
     return _id;
 }

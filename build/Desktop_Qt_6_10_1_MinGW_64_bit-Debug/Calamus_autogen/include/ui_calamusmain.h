@@ -102,6 +102,8 @@ public:
     QGroupBox *groupSounitInfo;
     QFormLayout *formLayout_2;
     QLabel *label;
+    QComboBox *comboSounitSelector;
+    QLabel *labelSounitName;
     QLineEdit *editSounitName;
     QLabel *label_2;
     QLineEdit *editSounitUsedBy;
@@ -225,6 +227,7 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QFrame *frameTracks;
     QHBoxLayout *horizontalLayout;
+    QPushButton *btnAddTrack;
     QGroupBox *groupPenSettings;
     QVBoxLayout *verticalLayout_15;
     QFrame *frameModeLine;
@@ -398,31 +401,42 @@ public:
 
         formLayout_2->setWidget(0, QFormLayout::ItemRole::LabelRole, label);
 
+        comboSounitSelector = new QComboBox(groupSounitInfo);
+        comboSounitSelector->setObjectName("comboSounitSelector");
+        comboSounitSelector->setEditable(false);
+
+        formLayout_2->setWidget(0, QFormLayout::ItemRole::FieldRole, comboSounitSelector);
+
+        labelSounitName = new QLabel(groupSounitInfo);
+        labelSounitName->setObjectName("labelSounitName");
+
+        formLayout_2->setWidget(1, QFormLayout::ItemRole::LabelRole, labelSounitName);
+
         editSounitName = new QLineEdit(groupSounitInfo);
         editSounitName->setObjectName("editSounitName");
 
-        formLayout_2->setWidget(0, QFormLayout::ItemRole::FieldRole, editSounitName);
+        formLayout_2->setWidget(1, QFormLayout::ItemRole::FieldRole, editSounitName);
 
         label_2 = new QLabel(groupSounitInfo);
         label_2->setObjectName("label_2");
 
-        formLayout_2->setWidget(1, QFormLayout::ItemRole::LabelRole, label_2);
+        formLayout_2->setWidget(2, QFormLayout::ItemRole::LabelRole, label_2);
 
         editSounitUsedBy = new QLineEdit(groupSounitInfo);
         editSounitUsedBy->setObjectName("editSounitUsedBy");
         editSounitUsedBy->setReadOnly(true);
 
-        formLayout_2->setWidget(1, QFormLayout::ItemRole::FieldRole, editSounitUsedBy);
+        formLayout_2->setWidget(2, QFormLayout::ItemRole::FieldRole, editSounitUsedBy);
 
         label_3 = new QLabel(groupSounitInfo);
         label_3->setObjectName("label_3");
 
-        formLayout_2->setWidget(2, QFormLayout::ItemRole::LabelRole, label_3);
+        formLayout_2->setWidget(3, QFormLayout::ItemRole::LabelRole, label_3);
 
         editSounitComment = new QLineEdit(groupSounitInfo);
         editSounitComment->setObjectName("editSounitComment");
 
-        formLayout_2->setWidget(2, QFormLayout::ItemRole::FieldRole, editSounitComment);
+        formLayout_2->setWidget(3, QFormLayout::ItemRole::FieldRole, editSounitComment);
 
 
         verticalLayout_5->addWidget(groupSounitInfo);
@@ -974,6 +988,11 @@ public:
         frameTracks->setFrameShadow(QFrame::Shadow::Sunken);
         horizontalLayout = new QHBoxLayout(frameTracks);
         horizontalLayout->setObjectName("horizontalLayout");
+        btnAddTrack = new QPushButton(frameTracks);
+        btnAddTrack->setObjectName("btnAddTrack");
+
+        horizontalLayout->addWidget(btnAddTrack);
+
 
         horizontalLayout_6->addWidget(frameTracks);
 
@@ -1300,7 +1319,8 @@ public:
         actionAbout_Calamus->setText(QCoreApplication::translate("CalamusMain", "About Calamus", nullptr));
         actionComposition_Settings->setText(QCoreApplication::translate("CalamusMain", "Composition Settings", nullptr));
         groupSounitInfo->setTitle(QCoreApplication::translate("CalamusMain", "Sounit Info", nullptr));
-        label->setText(QCoreApplication::translate("CalamusMain", "name:", nullptr));
+        label->setText(QCoreApplication::translate("CalamusMain", "Edit Sounit:", nullptr));
+        labelSounitName->setText(QCoreApplication::translate("CalamusMain", "Name:", nullptr));
         label_2->setText(QCoreApplication::translate("CalamusMain", "Used by:", nullptr));
         label_3->setText(QCoreApplication::translate("CalamusMain", "Comment", nullptr));
         groupContainerInspector->setTitle(QCoreApplication::translate("CalamusMain", "Container inspector", nullptr));
@@ -1377,6 +1397,7 @@ public:
         btnGestureRemove->setText(QCoreApplication::translate("CalamusMain", "Remove", nullptr));
         tabInspector->setTabText(tabInspector->indexOf(tabGestureInspector), QCoreApplication::translate("CalamusMain", "Gesture", nullptr));
         groupTracks->setTitle(QCoreApplication::translate("CalamusMain", "Tracks", nullptr));
+        btnAddTrack->setText(QCoreApplication::translate("CalamusMain", "Add Track", nullptr));
         groupPenSettings->setTitle(QCoreApplication::translate("CalamusMain", "Pen Settings", nullptr));
         labelMode->setText(QCoreApplication::translate("CalamusMain", "Mode:", nullptr));
         radioDraw->setText(QCoreApplication::translate("CalamusMain", "Draw", nullptr));

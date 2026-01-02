@@ -36,6 +36,8 @@ public:
     QAction *actionPlay;
     QAction *actionstop;
     QAction *actionCompositionSettings;
+    QAction *actionSnapToScale;
+    QAction *actionAddTrack;
     QWidget *centralwidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayoutTimeline;
@@ -45,6 +47,7 @@ public:
     QToolBar *scoreCanvasBottomToolbar;
     QMenuBar *menubar;
     QMenu *menuFile;
+    QMenu *menuTrack;
 
     void setupUi(QMainWindow *scorecanvas)
     {
@@ -84,6 +87,12 @@ public:
         actionCompositionSettings = new QAction(scorecanvas);
         actionCompositionSettings->setObjectName("actionCompositionSettings");
         actionCompositionSettings->setMenuRole(QAction::MenuRole::NoRole);
+        actionSnapToScale = new QAction(scorecanvas);
+        actionSnapToScale->setObjectName("actionSnapToScale");
+        actionSnapToScale->setMenuRole(QAction::MenuRole::NoRole);
+        actionAddTrack = new QAction(scorecanvas);
+        actionAddTrack->setObjectName("actionAddTrack");
+        actionAddTrack->setMenuRole(QAction::MenuRole::NoRole);
         centralwidget = new QWidget(scorecanvas);
         centralwidget->setObjectName("centralwidget");
         centralwidget->setStyleSheet(QString::fromUtf8("background-color: white;"));
@@ -120,6 +129,8 @@ public:
         menubar->setGeometry(QRect(0, 0, 1171, 21));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName("menuFile");
+        menuTrack = new QMenu(menubar);
+        menuTrack->setObjectName("menuTrack");
         scorecanvas->setMenuBar(menubar);
 
         toolBar->addAction(actionDrawDiscreteNotes);
@@ -131,10 +142,14 @@ public:
         toolBar->addSeparator();
         toolBar->addAction(actionScoreCanvasSelect);
         toolBar->addAction(actionScoreCanvasZoom);
+        toolBar->addSeparator();
+        toolBar->addAction(actionSnapToScale);
         scoreCanvasBottomToolbar->addAction(actionPlay);
         scoreCanvasBottomToolbar->addAction(actionstop);
         menubar->addAction(menuFile->menuAction());
+        menubar->addAction(menuTrack->menuAction());
         menuFile->addAction(actionCompositionSettings);
+        menuTrack->addAction(actionAddTrack);
 
         retranslateUi(scorecanvas);
 
@@ -158,9 +173,18 @@ public:
 #if QT_CONFIG(shortcut)
         actionCompositionSettings->setShortcut(QCoreApplication::translate("scorecanvas", "Ctrl+,", nullptr));
 #endif // QT_CONFIG(shortcut)
+        actionSnapToScale->setText(QCoreApplication::translate("scorecanvas", "Snap to Scale", nullptr));
+#if QT_CONFIG(tooltip)
+        actionSnapToScale->setToolTip(QCoreApplication::translate("scorecanvas", "Quantize selected continuous note to scale degrees", nullptr));
+#endif // QT_CONFIG(tooltip)
+        actionAddTrack->setText(QCoreApplication::translate("scorecanvas", "Add Track...", nullptr));
+#if QT_CONFIG(tooltip)
+        actionAddTrack->setToolTip(QCoreApplication::translate("scorecanvas", "Add a new track to the composition", nullptr));
+#endif // QT_CONFIG(tooltip)
         toolBar->setWindowTitle(QCoreApplication::translate("scorecanvas", "toolBar", nullptr));
         scoreCanvasBottomToolbar->setWindowTitle(QCoreApplication::translate("scorecanvas", "toolBar_2", nullptr));
         menuFile->setTitle(QCoreApplication::translate("scorecanvas", "File", nullptr));
+        menuTrack->setTitle(QCoreApplication::translate("scorecanvas", "Track", nullptr));
     } // retranslateUi
 
 };

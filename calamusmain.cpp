@@ -31,6 +31,7 @@ CalamusMain::CalamusMain(QWidget *parent)
     , sounitBuilder(nullptr)    // Initialize pointers
     , scoreCanvasWindow(nullptr) // Initialize pointers
     , audioEngine(nullptr)
+    , currentEditingTrack(-1)  // No sounit loaded initially
 {
     ui->setupUi(this);
 
@@ -94,7 +95,10 @@ CalamusMain::CalamusMain(QWidget *parent)
     connect(canvas, &Canvas::sounitCommentChanged, this, &CalamusMain::onSounitCommentChanged);
 
     // Connect Sounit Info UI fields
-    connect(ui->editSounitName, &QLineEdit::editingFinished, this, &CalamusMain::onSounitNameEdited);
+    connect(ui->comboSounitSelector, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &CalamusMain::onSounitSelectorChanged);
+    connect(ui->editSounitName, &QLineEdit::editingFinished,
+            this, &CalamusMain::onSounitNameEdited);
     connect(ui->editSounitComment, &QLineEdit::editingFinished, this, &CalamusMain::onSounitCommentEdited);
 
     // Connect phrase inspector widgets (Phase 4)
@@ -106,6 +110,9 @@ CalamusMain::CalamusMain(QWidget *parent)
     connect(ui->btnCreatePhrase, &QPushButton::clicked, this, &CalamusMain::onCreatePhraseClicked);
     connect(ui->btnUngroupPhrase, &QPushButton::clicked, this, &CalamusMain::onUngroupPhraseClicked);
     connect(ui->btnSavePhraseTemplate, &QPushButton::clicked, this, &CalamusMain::onSavePhraseTemplateClicked);
+
+    // Connect track management buttons
+    connect(ui->btnAddTrack, &QPushButton::clicked, this, &CalamusMain::onAddTrack);
 
     // Connect ScoreCanvas phrase selection signal (Phase 4)
     connect(scoreCanvasWindow->getScoreCanvas(), &ScoreCanvas::phraseSelectionChanged,
@@ -1228,6 +1235,105 @@ void CalamusMain::closeEvent(QCloseEvent *event)
     QMainWindow::closeEvent(event);
 }
 
+// ============================================================================
+// Sounit Navigation
+// ============================================================================
+
+void CalamusMain::updateSounitSelector()
+{
+    // Update the combobox to show all loaded sounits
+    ui->comboSounitSelector->blockSignals(true);
+
+    // Clear and repopulate
+    ui->comboSounitSelector->clear();
+
+    // Add all tracks that have sounits loaded
+    int indexToSelect = -1;
+    for (auto it = trackSounitNames.constBegin(); it != trackSounitNames.constEnd(); ++it) {
+        int trackIndex = it.key();
+        QString sounitName = it.value();
+        QString displayText = QString("Track %1: %2").arg(trackIndex).arg(sounitName);
+        ui->comboSounitSelector->addItem(displayText, trackIndex);
+
+        // Remember the index if this matches the current editing track
+        if (trackIndex == currentEditingTrack) {
+            indexToSelect = ui->comboSounitSelector->count() - 1;
+        }
+    }
+
+    // Set the selection to match the current editing track
+    if (indexToSelect >= 0) {
+        ui->comboSounitSelector->setCurrentIndex(indexToSelect);
+    }
+
+    ui->comboSounitSelector->blockSignals(false);
+
+    qDebug() << "SounitSelector updated with" << trackSounitNames.size() << "sounits, selected index" << indexToSelect << "for track" << currentEditingTrack;
+}
+
+void CalamusMain::switchToSounit(int trackIndex)
+{
+    if (!trackSounitFiles.contains(trackIndex)) {
+        qWarning() << "No sounit file found for track" << trackIndex;
+        return;
+    }
+
+    QString filePath = trackSounitFiles[trackIndex];
+    QString sounitName;
+
+    Canvas *canvas = sounitBuilder->getCanvas();
+
+    // IMPORTANT: Update which track we're editing BEFORE loading
+    // because loading triggers sounitNameChanged signal which needs correct currentEditingTrack
+    currentEditingTrack = trackIndex;
+
+    // Load the sounit from file into the canvas
+    if (!canvas->loadFromJson(filePath, sounitName)) {
+        QMessageBox::critical(this, "Load Error",
+            QString("Failed to reload sounit for track %1 from:\n%2").arg(trackIndex).arg(filePath));
+        currentEditingTrack = -1;  // Reset on failure
+        return;
+    }
+
+    // Reconnect container signals after load
+    QList<Container*> containers = canvas->findChildren<Container*>();
+    for (Container *container : containers) {
+        sounitBuilder->connectContainerSignals(container);
+    }
+
+    // Rebuild the graph for this track
+    sounitBuilder->rebuildGraph(trackIndex);
+
+    qDebug() << "Switched to editing sounit for track" << trackIndex << ":" << sounitName;
+}
+
+void CalamusMain::onSounitSelectorChanged(int index)
+{
+    if (index < 0) {
+        qDebug() << "SounitSelector: Invalid index" << index;
+        return;
+    }
+
+    // Get the track index from the item data
+    QVariant data = ui->comboSounitSelector->itemData(index);
+    if (!data.isValid()) {
+        qWarning() << "SounitSelector: No data for index" << index;
+        return;
+    }
+
+    int trackIndex = data.toInt();
+    qDebug() << "SounitSelector: User selected index" << index << "-> track" << trackIndex
+             << "(current editing track:" << currentEditingTrack << ")";
+
+    // Only switch if it's a different track
+    if (trackIndex != currentEditingTrack) {
+        qDebug() << "SounitSelector: Switching from track" << currentEditingTrack << "to track" << trackIndex;
+        switchToSounit(trackIndex);
+    } else {
+        qDebug() << "SounitSelector: Already editing track" << trackIndex << ", no switch needed";
+    }
+}
+
 CalamusMain::~CalamusMain()
 {
     // Clean up in reverse order
@@ -1299,13 +1405,58 @@ void CalamusMain::onLoadSounit()
 
     currentSounitFilePath = fileName;
 
-    // Rebuild graph with loaded containers/connections
-    sounitBuilder->rebuildGraph();
+    // Ask user which track to assign this sounit to
+    QStringList trackNames;
+    const QVector<TrackSelector::Track>& tracks = scoreCanvasWindow->getTrackSelector()->getTracks();
+
+    if (tracks.isEmpty()) {
+        QMessageBox::warning(this, "No Tracks",
+            "No tracks available. Please create a track first using Track > Add Track.");
+        return;
+    }
+
+    for (int i = 0; i < tracks.size(); i++) {
+        trackNames << QString("Track %1: %2").arg(i).arg(tracks[i].name);
+    }
+
+    bool ok;
+    QString selectedTrack = QInputDialog::getItem(
+        this,
+        "Assign Sounit to Track",
+        QString("Assign sounit '%1' to which track?").arg(sounitName),
+        trackNames,
+        0,  // Default to first track
+        false,  // Not editable
+        &ok
+    );
+
+    if (!ok) {
+        return;  // User cancelled
+    }
+
+    // Extract track index from selection
+    int trackIndex = trackNames.indexOf(selectedTrack);
+
+    // Rebuild graph for the selected track
+    sounitBuilder->rebuildGraph(trackIndex);
+
+    // Update track name and color in ScoreCanvasWindow
+    QColor sounitColor = scoreCanvasWindow->getNextTrackColor();
+    scoreCanvasWindow->updateSounitTrack(trackIndex, sounitName, sounitColor);
+
+    // Track this sounit for navigation
+    trackSounitFiles[trackIndex] = fileName;
+    trackSounitNames[trackIndex] = sounitName;
+    currentEditingTrack = trackIndex;
+
+    // Update the sounit selector dropdown
+    updateSounitSelector();
 
     QMessageBox::information(this, "Loaded",
-        QString("Sounit '%1' loaded successfully").arg(sounitName));
+        QString("Sounit '%1' loaded successfully and assigned to Track %2")
+            .arg(sounitName).arg(trackIndex));
 
-    qDebug() << "Sounit loaded from:" << fileName;
+    qDebug() << "Sounit loaded from:" << fileName << "and assigned to track" << trackIndex;
 }
 
 void CalamusMain::onSaveSounitAs()
@@ -1368,17 +1519,18 @@ void CalamusMain::onSounitNameChanged(const QString &name)
     // Update window title to show sounit name
     setWindowTitle(QString("Calamus - %1").arg(name));
 
-    // Update the UI field (block signals to avoid recursive updates)
+    // Update the current editing track's name in our map
+    if (currentEditingTrack >= 0) {
+        trackSounitNames[currentEditingTrack] = name;
+    }
+
+    // Update the name text field (block signals to avoid recursive updates)
     ui->editSounitName->blockSignals(true);
     ui->editSounitName->setText(name);
     ui->editSounitName->blockSignals(false);
 
-    // Update track 0 in score canvas with sounit info
-    if (scoreCanvasWindow) {
-        // Use a distinctive color for the sounit track (deep blue)
-        QColor sounitColor(0, 102, 204);  // Deep blue
-        scoreCanvasWindow->updateSounitTrack(name, sounitColor);
-    }
+    // Refresh the selector to show updated name in dropdown list
+    updateSounitSelector();
 }
 
 void CalamusMain::onSounitCommentChanged(const QString &comment)
@@ -1392,7 +1544,8 @@ void CalamusMain::onSounitCommentChanged(const QString &comment)
 void CalamusMain::onSounitNameEdited()
 {
     Canvas *canvas = sounitBuilder->getCanvas();
-    canvas->setSounitName(ui->editSounitName->text());
+    QString newName = ui->editSounitName->text();
+    canvas->setSounitName(newName);
 }
 
 void CalamusMain::onSounitCommentEdited()
@@ -1618,4 +1771,22 @@ void CalamusMain::onSavePhraseTemplateClicked()
     file.close();
 
     qDebug() << "Saved phrase template:" << selectedPhrase->getName() << "to" << filename;
+}
+
+void CalamusMain::onAddTrack()
+{
+    qDebug() << "CalamusMain: Add Track button clicked";
+
+    // For now, show a simple message
+    // In the future, this will open a dialog to create/configure a new track
+    QMessageBox::information(this, "Add Track",
+                            "Track management UI is being implemented.\n\n"
+                            "Future features:\n"
+                            "• Create new tracks\n"
+                            "• Assign sounits to tracks\n"
+                            "• Configure track properties");
+
+    // TODO: Implement track creation dialog
+    // TODO: Add track to ScoreCanvasWindow's TrackSelector
+    // TODO: Handle sounit assignment to tracks
 }

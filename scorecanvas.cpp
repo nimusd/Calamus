@@ -372,6 +372,41 @@ void ScoreCanvas::clearNotes()
     update();
 }
 
+void ScoreCanvas::snapSelectedNotesToScale()
+{
+    // Quantize all selected continuous notes to scale degrees
+    if (selectedNoteIndices.isEmpty()) {
+        qDebug() << "ScoreCanvas::snapSelectedNotesToScale - No notes selected";
+        return;
+    }
+
+    QVector<Note> &notes = phrase.getNotes();
+    int quantizedCount = 0;
+
+    for (int index : selectedNoteIndices) {
+        if (index >= 0 && index < notes.size()) {
+            Note &note = notes[index];
+
+            // Only quantize notes that have pitch curves (continuous notes)
+            if (note.hasPitchCurve()) {
+                Curve quantizedCurve = quantizePitchCurveToScale(note.getPitchCurve());
+                note.setPitchCurve(quantizedCurve);
+                quantizedCount++;
+                qDebug() << "Quantized note" << index << "- original points:"
+                         << note.getPitchCurve().getPointCount()
+                         << "quantized points:" << quantizedCurve.getPointCount();
+            }
+        }
+    }
+
+    if (quantizedCount > 0) {
+        update();
+        qDebug() << "ScoreCanvas::snapSelectedNotesToScale - Quantized" << quantizedCount << "notes";
+    } else {
+        qDebug() << "ScoreCanvas::snapSelectedNotesToScale - No continuous notes in selection";
+    }
+}
+
 // ============================================================================
 // Input Mode Management
 // ============================================================================
@@ -1710,19 +1745,19 @@ Curve ScoreCanvas::quantizePitchCurveToScale(const Curve &pitchCurve) const
     Curve quantizedCurve;
 
     // Sample the curve at many points to detect all transitions
-    const int sampleCount = 200;  // High resolution for smooth transitions
+    const int sampleCount = 500;  // High resolution for accurate transition detection
     double currentScalePitch = 0.0;  // Track the current snapped pitch
-    bool firstSample = true;
+    double previousTime = 0.0;
 
     for (int i = 0; i < sampleCount; ++i) {
         double t = i / static_cast<double>(sampleCount - 1);  // Normalized time 0.0-1.0
         double rawPitch = pitchCurve.valueAt(t);
 
-        if (firstSample) {
+        if (i == 0) {
             // Initialize to nearest scale line
             currentScalePitch = snapToNearestScaleLine(rawPitch);
-            quantizedCurve.addPoint(t, currentScalePitch);
-            firstSample = false;
+            quantizedCurve.addPoint(0.0, currentScalePitch);
+            previousTime = 0.0;
             continue;
         }
 
@@ -1766,17 +1801,24 @@ Curve ScoreCanvas::quantizePitchCurveToScale(const Curve &pitchCurve) const
             }
         }
 
-        // Add point if pitch changed
+        // When switching to a new pitch, create a clean step transition
         if (shouldSwitch) {
+            // Add a point just before the transition at the old pitch (creates horizontal line)
+            double transitionTime = (previousTime + t) / 2.0;  // Midpoint for clean transition
+            quantizedCurve.addPoint(transitionTime - 0.001, currentScalePitch);
+            // Add a point at the transition at the new pitch (creates vertical step)
+            quantizedCurve.addPoint(transitionTime, newScalePitch);
+
             currentScalePitch = newScalePitch;
-            quantizedCurve.addPoint(t, currentScalePitch);
         }
+
+        previousTime = t;
     }
 
-    // Ensure curve ends at final time
-    if (quantizedCurve.getPointCount() > 0) {
-        quantizedCurve.addPoint(1.0, currentScalePitch);
-    }
+    // Ensure curve ends at 1.0 with the final pitch
+    quantizedCurve.addPoint(1.0, currentScalePitch);
+
+    qDebug() << "Quantized curve points:" << quantizedCurve.getPointCount();
 
     return quantizedCurve;
 }

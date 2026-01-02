@@ -34,35 +34,49 @@
            <item row="0" column="0">
             <widget class="QLabel" name="label">
              <property name="text">
-              <string>name:</string>
+              <string>Edit Sounit:</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="editSounitName"/>
+            <widget class="QComboBox" name="comboSounitSelector">
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="1" column="0">
+            <widget class="QLabel" name="labelSounitName">
+             <property name="text">
+              <string>Name:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="editSounitName"/>
+           </item>
+           <item row="2" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
               <string>Used by:</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="2" column="1">
             <widget class="QLineEdit" name="editSounitUsedBy">
              <property name="readOnly">
               <bool>true</bool>
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
+           <item row="3" column="0">
             <widget class="QLabel" name="label_3">
              <property name="text">
               <string>Comment</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
+           <item row="3" column="1">
             <widget class="QLineEdit" name="editSounitComment"/>
            </item>
           </layout>
@@ -840,7 +854,15 @@
              <property name="frameShadow">
               <enum>QFrame::Shadow::Sunken</enum>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout"/>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QPushButton" name="btnAddTrack">
+                <property name="text">
+                 <string>Add Track</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>

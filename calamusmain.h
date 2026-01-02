@@ -47,6 +47,9 @@ private:
 
     // Sounit file management
     QString currentSounitFilePath;
+    QMap<int, QString> trackSounitFiles;  // Map track index -> sounit file path
+    QMap<int, QString> trackSounitNames;  // Map track index -> sounit name
+    int currentEditingTrack;  // Which track's sounit is currently loaded in Sound Engine tab
 
     // Dynamic inspector controls (created based on container type)
     QComboBox *comboDnaSelect = nullptr;
@@ -95,6 +98,10 @@ private:
                            const QString &paramName, double minVal, double maxVal,
                            double defaultVal, double step = 0.01, int decimals = 2);
 
+    // Sounit navigation helpers
+    void updateSounitSelector();  // Refresh the combobox with all loaded sounits
+    void switchToSounit(int trackIndex);  // Load a different sounit into the canvas for editing
+
 public slots:
     void stopAllPlayback();  // Stop playback in both windows
 
@@ -107,8 +114,12 @@ private slots:
     void onSaveSounitAs();
     void onSounitNameChanged(const QString &name);
     void onSounitCommentChanged(const QString &comment);
-    void onSounitNameEdited();
-    void onSounitCommentEdited();
+    void onSounitSelectorChanged(int index);  // Handle sounit selection from dropdown
+    void onSounitNameEdited();  // Handle inline editing of sounit name
+    void onSounitCommentEdited();  // Handle editing of sounit comment
+
+    // Track management slots
+    void onAddTrack();
 
     // Inspector update slots
     void onContainerSelected(Container *container);

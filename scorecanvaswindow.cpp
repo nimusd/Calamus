@@ -13,6 +13,7 @@
 #include <QMouseEvent>
 #include <QCursor>
 #include <QTimer>
+#include <QInputDialog>
 #include <cmath>
 
 ScoreCanvasWindow::ScoreCanvasWindow(AudioEngine *sharedAudioEngine, QWidget *parent)
@@ -42,9 +43,20 @@ ScoreCanvasWindow::ScoreCanvasWindow(AudioEngine *sharedAudioEngine, QWidget *pa
     , playbackStartTime(0.0)
     , playbackStartPosition(0.0)
     , isPlaying(false)
+    , nextColorIndex(0)
 {
     qDebug() << "ScoreCanvasWindow: Starting constructor";
     ui->setupUi(this);
+
+    // Initialize track color palette
+    trackColorPalette = {
+        QColor(0, 102, 204),   // Deep blue
+        QColor(204, 0, 102),   // Deep pink
+        QColor(102, 204, 0),   // Lime green
+        QColor(204, 102, 0),   // Orange
+        QColor(102, 0, 204),   // Purple
+        QColor(0, 204, 204)    // Cyan
+    };
 
     // Ensure menubar is visible and properly set
     if (ui->menubar) {
@@ -123,6 +135,9 @@ ScoreCanvasWindow::ScoreCanvasWindow(AudioEngine *sharedAudioEngine, QWidget *pa
     // Connect transport controls
     connect(ui->actionPlay, &QAction::triggered, this, &ScoreCanvasWindow::startPlayback);
     connect(ui->actionstop, &QAction::triggered, this, &ScoreCanvasWindow::stopPlayback);
+
+    // Connect track selection to trigger pre-rendering
+    connect(trackSelector, &TrackSelector::trackSelected, this, &ScoreCanvasWindow::onTrackSelected);
 
     qDebug() << "ScoreCanvasWindow: Constructor complete";
 }
@@ -302,6 +317,8 @@ void ScoreCanvasWindow::setupCompositionSettings()
     // Connect File menu action
     connect(ui->actionCompositionSettings, &QAction::triggered,
             this, &ScoreCanvasWindow::onCompositionSettingsTriggered);
+    connect(ui->actionAddTrack, &QAction::triggered,
+            this, &ScoreCanvasWindow::onAddTrackTriggered);
 
     qDebug() << "ScoreCanvasWindow: Composition settings configured";
 }
@@ -527,14 +544,8 @@ void ScoreCanvasWindow::setupScoreCanvas()
 
     // Connect snap to scale action
     connect(ui->actionSnapToScale, &QAction::triggered, this, [this]() {
-        // Get selected notes and quantize any continuous notes
-        QVector<Note> &notes = scoreCanvas->getPhrase().getNotes();
-        const QVector<int> &selectedIndices = scoreCanvas->getPhrase().getNotes().size() > 0 ?
-            QVector<int>() : QVector<int>();  // Placeholder - we need access to selected indices
-
-        // For now, we'll need to add a method to ScoreCanvas to get selected note indices
-        // and perform the quantization
-        qDebug() << "ScoreCanvasWindow: Snap to Scale action triggered (needs implementation)";
+        scoreCanvas->snapSelectedNotesToScale();
+        qDebug() << "ScoreCanvasWindow: Snap to Scale action triggered";
     });
 }
 
@@ -1341,24 +1352,24 @@ void ScoreCanvasWindow::onTimeSignatureChanged()
     }
 }
 
-void ScoreCanvasWindow::updateSounitTrack(const QString &sounitName, const QColor &sounitColor)
+void ScoreCanvasWindow::updateSounitTrack(int trackIndex, const QString &sounitName, const QColor &sounitColor)
 {
-    // Update track 0 with the loaded sounit information
+    // Update the specified track with the loaded sounit information
     // For now, all sounits use the full register (lowest to highest note)
     const double LOWEST_NOTE = 27.5;   // A0
     const double HIGHEST_NOTE = 4186.0; // C8
 
-    // Check if track 0 exists
+    // Check if the track exists
     const QVector<TrackSelector::Track>& tracks = trackSelector->getTracks();
-    if (tracks.isEmpty()) {
-        // Create track 0 if it doesn't exist
-        trackSelector->addTrack(sounitName, sounitColor, LOWEST_NOTE, HIGHEST_NOTE);
-    } else {
-        // Update existing track 0
-        trackSelector->updateTrack(0, sounitName, sounitColor);
+    if (trackIndex >= tracks.size()) {
+        qWarning() << "ScoreCanvasWindow: Invalid track index" << trackIndex << "- only" << tracks.size() << "tracks exist";
+        return;
     }
 
-    qDebug() << "ScoreCanvasWindow: Track 0 updated with sounit:" << sounitName;
+    // Update the specified track
+    trackSelector->updateTrack(trackIndex, sounitName, sounitColor);
+
+    qDebug() << "ScoreCanvasWindow: Track" << trackIndex << "updated with sounit:" << sounitName;
 }
 
 void ScoreCanvasWindow::onCompositionSettingsTriggered()
@@ -1464,6 +1475,75 @@ void ScoreCanvasWindow::updateFromSettings(const CompositionSettings &settings)
 
     qDebug() << "ScoreCanvasWindow: Canvas resized to" << canvasWidth << "pixels for"
              << settings.lengthMs << "ms composition (" << (settings.lengthMs / 60000.0) << "minutes)";
+}
+
+void ScoreCanvasWindow::onAddTrackTriggered()
+{
+    qDebug() << "ScoreCanvasWindow: Add Track menu item clicked";
+
+    // Get track name from user
+    bool ok;
+    QString trackName = QInputDialog::getText(this, "Add Track",
+                                             "Track name:",
+                                             QLineEdit::Normal,
+                                             "New Track", &ok);
+    if (!ok || trackName.isEmpty()) {
+        return;  // User canceled
+    }
+
+    // Get next color from palette
+    QColor trackColor = getNextTrackColor();
+
+    // Add track to TrackSelector
+    // For now, use full frequency range (A0 to C8)
+    const double LOWEST_NOTE = 27.5;    // A0
+    const double HIGHEST_NOTE = 4186.0; // C8
+    trackSelector->addTrack(trackName, trackColor, LOWEST_NOTE, HIGHEST_NOTE);
+
+    qDebug() << "ScoreCanvasWindow: Added track" << trackName << "with color" << trackColor.name();
+
+    // TODO: Allow user to assign a sounit to this track
+    // TODO: Set the new track as active
+}
+
+void ScoreCanvasWindow::onTrackSelected(int trackIndex)
+{
+    qDebug() << "ScoreCanvasWindow: Track" << trackIndex << "selected";
+
+    // Set the active track in ScoreCanvas so new notes go to this track
+    scoreCanvas->setActiveTrack(trackIndex);
+
+    // Pre-render notes for playback with current track's sounit
+    prerenderNotes();
+}
+
+void ScoreCanvasWindow::prerenderNotes()
+{
+    if (!audioEngine) return;
+
+    // Get all notes from the canvas phrase
+    const QVector<Note>& notes = scoreCanvas->getPhrase().getNotes();
+
+    if (notes.isEmpty()) {
+        qDebug() << "ScoreCanvas: No notes to pre-render";
+        return;
+    }
+
+    qDebug() << "=== ScoreCanvas: Auto pre-rendering" << notes.size() << "notes ===";
+
+    // Pre-render all notes (no time offset needed for full rendering)
+    audioEngine->renderNotes(notes, notes.size());
+
+    qDebug() << "=== ScoreCanvas: Pre-rendering complete (ready for playback) ===";
+}
+
+QColor ScoreCanvasWindow::getNextTrackColor()
+{
+    // Get the next color from the palette and increment the index
+    QColor color = trackColorPalette[nextColorIndex % trackColorPalette.size()];
+    nextColorIndex++;
+    qDebug() << "ScoreCanvasWindow: Assigned color" << color.name() << "(index" << (nextColorIndex - 1) << ")";
+    return color;
 }
 
 ScoreCanvasWindow::~ScoreCanvasWindow()

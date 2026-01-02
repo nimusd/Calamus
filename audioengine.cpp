@@ -5,24 +5,26 @@
 AudioEngine::AudioEngine()
     : gateOpen(false)
     , amplitude(0.0)
-    , useGraph(false)
     , currentPitch(261.63)
     , noteDuration(1000.0)
     , noteStartSample(0)
     , currentSample(0)
+    , segmentDurationMs(1000.0)  // 1 second segments by default
     , useRenderBuffer(false)
     , renderPlaybackPosition(0)
+    , renderPlaybackSegmentIndex(0)
     , renderCacheDirty(true)
     , sampleRate(48000)
     , initialized(false)
-    , graph(nullptr)
 {
+    // trackGraphs initialized as empty QMap
+    // renderSegments initialized as empty vector
 }
 
 AudioEngine::~AudioEngine()
 {
     shutdown();
-    delete graph;
+    clearAllGraphs();
 }
 
 bool AudioEngine::initialize(unsigned int sampleRate, unsigned int bufferFrames)
@@ -95,9 +97,16 @@ void AudioEngine::playNote(const Note& note)
     // Record the start sample for timing
     noteStartSample.store(currentSample.load());
 
-    if (useGraph.load() && graph) {
+    // Check if note's track has a graph
+    int trackIndex = note.getTrackIndex();
+    bool hasValidGraph = hasGraph(trackIndex);
+
+    if (hasValidGraph) {
         // Reset graph for new note
-        graph->reset();
+        std::lock_guard<std::mutex> lock(graphMutex);
+        if (trackGraphs.contains(trackIndex)) {
+            trackGraphs[trackIndex]->reset();
+        }
     } else {
         // Fallback to direct generator
         generator.setFundamentalHz(note.getPitchHz());
@@ -108,8 +117,8 @@ void AudioEngine::playNote(const Note& note)
     gateOpen = true;
 
     std::cout << "Playing note: " << note.getPitchHz() << " Hz, duration: "
-              << note.getDuration() << " ms"
-              << (useGraph.load() ? " (using graph)" : " (direct)") << std::endl;
+              << note.getDuration() << " ms (track " << trackIndex << ")"
+              << (hasValidGraph ? " (using graph)" : " (direct)") << std::endl;
 }
 
 void AudioEngine::stopNote()
@@ -119,31 +128,36 @@ void AudioEngine::stopNote()
     useRenderBuffer.store(false);  // Stop buffer playback
 }
 
-bool AudioEngine::buildGraph(Canvas *canvas)
+bool AudioEngine::buildGraph(Canvas *canvas, int trackIndex)
 {
     if (!canvas) {
-        clearGraph();
+        clearGraph(trackIndex);
         return false;
     }
 
     // Lock mutex to prevent audio thread from accessing graph during rebuild
     std::lock_guard<std::mutex> lock(graphMutex);
 
-    // Delete old graph if it exists
-    delete graph;
+    // Delete old graph for this track if it exists
+    if (trackGraphs.contains(trackIndex)) {
+        delete trackGraphs[trackIndex];
+        trackGraphs.remove(trackIndex);
+    }
 
     // Create and build graph
-    graph = new SounitGraph(static_cast<double>(sampleRate));
-    graph->buildFromCanvas(canvas);
+    SounitGraph *newGraph = new SounitGraph(static_cast<double>(sampleRate));
+    newGraph->buildFromCanvas(canvas);
 
-    // Enable graph mode if valid
-    bool isValid = graph->isValid();
+    // Check if valid
+    bool isValid = newGraph->isValid();
     if (isValid) {
-        useGraph.store(true);
-        std::cout << "AudioEngine: Graph built successfully - using graph mode" << std::endl;
+        trackGraphs[trackIndex] = newGraph;
+        std::cout << "AudioEngine: Graph built successfully for track " << trackIndex
+                  << " - using graph mode" << std::endl;
     } else {
-        std::cout << "AudioEngine: Graph invalid - falling back to direct mode" << std::endl;
-        useGraph.store(false);
+        std::cout << "AudioEngine: Graph invalid for track " << trackIndex
+                  << " - falling back to direct mode" << std::endl;
+        delete newGraph;
     }
 
     // Invalidate render cache - graph structure changed
@@ -153,16 +167,37 @@ bool AudioEngine::buildGraph(Canvas *canvas)
     return isValid;
 }
 
-void AudioEngine::clearGraph()
+void AudioEngine::clearGraph(int trackIndex)
 {
     // Lock mutex to prevent audio thread from accessing graph during clear
     std::lock_guard<std::mutex> lock(graphMutex);
 
-    delete graph;
-    graph = nullptr;
-    useGraph.store(false);
+    if (trackGraphs.contains(trackIndex)) {
+        delete trackGraphs[trackIndex];
+        trackGraphs.remove(trackIndex);
+        renderCacheDirty.store(true);
+        std::cout << "AudioEngine: Graph cleared for track " << trackIndex
+                  << " - using direct mode" << std::endl;
+    }
+}
+
+void AudioEngine::clearAllGraphs()
+{
+    // Lock mutex to prevent audio thread from accessing graphs during clear
+    std::lock_guard<std::mutex> lock(graphMutex);
+
+    for (SounitGraph *graph : trackGraphs) {
+        delete graph;
+    }
+    trackGraphs.clear();
     renderCacheDirty.store(true);
-    std::cout << "AudioEngine: Graph cleared - using direct mode" << std::endl;
+    std::cout << "AudioEngine: All graphs cleared - using direct mode" << std::endl;
+}
+
+bool AudioEngine::hasGraph(int trackIndex) const
+{
+    return trackGraphs.contains(trackIndex) && trackGraphs[trackIndex] != nullptr
+           && trackGraphs[trackIndex]->isValid();
 }
 
 int AudioEngine::audioCallback(void *outputBuffer, void *inputBuffer,
@@ -236,14 +271,10 @@ int AudioEngine::audioCallback(void *outputBuffer, void *inputBuffer,
 
             // Generate sample
             double sample;
-            if (engine->useGraph.load() && engine->graph && engine->graph->isValid()) {
-                // Use graph-based synthesis with current note pitch and progress
-                double pitch = engine->currentPitch.load();
-                sample = engine->graph->generateSample(pitch, noteProgress);
-            } else {
-                // Fallback to direct generator
-                sample = engine->generator.generateSample();
-            }
+            // Note: For live synthesis, we would need to track which track is active
+            // For now, fallback to direct generator for live playback
+            // Pre-rendered playback (the main use case) is handled in renderNotes()
+            sample = engine->generator.generateSample();
 
             // Apply envelope
             sample *= engine->amplitude.load();
@@ -314,12 +345,18 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
     }
 
     // Show which synthesis mode we're using
-    if (useGraph.load() && graph && graph->isValid()) {
-        std::cout << " [USING SOUNIT GRAPH]";
-    } else {
-        std::cout << " [FALLBACK: using HarmonicGenerator - NO GRAPH LOADED]";
+    std::cout << " [Loaded graphs for tracks:";
+    bool hasAnyGraph = false;
+    for (auto it = trackGraphs.constBegin(); it != trackGraphs.constEnd(); ++it) {
+        if (it.value() && it.value()->isValid()) {
+            std::cout << " " << it.key();
+            hasAnyGraph = true;
+        }
     }
-    std::cout << std::endl;
+    if (!hasAnyGraph) {
+        std::cout << " NONE - using fallback generator";
+    }
+    std::cout << "]" << std::endl;
 
     // Find the total duration (last note's end time)
     double totalDurationMs = 0.0;
@@ -357,7 +394,14 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
         size_t noteStartSample = static_cast<size_t>((note.getStartTime() / 1000.0) * sampleRate);
         size_t noteDurationSamples = static_cast<size_t>((note.getDuration() / 1000.0) * sampleRate);
 
-        std::cout << "  Note " << (noteIdx + 1) << ": " << note.getPitchHz() << " Hz, "
+        // Get note's track and check if it has a graph
+        int noteTrackIndex = note.getTrackIndex();
+        bool noteHasGraph = trackGraphs.contains(noteTrackIndex)
+                            && trackGraphs[noteTrackIndex]
+                            && trackGraphs[noteTrackIndex]->isValid();
+
+        std::cout << "  Note " << (noteIdx + 1) << ": track=" << noteTrackIndex
+                  << ", " << note.getPitchHz() << " Hz, "
                   << "start=" << note.getStartTime() << "ms, dur=" << note.getDuration() << "ms"
                   << ", avgDyn=" << note.getDynamics();
 
@@ -373,11 +417,11 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
         } else {
             std::cout << " [WARNING: " << dynPoints << " dynamics points!]";
         }
-        std::cout << std::endl;
+        std::cout << (noteHasGraph ? " [GRAPH]" : " [FALLBACK]") << std::endl;
 
         // Reset synthesis for this note
-        if (useGraph.load() && graph && graph->isValid()) {
-            graph->reset();
+        if (noteHasGraph) {
+            trackGraphs[noteTrackIndex]->reset();
         } else {
             // For fallback generator, set initial pitch (will be updated per-sample for continuous notes)
             generator.setFundamentalHz(note.getPitchHz());
@@ -392,7 +436,13 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
             if (bufferPos >= totalSamples) break;  // Safety check
 
             // Calculate note progress (0.0 to 1.0)
-            double noteProgress = static_cast<double>(i) / static_cast<double>(noteDurationSamples);
+            // Use noteDurationSamples - 1 as denominator to ensure we reach 1.0 at the last sample
+            double noteProgress;
+            if (noteDurationSamples > 1) {
+                noteProgress = static_cast<double>(i) / static_cast<double>(noteDurationSamples - 1);
+            } else {
+                noteProgress = 0.0;  // Single sample note
+            }
 
             // Sample pitch curve at current time (supports continuous pitch variation)
             double currentPitch = note.getPitchAt(noteProgress);
@@ -416,11 +466,11 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
                 if (amplitude < 0.0001) amplitude = 0.0;
             }
 
-            // Generate sample
+            // Generate sample using note's track graph
             double sample;
-            if (useGraph.load() && graph && graph->isValid()) {
+            if (noteHasGraph) {
                 // Use continuous pitch for graph-based synthesis
-                sample = graph->generateSample(currentPitch, noteProgress);
+                sample = trackGraphs[noteTrackIndex]->generateSample(currentPitch, noteProgress);
             } else {
                 // Update fallback generator pitch for continuous notes
                 generator.setFundamentalHz(currentPitch);

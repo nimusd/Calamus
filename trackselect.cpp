@@ -87,6 +87,23 @@ int TrackSelector::getActiveTrack() const
     return activeTrackIndex;
 }
 
+void TrackSelector::toggleTrackSelection(int index)
+{
+    if (index >= 0 && index < tracks.size()) {
+        tracks[index].isSelected = !tracks[index].isSelected;
+        update();
+        qDebug() << "TrackSelector: Track" << index << "selection toggled to" << tracks[index].isSelected;
+    }
+}
+
+bool TrackSelector::isTrackSelected(int index) const
+{
+    if (index >= 0 && index < tracks.size()) {
+        return tracks[index].isSelected;
+    }
+    return false;
+}
+
 void TrackSelector::clearTracks()
 {
     tracks.clear();

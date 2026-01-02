@@ -24,7 +24,10 @@ SounitBuilder::SounitBuilder(AudioEngine *sharedAudioEngine, QWidget *parent)
     setCentralWidget(canvas);
 
     // Connect canvas signals
-    connect(canvas, &Canvas::graphChanged, this, &SounitBuilder::rebuildGraph);
+    // When editing in Sound Engine tab, always work with track 0 (default track)
+    connect(canvas, &Canvas::graphChanged, this, [this]() {
+        rebuildGraph(0);  // Default track for Sound Engine editing
+    });
 
     // Style toolbar buttons by category
     QString blueStyle = "QToolButton { background-color: #3498db; color: white; }";
@@ -133,14 +136,15 @@ SounitBuilder::SounitBuilder(AudioEngine *sharedAudioEngine, QWidget *parent)
     rebuildGraph();
 }
 
-void SounitBuilder::rebuildGraph()
+void SounitBuilder::rebuildGraph(int trackIndex)
 {
     if (audioEngine && canvas) {
-        qDebug() << "SounitBuilder: Rebuilding graph from canvas";
-        bool isValid = audioEngine->buildGraph(canvas);
+        qDebug() << "SounitBuilder: Rebuilding graph from canvas for track" << trackIndex;
+        bool isValid = audioEngine->buildGraph(canvas, trackIndex);
 
-        // Show warning if graph is invalid
-        if (!isValid) {
+        // Show warning if graph is invalid AND canvas has containers
+        // (Don't show warning on startup when canvas is empty)
+        if (!isValid && !containers.isEmpty()) {
             QMessageBox::warning(this, "Invalid Graph Connection",
                                "The connection you made creates an invalid graph.\n\n"
                                "The audio engine has reverted to direct mode.\n\n"
@@ -217,7 +221,9 @@ void SounitBuilder::onAddContainer(const QString &name, const QColor &color,
     connect(newContainer, &Container::portClicked, this, &SounitBuilder::onPortClicked);
     connect(newContainer, &Container::clicked, canvas, &Canvas::selectContainer);
     connect(newContainer, &Container::moved, canvas, QOverload<>::of(&QWidget::update));
-    connect(newContainer, &Container::parameterChanged, this, &SounitBuilder::rebuildGraph);
+    connect(newContainer, &Container::parameterChanged, this, [this]() {
+        rebuildGraph(0);  // Default track for Sound Engine editing
+    });
 
     containers.append(newContainer);
 
@@ -409,7 +415,9 @@ void SounitBuilder::connectContainerSignals(Container *container)
     connect(container, &Container::portClicked, this, &SounitBuilder::onPortClicked);
     connect(container, &Container::clicked, canvas, &Canvas::selectContainer);
     connect(container, &Container::moved, canvas, QOverload<>::of(&QWidget::update));
-    connect(container, &Container::parameterChanged, this, &SounitBuilder::rebuildGraph);
+    connect(container, &Container::parameterChanged, this, [this]() {
+        rebuildGraph(0);  // Default track for Sound Engine editing
+    });
 }
 
 SounitBuilder::~SounitBuilder()
