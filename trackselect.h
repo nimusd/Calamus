@@ -29,6 +29,8 @@ public:
     void setActiveTrack(int index);
     int getActiveTrack() const;
     void clearTracks();
+    void updateTrack(int index, const QString &name, const QColor &color);
+    const QVector<Track>& getTracks() const { return tracks; }
 
     // Synchronization with score canvas
     void setFrequencyRange(double minHz, double maxHz);  // Visible range

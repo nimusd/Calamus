@@ -64,11 +64,18 @@ public:
     void setInputMode(InputMode mode);
     InputMode getInputMode() const { return currentInputMode; }
 
+    // Track management
+    void setActiveTrack(int trackIndex);
+    int getActiveTrack() const { return activeTrackIndex; }
+
     // Musical mode settings (for bar lines)
     void setMusicalMode(bool enabled, int tempo = 120, int timeSigTop = 4, int timeSigBottom = 4);
 
     // Clipboard operations
     void setPasteTargetTime(double timeMs);
+
+    // Note editing operations
+    void snapSelectedNotesToScale();  // Quantize selected continuous notes to scale degrees
 
     // Phrase management
     void createPhraseFromSelection(const QString &name = "New Phrase");
@@ -125,6 +132,9 @@ private:
 
     // Input mode state
     InputMode currentInputMode;
+
+    // Track state
+    int activeTrackIndex;   // Which track new notes will use (default 0)
 
     // Frequency mapping (must match TrackSelector)
     double visibleMinHz;
@@ -233,6 +243,9 @@ private:
     int calculateCurveDotCount(const Note &note) const;  // Adaptive dot count based on note width
     QRect getLeftResizeHandle(const Note &note) const;
     QRect getRightResizeHandle(const Note &note) const;
+
+    // Pitch curve quantization
+    Curve quantizePitchCurveToScale(const Curve &pitchCurve) const;
 };
 
 #endif // SCORECANVAS_H

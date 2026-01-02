@@ -5,6 +5,7 @@
 #include <QToolButton>
 #include <QDebug>
 #include <QKeyEvent>
+#include <QMessageBox>
 
 SounitBuilder::SounitBuilder(AudioEngine *sharedAudioEngine, QWidget *parent)
     : QMainWindow(parent)
@@ -136,7 +137,18 @@ void SounitBuilder::rebuildGraph()
 {
     if (audioEngine && canvas) {
         qDebug() << "SounitBuilder: Rebuilding graph from canvas";
-        audioEngine->buildGraph(canvas);
+        bool isValid = audioEngine->buildGraph(canvas);
+
+        // Show warning if graph is invalid
+        if (!isValid) {
+            QMessageBox::warning(this, "Invalid Graph Connection",
+                               "The connection you made creates an invalid graph.\n\n"
+                               "The audio engine has reverted to direct mode.\n\n"
+                               "Please check that:\n"
+                               "• The graph has exactly one Spectrum to Signal container\n"
+                               "• All containers are properly connected\n"
+                               "• There are no circular dependencies");
+        }
     }
 }
 
@@ -205,6 +217,7 @@ void SounitBuilder::onAddContainer(const QString &name, const QColor &color,
     connect(newContainer, &Container::portClicked, this, &SounitBuilder::onPortClicked);
     connect(newContainer, &Container::clicked, canvas, &Canvas::selectContainer);
     connect(newContainer, &Container::moved, canvas, QOverload<>::of(&QWidget::update));
+    connect(newContainer, &Container::parameterChanged, this, &SounitBuilder::rebuildGraph);
 
     containers.append(newContainer);
 
@@ -280,16 +293,16 @@ void SounitBuilder::startPlayback()
     // Make sure audio is stopped from any other source
     audioEngine->stopNote();
 
-    // PRE-RENDER: Render up to 10 notes into a single continuous buffer
+    // PRE-RENDER: Render all notes into a single continuous buffer
     qDebug() << "SounitBuilder: Pre-rendering notes...";
-    audioEngine->renderNotes(notes, 10);  // Render up to 10 notes
+    audioEngine->renderNotes(notes, notes.size());  // Render all notes
 
     // Play the rendered buffer
     audioEngine->playRenderedBuffer();
 
     // Calculate total playback duration from all notes
     double totalDuration = 0.0;
-    int maxNotes = qMin(notes.size(), 10);
+    int maxNotes = notes.size();  // Render all notes
     for (int i = 0; i < maxNotes; i++) {
         double noteEndTime = notes[i].getStartTime() + notes[i].getDuration();
         if (noteEndTime > totalDuration) {
@@ -306,7 +319,7 @@ void SounitBuilder::startPlayback()
     // Start the playback timer (tick every 10ms for smooth timing)
     playbackTimer->start(10);
 
-    qDebug() << "SounitBuilder: Starting playback of" << maxNotes << "note(s) (rendered mode, total duration:" << totalDuration << "ms)";
+    qDebug() << "SounitBuilder: Starting playback of" << notes.size() << "note(s) (rendered mode, total duration:" << totalDuration << "ms)";
 
     // Emit signal to stop other windows
     emit playbackStarted();
@@ -396,6 +409,7 @@ void SounitBuilder::connectContainerSignals(Container *container)
     connect(container, &Container::portClicked, this, &SounitBuilder::onPortClicked);
     connect(container, &Container::clicked, canvas, &Canvas::selectContainer);
     connect(container, &Container::moved, canvas, QOverload<>::of(&QWidget::update));
+    connect(container, &Container::parameterChanged, this, &SounitBuilder::rebuildGraph);
 }
 
 SounitBuilder::~SounitBuilder()

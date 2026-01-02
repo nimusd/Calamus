@@ -48,6 +48,10 @@ public:
     double getParameter(const QString &name, double defaultValue = 0.0) const;
     QMap<QString, double> getParameters() const { return parameters; }
 
+    // Batch parameter updates (to avoid triggering rebuild for each parameter)
+    void beginParameterUpdate();
+    void endParameterUpdate();
+
     // Custom envelope data storage
     void setCustomEnvelopeData(const EnvelopeData &data);
     EnvelopeData getCustomEnvelopeData() const { return customEnvelopeData; }
@@ -66,6 +70,7 @@ protected:
      void portClicked(Container *container, const QString &portName, bool isOutput, QPoint globalPos);
       void moved();
       void clicked(Container *container);
+      void parameterChanged();
 
 
 private:
@@ -80,6 +85,7 @@ private:
     bool isSelected = false;
     QMap<QString, double> parameters;  // Internal parameters (config)
     EnvelopeData customEnvelopeData;  // Custom envelope data (for Envelope Engine)
+    bool batchUpdateInProgress = false;  // True when batching parameter updates
 
  ~Container();
 };

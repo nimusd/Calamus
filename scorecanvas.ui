@@ -77,6 +77,8 @@
    <addaction name="separator"/>
    <addaction name="actionScoreCanvasSelect"/>
    <addaction name="actionScoreCanvasZoom"/>
+   <addaction name="separator"/>
+   <addaction name="actionSnapToScale"/>
   </widget>
   <widget class="QToolBar" name="scoreCanvasBottomToolbar">
    <property name="minimumSize">
@@ -102,6 +104,23 @@
    </attribute>
    <addaction name="actionPlay"/>
    <addaction name="actionstop"/>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1171</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionCompositionSettings"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <action name="actionDrawDiscreteNotes">
    <property name="text">
@@ -178,6 +197,28 @@
   <action name="actionstop">
    <property name="text">
     <string>■</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionCompositionSettings">
+   <property name="text">
+    <string>Composition Settings...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionSnapToScale">
+   <property name="text">
+    <string>Snap to Scale</string>
+   </property>
+   <property name="toolTip">
+    <string>Quantize selected continuous note to scale degrees</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>

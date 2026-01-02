@@ -423,6 +423,9 @@ Container* Canvas::deserializeContainer(const QJsonObject &json, QWidget *parent
     container->setInstanceName(instanceName);
     container->move(position);
 
+    // Batch parameter updates to avoid multiple graph rebuilds during load
+    container->beginParameterUpdate();
+
     // Restore parameters
     QJsonObject params = json["parameters"].toObject();
     for (auto it = params.begin(); it != params.end(); ++it) {
@@ -442,6 +445,9 @@ Container* Canvas::deserializeContainer(const QJsonObject &json, QWidget *parent
             container->setParameter(key, amps[i].toDouble());
         }
     }
+
+    // End batch update - triggers single graph rebuild
+    container->endParameterUpdate();
 
     // Restore custom envelope if present
     if (json.contains("customEnvelope")) {

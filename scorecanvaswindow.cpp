@@ -1,5 +1,7 @@
 #include "scorecanvaswindow.h"
 #include "ui_scorecanvas.h"
+#include "compositionsettingsdialog.h"
+#include "gotodialog.h"
 #include <QToolButton>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -43,6 +45,16 @@ ScoreCanvasWindow::ScoreCanvasWindow(AudioEngine *sharedAudioEngine, QWidget *pa
 {
     qDebug() << "ScoreCanvasWindow: Starting constructor";
     ui->setupUi(this);
+
+    // Ensure menubar is visible and properly set
+    if (ui->menubar) {
+        setMenuBar(ui->menubar);
+        ui->menubar->setVisible(true);
+        ui->menubar->setNativeMenuBar(false);  // Don't use native menubar on macOS/Ubuntu
+        qDebug() << "ScoreCanvasWindow: Menubar set and visible";
+    } else {
+        qDebug() << "ScoreCanvasWindow: WARNING - menubar is null!";
+    }
 
     // Install event filter on application to catch all key events
     qApp->installEventFilter(this);
@@ -94,6 +106,15 @@ ScoreCanvasWindow::ScoreCanvasWindow(AudioEngine *sharedAudioEngine, QWidget *pa
     setupTrackSelector();
     setupScoreCanvas();
     setupZoom();
+
+    // Initialize composition settings with defaults and apply them
+    compositionSettings = CompositionSettings::defaults();
+    compositionName = compositionSettings.compositionName;
+    updateFromSettings(compositionSettings);
+    qDebug() << "ScoreCanvasWindow: Applied default composition settings -"
+             << compositionSettings.compositionName
+             << compositionSettings.tempo << "BPM"
+             << compositionSettings.timeSigTop << "/" << compositionSettings.timeSigBottom;
 
     // Initialize playback timer
     playbackTimer = new QTimer(this);
@@ -278,6 +299,10 @@ void ScoreCanvasWindow::setupCompositionSettings()
     connect(timeSigDenominator, QOverload<int>::of(&QSpinBox::valueChanged),
             this, &ScoreCanvasWindow::onTimeSignatureChanged);
 
+    // Connect File menu action
+    connect(ui->actionCompositionSettings, &QAction::triggered,
+            this, &ScoreCanvasWindow::onCompositionSettingsTriggered);
+
     qDebug() << "ScoreCanvasWindow: Composition settings configured";
 }
 
@@ -294,18 +319,8 @@ void ScoreCanvasWindow::setupTrackSelector()
     // Set frequency range (typical musical range: A0 to C8)
     trackSelector->setFrequencyRange(currentMinHz, currentMaxHz);
 
-    // Add some test tracks to visualize
-    // Bass track (E1 to E3)
-    trackSelector->addTrack("Bass", QColor("#E74C3C"), 41.2, 164.8);
-
-    // Tenor track (C3 to C5)
-    trackSelector->addTrack("Tenor", QColor("#3498DB"), 130.8, 523.3);
-
-    // Alto track (F3 to F5)
-    trackSelector->addTrack("Alto", QColor("#9B59B6"), 174.6, 698.5);
-
-    // Soprano track (C4 to C6)
-    trackSelector->addTrack("Soprano", QColor("#F39C12"), 261.6, 1046.5);
+    // Add default track (will be replaced when sounit is loaded)
+    trackSelector->addTrack("(No Sounit)", QColor("#999999"), 27.5, 4186.0);
 }
 
 void ScoreCanvasWindow::setupScoreCanvas()
@@ -314,9 +329,11 @@ void ScoreCanvasWindow::setupScoreCanvas()
     scoreCanvas = new ScoreCanvas();
 
     // Set minimum size for ScoreCanvas to enable scrolling
-    // Width: large enough for horizontal time scrolling (e.g., 10000 pixels for long compositions)
-    // Height: will be calculated based on visible octave range
-    scoreCanvas->setMinimumSize(10000, 2000);
+    // Width: calculated from composition length and pixels per second
+    // Height: based on visible octave range
+    // Note: Will be updated when composition settings are applied
+    int initialWidth = static_cast<int>(currentPixelsPerSecond * (300000.0 / 1000.0));  // 5 minutes default
+    scoreCanvas->setMinimumSize(initialWidth, 2000);
 
     // Set the same frequency range as TrackSelector for synchronization
     scoreCanvas->setFrequencyRange(currentMinHz, currentMaxHz);
@@ -489,6 +506,9 @@ void ScoreCanvasWindow::setupScoreCanvas()
     // Connect cursor position signal to status bar
     connect(scoreCanvas, &ScoreCanvas::cursorPositionChanged, this, &ScoreCanvasWindow::onCursorPositionChanged);
 
+    // Connect track selector to score canvas for active track changes
+    connect(trackSelector, &TrackSelector::trackSelected, scoreCanvas, &ScoreCanvas::setActiveTrack);
+
     // Connect drawing tool actions to ScoreCanvas input mode
     connect(ui->actionDrawDiscreteNotes, &QAction::triggered, this, [this]() {
         scoreCanvas->setInputMode(ScoreCanvas::DrawModeDiscrete);
@@ -503,6 +523,18 @@ void ScoreCanvasWindow::setupScoreCanvas()
     connect(ui->actionScoreCanvasSelect, &QAction::triggered, this, [this]() {
         scoreCanvas->setInputMode(ScoreCanvas::SelectionMode);
         qDebug() << "ScoreCanvasWindow: Switched to Selection mode";
+    });
+
+    // Connect snap to scale action
+    connect(ui->actionSnapToScale, &QAction::triggered, this, [this]() {
+        // Get selected notes and quantize any continuous notes
+        QVector<Note> &notes = scoreCanvas->getPhrase().getNotes();
+        const QVector<int> &selectedIndices = scoreCanvas->getPhrase().getNotes().size() > 0 ?
+            QVector<int>() : QVector<int>();  // Placeholder - we need access to selected indices
+
+        // For now, we'll need to add a method to ScoreCanvas to get selected note indices
+        // and perform the quantization
+        qDebug() << "ScoreCanvasWindow: Snap to Scale action triggered (needs implementation)";
     });
 }
 
@@ -763,6 +795,33 @@ void ScoreCanvasWindow::keyPressEvent(QKeyEvent *event)
     // L key enters loop mode
     if (event->key() == Qt::Key_L && event->modifiers() == Qt::NoModifier) {
         timeline->setLoopModeActive(true);
+        event->accept();
+        return;
+    }
+
+    // G key opens goto dialog
+    if (event->key() == Qt::Key_G && event->modifiers() == Qt::NoModifier) {
+        // Create and show goto dialog
+        CompositionSettings::TimeMode mode = (currentTimeMode == MusicalTime) ?
+            CompositionSettings::Musical : CompositionSettings::Absolute;
+
+        GotoDialog dialog(mode, currentTempo, currentTimeSigTop, currentTimeSigBottom, this);
+        if (dialog.exec() == QDialog::Accepted) {
+            double targetTimeMs = dialog.getTargetTimeMs();
+
+            // Convert time to pixel position
+            int targetPixel = scoreCanvas->timeToPixel(targetTimeMs);
+
+            // Scroll to position (center the target in the viewport)
+            int viewportWidth = scoreScrollArea->viewport()->width();
+            int scrollValue = targetPixel - (viewportWidth / 2);
+
+            // Clamp to valid range
+            scrollValue = qMax(scoreScrollArea->horizontalScrollBar()->minimum(), scrollValue);
+            scrollValue = qMin(scoreScrollArea->horizontalScrollBar()->maximum(), scrollValue);
+
+            scoreScrollArea->horizontalScrollBar()->setValue(scrollValue);
+        }
         event->accept();
         return;
     }
@@ -1079,8 +1138,12 @@ void ScoreCanvasWindow::playFirstNote()
         return;
     }
 
-    // Play the first note
-    audioEngine->playNote(notes.first());
+    // Pre-render and play just the first note
+    QVector<Note> firstNote;
+    firstNote.append(notes.first());
+    audioEngine->renderNotes(firstNote, 1);
+    audioEngine->playRenderedBuffer();
+    qDebug() << "Playing first note (pre-rendered):" << notes.first().getPitchHz() << "Hz";
 }
 
 void ScoreCanvasWindow::startPlayback()
@@ -1111,11 +1174,45 @@ void ScoreCanvasWindow::startPlayback()
     // Move the now marker to the start position
     timeline->setNowMarker(playbackStartTime);
 
-    // Find the first note that starts at or after the playback position
-    for (int i = 0; i < notes.size(); ++i) {
-        if (notes[i].getStartTime() >= playbackStartTime) {
-            currentNoteIndex = i;
-            break;
+    // Filter notes to only include those at or after playback start position
+    QVector<Note> notesToPlay;
+    for (const Note& note : notes) {
+        if (note.getStartTime() >= playbackStartPosition) {
+            notesToPlay.append(note);
+        }
+    }
+
+    if (notesToPlay.isEmpty()) {
+        qDebug() << "ScoreCanvas: No notes to play from position" << playbackStartPosition;
+        return;
+    }
+
+    // Adjust note times to be relative to playback start (offset to start at 0)
+    double timeOffset = playbackStartPosition;
+    QVector<Note> offsetNotes;
+    for (Note note : notesToPlay) {
+        note.setStartTime(note.getStartTime() - timeOffset);
+        offsetNotes.append(note);
+    }
+
+    // PRE-RENDER: Render all notes into a single continuous buffer
+    qDebug() << "=== ScoreCanvas: Pre-rendering" << offsetNotes.size() << "notes from position" << playbackStartPosition << "ms ===";
+    for (int i = 0; i < offsetNotes.size(); i++) {
+        qDebug() << "  Note" << i << ":" << offsetNotes[i].getPitchHz() << "Hz, start:"
+                 << offsetNotes[i].getStartTime() << "ms, dur:" << offsetNotes[i].getDuration() << "ms";
+    }
+    audioEngine->renderNotes(offsetNotes, offsetNotes.size());  // Render all notes
+
+    // Play the rendered buffer
+    qDebug() << "=== ScoreCanvas: Playing rendered buffer ===";
+    audioEngine->playRenderedBuffer();
+
+    // Calculate total playback duration from rendered notes
+    double totalDuration = 0.0;
+    for (int i = 0; i < offsetNotes.size(); i++) {
+        double noteEndTime = offsetNotes[i].getStartTime() + offsetNotes[i].getDuration();
+        if (noteEndTime > totalDuration) {
+            totalDuration = noteEndTime;
         }
     }
 
@@ -1124,7 +1221,7 @@ void ScoreCanvasWindow::startPlayback()
     // Start the playback timer (tick every 10ms for smooth timing)
     playbackTimer->start(10);
 
-    qDebug() << "ScoreCanvas: Starting playback from" << playbackStartTime << "ms with" << notes.size() << "notes";
+    qDebug() << "ScoreCanvas: Starting playback of" << offsetNotes.size() << "note(s) (rendered mode, total duration:" << totalDuration << "ms)";
 
     // Emit signal to stop other windows
     emit playbackStarted();
@@ -1159,21 +1256,8 @@ void ScoreCanvasWindow::onPlaybackTick()
     // Update timeline now marker (always advance, even if no notes)
     timeline->setNowMarker(playbackStartTime);
 
-    // Check if it's time to trigger the next note (only if there are notes)
-    if (!notes.isEmpty() && currentNoteIndex < notes.size()) {
-        const Note& currentNote = notes[currentNoteIndex];
-
-        if (playbackStartTime >= currentNote.getStartTime()) {
-            // Trigger this note
-            audioEngine->playNote(currentNote);
-            qDebug() << "Playing note" << currentNoteIndex + 1 << "of" << notes.size()
-                     << "- Pitch:" << currentNote.getPitchHz() << "Hz"
-                     << "Duration:" << currentNote.getDuration() << "ms";
-
-            // Move to next note
-            currentNoteIndex++;
-        }
-    }
+    // Note: In pre-rendered mode, notes are already playing from the buffer
+    // We just need to update the timeline marker for visual feedback
 
     // Always advance playback time (10ms per tick)
     // Playback continues indefinitely until user manually stops
@@ -1255,6 +1339,131 @@ void ScoreCanvasWindow::onTimeSignatureChanged()
     if (currentTimeMode == MusicalTime) {
         scoreCanvas->setMusicalMode(true, currentTempo, currentTimeSigTop, currentTimeSigBottom);
     }
+}
+
+void ScoreCanvasWindow::updateSounitTrack(const QString &sounitName, const QColor &sounitColor)
+{
+    // Update track 0 with the loaded sounit information
+    // For now, all sounits use the full register (lowest to highest note)
+    const double LOWEST_NOTE = 27.5;   // A0
+    const double HIGHEST_NOTE = 4186.0; // C8
+
+    // Check if track 0 exists
+    const QVector<TrackSelector::Track>& tracks = trackSelector->getTracks();
+    if (tracks.isEmpty()) {
+        // Create track 0 if it doesn't exist
+        trackSelector->addTrack(sounitName, sounitColor, LOWEST_NOTE, HIGHEST_NOTE);
+    } else {
+        // Update existing track 0
+        trackSelector->updateTrack(0, sounitName, sounitColor);
+    }
+
+    qDebug() << "ScoreCanvasWindow: Track 0 updated with sounit:" << sounitName;
+}
+
+void ScoreCanvasWindow::onCompositionSettingsTriggered()
+{
+    qDebug() << "ScoreCanvasWindow: Composition Settings menu item clicked!";
+
+    // Get current settings from toolbar state
+    CompositionSettings current = getSettings();
+    qDebug() << "ScoreCanvasWindow: Current settings retrieved - Name:" << current.compositionName
+             << "Tempo:" << current.tempo;
+
+    // Show modal dialog
+    qDebug() << "ScoreCanvasWindow: Creating dialog...";
+    CompositionSettingsDialog dialog(current, this);
+    qDebug() << "ScoreCanvasWindow: Dialog created, showing...";
+
+    if (dialog.exec() == QDialog::Accepted) {
+        // User clicked OK - apply new settings
+        CompositionSettings newSettings = dialog.getSettings();
+        updateFromSettings(newSettings);
+
+        qDebug() << "ScoreCanvasWindow: Composition settings updated to:"
+                 << newSettings.compositionName
+                 << "tempo:" << newSettings.tempo
+                 << "time sig:" << newSettings.timeSigTop << "/" << newSettings.timeSigBottom;
+    }
+    // User clicked Cancel - do nothing
+}
+
+CompositionSettings ScoreCanvasWindow::getSettings() const
+{
+    CompositionSettings s;
+    s.compositionName = compositionName.isEmpty() ? "Untitled" : compositionName;
+    s.timeMode = (currentTimeMode == MusicalTime) ?
+                 CompositionSettings::Musical : CompositionSettings::Absolute;
+    s.tempo = currentTempo;
+    s.timeSigTop = currentTimeSigTop;
+    s.timeSigBottom = currentTimeSigBottom;
+    s.lengthMs = 300000.0;  // Default 5 minutes
+    s.lengthBars = 20;      // Will be calculated
+    s.syncLengthFromMs();   // Calculate bars from duration
+    return s;
+}
+
+void ScoreCanvasWindow::updateFromSettings(const CompositionSettings &settings)
+{
+    // Block signals to prevent circular updates
+    tempoSpinBox->blockSignals(true);
+    timeSigNumerator->blockSignals(true);
+    timeSigDenominator->blockSignals(true);
+    timeModeToggle->blockSignals(true);
+
+    // Update toolbar controls
+    tempoSpinBox->setValue(settings.tempo);
+    timeSigNumerator->setValue(settings.timeSigTop);
+    timeSigDenominator->setValue(settings.timeSigBottom);
+
+    if (settings.timeMode == CompositionSettings::Musical) {
+        timeModeToggle->setChecked(true);
+        timeModeToggle->setText("Musical");
+        timeModeToggle->setStyleSheet("background-color: #66BB6A; color: white;");
+        currentTimeMode = MusicalTime;
+    } else {
+        timeModeToggle->setChecked(false);
+        timeModeToggle->setText("Absolute");
+        timeModeToggle->setStyleSheet("background-color: #B0BEC5; color: white;");
+        currentTimeMode = AbsoluteTime;
+    }
+
+    // Restore signal processing
+    tempoSpinBox->blockSignals(false);
+    timeSigNumerator->blockSignals(false);
+    timeSigDenominator->blockSignals(false);
+    timeModeToggle->blockSignals(false);
+
+    // Update internal state
+    currentTempo = settings.tempo;
+    currentTimeSigTop = settings.timeSigTop;
+    currentTimeSigBottom = settings.timeSigBottom;
+
+    // Update timeline and scoreCanvas directly (don't call onTimeModeToggled - it's a toggle!)
+    timeline->setTimeMode(currentTimeMode == MusicalTime ? Timeline::Musical : Timeline::Absolute);
+    timeline->setTempo(currentTempo);
+    timeline->setTimeSignature(currentTimeSigTop, currentTimeSigBottom);
+    scoreCanvas->setMusicalMode(currentTimeMode == MusicalTime, currentTempo, currentTimeSigTop, currentTimeSigBottom);
+
+    // Manually trigger updates for dependent components
+    onTempoChanged(settings.tempo);
+    onTimeSignatureChanged();
+
+    // Store composition name and settings
+    compositionName = settings.compositionName;
+    compositionSettings = settings;
+
+    // Update canvas width based on composition length
+    int canvasWidth = static_cast<int>(currentPixelsPerSecond * (settings.lengthMs / 1000.0));
+    scoreCanvas->setMinimumSize(canvasWidth, scoreCanvas->minimumHeight());
+    timeline->resize(canvasWidth, timeline->height());
+
+    // Update status bar display
+    statusTempoLabel->setText(QString("%1 BPM").arg(settings.tempo));
+    statusTimeSigLabel->setText(QString("%1/%2").arg(settings.timeSigTop).arg(settings.timeSigBottom));
+
+    qDebug() << "ScoreCanvasWindow: Canvas resized to" << canvasWidth << "pixels for"
+             << settings.lengthMs << "ms composition (" << (settings.lengthMs / 60000.0) << "minutes)";
 }
 
 ScoreCanvasWindow::~ScoreCanvasWindow()

@@ -61,6 +61,9 @@ qt_add_executable(Calamus
     dnaeditordialog.h dnaeditordialog.cpp
     envelopelibraryDialog.h envelopelibraryDialog.cpp
     envelopecurvecanvas.h envelopecurvecanvas.cpp
+    compositionsettings.h compositionsettings.cpp
+    compositionsettingsdialog.h compositionsettingsdialog.cpp
+    gotodialog.h gotodialog.cpp
     dialogNewProject.ui
 
 )

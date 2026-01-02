@@ -1,0 +1,47 @@
+{
+    "connections": [
+        {
+            "fromContainer": "Harmonic Generator",
+            "fromPort": "spectrum",
+            "function": "passthrough",
+            "toContainer": "Spectrum to Signal",
+            "toPort": "spectrumIn",
+            "weight": 1
+        }
+    ],
+    "containers": [
+        {
+            "color": "#3498db",
+            "instanceName": "Harmonic Generator",
+            "parameters": {
+                "dnaSelect": 2,
+                "drift": 0,
+                "numHarmonics": 64,
+                "purity": 0
+            },
+            "position": {
+                "x": 100,
+                "y": 100
+            },
+            "type": "Harmonic Generator"
+        },
+        {
+            "color": "#3498db",
+            "instanceName": "Spectrum to Signal",
+            "parameters": {
+                "normalize": 1
+            },
+            "position": {
+                "x": 406,
+                "y": 119
+            },
+            "type": "Spectrum to Signal"
+        }
+    ],
+    "sounit": {
+        "comment": "",
+        "created": "2026-01-01T09:05:25",
+        "name": "most basic",
+        "version": "1.0"
+    }
+}

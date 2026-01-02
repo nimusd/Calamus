@@ -121,11 +121,11 @@
                 <property name="text">
                  <string/>
                 </property>
-                <property name="wordWrap">
-                 <bool>true</bool>
-                </property>
                 <property name="alignment">
                  <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -198,8 +198,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>100</width>
-                   <height>100</height>
+                   <width>325</width>
+                   <height>375</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_Config">
@@ -1067,6 +1067,7 @@
      <string>File</string>
     </property>
     <addaction name="actionNew_project_Ctrl_N"/>
+    <addaction name="actionComposition_Stettings"/>
     <addaction name="actionOpen_ctrl_o"/>
     <addaction name="actionOpen_Recent"/>
     <addaction name="actionSave_ctrl_S"/>
@@ -1452,6 +1453,11 @@
   <action name="actionAbout_Calamus">
    <property name="text">
     <string>About Calamus</string>
+   </property>
+  </action>
+  <action name="actionComposition_Settings">
+   <property name="text">
+    <string>Composition Settings</string>
    </property>
   </action>
  </widget>

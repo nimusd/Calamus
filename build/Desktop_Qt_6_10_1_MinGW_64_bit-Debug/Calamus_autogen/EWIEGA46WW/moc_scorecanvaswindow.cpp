@@ -52,6 +52,7 @@ template <> constexpr inline auto ScoreCanvasWindow::qt_create_metaobjectdata<qt
         "onCursorPositionChanged",
         "timeMs",
         "pitchHz",
+        "onCompositionSettingsTriggered",
         "stopPlayback",
         "stopAudioEngine"
     };
@@ -75,12 +76,14 @@ template <> constexpr inline auto ScoreCanvasWindow::qt_create_metaobjectdata<qt
         QtMocHelpers::SlotData<void(double, double)>(10, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Double, 11 }, { QMetaType::Double, 12 },
         }}),
+        // Slot 'onCompositionSettingsTriggered'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'stopPlayback'
-        QtMocHelpers::SlotData<void(bool)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 14 },
+        QtMocHelpers::SlotData<void(bool)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Bool, 15 },
         }}),
         // Slot 'stopPlayback'
-        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -110,8 +113,9 @@ void ScoreCanvasWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         case 3: _t->onZoomOut(); break;
         case 4: _t->onPressureChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[2]))); break;
         case 5: _t->onCursorPositionChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[2]))); break;
-        case 6: _t->stopPlayback((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 7: _t->stopPlayback(); break;
+        case 6: _t->onCompositionSettingsTriggered(); break;
+        case 7: _t->stopPlayback((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 8: _t->stopPlayback(); break;
         default: ;
         }
     }
@@ -140,14 +144,14 @@ int ScoreCanvasWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

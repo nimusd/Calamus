@@ -13,7 +13,7 @@ AudioEngine::AudioEngine()
     , useRenderBuffer(false)
     , renderPlaybackPosition(0)
     , renderCacheDirty(true)
-    , sampleRate(44100)
+    , sampleRate(48000)
     , initialized(false)
     , graph(nullptr)
 {
@@ -119,11 +119,11 @@ void AudioEngine::stopNote()
     useRenderBuffer.store(false);  // Stop buffer playback
 }
 
-void AudioEngine::buildGraph(Canvas *canvas)
+bool AudioEngine::buildGraph(Canvas *canvas)
 {
     if (!canvas) {
         clearGraph();
-        return;
+        return false;
     }
 
     // Lock mutex to prevent audio thread from accessing graph during rebuild
@@ -137,7 +137,8 @@ void AudioEngine::buildGraph(Canvas *canvas)
     graph->buildFromCanvas(canvas);
 
     // Enable graph mode if valid
-    if (graph->isValid()) {
+    bool isValid = graph->isValid();
+    if (isValid) {
         useGraph.store(true);
         std::cout << "AudioEngine: Graph built successfully - using graph mode" << std::endl;
     } else {
@@ -148,6 +149,8 @@ void AudioEngine::buildGraph(Canvas *canvas)
     // Invalidate render cache - graph structure changed
     renderCacheDirty.store(true);
     std::cout << "AudioEngine: Render cache invalidated (graph changed)" << std::endl;
+
+    return isValid;
 }
 
 void AudioEngine::clearGraph()
@@ -265,13 +268,14 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
         return;
     }
 
-    // Limit to maxNotes
-    int notesToRender = qMin(notes.size(), maxNotes);
+    // Limit to maxNotes (-1 means render all notes)
+    int notesToRender = (maxNotes < 0) ? notes.size() : qMin(notes.size(), maxNotes);
 
     // Check if we can reuse cached render
     bool notesChanged = (cachedNotes.size() != notesToRender);
     if (!notesChanged) {
         for (int i = 0; i < notesToRender; i++) {
+            // Check basic properties
             if (cachedNotes[i].getPitchHz() != notes[i].getPitchHz() ||
                 cachedNotes[i].getDuration() != notes[i].getDuration() ||
                 cachedNotes[i].getStartTime() != notes[i].getStartTime() ||
@@ -279,6 +283,20 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
                 notesChanged = true;
                 break;
             }
+
+            // Check if pitch curves differ (for continuous notes)
+            if (cachedNotes[i].getPitchCurve().getPoints().size() != notes[i].getPitchCurve().getPoints().size()) {
+                notesChanged = true;
+                break;
+            }
+
+            // Check if dynamics curves differ (for continuous notes)
+            if (cachedNotes[i].getDynamicsCurve().getPoints().size() != notes[i].getDynamicsCurve().getPoints().size()) {
+                notesChanged = true;
+                break;
+            }
+
+            // TODO: Could add deeper curve comparison (point values) if needed
         }
     }
 
@@ -293,6 +311,13 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
     }
     if (notesChanged) {
         std::cout << " (notes changed)";
+    }
+
+    // Show which synthesis mode we're using
+    if (useGraph.load() && graph && graph->isValid()) {
+        std::cout << " [USING SOUNIT GRAPH]";
+    } else {
+        std::cout << " [FALLBACK: using HarmonicGenerator - NO GRAPH LOADED]";
     }
     std::cout << std::endl;
 
@@ -333,12 +358,28 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
         size_t noteDurationSamples = static_cast<size_t>((note.getDuration() / 1000.0) * sampleRate);
 
         std::cout << "  Note " << (noteIdx + 1) << ": " << note.getPitchHz() << " Hz, "
-                  << "start=" << note.getStartTime() << "ms, dur=" << note.getDuration() << "ms" << std::endl;
+                  << "start=" << note.getStartTime() << "ms, dur=" << note.getDuration() << "ms"
+                  << ", avgDyn=" << note.getDynamics();
+
+        // Show if note has curves (continuous note)
+        if (note.hasPitchCurve()) {
+            std::cout << " [CONTINUOUS PITCH: " << note.getPitchCurve().getPoints().size() << " points]";
+        }
+        int dynPoints = note.getDynamicsCurve().getPoints().size();
+        if (dynPoints > 2) {  // More than 2 points = varying dynamics
+            std::cout << " [CONTINUOUS DYNAMICS: " << dynPoints << " points]";
+        } else if (dynPoints == 2) {
+            std::cout << " [DISCRETE DYNAMICS: " << dynPoints << " points]";
+        } else {
+            std::cout << " [WARNING: " << dynPoints << " dynamics points!]";
+        }
+        std::cout << std::endl;
 
         // Reset synthesis for this note
         if (useGraph.load() && graph && graph->isValid()) {
             graph->reset();
         } else {
+            // For fallback generator, set initial pitch (will be updated per-sample for continuous notes)
             generator.setFundamentalHz(note.getPitchHz());
             generator.reset();
         }
@@ -350,13 +391,27 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
             size_t bufferPos = noteStartSample + i;
             if (bufferPos >= totalSamples) break;  // Safety check
 
-            // Calculate note progress
+            // Calculate note progress (0.0 to 1.0)
             double noteProgress = static_cast<double>(i) / static_cast<double>(noteDurationSamples);
 
-            // Update amplitude envelope (attack for first half, release for second half)
-            if (noteProgress < 0.5) {
+            // Sample pitch curve at current time (supports continuous pitch variation)
+            double currentPitch = note.getPitchAt(noteProgress);
+
+            // Sample dynamics curve at current time (supports continuous dynamics variation)
+            double currentDynamics = note.getDynamicsAt(noteProgress);
+
+            // Update amplitude envelope (ADSR)
+            // Attack: first 5% of note
+            // Sustain: middle 85% of note
+            // Release: last 10% of note
+            if (noteProgress < 0.05) {
+                // Attack phase - ramp up quickly
                 amplitude += (1.0 - amplitude) * attackRate;
+            } else if (noteProgress < 0.90) {
+                // Sustain phase - maintain full amplitude
+                amplitude = 1.0;
             } else {
+                // Release phase - fade out in last 10%
                 amplitude *= (1.0 - releaseRate);
                 if (amplitude < 0.0001) amplitude = 0.0;
             }
@@ -364,13 +419,16 @@ void AudioEngine::renderNotes(const QVector<Note>& notes, int maxNotes)
             // Generate sample
             double sample;
             if (useGraph.load() && graph && graph->isValid()) {
-                sample = graph->generateSample(note.getPitchHz(), noteProgress);
+                // Use continuous pitch for graph-based synthesis
+                sample = graph->generateSample(currentPitch, noteProgress);
             } else {
+                // Update fallback generator pitch for continuous notes
+                generator.setFundamentalHz(currentPitch);
                 sample = generator.generateSample();
             }
 
-            // Apply envelope and clamp
-            sample *= amplitude;
+            // Apply envelope, dynamics curve, and clamp
+            sample *= amplitude * currentDynamics;
             float outputSample = static_cast<float>(std::clamp(sample * 0.3, -1.0, 1.0));
 
             // Mix into buffer (for now just overwrite, but could add overlapping notes later)

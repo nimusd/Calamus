@@ -29,6 +29,7 @@ ScoreCanvas::ScoreCanvas(QWidget *parent)
     , editingPhraseDotTimePos(0.0)
     , isDrawingPhraseCurve(false)
     , currentInputMode(DrawModeDiscrete)  // Default to discrete drawing mode
+    , activeTrackIndex(0)       // Default to track 0
     , visibleMinHz(27.5)        // A0
     , visibleMaxHz(4186.0)      // C8
     , pixelsPerHz(0.1)
@@ -419,6 +420,16 @@ void ScoreCanvas::setPasteTargetTime(double timeMs)
     pasteTargetTime = timeMs;
 }
 
+// ============================================================================
+// Track Management
+// ============================================================================
+
+void ScoreCanvas::setActiveTrack(int trackIndex)
+{
+    activeTrackIndex = trackIndex;
+    qDebug() << "ScoreCanvas: Active track set to" << trackIndex;
+}
+
 void ScoreCanvas::drawBarLines(QPainter &painter)
 {
     if (!musicalModeEnabled) return;
@@ -748,6 +759,26 @@ void ScoreCanvas::mousePressEvent(QMouseEvent *event)
             }
 
             update();
+        }
+    }
+
+    // Right-click: Snap continuous note to scale
+    if (event->button() == Qt::RightButton) {
+        int clickedNoteIndex = findNoteAtPosition(event->pos());
+
+        if (clickedNoteIndex >= 0) {
+            QVector<Note> &notes = phrase.getNotes();
+            Note &note = notes[clickedNoteIndex];
+
+            // Only quantize notes that have pitch curves (continuous notes)
+            if (note.hasPitchCurve()) {
+                Curve quantizedCurve = quantizePitchCurveToScale(note.getPitchCurve());
+                note.setPitchCurve(quantizedCurve);
+                update();
+                qDebug() << "Quantized continuous note to scale - original points:"
+                         << note.getPitchCurve().getPointCount()
+                         << "quantized points:" << quantizedCurve.getPointCount();
+            }
         }
     }
 }
@@ -1314,6 +1345,9 @@ void ScoreCanvas::mouseReleaseEvent(QMouseEvent *event)
         // Create note with default dynamics first
         Note newNote(startTime, duration, finalPitch, 0.7);
 
+        // Set the note to use the active track
+        newNote.setTrackIndex(activeTrackIndex);
+
         // Create a default bottom curve with some variation (for visual interest)
         Curve defaultBottomCurve;
         defaultBottomCurve.addPoint(0.0, 0.5);
@@ -1367,6 +1401,30 @@ void ScoreCanvas::mouseReleaseEvent(QMouseEvent *event)
 
             // Set the pitch curve on the note
             newNote.setPitchCurve(pitchCurve);
+        }
+
+        // If in continuous mode and we have pressure points, create a dynamics curve
+        if (currentInputMode == DrawModeContinuous && pressurePoints.size() >= 2) {
+            Curve dynamicsCurve;
+
+            // Convert absolute time/pressure points to normalized time (0.0-1.0 within the note)
+            for (const auto &point : pressurePoints) {
+                double absoluteTime = point.first;
+                double pressure = point.second;
+
+                // Normalize time within the note duration
+                double normalizedTime = (absoluteTime - startTime) / duration;
+                normalizedTime = qBound(0.0, normalizedTime, 1.0);
+
+                // Use pressure as dynamics (already in 0.0-1.0 range)
+                dynamicsCurve.addPoint(normalizedTime, pressure);
+            }
+
+            // Sort points by time to ensure proper interpolation
+            dynamicsCurve.sortPoints();
+
+            // Set the dynamics curve on the note
+            newNote.setDynamicsCurve(dynamicsCurve);
         }
 
         // Use undo command to add note
@@ -1638,6 +1696,89 @@ int ScoreCanvas::calculateCurveDotCount(const Note &note) const
     int dotCount = std::max(4, std::min(12, width / 75));
 
     return dotCount;
+}
+
+Curve ScoreCanvas::quantizePitchCurveToScale(const Curve &pitchCurve) const
+{
+    // Quantize a continuous pitch curve to snap to scale degrees
+    // Uses hysteresis: only switches to a new pitch when crossing halfway between scale degrees
+
+    if (pitchCurve.isEmpty() || scaleLines.isEmpty()) {
+        return pitchCurve;
+    }
+
+    Curve quantizedCurve;
+
+    // Sample the curve at many points to detect all transitions
+    const int sampleCount = 200;  // High resolution for smooth transitions
+    double currentScalePitch = 0.0;  // Track the current snapped pitch
+    bool firstSample = true;
+
+    for (int i = 0; i < sampleCount; ++i) {
+        double t = i / static_cast<double>(sampleCount - 1);  // Normalized time 0.0-1.0
+        double rawPitch = pitchCurve.valueAt(t);
+
+        if (firstSample) {
+            // Initialize to nearest scale line
+            currentScalePitch = snapToNearestScaleLine(rawPitch);
+            quantizedCurve.addPoint(t, currentScalePitch);
+            firstSample = false;
+            continue;
+        }
+
+        // Find the two nearest scale lines to the current snapped pitch
+        double lowerScalePitch = 0.0;
+        double upperScalePitch = 0.0;
+        bool foundLower = false;
+        bool foundUpper = false;
+
+        for (const ScaleLine &line : scaleLines) {
+            if (line.frequencyHz < currentScalePitch) {
+                if (!foundLower || line.frequencyHz > lowerScalePitch) {
+                    lowerScalePitch = line.frequencyHz;
+                    foundLower = true;
+                }
+            } else if (line.frequencyHz > currentScalePitch) {
+                if (!foundUpper || line.frequencyHz < upperScalePitch) {
+                    upperScalePitch = line.frequencyHz;
+                    foundUpper = true;
+                }
+            }
+        }
+
+        // Calculate threshold for switching (halfway point between current and adjacent scale lines)
+        bool shouldSwitch = false;
+        double newScalePitch = currentScalePitch;
+
+        if (rawPitch > currentScalePitch && foundUpper) {
+            // Moving upward - check if we've crossed halfway to upper scale line
+            double threshold = (currentScalePitch + upperScalePitch) / 2.0;
+            if (rawPitch > threshold) {
+                shouldSwitch = true;
+                newScalePitch = upperScalePitch;
+            }
+        } else if (rawPitch < currentScalePitch && foundLower) {
+            // Moving downward - check if we've crossed halfway to lower scale line
+            double threshold = (currentScalePitch + lowerScalePitch) / 2.0;
+            if (rawPitch < threshold) {
+                shouldSwitch = true;
+                newScalePitch = lowerScalePitch;
+            }
+        }
+
+        // Add point if pitch changed
+        if (shouldSwitch) {
+            currentScalePitch = newScalePitch;
+            quantizedCurve.addPoint(t, currentScalePitch);
+        }
+    }
+
+    // Ensure curve ends at final time
+    if (quantizedCurve.getPointCount() > 0) {
+        quantizedCurve.addPoint(1.0, currentScalePitch);
+    }
+
+    return quantizedCurve;
 }
 
 ScoreCanvas::DragMode ScoreCanvas::detectDragMode(const QPoint &pos, const Note &note) const
@@ -2518,6 +2659,9 @@ void ScoreCanvas::tabletEvent(QTabletEvent *event)
 
             // Create note with default dynamics first
             Note newNote(startTime, duration, finalPitch, 0.7);
+
+            // Set the note to use the active track
+            newNote.setTrackIndex(activeTrackIndex);
 
             // Create a default bottom curve with some variation (for visual interest)
             Curve defaultBottomCurve;

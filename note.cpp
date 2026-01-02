@@ -5,6 +5,7 @@ Note::Note()
     , startTime(0.0)
     , duration(1000.0)  // Default 1 second
     , pitchHz(440.0)    // Default A4
+    , trackIndex(0)       // Default to track 0
     , dynamicsCurve(0.5)  // Default medium dynamics (constant curve)
     , bottomCurve(0.6)    // Default bottom curve value (spectrum placeholder)
 {
@@ -15,6 +16,7 @@ Note::Note(double startTime, double duration, double pitchHz, double dynamics)
     , startTime(startTime)
     , duration(duration)
     , pitchHz(pitchHz)
+    , trackIndex(0)           // Default to track 0
     , dynamicsCurve(dynamics)  // Create constant dynamics curve
     , bottomCurve(0.6)         // Default bottom curve value
 {

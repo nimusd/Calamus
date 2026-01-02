@@ -76,13 +76,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 81,
+				"line" : 84,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 68,
+				"line" : 71,
 				"parent" : 0
 			},
 			{
@@ -403,7 +403,10 @@
 				65,
 				67,
 				69,
-				71
+				71,
+				73,
+				75,
+				77
 			]
 		}
 	],
@@ -564,12 +567,12 @@
 			"sourceIndexes" : 
 			[
 				0,
-				73,
-				74,
-				75,
-				76,
-				77,
-				78
+				79,
+				80,
+				81,
+				82,
+				83,
+				84
 			]
 		},
 		{
@@ -609,7 +612,10 @@
 				65,
 				67,
 				69,
-				71
+				71,
+				73,
+				75,
+				77
 			]
 		},
 		{
@@ -648,7 +654,10 @@
 				64,
 				66,
 				68,
-				70
+				70,
+				72,
+				74,
+				76
 			]
 		},
 		{
@@ -659,14 +668,14 @@
 				5,
 				6,
 				13,
-				72
+				78
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				79
+				85
 			]
 		}
 	],
@@ -1066,6 +1075,39 @@
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "envelopecurvecanvas.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "compositionsettings.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "compositionsettings.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "compositionsettingsdialog.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "compositionsettingsdialog.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "gotodialog.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gotodialog.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{

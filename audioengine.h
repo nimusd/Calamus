@@ -36,11 +36,11 @@ public:
     void stopNote();
 
     // Pre-rendering (render notes to buffer, then play from buffer)
-    void renderNotes(const QVector<Note>& notes, int maxNotes = 10);
+    void renderNotes(const QVector<Note>& notes, int maxNotes = -1);  // -1 = all notes
     void playRenderedBuffer();
 
     // Graph-based synthesis
-    void buildGraph(class Canvas *canvas);
+    bool buildGraph(class Canvas *canvas);  // Returns true if graph is valid, false if invalid
     void clearGraph();
 
     // Parameter access

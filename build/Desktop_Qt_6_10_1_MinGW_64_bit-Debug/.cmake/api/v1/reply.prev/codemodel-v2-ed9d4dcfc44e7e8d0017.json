@@ -11,7 +11,7 @@
 						1
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-63abe9f10dd5b774bb57.json",
+					"jsonFile" : "directory-.-Debug-6dc671ef7040b1b9301c.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -173,7 +173,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Calamus::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Calamus-Debug-71dbe95b6a899bc255e6.json",
+					"jsonFile" : "target-Calamus-Debug-c1219219b14c9e61546f.json",
 					"name" : "Calamus",
 					"projectIndex" : 0
 				},

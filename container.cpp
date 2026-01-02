@@ -207,11 +207,27 @@ QStringList Container::getOutputPorts() const
 void Container::setParameter(const QString &name, double value)
 {
     parameters[name] = value;
+    // Only emit signal if not in batch update mode
+    if (!batchUpdateInProgress) {
+        emit parameterChanged();
+    }
 }
 
 double Container::getParameter(const QString &name, double defaultValue) const
 {
     return parameters.value(name, defaultValue);
+}
+
+void Container::beginParameterUpdate()
+{
+    batchUpdateInProgress = true;
+}
+
+void Container::endParameterUpdate()
+{
+    batchUpdateInProgress = false;
+    // Emit single parameterChanged signal after all updates
+    emit parameterChanged();
 }
 
 void Container::setCustomEnvelopeData(const EnvelopeData &data)

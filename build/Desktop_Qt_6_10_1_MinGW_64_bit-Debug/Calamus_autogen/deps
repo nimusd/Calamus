@@ -693,6 +693,10 @@ Calamus_autogen/timestamp: \
 	D:/C++\ code/Calamus/calamusmain.h \
 	D:/C++\ code/Calamus/canvas.cpp \
 	D:/C++\ code/Calamus/canvas.h \
+	D:/C++\ code/Calamus/compositionsettings.cpp \
+	D:/C++\ code/Calamus/compositionsettings.h \
+	D:/C++\ code/Calamus/compositionsettingsdialog.cpp \
+	D:/C++\ code/Calamus/compositionsettingsdialog.h \
 	D:/C++\ code/Calamus/container.cpp \
 	D:/C++\ code/Calamus/container.h \
 	D:/C++\ code/Calamus/curve.cpp \
@@ -717,6 +721,8 @@ Calamus_autogen/timestamp: \
 	D:/C++\ code/Calamus/frequencylabels.h \
 	D:/C++\ code/Calamus/gateprocessor.cpp \
 	D:/C++\ code/Calamus/gateprocessor.h \
+	D:/C++\ code/Calamus/gotodialog.cpp \
+	D:/C++\ code/Calamus/gotodialog.h \
 	D:/C++\ code/Calamus/harmonicgenerator.cpp \
 	D:/C++\ code/Calamus/harmonicgenerator.h \
 	D:/C++\ code/Calamus/main.cpp \

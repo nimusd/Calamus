@@ -583,6 +583,9 @@ void CalamusMain::onDnaSelectChanged(int index)
                 spectrumViz->setSpectrum(customDna);
             }
 
+            // Batch parameter updates to avoid multiple graph rebuilds
+            currentContainer->beginParameterUpdate();
+
             // Store dnaSelect = -1 to indicate custom mode
             currentContainer->setParameter("dnaSelect", -1.0);
 
@@ -595,8 +598,8 @@ void CalamusMain::onDnaSelectChanged(int index)
             // Store the count
             currentContainer->setParameter("customDnaCount", static_cast<double>(customDna.size()));
 
-            // Rebuild graph to apply custom mode
-            sounitBuilder->rebuildGraph();
+            // End batch update - this triggers a single graph rebuild
+            currentContainer->endParameterUpdate();
             qDebug() << "DNA Select changed to: Custom (-1) with" << customDna.size() << "harmonics stored";
 
             // CRITICAL: Update the spectrum visualizer in the config section to show the new pattern
@@ -648,6 +651,9 @@ void CalamusMain::onNumHarmonicsChanged(int value)
                 customAmplitudes.resize(value);
             }
 
+            // Batch parameter updates to avoid multiple graph rebuilds
+            currentContainer->beginParameterUpdate();
+
             // Store the resized pattern back
             for (int i = 0; i < customAmplitudes.size(); i++) {
                 QString paramName = QString("customDna_%1").arg(i);
@@ -655,13 +661,15 @@ void CalamusMain::onNumHarmonicsChanged(int value)
             }
             currentContainer->setParameter("customDnaCount", static_cast<double>(customAmplitudes.size()));
 
+            // End batch update
+            currentContainer->endParameterUpdate();
+
             qDebug() << "Resized custom DNA pattern to" << value << "harmonics";
         }
     }
 
     currentContainer->setParameter("numHarmonics", static_cast<double>(value));
     updateSpectrumVisualization();
-    sounitBuilder->rebuildGraph();
     qDebug() << "Num Harmonics changed to:" << value;
 }
 
@@ -1364,6 +1372,13 @@ void CalamusMain::onSounitNameChanged(const QString &name)
     ui->editSounitName->blockSignals(true);
     ui->editSounitName->setText(name);
     ui->editSounitName->blockSignals(false);
+
+    // Update track 0 in score canvas with sounit info
+    if (scoreCanvasWindow) {
+        // Use a distinctive color for the sounit track (deep blue)
+        QColor sounitColor(0, 102, 204);  // Deep blue
+        scoreCanvasWindow->updateSounitTrack(name, sounitColor);
+    }
 }
 
 void CalamusMain::onSounitCommentChanged(const QString &comment)

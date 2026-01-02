@@ -93,6 +93,7 @@ public:
     QAction *actionDocumentation_F1;
     QAction *actionKeyboard_Shortcuts;
     QAction *actionAbout_Calamus;
+    QAction *actionComposition_Settings;
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout_4;
     QTabWidget *MainTab;
@@ -376,6 +377,8 @@ public:
         actionKeyboard_Shortcuts->setObjectName("actionKeyboard_Shortcuts");
         actionAbout_Calamus = new QAction(CalamusMain);
         actionAbout_Calamus->setObjectName("actionAbout_Calamus");
+        actionComposition_Settings = new QAction(CalamusMain);
+        actionComposition_Settings->setObjectName("actionComposition_Settings");
         centralwidget = new QWidget(CalamusMain);
         centralwidget->setObjectName("centralwidget");
         verticalLayout_4 = new QVBoxLayout(centralwidget);
@@ -459,8 +462,8 @@ public:
 
         labelContainerDescription = new QLabel(frame);
         labelContainerDescription->setObjectName("labelContainerDescription");
-        labelContainerDescription->setWordWrap(true);
         labelContainerDescription->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop);
+        labelContainerDescription->setWordWrap(true);
 
         verticalLayout_2->addWidget(labelContainerDescription);
 
@@ -511,7 +514,7 @@ public:
         scrollAreaConfig->setWidgetResizable(true);
         scrollAreaConfigContents = new QWidget();
         scrollAreaConfigContents->setObjectName("scrollAreaConfigContents");
-        scrollAreaConfigContents->setGeometry(QRect(0, 0, 100, 100));
+        scrollAreaConfigContents->setGeometry(QRect(0, 0, 325, 375));
         verticalLayout_Config = new QVBoxLayout(scrollAreaConfigContents);
         verticalLayout_Config->setSpacing(6);
         verticalLayout_Config->setObjectName("verticalLayout_Config");
@@ -1295,6 +1298,7 @@ public:
         actionDocumentation_F1->setText(QCoreApplication::translate("CalamusMain", "Documentation (F1)", nullptr));
         actionKeyboard_Shortcuts->setText(QCoreApplication::translate("CalamusMain", "Keyboard Shortcuts", nullptr));
         actionAbout_Calamus->setText(QCoreApplication::translate("CalamusMain", "About Calamus", nullptr));
+        actionComposition_Settings->setText(QCoreApplication::translate("CalamusMain", "Composition Settings", nullptr));
         groupSounitInfo->setTitle(QCoreApplication::translate("CalamusMain", "Sounit Info", nullptr));
         label->setText(QCoreApplication::translate("CalamusMain", "name:", nullptr));
         label_2->setText(QCoreApplication::translate("CalamusMain", "Used by:", nullptr));

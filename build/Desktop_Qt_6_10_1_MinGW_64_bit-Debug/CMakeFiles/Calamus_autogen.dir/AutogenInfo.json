@@ -687,6 +687,18 @@
 			null
 		],
 		[
+			"D:/C++ code/Calamus/compositionsettings.h",
+			"MU",
+			"EWIEGA46WW/moc_compositionsettings.cpp",
+			null
+		],
+		[
+			"D:/C++ code/Calamus/compositionsettingsdialog.h",
+			"MU",
+			"EWIEGA46WW/moc_compositionsettingsdialog.cpp",
+			null
+		],
+		[
 			"D:/C++ code/Calamus/container.h",
 			"MU",
 			"EWIEGA46WW/moc_container.cpp",
@@ -751,6 +763,12 @@
 			"D:/C++ code/Calamus/gateprocessor.h",
 			"MU",
 			"EWIEGA46WW/moc_gateprocessor.cpp",
+			null
+		],
+		[
+			"D:/C++ code/Calamus/gotodialog.h",
+			"MU",
+			"EWIEGA46WW/moc_gotodialog.cpp",
 			null
 		],
 		[
@@ -926,6 +944,8 @@
 		[ "D:/C++ code/Calamus/breathturbulence.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/calamusmain.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/canvas.cpp", "MU", null ],
+		[ "D:/C++ code/Calamus/compositionsettings.cpp", "MU", null ],
+		[ "D:/C++ code/Calamus/compositionsettingsdialog.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/container.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/curve.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/dnaeditordialog.cpp", "MU", null ],
@@ -938,6 +958,7 @@
 		[ "D:/C++ code/Calamus/formantbody.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/frequencylabels.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/gateprocessor.cpp", "MU", null ],
+		[ "D:/C++ code/Calamus/gotodialog.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/harmonicgenerator.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/main.cpp", "MU", null ],
 		[ "D:/C++ code/Calamus/noisecolorfilter.cpp", "MU", null ],

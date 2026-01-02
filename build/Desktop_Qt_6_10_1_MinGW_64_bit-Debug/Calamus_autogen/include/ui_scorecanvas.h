@@ -14,6 +14,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -33,6 +35,7 @@ public:
     QAction *actionScoreCanvasZoom;
     QAction *actionPlay;
     QAction *actionstop;
+    QAction *actionCompositionSettings;
     QWidget *centralwidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayoutTimeline;
@@ -40,6 +43,8 @@ public:
     QWidget *scrollAreaWidgetContents;
     QToolBar *toolBar;
     QToolBar *scoreCanvasBottomToolbar;
+    QMenuBar *menubar;
+    QMenu *menuFile;
 
     void setupUi(QMainWindow *scorecanvas)
     {
@@ -76,6 +81,9 @@ public:
         actionstop = new QAction(scorecanvas);
         actionstop->setObjectName("actionstop");
         actionstop->setMenuRole(QAction::MenuRole::NoRole);
+        actionCompositionSettings = new QAction(scorecanvas);
+        actionCompositionSettings->setObjectName("actionCompositionSettings");
+        actionCompositionSettings->setMenuRole(QAction::MenuRole::NoRole);
         centralwidget = new QWidget(scorecanvas);
         centralwidget->setObjectName("centralwidget");
         centralwidget->setStyleSheet(QString::fromUtf8("background-color: white;"));
@@ -107,6 +115,12 @@ public:
         scoreCanvasBottomToolbar->setMinimumSize(QSize(0, 30));
         scoreCanvasBottomToolbar->setMaximumSize(QSize(16777215, 30));
         scorecanvas->addToolBar(Qt::ToolBarArea::BottomToolBarArea, scoreCanvasBottomToolbar);
+        menubar = new QMenuBar(scorecanvas);
+        menubar->setObjectName("menubar");
+        menubar->setGeometry(QRect(0, 0, 1171, 21));
+        menuFile = new QMenu(menubar);
+        menuFile->setObjectName("menuFile");
+        scorecanvas->setMenuBar(menubar);
 
         toolBar->addAction(actionDrawDiscreteNotes);
         toolBar->addAction(actionDrawContinuousNotes);
@@ -119,6 +133,8 @@ public:
         toolBar->addAction(actionScoreCanvasZoom);
         scoreCanvasBottomToolbar->addAction(actionPlay);
         scoreCanvasBottomToolbar->addAction(actionstop);
+        menubar->addAction(menuFile->menuAction());
+        menuFile->addAction(actionCompositionSettings);
 
         retranslateUi(scorecanvas);
 
@@ -138,8 +154,13 @@ public:
         actionScoreCanvasZoom->setText(QCoreApplication::translate("scorecanvas", "Zoom", nullptr));
         actionPlay->setText(QCoreApplication::translate("scorecanvas", "\342\226\266", nullptr));
         actionstop->setText(QCoreApplication::translate("scorecanvas", "\342\226\240", nullptr));
+        actionCompositionSettings->setText(QCoreApplication::translate("scorecanvas", "Composition Settings...", nullptr));
+#if QT_CONFIG(shortcut)
+        actionCompositionSettings->setShortcut(QCoreApplication::translate("scorecanvas", "Ctrl+,", nullptr));
+#endif // QT_CONFIG(shortcut)
         toolBar->setWindowTitle(QCoreApplication::translate("scorecanvas", "toolBar", nullptr));
         scoreCanvasBottomToolbar->setWindowTitle(QCoreApplication::translate("scorecanvas", "toolBar_2", nullptr));
+        menuFile->setTitle(QCoreApplication::translate("scorecanvas", "File", nullptr));
     } // retranslateUi
 
 };

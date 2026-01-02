@@ -96,6 +96,15 @@ void TrackSelector::clearTracks()
     update();
 }
 
+void TrackSelector::updateTrack(int index, const QString &name, const QColor &color)
+{
+    if (index >= 0 && index < tracks.size()) {
+        tracks[index].name = name;
+        tracks[index].color = color;
+        update();
+    }
+}
+
 void TrackSelector::setFrequencyRange(double minHz, double maxHz)
 {
     visibleMinHz = minHz;
@@ -164,18 +173,30 @@ void TrackSelector::paintEvent(QPaintEvent *event)
             painter.drawRect(trackRect);
         }
 
-        // Draw track name (rotated or abbreviated) if there's enough space
-        if (trackRect.height() > 30) {
+        // Draw track name vertically
+        if (trackRect.height() > 50) {
             painter.save();
             painter.setPen(Qt::white);
             QFont font = painter.font();
-            font.setPointSize(8);
+            font.setPointSize(10);
             font.setBold(true);
             painter.setFont(font);
 
-            // Abbreviate to first 2 characters
-            QString abbrev = track.name.left(2).toUpper();
-            painter.drawText(trackRect, Qt::AlignCenter, abbrev);
+            // Calculate text metrics
+            QFontMetrics fm(font);
+            int textWidth = fm.horizontalAdvance(track.name);
+
+            // Rotate and draw text vertically
+            // Move to bottom-left of track rect, then rotate -90 degrees
+            int centerX = trackRect.center().x();
+            int centerY = trackRect.center().y();
+
+            painter.translate(centerX, centerY);
+            painter.rotate(-90);
+
+            // Draw centered at origin (which is now rotated)
+            painter.drawText(-textWidth / 2, fm.ascent() / 2, track.name);
+
             painter.restore();
         }
     }

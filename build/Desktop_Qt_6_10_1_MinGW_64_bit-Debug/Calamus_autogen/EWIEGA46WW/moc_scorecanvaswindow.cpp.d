@@ -484,6 +484,7 @@ D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Calamus_autogen/
   D:/C++\ code/Calamus/breathturbulence.h \
   D:/C++\ code/Calamus/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/_deps/rtaudio-src/RtAudio.h \
   D:/C++\ code/Calamus/canvas.h \
+  D:/C++\ code/Calamus/compositionsettings.h \
   D:/C++\ code/Calamus/container.h \
   D:/C++\ code/Calamus/curve.h \
   D:/C++\ code/Calamus/driftengine.h \

@@ -7,6 +7,7 @@
 #include "timeline.h"
 #include "frequencylabels.h"
 #include "audioengine.h"
+#include "compositionsettings.h"
 #include <QMainWindow>
 #include <QLabel>
 #include <QActionGroup>
@@ -35,6 +36,7 @@ private slots:
     void onZoomOut();
     void onPressureChanged(double pressure, bool active);
     void onCursorPositionChanged(double timeMs, double pitchHz);
+    void onCompositionSettingsTriggered();
 
 private:
     Ui::scorecanvas *ui;
@@ -72,6 +74,10 @@ private:
     int currentTempo;           // BPM
     int currentTimeSigTop;      // Beats per bar
     int currentTimeSigBottom;   // Note value (4 = quarter note)
+
+    // Composition settings (new)
+    CompositionSettings compositionSettings;
+    QString compositionName;
 
     // Audio engine (Phase 3)
     AudioEngine *audioEngine;
@@ -117,6 +123,10 @@ private:
     void onTempoChanged(int bpm);
     void onTimeSignatureChanged();
 
+    // Composition settings methods (new)
+    CompositionSettings getSettings() const;
+    void updateFromSettings(const CompositionSettings &settings);
+
     // Audio playback (Phase 3)
     void playFirstNote();
     void startPlayback();
@@ -125,6 +135,9 @@ private:
 public:
     // Expose ScoreCanvas for sharing notes with SounitBuilder
     ScoreCanvas* getScoreCanvas() const { return scoreCanvas; }
+
+    // Update track 0 with loaded sounit info
+    void updateSounitTrack(const QString &sounitName, const QColor &sounitColor);
 
 public slots:
     void stopPlayback(bool stopAudioEngine = true);

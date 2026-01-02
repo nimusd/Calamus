@@ -384,7 +384,7 @@ void SounitGraph::executeContainer(ProcessorData &proc, double pitch, double not
     if (container->getName() == "Harmonic Generator") {
         if (proc.harmonicGen) {
             // Initialize input values with defaults
-            double purityValue = 1.0;  // Default purity
+            double purityValue = 0.0;  // Default purity (0.0 = pure DNA, 1.0 = flat spectrum)
             double driftValue = 0.0;   // Default drift
 
             // Check for connections to purity and drift ports
